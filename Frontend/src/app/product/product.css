@@ -1,0 +1,245 @@
+
+/* ── Base ─────────────────────────────────────────────── */
+.product-page {
+  --void:    #04060f;
+  --void-2:  #060916;
+  --violet:  #a78bfa;
+  --violet-l:#c084fc;
+  --teal:    #2dd4bf;
+  --sky:     #7dd3fc;
+  --glass:   rgba(16, 12, 34, 0.88);
+  --border:  rgba(255,255,255,0.08);
+  --border-v:rgba(167,139,250,0.22);
+  --border-t:rgba(45,212,191,0.18);
+}
+
+.product-page, .product-page *, .product-page *::before, .product-page *::after { box-sizing: border-box; }
+
+.product-page {
+  background: var(--void);
+  color: #fff;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Fixed background grid ───────────────────────────── */
+.product-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image:
+    linear-gradient(to right,  rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* ── Glass card ──────────────────────────────────────── */
+.product-page .glass-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.product-page .glass-card.v { border-color: var(--border-v); }
+.product-page .glass-card.t { border-color: var(--border-t); }
+
+/* ── Gradient text ───────────────────────────────────── */
+.product-page .grad-v {
+  background: linear-gradient(90deg, #a78bfa, #c084fc, #7dd3fc, #a78bfa);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: product-shimmer 6s linear infinite;
+}
+@keyframes product-shimmer { to { background-position: 200% center; } }
+.product-page .grad-t {
+  background: linear-gradient(90deg, #2dd4bf, #7dd3fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Brand logo mask ─────────────────────────────────── */
+.product-page .brand-mask {
+  width: 38px; height: 25px;
+  background: linear-gradient(100deg,#2dd4bf,#7dd3fc,#a78bfa,#c084fc,#7dd3fc,#2dd4bf);
+  background-size: 300% 100%;
+  -webkit-mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><text y="34" font-size="36" font-family="Arial Black,sans-serif" font-weight="900">4AT</text></svg>') center/contain no-repeat;
+  mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><text y="34" font-size="36" font-family="Arial Black,sans-serif" font-weight="900">4AT</text></svg>') center/contain no-repeat;
+  animation: product-flow 7s linear infinite;
+}
+@keyframes product-flow { 0%{background-position:0% 50%} 100%{background-position:300% 50%} }
+
+/* ── Eyebrow pill ────────────────────────────────────── */
+.product-page .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(167,139,250,0.92);
+  border: 1px solid rgba(167,139,250,0.28);
+  background: rgba(167,139,250,0.07);
+  padding: 8px 18px;
+  border-radius: 999px;
+}
+.product-page .eyebrow .dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #a78bfa;
+  box-shadow: 0 0 8px #a78bfa;
+  animation: product-pulse-dot 2s ease-in-out infinite;
+}
+@keyframes product-pulse-dot {
+  0%,100% { opacity:1; transform:scale(1); }
+  50%     { opacity:.35; transform:scale(.55); }
+}
+
+/* ── Ambient glows ───────────────────────────────────── */
+.product-page .glow-violet { background: radial-gradient(ellipse 55% 70% at 70% 50%, rgba(167,139,250,.12) 0%, transparent 60%); }
+.product-page .glow-teal { background: radial-gradient(ellipse 55% 70% at 30% 50%, rgba(45,212,191,.08) 0%, transparent 60%); }
+.product-page .glow-mixed { background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(167,139,250,.07) 0%, transparent 60%); }
+
+/* ── 3D card tilt (JS-driven, CSS vars) ─────────────── */
+.product-page .tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease;
+  will-change: transform;
+}
+.product-page .tilt-card .tilt-inner { transform: translateZ(12px); }
+
+/* ── Magnetic border glow on hover ──────────────────── */
+.product-page .glass-card {
+  position: relative;
+  overflow: hidden;
+}
+.product-page .glass-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: conic-gradient(from var(--a, 0deg), transparent 10%, #a78bfa 40%, #2dd4bf 60%, transparent 90%);
+  opacity: 0;
+  transition: opacity .3s;
+  z-index: 0;
+  animation: product-rotate-border 3s linear infinite;
+}
+.product-page .glass-card:hover::before { opacity: 1; }
+.product-page .glass-card > * { position: relative; z-index: 1; }
+@keyframes product-rotate-border {
+  from { --a: 0deg; }
+  to   { --a: 360deg; }
+}
+
+/* ── Section base ────────────────────────────────────── */
+.product-page .section {
+  position: relative;
+  padding-block: var(--site-section-block);
+  padding-inline: var(--site-section-inline);
+  overflow: hidden;
+}
+.product-page .section-inner {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+/* Remove the section bridges entirely */
+.product-page .section::before, .product-page .section::after {
+  display: none;
+}
+
+/* ── Metric bar ──────────────────────────────────────── */
+.product-page .metric-bar {
+  height: 5px;
+  background: rgba(255,255,255,.07);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.product-page .metric-progress {
+  height: 100%;
+  border-radius: 6px;
+  width: 0;
+  transition: width 1.2s cubic-bezier(.22,1,.36,1);
+}
+.product-page .metric-progress.v { background: linear-gradient(90deg, #a78bfa, #c084fc); }
+.product-page .metric-progress.t { background: linear-gradient(90deg, #2dd4bf, #7dd3fc); }
+.product-page .metric-progress.b { background: linear-gradient(90deg, #7dd3fc, #a78bfa); }
+
+/* ── Process flow line pulse ─────────────────────────── */
+.product-page .flow-line {
+  stroke-dasharray: 8 4;
+  animation: product-dash-flow 1.5s linear infinite;
+}
+@keyframes product-dash-flow {
+  to { stroke-dashoffset: -24; }
+}
+
+/* ── Image placeholder style ─────────────────────────── */
+.product-page .image-placeholder {
+  background: linear-gradient(135deg, rgba(16,12,34,.9), rgba(8,11,26,.9));
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.3);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .5px;
+  overflow: hidden;
+}
+
+/* ── Academy card image ──────────────────────────────── */
+.product-page .academy-card-image {
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  width: 100%;
+}
+
+/* ── Reduced motion ──────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .product-page, .product-page *, .product-page *::before, .product-page *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* ── Integrations Marquee ───────────────────────────── */
+@keyframes product-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 8px));
+  }
+}
+
+@keyframes product-parallax-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(100px) scale(0.90);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.product-page .parallax-fade-in {
+  animation: product-parallax-fade-in 1s ease-out forwards;
+  opacity: 0;
+}
+
+.product-page { min-height: 100vh; background: #04060f; font-family: var(--font-product), system-ui, sans-serif; }
+.product-page .text-void { color: #04060f; }

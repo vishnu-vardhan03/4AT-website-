@@ -1,0 +1,2 @@
+import { Module } from '@nestjs/common'; import { TypeOrmModule } from '@nestjs/typeorm'; import { ConsultingLead } from './consulting-lead.entity'; import { ConsultingController } from './consulting.controller'; import { ConsultingService } from './consulting.service';
+@Module({ imports: [TypeOrmModule.forFeature([ConsultingLead])], controllers: [ConsultingController], providers: [ConsultingService], exports: [TypeOrmModule] }) export class ConsultingModule {}
