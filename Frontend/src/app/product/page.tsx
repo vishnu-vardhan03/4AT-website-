@@ -14,7 +14,6 @@ import {
   PricingSection,
   SecuritySection,
 } from "@/components/product/OtherSections";
-import { ParallaxObserver } from "@/components/ui/ParallaxObserver";
 import WhySection from "@/components/product/WhySection";
 import MouseGlow from "@/components/ui/MouseGlow";
 import Reveal from "@/components/ui/Reveal";
@@ -93,7 +92,6 @@ export default function ProductPage() {
       <FaqSection />
       <ProductCTA />
       <Footer />
-      <ParallaxObserver />
     </main>
   );
 }

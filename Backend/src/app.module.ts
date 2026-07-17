@@ -6,15 +6,15 @@ import { AcademyModule } from './academy/academy.module';
 import { AiModule } from './ai/ai.module';
 import { CommonModule } from './common/common.module';
 import { ConsultingModule } from './consulting/consulting.module';
-import { DashboardModule } from './dashboard/dashboard.module';
 import { DatabaseModule } from './database/database.module';
 import { HealthModule } from './health/health.module';
+import { LeadsModule } from './leads/leads.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: ['.env.local', '.env'] }),
     ThrottlerModule.forRoot([{ name: 'default', ttl: 60_000, limit: 100 }]),
-    DatabaseModule, CommonModule, AcademyModule, ConsultingModule, AiModule, DashboardModule, HealthModule,
+    DatabaseModule, CommonModule, AcademyModule, ConsultingModule, AiModule, LeadsModule, HealthModule,
   ],
   providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }],
 })

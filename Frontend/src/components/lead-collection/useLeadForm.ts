@@ -10,8 +10,6 @@ const EMPTY_FORM: LeadFormData = {
   email: "",
   phone: "",
   service: "",
-  companySize: "",
-  budget: "",
   description: "",
 };
 
@@ -28,10 +26,7 @@ function validate(data: LeadFormData): LeadFormErrors {
   else if (!EMAIL_REGEX.test(data.email.trim())) errors.email = "Enter a valid email address";
   if (!data.phone.trim()) errors.phone = "Phone number is required";
   if (!data.service) errors.service = "Please select a service";
-  if (!data.companySize) errors.companySize = "Please select a company size";
-  if (!data.budget) errors.budget = "Please select a budget range";
-  if (!data.description.trim()) errors.description = "Tell us a bit about your project";
-  else if (data.description.trim().length < 10)
+  if (data.description.trim() && data.description.trim().length < 10)
     errors.description = "Please add a few more details";
   return errors;
 }

@@ -288,12 +288,11 @@ export default function ContactPage() {
                   {/* Message */}
                   <div className="space-y-1.5">
                     <label htmlFor="contact-message" className="block text-xs font-bold uppercase tracking-widest text-white/45">
-                      Message <span className="text-[#38bdf8]">*</span>
+                      Message
                     </label>
                     <textarea
                       id="contact-message"
                       name="message"
-                      required
                       rows={5}
                       value={form.message}
                       onChange={handleChange}

@@ -5,7 +5,7 @@ import { Loader2 } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { SelectField, TextareaField, TextField } from "./FormFields";
 import { SuccessMessage } from "./SuccessMessage";
-import { BUDGET_OPTIONS, COMPANY_SIZE_OPTIONS, SERVICE_OPTIONS } from "./types";
+import { SERVICE_OPTIONS } from "./types";
 import { useLeadForm } from "./useLeadForm";
 
 interface LeadFormProps {
@@ -108,35 +108,9 @@ export function LeadForm({ onClose, bookMeetingHref = "/contact" }: LeadFormProp
         error={errors.service}
       />
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        <SelectField
-          id="lead-company-size"
-          label="Company Size"
-          required
-          placeholder="Select company size"
-          options={COMPANY_SIZE_OPTIONS}
-          value={formData.companySize}
-          onChange={(e) =>
-            updateField("companySize", e.target.value as typeof formData.companySize)
-          }
-          error={errors.companySize}
-        />
-        <SelectField
-          id="lead-budget"
-          label="Estimated Budget"
-          required
-          placeholder="Select a budget"
-          options={BUDGET_OPTIONS}
-          value={formData.budget}
-          onChange={(e) => updateField("budget", e.target.value as typeof formData.budget)}
-          error={errors.budget}
-        />
-      </div>
-
       <TextareaField
         id="lead-description"
         label="Project Description"
-        required
         rows={4}
         placeholder="Tell us about your project, current challenges, and how we can help."
         value={formData.description}

@@ -11,13 +11,15 @@ const contactSchema = z.object({
   service: z.string().trim().max(120).optional().default("Other"),
   companySize: z.string().trim().max(120).optional(),
   budget: z.string().trim().max(120).optional(),
-  description: z.string().trim().min(1).max(5000),
+  description: z.string().trim().max(5000).optional().default(""),
   website: z.string().optional(),
 });
 
 function getLeadEndpoint(service: string) {
   switch (service.trim().toLowerCase()) {
     case "4at consulting":
+    case "accounting":
+    case "auditing":
     case "hybrid services":
       return "consulting-leads";
     case "4at academy":
@@ -46,7 +48,7 @@ export async function POST(request: Request) {
       `Service: ${service}`,
       companySize ? `Company size: ${companySize}` : null,
       budget ? `Budget: ${budget}` : null,
-      `Message: ${description}`,
+      description ? `Message: ${description}` : null,
     ].filter(Boolean).join("\n");
 
     const response = await fetch(`${API_URL}/${endpoint}`, {

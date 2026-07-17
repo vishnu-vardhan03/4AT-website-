@@ -1,2 +1,0 @@
-import { Module } from '@nestjs/common'; import { TypeOrmModule } from '@nestjs/typeorm'; import { AcademyLead } from '../academy/academy-lead.entity'; import { AiLead } from '../ai/ai-lead.entity'; import { ConsultingLead } from '../consulting/consulting-lead.entity'; import { DashboardController } from './dashboard.controller'; import { DashboardService } from './dashboard.service';
-@Module({ imports: [TypeOrmModule.forFeature([AcademyLead, ConsultingLead, AiLead])], controllers: [DashboardController], providers: [DashboardService] }) export class DashboardModule {}
