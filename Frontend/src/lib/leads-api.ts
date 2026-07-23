@@ -1,4 +1,5 @@
 import type { LeadsStats } from "@/components/dashboard/types";
+export type { LeadsStats } from "@/components/dashboard/types";
 import { env } from "@/lib/env";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";

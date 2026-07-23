@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Brackets, ObjectLiteral, Repository, SelectQueryBuilder } from 'typeorm';
 import { AcademyLead } from '../academy/academy-lead.entity';
+import { AcademyRegistration } from '../academy/academy-registration.entity';
 import { AiLead } from '../ai/ai-lead.entity';
 import { ConsultingLead } from '../consulting/consulting-lead.entity';
 import { LeadCategory, LeadsQueryDto } from './dto/leads-query.dto';
@@ -13,17 +14,25 @@ type LeadEntity = AcademyLead | ConsultingLead | AiLead;
 export class LeadsService {
   constructor(
     @InjectRepository(AcademyLead) private readonly academy: Repository<AcademyLead>,
+    @InjectRepository(AcademyRegistration) private readonly academyRegistrations: Repository<AcademyRegistration>,
     @InjectRepository(ConsultingLead) private readonly consulting: Repository<ConsultingLead>,
     @InjectRepository(AiLead) private readonly ai: Repository<AiLead>,
   ) {}
 
   async summary(): Promise<LeadsSummaryResponse> {
-    const [academyLeads, consultingLeads, aiLeads] = await Promise.all([
+    const [academyLeads, academyRegistrations, consultingLeads, aiLeads] = await Promise.all([
       this.academy.count(),
+      this.academyRegistrations.count(),
       this.consulting.count(),
       this.ai.count(),
     ]);
-    return { academyLeads, consultingLeads, aiLeads, totalLeads: academyLeads + consultingLeads + aiLeads };
+    return {
+      academyLeads,
+      academyRegistrations,
+      consultingLeads,
+      aiLeads,
+      totalLeads: academyLeads + academyRegistrations + consultingLeads + aiLeads,
+    };
   }
 
   async findAll(query: LeadsQueryDto): Promise<LeadsPageResponse> {

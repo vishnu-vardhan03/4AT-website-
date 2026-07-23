@@ -1,34 +1,22 @@
-import { NextResponse } from "next/server";
+import { forwardLead, validationError } from "@/lib/server/lead-api";
+import { z } from "zod";
 
-const API_URL = process.env.BACKEND_API_URL ?? "http://localhost:5000";
+const schema = z.object({
+  fullName: z.string().trim().min(2).max(255).optional(),
+  name: z.string().trim().min(2).max(255).optional(),
+  company: z.string().trim().max(255).optional(),
+  email: z.string().trim().email().max(255),
+  phone: z.string().trim().max(50).optional(),
+  courseInterest: z.string().trim().max(255).optional(),
+  message: z.string().trim().max(4500).optional(),
+}).refine((value) => value.fullName || value.name, { path: ["fullName"], message: "Full name is required" });
 
 export async function POST(request: Request) {
-  try {
-    const body = await request.json();
-    const fullName = body.fullName ?? body.name;
-    if (!fullName || !body.email) {
-      return NextResponse.json({ error: "Full name and email are required" }, { status: 400 });
-    }
-
-    const response = await fetch(`${API_URL}/academy-leads`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        fullName,
-        company: body.company ?? "",
-        email: body.email,
-        phone: body.phone ?? "",
-        message: [body.courseInterest ? `Course: ${body.courseInterest}` : null, body.message].filter(Boolean).join("\n"),
-      }),
-      cache: "no-store",
-    });
-    const result = await response.json().catch(() => null);
-    if (!response.ok) {
-      return NextResponse.json(result ?? { error: "Unable to save inquiry." }, { status: response.status });
-    }
-    return NextResponse.json({ success: true, inquiry: result }, { status: 201 });
-  } catch (error) {
-    console.error("Academy inquiry API error", error);
-    return NextResponse.json({ error: "An error occurred while saving the inquiry." }, { status: 502 });
-  }
+  const parsed = schema.safeParse(await request.json().catch(() => null));
+  if (!parsed.success) return validationError(parsed.error.flatten().fieldErrors);
+  const body = parsed.data;
+  return forwardLead("academy-leads", {
+    fullName: body.fullName ?? body.name!, company: body.company, email: body.email, phone: body.phone,
+    message: [body.courseInterest ? `Course: ${body.courseInterest}` : null, body.message].filter(Boolean).join("\n"),
+  });
 }

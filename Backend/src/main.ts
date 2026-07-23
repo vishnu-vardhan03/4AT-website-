@@ -9,6 +9,7 @@ import { GlobalExceptionFilter } from './common/filters/http-exception.filter';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = app.get(ConfigService);
+  if (config.get<string>('TRUST_PROXY') === 'true') app.getHttpAdapter().getInstance().set('trust proxy', 1);
   app.use(helmet());
   const origins = config
     .get<string>('FRONTEND_URL', config.get<string>('ALLOWED_ORIGINS', 'http://localhost:3000'))
@@ -24,7 +25,9 @@ async function bootstrap() {
     .setVersion('1.0')
     .addBearerAuth()
     .build();
-  SwaggerModule.setup('api/docs', app, SwaggerModule.createDocument(app, swaggerConfig));
+  if (config.get<string>('ENABLE_SWAGGER', 'false') === 'true') {
+    SwaggerModule.setup('api/docs', app, SwaggerModule.createDocument(app, swaggerConfig));
+  }
   const port = Number(process.env.PORT) || 5000;
   await app.listen(port);
   console.log(`Backend running on port ${port}`);

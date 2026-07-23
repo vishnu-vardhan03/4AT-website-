@@ -9,7 +9,7 @@ export class ConsultingService {
   private readonly logger = new Logger(ConsultingService.name);
   constructor(@InjectRepository(ConsultingLead) private readonly repo: Repository<ConsultingLead>) {}
   async create(dto: CreateConsultingLeadDto) {
-    this.logger.log(`Saving consulting lead for ${dto.email}`);
+    this.logger.log('Saving consulting lead');
     try {
       const lead = await this.repo.save(this.repo.create(dto));
       this.logger.log(`Consulting lead saved with id ${lead.id}`);

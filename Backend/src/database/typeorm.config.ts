@@ -1,5 +1,6 @@
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { InitialLeadTables1721640000000 } from './migrations/1721640000000-initial-lead-tables';
 
 export function getTypeOrmConfig(config: ConfigService): TypeOrmModuleOptions {
   const url = config.get<string>('DATABASE_URL');
@@ -8,6 +9,7 @@ export function getTypeOrmConfig(config: ConfigService): TypeOrmModuleOptions {
     autoLoadEntities: true,
     synchronize: false,
     migrationsRun: false,
+    migrations: [InitialLeadTables1721640000000],
     ssl: config.get<string>('DB_SSL') === 'true' ? { rejectUnauthorized: false } : false,
   };
 

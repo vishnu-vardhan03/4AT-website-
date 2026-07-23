@@ -1,6 +1,6 @@
 # 4AT Consulting Leads API
 
-NestJS and TypeORM API connected to the existing PostgreSQL tables `academy_leads`, `consulting_leads`, and `ai_leads`. The application never synchronizes or migrates the schema.
+NestJS and TypeORM API for the PostgreSQL tables `academy_leads`, `consulting_leads`, and `ai_leads`.
 
 ## Configuration
 
@@ -18,7 +18,7 @@ DB_SSL=false
 ALLOWED_ORIGINS=http://localhost:3000,http://localhost:5173
 ```
 
-`synchronize` and `migrationsRun` are both disabled. No migration files or table-creation scripts are included.
+Schema synchronization and automatic migration execution are intentionally disabled. Apply reviewed migrations during deployment with `npm run migration:run`.
 
 ## Run
 
@@ -31,10 +31,13 @@ Production:
 
 ```bash
 npm run build
+npm run migration:run
 npm run start:prod
 ```
 
-Swagger is available at `http://localhost:5000/api/docs` and the database health check at `http://localhost:5000/health`.
+Run `npm run check` before deployment. In production, `DATABASE_URL`, `JWT_SECRET`, `ADMIN_USERNAME`, `ADMIN_PASSWORD_HASH`, and `FRONTEND_URL` are required; `JWT_SECRET` must contain at least 32 characters.
+
+Swagger is available at `/api/docs` only when `ENABLE_SWAGGER=true`. The database health check is available at `/health`. Set `TRUST_PROXY=true` only when the API runs behind one trusted reverse proxy so rate limiting sees the originating client address.
 
 ## Endpoints
 
@@ -44,7 +47,7 @@ Each lead resource supports `POST /`, `GET /`, `GET /:id`, and `DELETE /:id`:
 - `/consulting-leads`
 - `/ai-leads`
 
-List endpoints also accept optional `page`, `limit`, and `status` query parameters. `GET /dashboard/stats` returns counts for all three existing tables and their combined total.
+List endpoints accept optional `page` and `limit` query parameters. The authenticated `GET /leads/summary` endpoint returns counts for all three tables and their combined total.
 
 ## Existing column mappings
 

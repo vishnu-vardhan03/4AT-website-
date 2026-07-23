@@ -10,10 +10,11 @@ import { DatabaseModule } from './database/database.module';
 import { HealthModule } from './health/health.module';
 import { LeadsModule } from './leads/leads.module';
 import { AuthModule } from './auth/auth.module';
+import { validateEnvironment } from './config/validate-env';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true, envFilePath: ['.env.local', '.env'] }),
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: ['.env.local', '.env'], validate: validateEnvironment }),
     ThrottlerModule.forRoot([{ name: 'default', ttl: 60_000, limit: 100 }]),
     DatabaseModule, CommonModule, AuthModule, AcademyModule, ConsultingModule, AiModule, LeadsModule, HealthModule,
   ],

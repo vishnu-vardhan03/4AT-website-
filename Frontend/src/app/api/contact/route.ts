@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
+import { forwardLead, type LeadEndpoint } from "@/lib/server/lead-api";
 import { z } from "zod";
-
-const API_URL = process.env.BACKEND_API_URL ?? "http://localhost:5000";
 
 const contactSchema = z.object({
   name: z.string().trim().min(2).max(255),
@@ -15,18 +14,22 @@ const contactSchema = z.object({
   website: z.string().optional(),
 });
 
-function getLeadEndpoint(service: string) {
+function getLeadEndpoint(service: string): LeadEndpoint {
   switch (service.trim().toLowerCase()) {
     case "4at consulting":
     case "accounting":
     case "auditing":
     case "hybrid services":
+    case "other":
       return "consulting-leads";
     case "4at academy":
       return "academy-leads";
     case "4at.ai":
-    default:
       return "ai-leads";
+    default:
+      // General enquiries belong with the consulting team. Never silently
+      // classify an unknown service as an AI lead.
+      return "consulting-leads";
   }
 }
 
@@ -51,22 +54,9 @@ export async function POST(request: Request) {
       description ? `Message: ${description}` : null,
     ].filter(Boolean).join("\n");
 
-    const response = await fetch(`${API_URL}/${endpoint}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ fullName: name, company, email, phone, message: context }),
-      cache: "no-store",
-    });
-    const result = await response.json().catch(() => null);
-    if (!response.ok) {
-      console.error("Nest lead API rejected request", { endpoint, status: response.status, result });
-      return NextResponse.json(result ?? { error: "Unable to save inquiry." }, { status: response.status });
-    }
-
-    console.info("Lead persisted", { endpoint, id: result?.id });
-    return NextResponse.json({ success: true, lead: result }, { status: 201 });
+    return forwardLead(endpoint, { fullName: name, company, email, phone, message: context });
   } catch (error) {
-    console.error("Lead capture API error", error);
-    return NextResponse.json({ error: "An error occurred while saving your inquiry." }, { status: 502 });
+    console.error("Invalid contact request body", { malformedJson: error instanceof SyntaxError });
+    return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
   }
 }

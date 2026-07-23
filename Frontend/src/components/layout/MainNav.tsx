@@ -92,6 +92,7 @@ function NavDropdown({
         <div className="grid grid-cols-[1.05fr_.95fr] gap-3 overflow-hidden rounded-2xl border border-white/12 bg-[#070a14]/95 p-3 shadow-[0_28px_80px_rgba(0,0,0,.55)] backdrop-blur-2xl">
           <Link
             href={imageHref}
+            onClick={(event) => event.currentTarget.blur()}
             className="group/image relative min-h-[250px] overflow-hidden rounded-xl border border-white/10"
           >
             <Image
@@ -114,6 +115,7 @@ function NavDropdown({
                 key={item.label}
                 href={item.href}
                 role="menuitem"
+                onClick={(event) => event.currentTarget.blur()}
                 className="group/item flex flex-1 items-center justify-between gap-3 rounded-lg border border-transparent px-4 text-sm font-semibold leading-tight text-zinc-300 transition hover:border-white/8 hover:bg-white/[.055] hover:text-white focus-visible:border-white/15 focus-visible:bg-white/[.055] focus-visible:text-white focus-visible:outline-none"
               >
                 {item.label}
@@ -274,6 +276,7 @@ export function Nav({ contactHref = "/contact" }: { contactHref?: string }) {
               <div className="grid grid-cols-[1.05fr_.95fr] gap-3 overflow-hidden rounded-2xl border border-white/12 bg-[#070a14]/95 p-3 shadow-[0_28px_80px_rgba(0,0,0,.55)] backdrop-blur-2xl">
                 <Link
                   href="/product#capabilities"
+                  onClick={(event) => event.currentTarget.blur()}
                   className="group/image relative min-h-[250px] overflow-hidden rounded-xl border border-white/10"
                 >
                   <Image
@@ -296,6 +299,7 @@ export function Nav({ contactHref = "/contact" }: { contactHref?: string }) {
                       key={item.label}
                       href={item.href}
                       role="menuitem"
+                      onClick={(event) => event.currentTarget.blur()}
                       className="group/item flex flex-1 items-center justify-between rounded-lg border border-transparent px-4 text-sm font-semibold text-zinc-300 transition hover:border-white/8 hover:bg-white/[.055] hover:text-white focus-visible:border-white/15 focus-visible:bg-white/[.055] focus-visible:text-white focus-visible:outline-none"
                     >
                       {item.label}

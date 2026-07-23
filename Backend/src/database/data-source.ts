@@ -3,6 +3,7 @@ import { DataSource } from 'typeorm';
 import { AcademyLead } from '../academy/academy-lead.entity';
 import { AiLead } from '../ai/ai-lead.entity';
 import { ConsultingLead } from '../consulting/consulting-lead.entity';
+import { InitialLeadTables1721640000000 } from './migrations/1721640000000-initial-lead-tables';
 
 const useUrl = Boolean(process.env.DATABASE_URL);
 
@@ -20,4 +21,5 @@ export default new DataSource({
   ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
   synchronize: false,
   entities: [AcademyLead, ConsultingLead, AiLead],
+  migrations: [InitialLeadTables1721640000000],
 });
