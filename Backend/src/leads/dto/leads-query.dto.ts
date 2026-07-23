@@ -5,6 +5,7 @@ export enum LeadCategory {
   ACADEMY = 'academy',
   CONSULTING = 'consulting',
   AI = 'ai',
+  ACADEMY_REGISTRATION = 'academy_registration',
 }
 
 export class LeadsQueryDto {

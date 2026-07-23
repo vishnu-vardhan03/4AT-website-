@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { z } from "zod";
 
-export type LeadCategory = "academy" | "consulting" | "ai";
+export type LeadCategory = "academy" | "consulting" | "ai" | "academy_registration";
 
 export interface LeadRecord {
   id: number;
@@ -31,6 +31,7 @@ export interface LeadsQuery {
 
 const leadsStatsSchema = z.object({
   academyLeads: z.number().finite().nonnegative(),
+  academyRegistrations: z.number().finite().nonnegative(),
   consultingLeads: z.number().finite().nonnegative(),
   aiLeads: z.number().finite().nonnegative(),
   totalLeads: z.number().finite().nonnegative(),
@@ -44,7 +45,7 @@ const leadRecordSchema = z.object({
   phone: z.string().nullable(),
   message: z.string().nullable(),
   createdAt: z.string().nullable(),
-  category: z.enum(["academy", "consulting", "ai"]),
+  category: z.enum(["academy", "consulting", "ai", "academy_registration"]),
 });
 
 const leadsPageSchema = z.object({
@@ -150,6 +151,54 @@ export async function getLeads(query: LeadsQuery = {}, accessToken?: string): Pr
     return parseLeadsPage(await response.json());
   } catch (error) {
     console.error(`[leads-api] Failed to load ${env.BACKEND_URL}/leads: ${errorMessage(error)}`);
+    return null;
+  }
+}
+
+export interface AcademyRegistrationRecord {
+  id: number;
+  firstName: string;
+  lastName: string;
+  gender: string;
+  country: string;
+  state: string;
+  city: string;
+  email: string;
+  mobileNumber: string;
+  applicantType: "student" | "professional";
+  college?: string;
+  programName?: string;
+  academicYear?: string;
+  department?: string;
+  companyName?: string;
+  jobTitle?: string;
+  industry?: string;
+  yearsOfExperience?: string;
+  highestEducation: string;
+  referredBy?: string;
+  createdAt: string;
+}
+
+export interface RegistrationsPage {
+  data: AcademyRegistrationRecord[];
+  meta: { total: number; page: number; limit: number; totalPages: number };
+}
+
+export async function getAcademyRegistrations(accessToken?: string): Promise<RegistrationsPage | null> {
+  const headers = await dashboardHeaders(accessToken);
+  if (!headers) return null;
+  try {
+    const url = `${env.BACKEND_URL}/academy-leads/registrations`;
+    const response = await fetch(url, {
+      cache: "no-store",
+      headers,
+    });
+    if (!response.ok) {
+      return null;
+    }
+    return (await response.json()) as RegistrationsPage;
+  } catch (error) {
+    console.error(`[leads-api] Failed to load registrations: ${errorMessage(error)}`);
     return null;
   }
 }

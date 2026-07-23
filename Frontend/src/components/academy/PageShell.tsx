@@ -11,7 +11,6 @@ const CoreFeatures = dynamic(() => import("@/components/academy/CoreFeatures").t
 const CredibilityRecruiters = dynamic(() => import("@/components/academy/CredibilityRecruiters").then(mod => mod.CredibilityRecruiters), { loading: () => <SectionLoader /> });
 const Faculty = dynamic(() => import("@/components/academy/Faculty").then(mod => mod.Faculty), { loading: () => <SectionLoader /> });
 const TestimonialsSocialProof = dynamic(() => import("@/components/academy/TestimonialsSocialProof").then(mod => mod.TestimonialsSocialProof), { loading: () => <SectionLoader /> });
-const RegisterForm = dynamic(() => import("@/components/academy/RegisterForm").then(mod => mod.RegisterForm), { loading: () => <SectionLoader /> });
 
 import { HowItWorks } from "@/components/academy/HowItWorks";
 
@@ -28,9 +27,7 @@ export function PageShell({ ctaRoute }: { ctaRoute: string }) {
         <TestimonialsSocialProof />
         <DeferredSection section="enrollment-cta" sectionId="enroll" href={ctaRoute} />
       </ProductCurtain>
-      <section id="contact-us" className="site-shell relative scroll-mt-28 bg-transparent section-padding">
-        <RegisterForm />
-      </section>
     </>
   );
 }
+

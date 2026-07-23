@@ -7,7 +7,7 @@ type KpiCardProps = {
   label: string;
   value: number;
   icon: LucideIcon;
-  accent: "sky" | "violet" | "emerald" | "brand";
+  accent: "sky" | "violet" | "emerald" | "brand" | "cyan";
 };
 
 const accents = {
@@ -15,6 +15,7 @@ const accents = {
   violet: { icon: "bg-violet-400/10 text-violet-300 ring-violet-400/20", glow: "bg-violet-400" },
   emerald: { icon: "bg-emerald-400/10 text-emerald-300 ring-emerald-400/20", glow: "bg-emerald-400" },
   brand: { icon: "bg-cyan-400/10 text-cyan-200 ring-cyan-400/20", glow: "bg-cyan-300" },
+  cyan: { icon: "bg-teal-400/10 text-teal-300 ring-teal-400/20", glow: "bg-teal-400" },
 };
 
 export function KpiCard({ label, value, icon: Icon, accent }: KpiCardProps) {
