@@ -206,7 +206,7 @@ export function Faculty({ sectionId = "faculty" }: { sectionId?: string }) {
     <section
       ref={sectionRef}
       id={sectionId}
-      className={`site-shell section-padding overflow-x-hidden relative mentors-section-layout ${
+      className={`w-full section-padding overflow-x-hidden relative mentors-section-layout ${
         isAnimated ? "animate-active" : ""
       }`}
     >

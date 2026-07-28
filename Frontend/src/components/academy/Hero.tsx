@@ -208,7 +208,7 @@ export function Hero({ children }: { children?: React.ReactNode }) {
   return (
     <section
       ref={containerRef}
-      className="site-shell relative w-full overflow-x-hidden bg-transparent min-h-[100dvh] flex flex-col justify-between"
+      className="relative w-full overflow-x-hidden bg-transparent min-h-[100dvh] flex flex-col justify-between"
     >
       {/* Deep-Space Background Layers */}
       <motion.div
@@ -319,7 +319,7 @@ export function Hero({ children }: { children?: React.ReactNode }) {
       </motion.div>
 
       {/* Hero Section Grid Area */}
-      <div className="site-shell px-6 md:px-12 lg:px-20 relative z-10 flex-1 flex items-center justify-center pt-[110px] pb-[150px] lg:pt-[96px] lg:pb-[96px]">
+      <div className="site-shell relative z-10 flex-1 flex items-center justify-center pt-[110px] pb-[150px] lg:pt-[96px] lg:pb-[96px]">
         <div className="grid grid-cols-1 lg:grid-cols-[46%_54%] items-center gap-12 lg:gap-[64px] w-full">
           
           {/* Left Column: Children (HeroContent) */}

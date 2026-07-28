@@ -173,7 +173,7 @@ export function LmsCourses({ sectionId = "courses" }: { sectionId?: string }) {
     <section
       ref={sectionRef}
       id={sectionId}
-      className="site-shell section-padding font-sans select-none overflow-x-hidden relative"
+      className="w-full section-padding font-sans select-none overflow-x-hidden relative"
       style={{ backgroundColor: "#07090D", color: "#ffffff" }}
     >
       

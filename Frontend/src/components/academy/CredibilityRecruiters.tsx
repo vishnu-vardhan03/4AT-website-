@@ -199,7 +199,7 @@ export function CredibilityRecruiters() {
     <section
       ref={containerRef}
       id="credibility"
-      className={`site-shell section-padding overflow-x-hidden relative recruiters-section-custom ${isAnimated ? "animate-active" : ""
+      className={`w-full section-padding overflow-x-hidden relative recruiters-section-custom ${isAnimated ? "animate-active" : ""
         }`}
     >
       {/* Subtle gradient fade divider replacing the hard border */}

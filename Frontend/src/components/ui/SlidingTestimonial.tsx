@@ -92,8 +92,7 @@ const FUITestimonialWithSlide: React.FC<SlidingTestimonialProps> = ({
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="max-w-[1440px] mx-auto w-full overflow-hidden">
-      <div className="w-full mx-auto px-4 md:px-10 overflow-hidden">
+    <div className="site-shell overflow-hidden">
         {/* Heading Section */}
         <div
           id="testimonials-heading"
@@ -182,7 +181,6 @@ const FUITestimonialWithSlide: React.FC<SlidingTestimonialProps> = ({
           </div>
         )}
       </div>
-    </div>
   );
 };
 

@@ -422,7 +422,7 @@ export function HowItWorks({ sectionId = "selection-metrics" }: { sectionId?: st
     <div ref={wrapperRef} id={sectionId} className="md:h-[550vh] relative">
     <div
       ref={sectionRef}
-      className="site-shell w-full relative bg-[var(--color-canvas)] md:sticky md:top-0 md:h-screen h-auto border-t border-white/[0.03]"
+      className="w-full relative bg-[var(--color-canvas)] md:sticky md:top-0 md:h-screen h-auto border-t border-white/[0.03]"
     >
       {/* Container centers content vertically and spans full height on desktop */}
       <div className="relative w-full h-full z-10">
@@ -473,7 +473,7 @@ export function HowItWorks({ sectionId = "selection-metrics" }: { sectionId?: st
           }
         `}} />
 
-        <div className="site-shell px-6 md:px-12 lg:px-20 relative z-10 w-full h-full">
+        <div className="site-shell relative z-10 w-full h-full">
           {/* Inner Content Wrapper - full height flex layout: header top, stages center, footer bottom */}
           <div className="hiw-content-wrapper w-full min-h-[100dvh] md:h-full flex flex-col justify-between py-10 md:py-16 relative z-10">
 

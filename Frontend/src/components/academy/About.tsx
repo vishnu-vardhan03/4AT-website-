@@ -255,7 +255,7 @@ export function About() {
     <section
       ref={sectionRef}
       id="about"
-      className="site-shell bg-transparent text-white section-padding overflow-x-hidden relative min-h-[100dvh] flex items-center"
+      className="w-full bg-transparent text-white section-padding overflow-x-hidden relative min-h-[100dvh] flex items-center"
     >
       <style>{`
         /* Cohesive Bento Card design system token matching Vercel/Nothing layout */

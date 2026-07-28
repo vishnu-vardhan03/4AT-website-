@@ -60,7 +60,7 @@ export function EnrollmentCTA({ href, sectionId = "enroll" }: EnrollmentCTAProps
     <section
       ref={sectionRef}
       id={sectionId}
-      className="site-shell bg-transparent section-padding overflow-x-hidden relative flex items-center justify-center min-h-[70vh]"
+      className="w-full bg-transparent section-padding overflow-x-hidden relative flex items-center justify-center min-h-[70vh]"
     >
       {/* Subtle gradient fade divider replacing the hard border */}
       <div className="absolute top-0 left-0 right-0 h-[120px] bg-gradient-to-b from-[#9C5BFF]/8 via-[#2ACDFF]/8 to-transparent blur-[60px] pointer-events-none opacity-10 z-20" />
