@@ -62,7 +62,7 @@ export function Footer({ className = "m-3" }: FooterProps) {
           <div className="col-span-2 lg:col-span-1">
             <Link
               href="/"
-              className="inline-block text-xl font-medium tracking-[-0.02em] text-white transition-colors hover:text-sky-300"
+              className="inline-block text-xl font-medium tracking-[-0.02em] text-white transition-colors hover-fine:text-sky-300"
             >
               4AT
             </Link>
@@ -75,7 +75,7 @@ export function Footer({ className = "m-3" }: FooterProps) {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="4AT on LinkedIn"
-                className="text-white/40 transition-colors hover:text-sky-300"
+                className="text-white/40 transition-colors hover-fine:text-sky-300"
               >
                 <Linkedin className="size-[18px]" aria-hidden="true" />
               </a>
@@ -85,14 +85,14 @@ export function Footer({ className = "m-3" }: FooterProps) {
           {footerColumns.map((column) => (
             <div key={column.title}>
               <h2 className="mb-2.5 text-[13px] font-medium text-white">
-                <Link href={column.href} className="transition-colors hover:text-sky-300">
+                <Link href={column.href} className="transition-colors hover-fine:text-sky-300">
                   {column.title}
                 </Link>
               </h2>
               <ul className="flex flex-col gap-2">
                 {column.items.map((item) => (
                   <li key={item.label} className="text-[13px] leading-5">
-                    <Link href={item.href} className="text-white/50 transition-colors hover:text-white">
+                    <Link href={item.href} className="text-white/50 transition-colors hover-fine:text-white">
                       {item.label}
                     </Link>
                   </li>

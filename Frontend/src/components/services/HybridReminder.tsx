@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { TiltCard } from "./TiltCard";
+import TiltCard from "@/components/ui/TiltCard";
 
 export function HybridReminder() {
   return (

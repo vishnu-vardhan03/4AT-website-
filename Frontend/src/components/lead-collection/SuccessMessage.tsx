@@ -34,7 +34,7 @@ export function SuccessMessage({ onClose, bookMeetingHref }: SuccessMessageProps
         {bookMeetingHref && (
           <Link
             href={bookMeetingHref}
-            className="inline-flex items-center justify-center rounded-xl bg-white px-6 py-3 text-xs font-black uppercase tracking-widest text-black transition hover:shadow-[0_0_30px_rgba(255,255,255,0.25)]"
+            className="inline-flex items-center justify-center rounded-xl bg-white px-6 py-3 text-xs font-black uppercase tracking-widest text-black transition hover-fine:shadow-[0_0_30px_rgba(255,255,255,0.25)]"
           >
             Book a Meeting
           </Link>
@@ -42,7 +42,7 @@ export function SuccessMessage({ onClose, bookMeetingHref }: SuccessMessageProps
         <button
           type="button"
           onClick={onClose}
-          className="inline-flex items-center justify-center rounded-xl border border-white/15 px-6 py-3 text-xs font-bold uppercase tracking-widest text-white/60 transition hover:border-white/30 hover:text-white"
+          className="inline-flex items-center justify-center rounded-xl border border-white/15 px-6 py-3 text-xs font-bold uppercase tracking-widest text-white/60 transition hover-fine:border-white/30 hover-fine:text-white"
         >
           Close
         </button>

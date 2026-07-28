@@ -15,7 +15,7 @@ const pillars = [
   {
     eyebrow: "4AT AI",
     title: "The engine inside.",
-    body: "Finance-native AI agents - Iris reconciles, Guardian monitors controls, Atlas reports, Connector plugs into your ERP. Standard in every subscription. Available as a private deployment for firms and enterprises.",
+    body: "Finance-native AI agents - Iris reconciles, Guardian monitors controls, Atlas reports, Connector plugs into your ERP. Standard in every subscription.",
     link: "See 4AT AI",
     href: "/product",
     color: "#a78bfa",
