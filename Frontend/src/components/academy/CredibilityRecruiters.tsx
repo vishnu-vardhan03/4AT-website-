@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Database, LineChart, Cpu, ShieldAlert, BarChart3, Check, X, Users, TrendingUp, Briefcase, Star } from "lucide-react";
 import { CountUpNumber } from "@/components/academy/CountUpNumber";
+import { SectionPill } from "@/components/academy/SectionPill";
 
 const SECTION_CONTENT = {
   eyebrow: "For Recruiters",
@@ -314,9 +315,9 @@ export function CredibilityRecruiters() {
 
             {/* Header Content */}
             <div className="flex flex-col gap-5">
-              <span className="section-eyebrow self-start">
-                {SECTION_CONTENT.eyebrow}
-              </span>
+              <SectionPill className="self-start">
+                FOR RECRUITERS
+              </SectionPill>
               <h2 className="section-title">
                 Hire finance talent with <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">real baseline</span> readiness.
               </h2>

@@ -4,6 +4,7 @@ import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ClipboardCheck, TrendingUp, MessageCircle, Users } from "lucide-react";
+import { SectionPill } from "./SectionPill";
 
 interface StepData {
   step: string;
@@ -479,10 +480,9 @@ export function HowItWorks({ sectionId = "selection-metrics" }: { sectionId?: st
             {/* Header Section */}
             <div className="hiw-header-fade flex flex-col items-start max-w-4xl w-full mb-8 md:mb-12">
               {/* Eyebrow */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.15em] uppercase text-emerald-400 font-mono mb-3 md:mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                Selection Metrics
-              </div>
+              <SectionPill className="mb-3 md:mb-4">
+                SELECTION METRICS
+              </SectionPill>
 
               <h2 className="section-title">
                 Every learner is <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">evaluated</span> <br /> before becoming <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">job-ready</span>.
