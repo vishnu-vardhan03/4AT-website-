@@ -387,6 +387,51 @@ export function ServiceDoodle({ serviceId, sizeClass = "w-24 h-24" }: DoodleProp
           </svg>
         );
 
+      case "12": // Transaction & Migration Support (Data moving between databases)
+        return (
+          <svg className="w-full h-full text-purple-400" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2">
+            {/* Source Database */}
+            <rect x="15" y="35" width="22" height="30" rx="3" fill="currentColor" fillOpacity="0.1" />
+            <line x1="15" y1="45" x2="37" y2="45" />
+            <line x1="15" y1="55" x2="37" y2="55" />
+            {/* Target Database */}
+            <rect x="63" y="35" width="22" height="30" rx="3" fill="currentColor" fillOpacity="0.1" />
+            <line x1="63" y1="45" x2="85" y2="45" />
+            <line x1="63" y1="55" x2="85" y2="55" />
+            {/* Migration Arrow */}
+            <motion.path
+              d="M 40 50 Q 50 35 60 50"
+              strokeDasharray="4 4"
+              animate={{ strokeDashoffset: -20 }}
+              transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+            />
+            {/* Arrowhead */}
+            <path d="M 57 48 L 60 50 L 58 53" fill="none" />
+          </svg>
+        );
+
+      case "13": // Finance Function Reengineering (Process gear/cog with target/metrics)
+        return (
+          <svg className="w-full h-full text-sky-400" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2">
+            {/* Process loops/cycle */}
+            <motion.circle
+              cx="50" cy="50" r="28"
+              strokeDasharray="10 5"
+              animate={{ rotate: 360 }}
+              transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
+              style={{ transformOrigin: "50px 50px" }}
+            />
+            {/* Central node/metrics */}
+            <circle cx="50" cy="50" r="10" fill="currentColor" fillOpacity="0.2" />
+            <circle cx="50" cy="50" r="3" fill="currentColor" />
+            {/* Intersecting diagnostic lines */}
+            <line x1="22" y1="50" x2="32" y2="50" />
+            <line x1="68" y1="50" x2="78" y2="50" />
+            <line x1="50" y1="22" x2="50" y2="32" />
+            <line x1="50" y1="68" x2="50" y2="78" />
+          </svg>
+        );
+
       default:
         return null;
     }

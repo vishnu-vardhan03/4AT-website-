@@ -1,11 +1,11 @@
 "use client";
 
-import { TiltCard } from "@/components/home/TiltCard";
+import TiltCard from "@/components/ui/TiltCard";
 
 const aiTasks = [
   "Document intake and extraction",
   "Workflow routing and task triggers",
-  "Reconciliation at 99.7% match accuracy",
+  "Reconciliation support",
   "First-pass reports and journal entries",
   "Anomaly and exception flagging",
 ];

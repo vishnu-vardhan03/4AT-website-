@@ -64,6 +64,7 @@ nothing at all — depending on scope.**
 | `:root` (everywhere) | — | `background` `foreground` `card` `popover` `primary` `secondary` `muted` `accent` `destructive` `border` `input` `ring`, `--radius`, `--font-display`, `rounded-pill/card/frame` |
 | `.services-page` | `components/services/ServicesPage.tsx` | `brand` `brand-foreground` `brand-glow` `surface` `surface-muted` `ink` `ink-foreground` `ink-soft` |
 | `.academy-page` | `app/academy/layout.tsx` (+ imports `academy.css`) | `canvas` `surface-raised` `surface-overlay` `ink-primary/secondary/tertiary/disabled` `accent-hover/active/subtle/border` `sky` `violet` `highlight*` `border-strong/focus/active` `success*` `warning*` `danger*` `info*` |
+| `.contact-page`, `.legal-page` | `ContactPage.tsx`, `terms/page.tsx`, `privacy/page.tsx` | overrides base tokens only (`background` `foreground` `card` `border` `input` `ring`) — **no new token names** |
 | `.home-page`, `.about-page` | `HomePage.tsx`, `AboutPage.tsx` | motion/marquee styles only — **no extra tokens** |
 | `.constant-site-background` | home, about, `/admin`, `/dashboard` | fixed gradient+grid canvas |
 
@@ -155,7 +156,7 @@ and **will not work** elsewhere.
 | Tilt-on-hover card | `@/components/ui/TiltCard` | `home/TiltCard` or `services/TiltCard` (duplicates — consolidate onto `ui/`) |
 | Academy CTA | `@/components/academy/Button` (`variant` primary/secondary/ghost/nav, `size` sm/md/lg, `href` → renders Link/anchor) | inline button class strings |
 | Academy form field | `academy/register/FormField` + `INPUT_CLASS` / `SELECT_CLASS` / `INPUT_ERROR_CLASS` / `INPUT_DISABLED_CLASS` from `academy/register/constants` | new input class strings |
-| Marketing lead form field | `lead-collection/FormFields` | a third field system |
+| Marketing form field | `TextField` / `SelectField` / `TextareaField` from `@/components/lead-collection/FormFields` — they own the shared `baseFieldClass`, label, required marker and error slot | a raw `<input>` plus a hand-written class string |
 | Loading state | `@/components/ui/skeleton` | ad-hoc pulsing divs |
 
 **There is no cross-route Button.** `academy/Button` depends on `.academy-page .fx-*`
@@ -260,7 +261,10 @@ Not a to-do list to attack wholesale; fix the ones you touch.
 - `tailwind.config.ts` is inert and unreferenced — deletable.
 - `SectionWrapper.tsx` carries an empty `style` object and a stripped-out transform from an
   abandoned edit.
-- Two parallel form-field systems (`lead-collection/FormFields`, `academy/register/FormField`);
-  one input class string is duplicated 3–4× inline elsewhere.
+- Two parallel form-field systems remain: `lead-collection/FormFields` (marketing pages) and
+  `academy/register/FormField` + `INPUT_CLASS` (academy). Pick by which scope you are in;
+  don't add a third.
+- `country-state-city` is now an unused dependency — nothing imports it since the academy
+  location fields became free text.
 - `Frontend/public` (126 MB) and `Frontend/src/assets` (106 MB) hold largely duplicated assets.
 - No shared `Button`; ~102 component files and every non-academy CTA is bespoke.

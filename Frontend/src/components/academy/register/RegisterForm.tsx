@@ -73,8 +73,6 @@ export function RegisterForm() {
 
     setIsSubmitting(true);
     try {
-      const isStudent = formData.applicantType === "student";
-
       // Construct payload for the relational registrations database schema
       const payload = {
         firstName: formData.firstName.trim(),

@@ -1,4 +1,5 @@
 import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 
@@ -6,14 +7,17 @@ import * as bcrypt from 'bcrypt';
 export class AuthService {
   private readonly logger = new Logger(AuthService.name);
 
-  constructor(private readonly jwtService: JwtService) {}
+  constructor(
+    private readonly jwtService: JwtService,
+    private readonly config: ConfigService,
+  ) {}
 
   async validateLogin(username: string, password: string): Promise<{ role: 'admin' } | null> {
-    const adminUsername = process.env.ADMIN_USERNAME;
-    const passwordHash = process.env.ADMIN_PASSWORD_HASH;
+    const adminUsername = this.config.get<string>('ADMIN_USERNAME');
+    const passwordHash = this.config.get<string>('ADMIN_PASSWORD_HASH');
 
-    // Fail closed: without both an explicit username and a bcrypt hash there is no
-    // admin account. Never fall back to a default username or a literal password.
+    // Fail closed: without both an explicit username and a bcrypt hash there is no admin
+    // account. Never fall back to a default username or to a literal password.
     if (!adminUsername || !passwordHash) {
       this.logger.error('Admin login rejected: ADMIN_USERNAME and ADMIN_PASSWORD_HASH must both be set.');
       return null;

@@ -37,9 +37,10 @@ export function PhoneField({
       </label>
 
       {/* `defaultCountry` is read only on mount, so a later change to it would otherwise be
-          ignored and the dial code would stay stuck on the first country. Keying the input
-          on it forces a remount; the caller clears `value` at the same time so the new
-          country's dial code seeds correctly instead of being re-derived from the old number. */}
+          silently ignored and the dial code would stay stuck on the first country. Keying the
+          input on it forces a remount so a reactive `defaultCountry` actually takes effect.
+          Callers that change it must clear `value` in the same update, otherwise the country
+          is re-derived from the old number's dial code. */}
       <PhoneInput
         key={defaultCountry}
         defaultCountry={defaultCountry}

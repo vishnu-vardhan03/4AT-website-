@@ -129,7 +129,7 @@ export function LeadForm({ onClose, bookMeetingHref = "/contact" }: LeadFormProp
         disabled={status === "submitting"}
         whileHover={{ scale: status === "submitting" ? 1 : 1.01 }}
         whileTap={{ scale: status === "submitting" ? 1 : 0.98 }}
-        className="relative w-full overflow-hidden rounded-xl bg-white px-6 py-4 text-sm font-black uppercase tracking-wide text-black transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(255,255,255,0.25)] disabled:cursor-not-allowed disabled:opacity-60"
+        className="relative w-full overflow-hidden rounded-xl bg-white px-6 py-4 text-sm font-black uppercase tracking-wide text-black transition-shadow duration-300 hover-fine:shadow-[0_0_40px_rgba(255,255,255,0.25)] disabled:cursor-not-allowed disabled:opacity-60"
       >
         <span
           className={`flex items-center justify-center gap-2 transition-opacity duration-200 ${status === "submitting" ? "opacity-0" : "opacity-100"}`}

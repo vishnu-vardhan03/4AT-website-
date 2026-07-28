@@ -6,52 +6,44 @@ import AmbientBackground from "@/components/product/AmbientBackground";
 
 const agents = [
   {
-    id: "iris",
-    badge: "Reconciliation",
-    badgeColor: "t",
-    name: "Iris",
+    id: "Reconciliation",
+    name: "Reconciliation",
     role: "GL · AP · AR · Bank Feeds",
-    desc: "Transaction matching specialist. Works across all ledgers simultaneously — handles FX, inter-company eliminations, and bank statement reconciliation. Proposes journal entries with full explainability.",
-    stat: "99.7% match accuracy · 14,892 txns/night",
+    desc: "Matches and reconciles transactions across your ledgers, surfacing exceptions for review instead of guessing past them. ",
     img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80",
     imgAlt: "Reconciliation dashboard showing matched transaction tables and ledger audit trails",
-    service: "FastAPI / Python",
+    badgeColor: "t",
+    service: "Iris"
   },
   {
-    id: "guardian",
-    badge: "Fraud Detection",
-    badgeColor: "v",
-    name: "Guardian",
+    id: "Compliance",
+    name: "Compliance",
     role: "Risk · Compliance · Anomaly",
-    desc: "Real-time compliance monitor powered by the Python/FastAPI AI Service Layer. Detects duplicate payments, policy violations, and segregation-of-duties conflicts. Generates SOX-ready evidence.",
-    stat: "Sub-200ms detection latency",
+    desc: "Matches and reconciles transactions across your ledgers, surfacing exceptions for review instead of guessing past them. ",
     img: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=600&q=80",
     imgAlt: "Fraud detection heatmap dashboard showing transaction risk scores and anomaly alerts",
-    service: "FastAPI / Python",
+    badgeColor: "v",
+    service: "Guardian"
   },
   {
-    id: "atlas",
-    badge: "Analytics",
-    badgeColor: "b",
-    name: "Atlas",
+    id: "Analytics",
+    name: "Analytics",
     role: "Forecasting · Reporting · Insights",
-    desc: "Financial intelligence layer. Synthesizes data from every connected ERP and banking API into narrative dashboards. Answers 'why is EBITDA down?' in plain language.",
-    stat: "Connected to 100+ data sources",
+    desc: "Turns your finance data into reports and forward-looking views. ",
     img: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80",
     imgAlt: "Financial analytics dashboard showing P&L charts, cash flow forecasting, and variance analysis",
-    service: "FastAPI / Python",
+    badgeColor: "b",
+    service: "Atlas"
   },
   {
-    id: "connector",
-    badge: "Integration",
-    badgeColor: "p",
-    name: "Connector",
+    id: "Integration",
+    name: "Integration",
     role: "ERP · Banking · Payroll · Billing",
-    desc: "The data orchestrator managed via NestJS API layer. Maintains live sync between ERPs, Open Banking APIs, Razorpay/Stripe payment gateways, and QuickBooks/Zoho accounting tools.",
-    stat: "8s average ERP posting latency",
+    desc: "Keeps your ERP, ledgers, and adjacent systems in sync so the other three agents work inside your actual data. ",
     img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80",
     imgAlt: "Integration flow diagram showing ERP, banking, and payment gateway connections",
-    service: "NestJS / Node.js",
+    badgeColor: "p",
+    service: "Connector"
   },
 ];
 
@@ -116,7 +108,7 @@ export default function AgentsSection() {
                   <div className="flex items-center gap-3 mb-3">
                     <span
                       className="text-[11px] font-bold px-3 py-1.5 rounded-lg uppercase tracking-wide"
-                      style={{ background: bc.bg, color: bc.text }}
+                      // style={{ background: bc.bg, color: bc.text }}
                     >
                       {agent.badge}
                     </span>
@@ -129,7 +121,7 @@ export default function AgentsSection() {
                   <div className="flex items-center gap-2 text-xs text-white/38">
                     <span
                       className="w-4 h-px"
-                      style={{ background: bc.text }}
+                      // style={{ background: bc.text }}
                     />
                     {agent.stat}
                   </div>

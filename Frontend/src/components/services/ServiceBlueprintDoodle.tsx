@@ -588,6 +588,63 @@ export function ServiceBlueprintDoodle({ serviceId }: BlueprintProps) {
             </g>
           </>
         );
+      case "12": // Transaction & Migration Support
+        return (
+          <>
+            {/* Database source (Left) */}
+            <g transform="translate(40, 45)">
+              <rect x="0" y="0" width="60" height="50" rx="4" className="stroke-purple-500/50 fill-[#0b1020]/40" strokeWidth="1.5" />
+              <text x="30" y="30" className="fill-purple-300 text-[8px] font-mono" textAnchor="middle">{"SRC_DB"}</text>
+            </g>
+
+            {/* Connecting line with data packets */}
+            <path d="M 100 70 H 380" className="stroke-purple-400/40" strokeWidth="1.5" strokeDasharray="5 5" />
+
+            {/* Moving packet */}
+            <motion.circle
+              cx="100" cy="70" r="4"
+              className="fill-purple-400"
+              animate={{ cx: [100, 380] }}
+              transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
+            />
+
+            {/* Database destination (Right) */}
+            <g transform="translate(380, 45)">
+              <rect x="0" y="0" width="60" height="50" rx="4" className="stroke-sky-500/50 fill-[#0b1020]/40" strokeWidth="1.5" />
+              <text x="30" y="30" className="fill-sky-300 text-[8px] font-mono" textAnchor="middle">{"DEST_DB"}</text>
+            </g>
+          </>
+        );
+
+      case "13": // Finance Function Reengineering
+        return (
+          <>
+            {/* Diagnose / Audit Box (Left) */}
+            <g transform="translate(40, 45)">
+              <rect x="0" y="0" width="70" height="50" rx="4" className="stroke-sky-500/50 fill-[#0b1020]/40" strokeWidth="1.5" />
+              <text x="35" y="22" className="fill-sky-300 text-[8px] font-mono" textAnchor="middle">{"DIAGNOSE"}</text>
+              <text x="35" y="36" className="fill-zinc-400 text-[7px]" textAnchor="middle">{"Process Audit"}</text>
+            </g>
+
+            <path d="M 110 70 H 200" className="stroke-zinc-500" strokeWidth="1.5" />
+
+            {/* Design Box (Middle) */}
+            <g transform="translate(200, 45)">
+              <rect x="0" y="0" width="70" height="50" rx="4" className="stroke-purple-500/50 fill-[#0b1020]/40" strokeWidth="1.5" />
+              <text x="35" y="22" className="fill-purple-300 text-[8px] font-mono" textAnchor="middle">{"REDESIGN"}</text>
+              <text x="35" y="36" className="fill-zinc-400 text-[7px]" textAnchor="middle">{"Operating Model"}</text>
+            </g>
+
+            <path d="M 270 70 H 360" className="stroke-zinc-500" strokeWidth="1.5" />
+
+            {/* Deploy / AI Box (Right) */}
+            <g transform="translate(360, 45)">
+              <rect x="0" y="0" width="70" height="50" rx="4" className="stroke-emerald-500/50 fill-[#0b1020]/40" strokeWidth="1.5" />
+              <text x="35" y="22" className="fill-emerald-300 text-[8px] font-mono" textAnchor="middle">{"DEPLOY AI"}</text>
+              <text x="35" y="36" className="fill-zinc-400 text-[7px]" textAnchor="middle">{"Automation"}</text>
+            </g>
+          </>
+        );
     }
   };
 

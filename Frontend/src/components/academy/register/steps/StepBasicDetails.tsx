@@ -1,107 +1,29 @@
 "use client";
 
-import React, { useMemo } from "react";
-import { Country, State, City } from "country-state-city";
+import React from "react";
 import type { StepProps } from "../types";
 import { FormField } from "../FormField";
 import { PhoneField } from "../PhoneField";
-import { cn } from "@/lib/utils";
 import {
-  INPUT_CLASS,
-  SELECT_CLASS,
-  SELECT_CHEVRON_STYLE,
   GENDER_OPTIONS,
-  INPUT_DISABLED_CLASS,
+  INPUT_CLASS,
+  SELECT_CHEVRON_STYLE,
+  SELECT_CLASS,
 } from "../constants";
 
-/**
- * Step 1 – Personal Information
- * Includes: First Name, Last Name, Gender, Country, State, City, Email, Phone, Emergency Contact.
- */
+/** Personal and contact information for an academy registration. */
 export function StepBasicDetails({ formData, onChange, errors }: StepProps) {
-  // ── Memoized lists for location dropdowns ──────────────────────────────
-
-  const countries = useMemo(() => {
-    const all = Country.getAllCountries();
-    // Move India to top since it's the primary market
-    const india = all.find((c) => c.isoCode === "IN");
-    const rest = all.filter((c) => c.isoCode !== "IN");
-    return india ? [india, ...rest] : all;
-  }, []);
-
-  const states = useMemo(() => {
-    if (!formData.countryIso) return [];
-    return State.getStatesOfCountry(formData.countryIso);
-  }, [formData.countryIso]);
-
-  const cities = useMemo(() => {
-    if (!formData.countryIso || !formData.stateIso) return [];
-    return City.getCitiesOfState(formData.countryIso, formData.stateIso);
-  }, [formData.countryIso, formData.stateIso]);
-
-  // ── Handlers ───────────────────────────────────────────────────────────
-
-  const handleCountryChange = (isoCode: string) => {
-    const selected = countries.find((c) => c.isoCode === isoCode);
-    onChange({
-      countryIso: isoCode,
-      country: selected?.name ?? "",
-      stateIso: "",
-      state: "",
-      cityName: "",
-      city: "",
-      // Cleared so PhoneField can reseed the dial code for the newly chosen country
-      // instead of keeping the previous country's code on the number.
-      mobileNumber: "",
-    });
-  };
-
-  /** Free-text state, used for countries the dataset has no subdivisions for. */
-  const handleStateTextChange = (name: string) => {
-    onChange({ stateIso: "", state: name });
-  };
-
-  /** Free-text city, used for (country, state) pairs the dataset has no cities for. */
-  const handleCityTextChange = (name: string) => {
-    onChange({ cityName: name, city: name });
-  };
-
-  const handleStateChange = (isoCode: string) => {
-    const selected = states.find((s) => s.isoCode === isoCode);
-    onChange({
-      stateIso: isoCode,
-      state: selected?.name ?? "",
-      cityName: "",
-      city: "",
-    });
-  };
-
-  const handleCityChange = (name: string) => {
-    onChange({
-      cityName: name,
-      city: name,
-    });
-  };
-
-  const hasCountry = Boolean(formData.countryIso);
-  // country-state-city has countries with no subdivisions and (country, state) pairs with no
-  // cities. A closed <select> for those is a dead end: the field is required but can never be
-  // filled. Fall back to free text so every applicant can complete step 1.
-  const countryHasStates = states.length > 0;
-  const stateHasCities = cities.length > 0;
-  const hasState = Boolean(formData.stateIso) || Boolean(formData.state.trim());
-
   return (
     <div className="space-y-5">
-      {/* Name fields */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <FormField id="firstName" label="First Name" required error={errors.firstName}>
           <input
             type="text"
             id="firstName"
+            autoComplete="given-name"
             placeholder="Enter first name"
             value={formData.firstName}
-            onChange={(e) => onChange({ firstName: e.target.value })}
+            onChange={(event) => onChange({ firstName: event.target.value })}
             className={INPUT_CLASS}
           />
         </FormField>
@@ -110,122 +32,77 @@ export function StepBasicDetails({ formData, onChange, errors }: StepProps) {
           <input
             type="text"
             id="lastName"
+            autoComplete="family-name"
             placeholder="Enter last name"
             value={formData.lastName}
-            onChange={(e) => onChange({ lastName: e.target.value })}
+            onChange={(event) => onChange({ lastName: event.target.value })}
             className={INPUT_CLASS}
           />
         </FormField>
       </div>
 
-      {/* Gender */}
       <FormField id="gender" label="Gender" required error={errors.gender}>
         <select
           id="gender"
           value={formData.gender}
-          onChange={(e) => onChange({ gender: e.target.value })}
+          onChange={(event) => onChange({ gender: event.target.value })}
           className={SELECT_CLASS}
           style={SELECT_CHEVRON_STYLE}
         >
           <option value="" className="bg-[#0b0e1a]">Select gender</option>
-          {GENDER_OPTIONS.map((opt) => (
-            <option key={opt} value={opt} className="bg-[#0b0e1a]">{opt}</option>
+          {GENDER_OPTIONS.map((option) => (
+            <option key={option} value={option} className="bg-[#0b0e1a]">{option}</option>
           ))}
         </select>
       </FormField>
 
-      {/* Location - Country */}
       <FormField id="country" label="Country" required error={errors.country}>
-        <select
+        <input
+          type="text"
           id="country"
-          value={formData.countryIso}
-          onChange={(e) => handleCountryChange(e.target.value)}
-          className={SELECT_CLASS}
-          style={SELECT_CHEVRON_STYLE}
-        >
-          <option value="" className="bg-[#0b0e1a]">Select country</option>
-          {countries.map((c) => (
-            <option key={c.isoCode} value={c.isoCode} className="bg-[#0b0e1a]">
-              {c.flag}{"\u00A0\u00A0\u00A0"}{c.name}
-            </option>
-          ))}
-        </select>
+          autoComplete="country-name"
+          placeholder="Enter country"
+          value={formData.country}
+          onChange={(event) => onChange({ country: event.target.value })}
+          className={INPUT_CLASS}
+        />
       </FormField>
 
-      {/* Location - State & City */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <FormField id="state" label="State" required error={errors.state}>
-          {hasCountry && !countryHasStates ? (
-            <input
-              type="text"
-              id="state"
-              placeholder="Enter state / region"
-              value={formData.state}
-              onChange={(e) => handleStateTextChange(e.target.value)}
-              className={INPUT_CLASS}
-            />
-          ) : (
-            <select
-              id="state"
-              value={formData.stateIso}
-              onChange={(e) => handleStateChange(e.target.value)}
-              disabled={!hasCountry}
-              className={cn(SELECT_CLASS, !hasCountry && INPUT_DISABLED_CLASS)}
-              style={SELECT_CHEVRON_STYLE}
-            >
-              <option value="" className="bg-[#0b0e1a]">
-                {hasCountry ? "Select state" : "Select a country first"}
-              </option>
-              {states.map((s) => (
-                <option key={s.isoCode} value={s.isoCode} className="bg-[#0b0e1a]">
-                  {s.name}
-                </option>
-              ))}
-            </select>
-          )}
+          <input
+            type="text"
+            id="state"
+            autoComplete="address-level1"
+            placeholder="Enter state"
+            value={formData.state}
+            onChange={(event) => onChange({ state: event.target.value })}
+            className={INPUT_CLASS}
+          />
         </FormField>
 
         <FormField id="city" label="City" required error={errors.city}>
-          {hasState && !stateHasCities ? (
-            <input
-              type="text"
-              id="city"
-              placeholder="Enter city"
-              value={formData.cityName}
-              onChange={(e) => handleCityTextChange(e.target.value)}
-              className={INPUT_CLASS}
-            />
-          ) : (
-            <select
-              id="city"
-              value={formData.cityName}
-              onChange={(e) => handleCityChange(e.target.value)}
-              disabled={!hasState}
-              className={cn(SELECT_CLASS, !hasState && INPUT_DISABLED_CLASS)}
-              style={SELECT_CHEVRON_STYLE}
-            >
-              <option value="" className="bg-[#0b0e1a]">
-                {hasState ? "Select city" : "Select a state first"}
-              </option>
-              {cities.map((c) => (
-                <option key={`${c.name}-${c.latitude}`} value={c.name} className="bg-[#0b0e1a]">
-                  {c.name}
-                </option>
-              ))}
-            </select>
-          )}
+          <input
+            type="text"
+            id="city"
+            autoComplete="address-level2"
+            placeholder="Enter city"
+            value={formData.city}
+            onChange={(event) => onChange({ city: event.target.value })}
+            className={INPUT_CLASS}
+          />
         </FormField>
       </div>
 
-      {/* Email + Mobile */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <FormField id="email" label="Email Address" required error={errors.email}>
           <input
             type="email"
             id="email"
+            autoComplete="email"
             placeholder="name@example.com"
             value={formData.email}
-            onChange={(e) => onChange({ email: e.target.value })}
+            onChange={(event) => onChange({ email: event.target.value })}
             className={INPUT_CLASS}
           />
         </FormField>
@@ -234,7 +111,7 @@ export function StepBasicDetails({ formData, onChange, errors }: StepProps) {
           id="mobileNumber"
           label="Mobile Number"
           value={formData.mobileNumber}
-          onChange={(val) => onChange({ mobileNumber: val })}
+          onChange={(value) => onChange({ mobileNumber: value })}
           error={errors.mobileNumber}
           placeholder="Enter mobile number"
           defaultCountry={formData.countryIso ? formData.countryIso.toLowerCase() : "in"}
@@ -243,4 +120,3 @@ export function StepBasicDetails({ formData, onChange, errors }: StepProps) {
     </div>
   );
 }
-

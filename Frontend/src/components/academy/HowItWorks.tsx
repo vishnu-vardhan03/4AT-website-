@@ -4,6 +4,7 @@ import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ClipboardCheck, TrendingUp, MessageCircle, Users } from "lucide-react";
+import { SectionPill } from "./SectionPill";
 
 interface StepData {
   step: string;
@@ -421,7 +422,7 @@ export function HowItWorks({ sectionId = "selection-metrics" }: { sectionId?: st
     <div ref={wrapperRef} id={sectionId} className="md:h-[550vh] relative">
     <div
       ref={sectionRef}
-      className="site-shell w-full relative bg-[var(--color-canvas)] md:sticky md:top-0 md:h-screen h-auto border-t border-white/[0.03]"
+      className="w-full relative bg-[var(--color-canvas)] md:sticky md:top-0 md:h-screen h-auto border-t border-white/[0.03]"
     >
       {/* Container centers content vertically and spans full height on desktop */}
       <div className="relative w-full h-full z-10">
@@ -472,17 +473,16 @@ export function HowItWorks({ sectionId = "selection-metrics" }: { sectionId?: st
           }
         `}} />
 
-        <div className="site-shell px-6 md:px-12 lg:px-20 relative z-10 w-full h-full">
+        <div className="site-shell relative z-10 w-full h-full">
           {/* Inner Content Wrapper - full height flex layout: header top, stages center, footer bottom */}
-          <div className="hiw-content-wrapper w-full min-h-[100dvh] md:h-full flex flex-col justify-between py-10 md:py-16 relative z-10">
+          <div className="hiw-content-wrapper w-full min-h-[100dvh] md:h-full flex flex-col justify-between py-14 md:py-20 relative z-10">
 
             {/* Header Section */}
             <div className="hiw-header-fade flex flex-col items-start max-w-4xl w-full mb-8 md:mb-12">
               {/* Eyebrow */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.15em] uppercase text-emerald-400 font-mono mb-3 md:mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                Selection Metrics
-              </div>
+              <SectionPill className="mb-3 md:mb-4">
+                SELECTION METRICS
+              </SectionPill>
 
               <h2 className="section-title">
                 Every learner is <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">evaluated</span> <br /> before becoming <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">job-ready</span>.

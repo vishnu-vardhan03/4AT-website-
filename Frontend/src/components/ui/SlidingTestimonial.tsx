@@ -1,151 +1,188 @@
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { client, urlFor } from "@/lib/sanity/client";
+import React, { useState, useEffect, useRef } from "react";
+import { Sparkles, ShieldCheck } from "lucide-react";
+import { motion, useReducedMotion, useInView } from "framer-motion";
 import { NeonGlowOrb } from "@/components/academy/NeonGlowOrb";
+import { SectionPill } from "@/components/academy/SectionPill";
 
-interface TestimonialItem {
+export interface TestimonialItem {
+  id?: string;
   name: string;
   profession: string;
   description: string;
   avatar?: string;
   image?: string;
-  sanityAvatar?: Parameters<typeof urlFor>[0];
-  sanityLogo?: Parameters<typeof urlFor>[0];
   rating?: number;
 }
 
-const STATIC_TESTIMONIALS: TestimonialItem[] = [
-    {
-        name: "Akshay Reddy",
-        profession: "Placed at GGF",
-        description: "As a B.Com graduate wanting a global corporate career, I had no ERP experience and struggled with MNC interviews. 4AT Academy helped me bridge the gap, training me on live ERP workflows and Excel modeling. Today, I am placed at GGF as a Junior Financial Analyst.",
-        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&h=256&q=80",
-        image: "/partners/ggf.png",
-        rating: 5,
-    },
-    {
-        name: "Mehak Sharma",
-        profession: "Placed at Mojler",
-        description: "I was a traditional accountant with 2 years of local firm experience, but felt stuck due to lack of exposure to modern automation. 4AT Academy's pathway completely transformed my skill set, teaching me RPA and Power BI dashboarding. I have now joined Mojler as an Automation Specialist.",
-        avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=256&h=256&q=80",
-        image: "/partners/mojler.png",
-        rating: 5,
-    },
-    {
-        name: "Harish Nair",
-        profession: "Placed at Burkland",
-        description: "I struggled to break into FP&A roles despite standard certification because I lacked hands-on experience in forecasting. The corporate modeling drills and direct director mentorship at 4AT Academy gave me the exact skills I needed. I'm proud to be placed at Burkland as an FP&A Associate.",
-        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=256&h=256&q=80",
-        image: "/partners/burkland.svg",
-        rating: 5,
-    },
-    {
-        name: "Priya Verma",
-        profession: "Placed at Caranium",
-        description: "As an accounting fresher, US taxation seemed overwhelming, and I had no knowledge of IRS filings. At 4AT Academy, I trained directly on mock tax cases and global reporting standards. It directly led to me being hired by Caranium as a Tax Consultant.",
-        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=256&h=256&q=80",
-        image: "/partners/caranium.png",
-        rating: 5,
-    },
+interface SlidingTestimonialProps {
+  testimonials?: TestimonialItem[];
+}
+
+const TAGLINES = [
+  "REAL STORIES.",
+  "REAL PEOPLE.",
+  "REAL OUTCOMES.",
+  "REAL STORIES. REAL PEOPLE. REAL OUTCOMES.",
 ];
 
-const FUITestimonialWithSlide = React.memo(function FUITestimonialWithSlide() {
-    const [testimonials, setTestimonials] = useState<TestimonialItem[]>(STATIC_TESTIMONIALS);
+const ContinuousTypewriterTagline: React.FC = () => {
+  const [displayedText, setDisplayedText] = useState("");
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { margin: "-20px" });
 
-    useEffect(() => {
-        async function fetchTestimonials() {
-            try {
-                const query = `*[_type == "testimonial"] {
-                    name,
-                    profession,
-                    description,
-                    "sanityAvatar": avatar,
-                    "sanityLogo": companyLogo,
-                    rating
-                }`;
-                const data = await client.fetch<TestimonialItem[]>(query);
-                if (data && data.length > 0) {
-                    const sanityNames = new Set(data.map((member) => member.name));
-                    const uniqueStatic = STATIC_TESTIMONIALS.filter(m => !sanityNames.has(m.name));
-                    setTestimonials([...uniqueStatic, ...data]);
-                }
-            } catch (err) {
-                console.warn("Failed to fetch testimonials from Sanity, using static fallback:", err);
-            }
-        }
-        fetchTestimonials();
-    }, []);
+  useEffect(() => {
+    if (shouldReduceMotion) {
+      setDisplayedText(TAGLINES[3]);
+      return;
+    }
 
-    // Duplicate list to achieve seamless infinite marquee loop
-    const duplicatedTestimonials = [...testimonials, ...testimonials, ...testimonials];
+    if (!isInView) return;
 
-    return (
-        <div className="max-w-[1440px] mx-auto w-full">
-            <div className="w-full mx-auto px-4 md:px-10">
-                <div id="testimonials-heading" className="mb-16 text-center flex flex-col items-center relative">
-                    <NeonGlowOrb 
-                      className="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0"
-                      size={450}
-                      opacity={0.18}
-                      blur={50}
-                    />
-                    <span className="section-eyebrow relative z-10">
-                        TESTIMONIALS
-                    </span>
-                    <h2 className="section-title text-center max-w-3xl mx-auto relative z-10">
-                        Career transformations from learners who moved into finance <span className="font-serif italic text-accent">roles</span>.
-                    </h2>
-                    <p className="section-desc text-center mt-6 max-w-xl mx-auto relative z-10">
-                        Alumni stories repeatedly point to the same shift: structured mentorship, real-world cases, and placement support.
-                    </p>
-                </div>
-                <div style={{
-                    maskImage:
-                        'linear-gradient(to left, transparent 0%, black 20%, black 80%, transparent 95%)',
-                    WebkitMaskImage:
-                        'linear-gradient(to left, transparent 0%, black 20%, black 80%, transparent 95%)',
-                }}  className="flex relative overflow-hidden shrink-0 max-w-full">
-                  <div className="flex animate-x-slider gap-5 w-max py-4">
-                    {duplicatedTestimonials.map((testimonial, indx) => {
-                        const avatarUrl = testimonial.sanityAvatar 
-                            ? urlFor(testimonial.sanityAvatar).url()
-                            : testimonial.avatar;
-                        const logoUrl = testimonial.sanityLogo
-                            ? urlFor(testimonial.sanityLogo).url()
-                            : testimonial.image;
-                        return (
-                            <div key={indx} className="border border-[#151e2e] flex flex-col bg-[#121212] rounded-2xl shrink-0 grow-0 w-[300px] sm:w-[480px] md:w-[580px] h-full justify-between overflow-hidden shadow-[0_20px_45px_rgba(0,0,0,0.5)] hover:border-[#151e2e] hover-fine:bg-[#1a1a1a] transition-all duration-300">
-                                <p className="px-6 py-6 text-pretty text-body font-normal text-ink-secondary font-sans leading-relaxed">
-                                    &quot;{testimonial.description}&quot;
-                                </p>
-                                <div className="border-t border-white/8 w-full flex items-stretch overflow-hidden">
-                                    <div className="flex-1 flex gap-3 items-center px-4 py-3">
-                                        {avatarUrl && (
-                                            <div className="w-8 h-8 rounded-full overflow-hidden relative border border-white/10 shrink-0">
-                                                <Image src={avatarUrl} fill sizes="32px" className="object-cover animate-fade-in" alt={testimonial.name} />
-                                            </div>
-                                        )}
-                                        <div className="flex flex-col flex-1 gap-0 justify-start items-start">
-                                            <h5 className="text-small font-semibold text-white font-sans">{testimonial.name}</h5>
-                                            <p className="text-ink-secondary text-xs mt-[-2px] font-sans">{testimonial.profession}</p>
-                                        </div>
-                                    </div>
-                                    <div className="w-[1px] bg-white/8 self-stretch" />
-                                    {logoUrl && (
-                                        <div className="w-[110px] sm:w-[130px] flex items-center justify-center px-4 py-3 self-stretch shrink-0 bg-white/[0.02] relative">
-                                            <Image src={logoUrl} fill sizes="(max-width: 640px) 110px, 130px" className="object-contain brightness-0 invert opacity-60 p-4" alt={testimonial.name + " logo"} />
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        );
-                    })}
+    const currentFullPhrase = TAGLINES[phraseIndex];
+    let timeout: NodeJS.Timeout;
+
+    if (!isDeleting && displayedText === currentFullPhrase) {
+      // Pause at full phrase completion (2 seconds for full combined phrase, 1.2s for single phrases)
+      const pauseDuration = phraseIndex === 3 ? 2000 : 1200;
+      timeout = setTimeout(() => {
+        setIsDeleting(true);
+      }, pauseDuration);
+    } else if (isDeleting && displayedText === "") {
+      // Finished deleting current phrase; move to next phrase in loop
+      setIsDeleting(false);
+      setPhraseIndex((prevIndex) => (prevIndex + 1) % TAGLINES.length);
+    } else {
+      // Natural typewriter timing: ~45ms for typing, ~25ms for deleting
+      const speed = isDeleting ? 25 : 45;
+      timeout = setTimeout(() => {
+        const nextLength = isDeleting
+          ? displayedText.length - 1
+          : displayedText.length + 1;
+
+        setDisplayedText(currentFullPhrase.slice(0, nextLength));
+      }, speed);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayedText, isDeleting, phraseIndex, isInView, shouldReduceMotion]);
+
+  return (
+    <div
+      ref={containerRef}
+      className="pt-4 border-t border-teal-500/20 flex items-center justify-center gap-2 text-[11px] sm:text-xs font-bold tracking-wider uppercase text-teal-300 font-sans min-h-[36px] select-none"
+    >
+      <ShieldCheck className="w-4 h-4 text-teal-400 shrink-0" />
+      <span className="inline-flex items-center">
+        <span>{displayedText}</span>
+        {!shouldReduceMotion && (
+          <span className="inline-block w-[2px] h-[0.95em] bg-teal-400 ml-1 animate-pulse" />
+        )}
+      </span>
+    </div>
+  );
+};
+
+const FUITestimonialWithSlide: React.FC<SlidingTestimonialProps> = ({
+  testimonials = [],
+}) => {
+  const hasTestimonials = testimonials.length > 0;
+  const shouldReduceMotion = useReducedMotion();
+
+  return (
+    <div className="site-shell overflow-hidden">
+        {/* Heading Section */}
+        <div
+          id="testimonials-heading"
+          className="mb-8 sm:mb-10 text-center flex flex-col items-center relative"
+        >
+          <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center z-0">
+            <NeonGlowOrb
+              className="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 max-w-full"
+              size={450}
+              opacity={0.18}
+              blur={50}
+            />
+          </div>
+          <SectionPill className="relative z-10">ALUMNI TESTIMONIALS</SectionPill>
+          <h2 className="section-title text-center max-w-3xl mx-auto relative z-10">
+            Career transformations from learners who moved into finance{" "}
+            <span className="font-serif italic text-accent">roles</span>.
+          </h2>
+          <p className="section-desc text-center mt-3 max-w-xl mx-auto relative z-10 leading-relaxed text-sm sm:text-base">
+            Structured mentorship, real case work, and placement support are
+            helping our first cohorts move from theory into finance roles.
+          </p>
+        </div>
+
+        {/* Testimonials Content or Placeholder */}
+        {hasTestimonials ? (
+          <div className="relative w-full max-w-full overflow-hidden shrink-0 min-w-0">
+            <div className="flex gap-5 overflow-x-auto py-4">
+              {testimonials.map((testimonial, indx) => (
+                <div
+                  key={testimonial.id || indx}
+                  className="border border-[#151e2e] flex flex-col bg-[#121212] rounded-2xl shrink-0 w-[min(300px,calc(100vw-2.5rem))] sm:w-[480px] md:w-[580px] justify-between overflow-hidden shadow-[0_20px_45px_rgba(0,0,0,0.5)]"
+                >
+                  <p className="px-6 py-6 text-body font-normal text-ink-secondary font-sans leading-relaxed">
+                    &quot;{testimonial.description}&quot;
+                  </p>
+                  <div className="border-t border-white/8 w-full flex items-center justify-between px-6 py-4">
+                    <div>
+                      <h5 className="text-small font-semibold text-white font-sans">
+                        {testimonial.name}
+                      </h5>
+                      <p className="text-ink-secondary text-xs font-sans">
+                        {testimonial.profession}
+                      </p>
+                    </div>
                   </div>
                 </div>
+              ))}
             </div>
-        </div>
-    );
-});
+          </div>
+        ) : (
+          <div className="max-w-xl mx-auto relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{
+                duration: shouldReduceMotion ? 0.3 : 0.6,
+                ease: [0.25, 1, 0.5, 1],
+              }}
+              className="relative border border-teal-500/35 bg-gradient-to-b from-[#141c28]/95 via-[#0f1520]/95 to-[#0b0e16]/95 backdrop-blur-xl rounded-2xl p-6 sm:p-8 text-center shadow-[0_0_40px_rgba(45,212,191,0.15),0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden group hover:border-teal-400/50 transition-all duration-300"
+            >
+              {/* Ambient glows inside card */}
+              <div className="absolute -top-20 -left-20 w-44 h-44 bg-teal-500/20 rounded-full blur-2xl pointer-events-none" />
+              <div className="absolute -bottom-20 -right-20 w-44 h-44 bg-sky-500/20 rounded-full blur-2xl pointer-events-none" />
+
+              {/* Static Icon */}
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-b from-teal-500/25 to-teal-500/10 border border-teal-400/40 text-teal-300 mb-4 shadow-[0_0_15px_rgba(45,212,191,0.3)]">
+                <Sparkles className="w-5 h-5 text-teal-300 animate-pulse" />
+              </div>
+
+              {/* Static Card Title */}
+              <h3 className="text-xl sm:text-2xl font-bold text-white font-sans tracking-tight mb-3">
+                Alumni Stories Coming Soon
+              </h3>
+
+              {/* Static Body Text */}
+              <p className="text-ink-secondary text-xs sm:text-sm font-sans leading-relaxed max-w-md mx-auto mb-5 font-normal">
+                Our first cohorts are progressing through real case work and
+                placement preparation. Alumni stories will be published soon.
+              </p>
+
+              {/* Tagline with Continuous Typewriter Animation */}
+              <ContinuousTypewriterTagline />
+            </motion.div>
+          </div>
+        )}
+      </div>
+  );
+};
 
 FUITestimonialWithSlide.displayName = "FUITestimonialWithSlide";
 

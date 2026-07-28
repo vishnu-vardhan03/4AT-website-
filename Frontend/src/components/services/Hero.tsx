@@ -244,13 +244,10 @@ export function Hero() {
               className="mt-8 inline-flex flex-nowrap items-center rounded-lg border border-white/15 bg-[#0b1020]/85 p-1.5 text-[13px] font-medium tracking-wide text-white whitespace-nowrap overflow-x-auto max-w-full no-scrollbar"
             >
               <span className="px-4 py-2 border-r border-white/15 last:border-r-0">
-                99.7% reconciliation accuracy
-              </span>
-              <span className="px-4 py-2 border-r border-white/15 last:border-r-0">
-                Senior CPAs on every engagement
+                AI-assisted reconciliation
               </span>
               <span className="px-4 py-2 last:border-r-0">
-                Live across 10+ countries
+                Senior CPAs on every engagement
               </span>
             </motion.div>
           </div>

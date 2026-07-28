@@ -5,5 +5,8 @@ export function validateEnvironment(config: Record<string, unknown>): Record<str
   const missing = REQUIRED_IN_PRODUCTION.filter((key) => typeof config[key] !== 'string' || !String(config[key]).trim());
   if (missing.length) throw new Error(`Missing required production environment variables: ${missing.join(', ')}`);
   if (String(config.JWT_SECRET).length < 32) throw new Error('JWT_SECRET must contain at least 32 characters in production');
+  if (!/^\$2[aby]\$\d{2}\$.{53}$/.test(String(config.ADMIN_PASSWORD_HASH))) {
+    throw new Error('ADMIN_PASSWORD_HASH must be a valid bcrypt hash in production');
+  }
   return config;
 }

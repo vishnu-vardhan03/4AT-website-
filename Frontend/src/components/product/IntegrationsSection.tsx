@@ -129,8 +129,8 @@ export default function IntegrationsSection() {
             <div>
               <h3 className="text-[23px] font-bold">Don&apos;t see your integration?</h3>
               <p className="text-white text-[13px] mt-0.5" style={{ maxWidth: 560, fontSize: "1rem" }}>
-                Our NestJS integration team can connect virtually any system — internal databases, custom APIs, legacy platforms, and industry-specific ERPs.
-              </p>
+                We can build a custom connection to your ERP, banking, or adjacent system. 
+                </p>
             </div>
           </div>
           <a

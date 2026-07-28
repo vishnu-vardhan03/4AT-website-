@@ -108,8 +108,8 @@ export function ExecutiveTeam() {
             Our <span className="text-brand-gradient-flow">Executive Team</span>
           </h2>
           <p className="mx-auto mt-6 max-w-3xl text-base font-semibold leading-relaxed text-white/70 md:text-lg">
-            Experienced leaders united by a shared commitment to client trust,
-            operational excellence, and technology-enabled transformation.
+            4AT is led by Ravi K, Founder, now based full-time in the US building
+            4AT&apos;s next chapter.
           </p>
         </motion.div>
 
