@@ -50,7 +50,20 @@ export function StepBasicDetails({ formData, onChange, errors }: StepProps) {
       state: "",
       cityName: "",
       city: "",
+      // Cleared so PhoneField can reseed the dial code for the newly chosen country
+      // instead of keeping the previous country's code on the number.
+      mobileNumber: "",
     });
+  };
+
+  /** Free-text state, used for countries the dataset has no subdivisions for. */
+  const handleStateTextChange = (name: string) => {
+    onChange({ stateIso: "", state: name });
+  };
+
+  /** Free-text city, used for (country, state) pairs the dataset has no cities for. */
+  const handleCityTextChange = (name: string) => {
+    onChange({ cityName: name, city: name });
   };
 
   const handleStateChange = (isoCode: string) => {
@@ -71,7 +84,12 @@ export function StepBasicDetails({ formData, onChange, errors }: StepProps) {
   };
 
   const hasCountry = Boolean(formData.countryIso);
-  const hasState = Boolean(formData.stateIso);
+  // country-state-city has countries with no subdivisions and (country, state) pairs with no
+  // cities. A closed <select> for those is a dead end: the field is required but can never be
+  // filled. Fall back to free text so every applicant can complete step 1.
+  const countryHasStates = states.length > 0;
+  const stateHasCities = cities.length > 0;
+  const hasState = Boolean(formData.stateIso) || Boolean(formData.state.trim());
 
   return (
     <div className="space-y-5">
@@ -137,43 +155,65 @@ export function StepBasicDetails({ formData, onChange, errors }: StepProps) {
       {/* Location - State & City */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <FormField id="state" label="State" required error={errors.state}>
-          <select
-            id="state"
-            value={formData.stateIso}
-            onChange={(e) => handleStateChange(e.target.value)}
-            disabled={!hasCountry}
-            className={cn(SELECT_CLASS, !hasCountry && INPUT_DISABLED_CLASS)}
-            style={SELECT_CHEVRON_STYLE}
-          >
-            <option value="" className="bg-[#0b0e1a]">
-              {hasCountry ? "Select state" : "Select a country first"}
-            </option>
-            {states.map((s) => (
-              <option key={s.isoCode} value={s.isoCode} className="bg-[#0b0e1a]">
-                {s.name}
+          {hasCountry && !countryHasStates ? (
+            <input
+              type="text"
+              id="state"
+              placeholder="Enter state / region"
+              value={formData.state}
+              onChange={(e) => handleStateTextChange(e.target.value)}
+              className={INPUT_CLASS}
+            />
+          ) : (
+            <select
+              id="state"
+              value={formData.stateIso}
+              onChange={(e) => handleStateChange(e.target.value)}
+              disabled={!hasCountry}
+              className={cn(SELECT_CLASS, !hasCountry && INPUT_DISABLED_CLASS)}
+              style={SELECT_CHEVRON_STYLE}
+            >
+              <option value="" className="bg-[#0b0e1a]">
+                {hasCountry ? "Select state" : "Select a country first"}
               </option>
-            ))}
-          </select>
+              {states.map((s) => (
+                <option key={s.isoCode} value={s.isoCode} className="bg-[#0b0e1a]">
+                  {s.name}
+                </option>
+              ))}
+            </select>
+          )}
         </FormField>
 
         <FormField id="city" label="City" required error={errors.city}>
-          <select
-            id="city"
-            value={formData.cityName}
-            onChange={(e) => handleCityChange(e.target.value)}
-            disabled={!hasState}
-            className={cn(SELECT_CLASS, !hasState && INPUT_DISABLED_CLASS)}
-            style={SELECT_CHEVRON_STYLE}
-          >
-            <option value="" className="bg-[#0b0e1a]">
-              {hasState ? "Select city" : "Select a state first"}
-            </option>
-            {cities.map((c) => (
-              <option key={`${c.name}-${c.latitude}`} value={c.name} className="bg-[#0b0e1a]">
-                {c.name}
+          {hasState && !stateHasCities ? (
+            <input
+              type="text"
+              id="city"
+              placeholder="Enter city"
+              value={formData.cityName}
+              onChange={(e) => handleCityTextChange(e.target.value)}
+              className={INPUT_CLASS}
+            />
+          ) : (
+            <select
+              id="city"
+              value={formData.cityName}
+              onChange={(e) => handleCityChange(e.target.value)}
+              disabled={!hasState}
+              className={cn(SELECT_CLASS, !hasState && INPUT_DISABLED_CLASS)}
+              style={SELECT_CHEVRON_STYLE}
+            >
+              <option value="" className="bg-[#0b0e1a]">
+                {hasState ? "Select city" : "Select a state first"}
               </option>
-            ))}
-          </select>
+              {cities.map((c) => (
+                <option key={`${c.name}-${c.latitude}`} value={c.name} className="bg-[#0b0e1a]">
+                  {c.name}
+                </option>
+              ))}
+            </select>
+          )}
         </FormField>
       </div>
 

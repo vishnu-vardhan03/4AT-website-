@@ -1,5 +1,6 @@
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { env } from "@/lib/env";
 
 const BACKEND_SESSION_MAX_AGE = 8 * 60 * 60;
 
@@ -22,9 +23,8 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.username || !credentials.password) return null;
-        const backendUrl = process.env.BACKEND_URL ?? process.env.BACKEND_API_URL ?? "http://localhost:5000";
         try {
-          const response = await fetch(`${backendUrl}/auth/login`, {
+          const response = await fetch(`${env.BACKEND_URL}/auth/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username: credentials.username, password: credentials.password }),
@@ -34,7 +34,10 @@ export const authOptions: NextAuthOptions = {
           const { accessToken } = (await response.json()) as { accessToken?: string };
           if (!accessToken) return null;
           return { id: "admin", role: "admin", accessToken };
-        } catch {
+        } catch (error) {
+          // Includes an unconfigured BACKEND_URL — without this log an admin login failure
+          // is indistinguishable from wrong credentials.
+          console.error("[auth] Admin login request failed", error instanceof Error ? error.message : error);
           return null;
         }
       },

@@ -20,18 +20,27 @@ export class LeadsService {
   ) {}
 
   async summary(): Promise<LeadsSummaryResponse> {
-    const [academyLeads, academyRegistrations, consultingLeads, aiLeads] = await Promise.all([
-      this.academy.count(),
-      this.academyRegistrations.count(),
-      this.consulting.count(),
-      this.ai.count(),
-    ]);
+    const [academyLeads, academyRegistrations, studentRegistrations, professionalRegistrations, consultingLeads, aiLeads] =
+      await Promise.all([
+        this.academy.count(),
+        this.academyRegistrations.count(),
+        this.academyRegistrations.count({ where: { applicantType: 'student' } }),
+        this.academyRegistrations.count({ where: { applicantType: 'professional' } }),
+        this.consulting.count(),
+        this.ai.count(),
+      ]);
     return {
       academyLeads,
       academyRegistrations,
+      studentRegistrations,
+      professionalRegistrations,
       consultingLeads,
       aiLeads,
-      totalLeads: academyLeads + academyRegistrations + consultingLeads + aiLeads,
+      // Invariant: totalLeads is the sum of the three listable categories, and therefore
+      // equals the number of records reachable through `findAll`. Academy registrations
+      // live in their own table and are reported separately — folding them in here made
+      // the dashboard's "Total Leads" larger than the rows any chart or table could show.
+      totalLeads: academyLeads + consultingLeads + aiLeads,
     };
   }
 
@@ -60,6 +69,9 @@ export class LeadsService {
     return { data, meta: { total, page, limit, totalPages: Math.ceil(total / limit) } };
   }
 
+  /** The three lead tables this endpoint can serve. Academy registrations are deliberately
+   *  absent — they have a different shape and their own endpoint — which is why
+   *  `LeadCategory` no longer declares them as a filterable category. */
   private sources(category?: LeadCategory) {
     const all = [
       { category: LeadCategory.ACADEMY, repository: this.academy as Repository<LeadEntity> },

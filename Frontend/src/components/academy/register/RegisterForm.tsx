@@ -236,9 +236,9 @@ export function RegisterForm() {
               <p className="text-slate-300 text-sm leading-relaxed mb-8">
                 Thank you for your interest in 4AT Academy.
                 <br /><br />
-                We've received your registration successfully. Our admissions team will review your application and contact you shortly.
+                We&apos;ve received your registration successfully. Our admissions team will review your application and contact you shortly.
                 <br /><br />
-                If your application is approved, you'll receive further instructions to access the LMS.
+                If your application is approved, you&apos;ll receive further instructions to access the LMS.
               </p>
               
               <Button

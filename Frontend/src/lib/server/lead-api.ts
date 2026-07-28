@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { env } from "@/lib/env";
 
 export type LeadEndpoint = "academy-leads" | "consulting-leads" | "ai-leads";
 
@@ -12,13 +13,12 @@ export interface LeadPayload {
 
 const BACKEND_TIMEOUT_MS = 10_000;
 
-function backendUrl(): string {
-  return process.env.BACKEND_URL ?? process.env.BACKEND_API_URL ?? "http://localhost:5000";
-}
-
 export async function forwardLead(endpoint: LeadEndpoint, payload: LeadPayload): Promise<NextResponse> {
   try {
-    const response = await fetch(`${backendUrl()}/${endpoint}`, {
+    // Resolve through the single shared chain in `@/lib/env`. A local fallback chain here
+    // silently pointed public lead intake at localhost whenever the deploy configured only
+    // NEXT_PUBLIC_API_URL, while the admin dashboard kept working.
+    const response = await fetch(`${env.BACKEND_URL}/${endpoint}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
