@@ -66,7 +66,7 @@ export function HybridReminder() {
                 {[
                   "Document intake and extraction",
                   "Workflow routing and task triggers",
-                  "Reconciliation at 99.7% match accuracy",
+                  "High-accuracy transaction reconciliation",
                   "First-pass reports and journal entries",
                   "Anomaly and exception flagging"
                 ].map((item, idx) => (

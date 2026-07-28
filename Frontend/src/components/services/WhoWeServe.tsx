@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { SegmentDoodle } from "./SegmentDoodle";
+import { TiltCard } from "./TiltCard";
 
 const segments = [
   {
@@ -53,10 +54,7 @@ export function WhoWeServe() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {segments.map((s) => {
             return (
-              <div
-                key={s.title}
-                className="h-full"
-              >
+              <TiltCard key={s.title} className="h-full">
                 <motion.div
                   className="group relative flex flex-col items-center justify-start h-full rounded-2xl overflow-hidden border border-white/15 bg-[#0b1020]/85 p-6 pt-8 pb-6 text-center transition-all duration-500 ease-out"
                   style={{ boxShadow: "inset 0 1px 0 rgba(34, 211, 238, 0.13)" }}
@@ -93,7 +91,7 @@ export function WhoWeServe() {
                     </p>
                   </div>
                 </motion.div>
-              </div>
+              </TiltCard>
             );
           })}
         </div>

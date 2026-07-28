@@ -121,9 +121,17 @@ const serviceGroups: Group[] = [
       {
         n: "10",
         title: "MacTax",
-        desc: "Specialized tax advisory and compliance for high-growth enterprises and cross-border operations.",
-        standard: "Strategic tax positioning · cross-border compliance · automated nexus analysis",
-        trigger: "Scaling globally · complex multinational tax planning needs",
+        desc: "Coming soon. Specialized tax advisory for cross-border and high-growth teams. Full details soon; talk to us in the meantime.",
+        standard: "Specialized tax advisory for cross-border & high-growth teams · coming soon",
+        trigger: "Cross-border expansion · scaling high-growth teams",
+        cta: "Talk to us →"
+      },
+      {
+        n: "12",
+        title: "Transaction & Migration Support",
+        desc: "Moving finance data and systems cleanly through an M&A, carve-out, or ERP change. Without losing a transaction in the process.",
+        standard: "Data Migration & Validation · Testing & UAT Support · Go-Live & Cutover Support · Post-Go-Live Hypercare · Reconciliation & Issue Resolution · Training & Adoption Support · Build-Operate-Transfer (BOT)",
+        trigger: "ERP-to-ERP migration (e.g. QuickBooks → SAP) · carve-out or divestiture · post-acquisition integration",
         cta: "Talk to us →"
       }
     ]
@@ -140,6 +148,14 @@ const serviceGroups: Group[] = [
         desc: "ERP, RPA, and private AI deployments for the office of the CFO. Want our AI agents on your own infrastructure? Start here.",
         standard: "ERP selection and implementation · RPA for repetitive workflows · private AI deployment · integration with existing stack",
         trigger: "ERP migration · build-vs-buy AI decisions · governance on existing AI tools · tech consolidation",
+        cta: "Talk to a tech lead →"
+      },
+      {
+        n: "13",
+        title: "Finance Function Reengineering",
+        desc: "We audit how your finance function runs today, redesign the operating model, then roll out the AI to match. Not a tech swap, a redesign.",
+        standard: "Diagnose (process assessment) → Design (standardization, governance, controls) → Deploy (automation, system enablement, change management) → Measure (KPI/SLA tracking, continuous improvement)",
+        trigger: "Manual processes breaking under growth · no clear ownership of controls · tech decisions made without a process redesign first",
         cta: "Talk to a tech lead →"
       }
     ]
@@ -651,36 +667,22 @@ const serviceDetails: Record<string, {
   },
   "10": {
     title: "MacTax",
-    subtitle: "A single platform portal for all your tax filing as well as advisory needs.",
-    intro: "Ever get agonized with the tax filing process because it's complex and time-consuming? MacTax is a single-platform system that combines the best of the filing process with expert advisory offerings. Simplify your tax filing process, guarantee 100% accuracy, secure transactions, and get assured returns with peace of mind.",
+    subtitle: "Specialized tax advisory for cross-border and high-growth teams.",
+    intro: "MacTax: Coming soon. Specialized tax advisory for cross-border and high-growth teams. Full details soon; talk to us in the meantime.",
     sections: [
       {
-        title: "Integrated Advisory & Filings",
-        content: "Stop working with separate vendors for tax filing and professional advice. MacTax Online is an insightful service provider for all your Income Tax filings. It provides tools that ensure eased filing of returns alongside real-time support from tax experts."
-      },
-      {
-        title: "IRS & Federal Competency",
-        content: "Our highly competent tax professionals have wide experience, competency, and a deep understanding of Internal Revenue Service (IRS) processes. Fully compliant with IRS and Federal norms, the simplicity of the MacTax process guarantees compliance without agony."
+        title: "Specialized Tax Advisory",
+        content: "We are currently finalizing our specialized tax offerings tailored specifically for high-growth enterprises and cross-border operations. Get in touch with our team in the meantime to discuss how we can assist with your specific requirements."
       }
     ],
     capabilities: [
       {
-        title: "Income Tax Filing Services",
-        desc: "Simplified filing tools and workflows backed by certified tax practitioners.",
+        title: "Coming Soon",
+        desc: "Full service capabilities list, automated tools, and detailed structures will be available soon.",
         activities: [
-          "Tax filing and returns preparation",
-          "100% accuracy audits",
-          "Safe and secured e-transactions",
-          "IRS compliance mapping"
-        ]
-      },
-      {
-        title: "Unified Tax Portal",
-        desc: "A single dashboard bringing together strategic advice and standard compliance activities.",
-        activities: [
-          "Tax strategy integration",
-          "IRS & Federal norm alignment",
-          "Online tax query support"
+          "Cross-border planning",
+          "High-growth tax strategy",
+          "Compliance advisory"
         ]
       }
     ]
@@ -726,6 +728,78 @@ const serviceDetails: Record<string, {
           "Skill Passport® digital platform setup",
           "Competency gap analysis & mapping",
           "Niche skills learning pathways"
+        ]
+      }
+    ]
+  },
+  "12": {
+    title: "Transaction & Migration Support",
+    subtitle: "Moving finance data and systems cleanly through transaction milestones.",
+    intro: "Whether navigating an M&A, carve-out, divestiture, or major ERP change, moving finance data and systems cleanly is critical to business continuity. 4AT provides comprehensive Transaction & Migration Support to ensure a cutover with nothing lost in migration and nothing broken at go-live.",
+    sections: [
+      {
+        title: "M&A, Carve-Outs & ERP Changes",
+        content: "We manage the entire lifecycle of finance data migrations. Our approach ensures that historical data integrity is maintained, systems are mapped accurately, and operations continue without losing a transaction in the process."
+      },
+      {
+        title: "Go-Live & Post-Cutover Hypercare",
+        content: "Our team provides hands-on testing, User Acceptance Testing (UAT) support, and post-go-live hypercare. We resolve reconciliation issues immediately, ensuring a smooth transition to the new operating state."
+      }
+    ],
+    capabilities: [
+      {
+        title: "Migration & Validation",
+        desc: "End-to-end data migration, verification, and validation under strict governance models.",
+        activities: [
+          "Data Migration & Validation",
+          "Testing & UAT Support",
+          "Go-Live & Cutover Support",
+          "Post-Go-Live Hypercare"
+        ]
+      },
+      {
+        title: "Operational Enablement",
+        desc: "Reconciliation, training, and transitioning operations to the new infrastructure.",
+        activities: [
+          "Reconciliation & Issue Resolution",
+          "Training & Adoption Support",
+          "Build-Operate-Transfer (BOT)"
+        ]
+      }
+    ]
+  },
+  "13": {
+    title: "Finance Function Reengineering",
+    subtitle: "Process-first redesign for scalable automated finance functions.",
+    intro: "Technology alone cannot fix a broken process. We audit how your finance function runs today, redesign the operating model to support automation, and then roll out the AI systems to match. It is not a tech swap; it's a structural redesign.",
+    sections: [
+      {
+        title: "Process Audit & Model Redesign",
+        content: "Before selecting or automating tech, we diagnose your current workflows. We identify bottlenecks, establish clear ownership of controls, and standardize the process to build a robust foundation for scaling."
+      },
+      {
+        title: "AI & Automation Enablement",
+        content: "Once standardized, we deploy matching AI agents and system workflows. This ensures automation fits a process designed specifically to support it, rather than layering technology on top of broken steps."
+      }
+    ],
+    capabilities: [
+      {
+        title: "Diagnose & Design",
+        desc: "Thorough assessment of existing processes followed by standardization of controls and governance.",
+        activities: [
+          "Process assessment",
+          "Standardization & governance",
+          "Controls design"
+        ]
+      },
+      {
+        title: "Deploy & Measure",
+        desc: "Automation implementation, change management, and continuous optimization via KPI/SLA tracking.",
+        activities: [
+          "Automation & system deployment",
+          "Change management",
+          "KPI/SLA tracking",
+          "Continuous improvement"
         ]
       }
     ]
