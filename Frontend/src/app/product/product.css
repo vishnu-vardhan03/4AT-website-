@@ -131,7 +131,7 @@
   z-index: 0;
   animation: product-rotate-border 3s linear infinite;
 }
-.product-page .glass-card:hover::before { opacity: 1; }
+.product-page .glass-card:hover::before { opacity: 0.5; }
 .product-page .glass-card > * { position: relative; z-index: 1; }
 @keyframes product-rotate-border {
   from { --a: 0deg; }

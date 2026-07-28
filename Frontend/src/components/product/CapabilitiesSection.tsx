@@ -220,7 +220,7 @@ function AuditViz() {
 function ErpViz() {
   const systems = [
     { name: "NetSuite", x: 5, c: "#999" },
-    { name: "Oracle", x: 52, c: "#ef4444" },
+    { name: "Oracle", x: 5, c: "#ef4444" },
     { name: "SAP", x: 87, c: "#2563eb" },
     { name: "Dynamics 365", x: 140, c: "#7c3aed" },
   ];
@@ -315,7 +315,7 @@ export default function CapabilitiesSection() {
                 </p>
 
                 {/* Stat */}
-                {cap.stat && (
+                {/* {cap.stat && ( */}
                   <div className="pt-5 border-t border-white/8">
                     <div
                       className="text-2xl sm:text-3xl font-bold"
@@ -328,13 +328,12 @@ export default function CapabilitiesSection() {
                             : "#7dd3fc",
                       }}
                     >
-                      {cap.stat}
+                      {/* {cap.stat} */}
                     </div>
                     <div className="text-xs text-white/35 uppercase tracking-widest mt-1">
-                      {cap.statLabel}
+                      {/* {cap.statLabel} */}
                     </div>
                   </div>
-                )}
               </TiltCard>
             );
           })}
