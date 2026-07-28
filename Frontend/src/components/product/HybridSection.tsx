@@ -85,10 +85,7 @@ export default function HybridSection() {
             {/* Stats grid */}
             <div className="grid grid-cols-2" style={{ borderBottom: "1px solid rgba(255,255,255,.06)" }}>
               {[
-                ["Response Time", "Sub-second"],
-                ["Availability", "24 / 7 / 365"],
-                ["Coverage", "~80% of cases"],
-                ["Escalation", "Automatic"],
+               
               ].map(([label, val]) => (
                 <div key={label} className="px-5 py-4"
                   style={{ borderRight: "1px solid rgba(255,255,255,.05)", background: "rgba(4,6,15,.4)" }}>
@@ -144,10 +141,7 @@ export default function HybridSection() {
             {/* Stats grid */}
             <div className="grid grid-cols-2" style={{ borderBottom: "1px solid rgba(255,255,255,.06)" }}>
               {[
-                ["Response Time", "<15 min (Pro)"],
-                ["Availability", "24/7 Enterprise"],
-                ["Expertise", "Accounting + AI"],
-                ["Enterprise", "Dedicated Spec."],
+                
               ].map(([label, val]) => (
                 <div key={label} className="px-5 py-4"
                   style={{ borderRight: "1px solid rgba(255,255,255,.05)", background: "rgba(4,6,15,.4)" }}>
