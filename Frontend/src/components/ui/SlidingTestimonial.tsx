@@ -80,15 +80,17 @@ const FUITestimonialWithSlide = React.memo(function FUITestimonialWithSlide() {
     const duplicatedTestimonials = [...testimonials, ...testimonials, ...testimonials];
 
     return (
-        <div className="max-w-[1440px] mx-auto w-full">
-            <div className="w-full mx-auto px-4 md:px-10">
+        <div className="max-w-[1440px] mx-auto w-full overflow-hidden">
+            <div className="w-full mx-auto px-4 md:px-10 overflow-hidden">
                 <div id="testimonials-heading" className="mb-16 text-center flex flex-col items-center relative">
-                    <NeonGlowOrb 
-                      className="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0"
-                      size={450}
-                      opacity={0.18}
-                      blur={50}
-                    />
+                    <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center z-0">
+                        <NeonGlowOrb 
+                          className="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 max-w-full"
+                          size={450}
+                          opacity={0.18}
+                          blur={50}
+                        />
+                    </div>
                     <span className="section-eyebrow relative z-10">
                         TESTIMONIALS
                     </span>
@@ -104,8 +106,8 @@ const FUITestimonialWithSlide = React.memo(function FUITestimonialWithSlide() {
                         'linear-gradient(to left, transparent 0%, black 20%, black 80%, transparent 95%)',
                     WebkitMaskImage:
                         'linear-gradient(to left, transparent 0%, black 20%, black 80%, transparent 95%)',
-                }}  className="flex relative overflow-hidden shrink-0 max-w-full">
-                  <div className="flex animate-x-slider gap-5 w-max py-4">
+                }}  className="relative w-full max-w-full overflow-hidden shrink-0 min-w-0">
+                  <div className="flex animate-x-slider gap-5 w-max py-4 min-w-0">
                     {duplicatedTestimonials.map((testimonial, indx) => {
                         const avatarUrl = testimonial.sanityAvatar 
                             ? urlFor(testimonial.sanityAvatar).url()
@@ -114,7 +116,7 @@ const FUITestimonialWithSlide = React.memo(function FUITestimonialWithSlide() {
                             ? urlFor(testimonial.sanityLogo).url()
                             : testimonial.image;
                         return (
-                            <div key={indx} className="border border-[#151e2e] flex flex-col bg-[#121212] rounded-2xl shrink-0 grow-0 w-[300px] sm:w-[480px] md:w-[580px] h-full justify-between overflow-hidden shadow-[0_20px_45px_rgba(0,0,0,0.5)] hover:border-[#151e2e] hover-fine:bg-[#1a1a1a] transition-all duration-300">
+                            <div key={indx} className="border border-[#151e2e] flex flex-col bg-[#121212] rounded-2xl shrink-0 grow-0 w-[min(300px,calc(100vw-2.5rem))] sm:w-[480px] md:w-[580px] h-full justify-between overflow-hidden shadow-[0_20px_45px_rgba(0,0,0,0.5)] hover:border-[#151e2e] hover-fine:bg-[#1a1a1a] transition-all duration-300">
                                 <p className="px-6 py-6 text-pretty text-body font-normal text-ink-secondary font-sans leading-relaxed">
                                     &quot;{testimonial.description}&quot;
                                 </p>

@@ -96,7 +96,7 @@ export function FloatingWidget() {
                 type="button"
                 aria-label="Dismiss"
                 onClick={handleDismissCompact}
-                className="absolute -right-2 -top-2 z-10 grid size-5 place-items-center rounded-full border border-white/15 bg-[#070a14] text-white/50 opacity-0 shadow-md transition-opacity duration-200 hover:text-white focus-visible:opacity-100 group-hover:opacity-100"
+                className="absolute -right-2 -top-2 z-10 grid size-5 place-items-center rounded-full border border-white/15 bg-[#070a14] text-white/50 opacity-0 shadow-md transition-opacity duration-200 hover-fine:text-white focus-visible:opacity-100 group-hover-fine:opacity-100"
               >
                 <X className="size-3" />
               </button>
@@ -105,7 +105,7 @@ export function FloatingWidget() {
                 onClick={handleOpen}
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.97 }}
-                className="group relative flex items-center gap-3 rounded-full border border-white/12 bg-white/[0.06] py-3.5 pl-4 pr-5 text-left shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-2xl transition-colors duration-300 hover:border-white/25 hover:bg-white/[0.1]"
+                className="group relative flex items-center gap-3 rounded-full border border-white/12 bg-white/[0.06] py-3.5 pl-4 pr-5 text-left shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-2xl transition-colors duration-300 hover-fine:border-white/25 hover-fine:bg-white/[0.1]"
               >
                 <span className="relative flex size-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#2dd4bf] via-[#7dd3fc] to-[#a78bfa]">
                   <span className="absolute inset-0 animate-ping rounded-full bg-[#7dd3fc]/40" />
@@ -164,7 +164,7 @@ export function FloatingWidget() {
                   type="button"
                   aria-label="Close"
                   onClick={() => setOpen(false)}
-                  className="grid size-9 shrink-0 place-items-center rounded-full border border-white/10 bg-white/[0.04] text-white/60 transition hover:border-white/25 hover:text-white"
+                  className="grid size-9 shrink-0 place-items-center rounded-full border border-white/10 bg-white/[0.04] text-white/60 transition hover-fine:border-white/25 hover-fine:text-white"
                 >
                   <X className="size-4" />
                 </button>

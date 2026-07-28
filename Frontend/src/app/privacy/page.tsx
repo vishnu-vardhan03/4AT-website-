@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { Footer } from "@/components/layout/Footer";
+import { Nav } from "@/components/layout/MainNav";
 
 export const metadata: Metadata = {
   title: "Privacy Policy - 4AT",
@@ -7,12 +9,14 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <main className="mx-auto w-full max-w-5xl px-4 py-16 md:px-6 md:py-24">
-      <article className="max-w-3xl space-y-8 text-neutral-300">
+    <div className="legal-page constant-site-background min-h-screen text-white">
+      <Nav />
+      <main className="site-section mx-auto w-full max-w-5xl pt-36">
+      <article className="glass-card max-w-3xl space-y-8 rounded-2xl p-6 text-white/70 md:p-10">
         <header className="space-y-4">
-          <p className="text-sm font-medium uppercase tracking-wide text-neutral-400">Legal</p>
-          <h1 className="text-3xl font-bold tracking-tight text-white md:text-5xl">Privacy Policy</h1>
-          <p className="text-base leading-relaxed text-neutral-400">Last updated: July 20, 2026</p>
+          <p className="section-badge">Legal</p>
+          <h1 className="site-heading text-white">Privacy Policy</h1>
+          <p className="text-base leading-relaxed text-white/45">Last updated: July 20, 2026</p>
         </header>
 
         <section className="space-y-3">
@@ -32,6 +36,8 @@ export default function PrivacyPage() {
           <p className="leading-relaxed">Contact 4AT through the website contact form with questions about this policy or your personal information.</p>
         </section>
       </article>
-    </main>
+      </main>
+      <Footer />
+    </div>
   );
 }

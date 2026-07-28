@@ -14,7 +14,7 @@
     "migration:show": "npm run typeorm -- migration:show",
     "migration:run": "npm run typeorm -- migration:run",
     "migration:revert": "npm run typeorm -- migration:revert",
-    "test": "node --test --require ts-node/register test/validate-env.test.ts",
+    "test": "node --test --require ts-node/register test/*.test.ts",
     "check": "npm run test && npm run build"
   },
   "dependencies": {

@@ -105,9 +105,8 @@ export function Hero() {
           </div>
 
           <div className="flex w-full max-w-full flex-col divide-y divide-white/15 overflow-hidden rounded-xl border border-white/15 bg-white/[0.035] text-sm font-medium text-white/75 backdrop-blur-sm sm:w-fit sm:flex-row sm:divide-x sm:divide-y-0">
-            <span className="px-5 py-3.5">99.7% reconciliation accuracy</span>
+            <span className="px-5 py-3.5">AI-assisted reconciliation</span>
             <span className="px-5 py-3.5">Senior CPAs on every engagement</span>
-            <span className="px-5 py-3.5">Live across 10+ countries</span>
           </div>
         </motion.div>
       </div>
