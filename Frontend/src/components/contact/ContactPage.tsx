@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { Check, Clock3, LoaderCircle } from "lucide-react";
 import { Nav } from "@/components/layout/MainNav";
 import { Footer } from "@/components/layout/Footer";
+import { TextareaField, TextField } from "@/components/lead-collection/FormFields";
 
 const services = ["4AT Consulting", "4AT Academy", "4AT.AI", "Hybrid Services", "Other"];
 
@@ -79,10 +81,10 @@ export default function ContactPage() {
   };
 
   return (
-    <>
+    <div className="contact-page constant-site-background min-h-screen text-white">
       <Nav />
 
-      <main className="min-h-screen bg-[#060914] text-white">
+      <main>
 
         {/* ── HERO BANNER ── */}
         <section className="relative overflow-hidden pt-36 pb-20 px-6 md:px-12">
@@ -93,8 +95,8 @@ export default function ContactPage() {
           <div className="pointer-events-none absolute -right-60 top-20 h-[500px] w-[500px] rounded-full bg-[#a78bfa]/8 blur-[140px]" />
 
           <div className="relative mx-auto max-w-[1200px]">
-            <span className="text-xs font-bold uppercase tracking-[.24em] text-[#7dd3fc]">Contact us</span>
-            <h1 className="mt-5 text-5xl font-black leading-tight tracking-tight md:text-7xl">
+            <span className="section-badge">Contact us</span>
+            <h1 className="site-hero-heading mt-5">
               Let&apos;s build something{" "}
               <span className="text-brand-gradient-flow">extraordinary.</span>
             </h1>
@@ -164,7 +166,7 @@ export default function ContactPage() {
                       {office.lines.map((line) => (
                         <p key={line} className="text-sm text-white/55 leading-relaxed">
                           {line.includes("@") ? (
-                            <a href={`mailto:${line}`} className="hover:text-white transition-colors">
+                            <a href={`mailto:${line}`} className="transition-colors hover-fine:text-white">
                               {line}
                             </a>
                           ) : line}
@@ -179,9 +181,7 @@ export default function ContactPage() {
               <div className="mt-12 rounded-xl border border-white/10 bg-white/[0.03] p-6">
                 <div className="flex items-start gap-4">
                   <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#7dd3fc]/25 bg-[#7dd3fc]/10">
-                    <svg className="h-4 w-4 text-[#7dd3fc]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                    <Clock3 className="h-4 w-4 text-[#7dd3fc]" aria-hidden="true" />
                   </div>
                   <div>
                     <p className="text-sm font-bold text-white">1 business day response</p>
@@ -201,9 +201,7 @@ export default function ContactPage() {
               {formState === "success" ? (
                 <div className="relative flex flex-col items-center justify-center py-20 text-center">
                   <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-[#2dd4bf]/30 bg-[#2dd4bf]/10">
-                    <svg className="h-10 w-10 text-[#2dd4bf]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
+                    <Check className="h-10 w-10 text-[#2dd4bf]" aria-hidden="true" />
                   </div>
                   <h3 className="text-3xl font-black text-white">Message sent!</h3>
                   <p className="mt-4 text-sm leading-relaxed text-white/55 max-w-xs">
@@ -217,7 +215,7 @@ export default function ContactPage() {
                       setPhoneCountry("IN");
                       setPhoneError("");
                     }}
-                    className="mt-10 rounded-full border border-white/15 px-7 py-2.5 text-sm font-semibold text-white/60 transition hover:border-white/30 hover:text-white"
+                    className="mt-10 rounded-full border border-white/15 px-7 py-2.5 text-sm font-semibold text-white/60 transition hover-fine:-translate-y-0.5 hover-fine:border-white/30 hover-fine:text-white"
                   >
                     Send another message
                   </button>
@@ -226,59 +224,18 @@ export default function ContactPage() {
                 <form onSubmit={handleSubmit} className="relative space-y-6">
                   <div>
                     <h3 className="text-xl font-black text-white">Send us a message</h3>
-                    <p className="mt-1 text-xs text-white/40">Fields marked <span className="text-[#38bdf8]">*</span> are required</p>
+                    <p className="mt-1 text-xs text-white/40">Fields marked <span className="text-[#7dd3fc]">*</span> are required</p>
                   </div>
 
                   {/* Name + Company */}
                   <div className="grid gap-5 sm:grid-cols-2">
-                    <div className="space-y-1.5">
-                      <label htmlFor="contact-name" className="block text-xs font-bold uppercase tracking-widest text-white/45">
-                        Full name <span className="text-[#38bdf8]">*</span>
-                      </label>
-                      <input
-                        id="contact-name"
-                        name="name"
-                        type="text"
-                        required
-                        value={form.name}
-                        onChange={handleChange}
-                        placeholder="John Smith"
-                        className="w-full rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition focus:border-[#38bdf8]/50 focus:bg-white/[0.07] focus:ring-1 focus:ring-[#38bdf8]/20"
-                      />
-                    </div>
-                    <div className="space-y-1.5">
-                      <label htmlFor="contact-company" className="block text-xs font-bold uppercase tracking-widest text-white/45">
-                        Company
-                      </label>
-                      <input
-                        id="contact-company"
-                        name="company"
-                        type="text"
-                        value={form.company}
-                        onChange={handleChange}
-                        placeholder="Acme Corp"
-                        className="w-full rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition focus:border-[#38bdf8]/50 focus:bg-white/[0.07] focus:ring-1 focus:ring-[#38bdf8]/20"
-                      />
-                    </div>
+                    <TextField id="contact-name" name="name" type="text" label="Full name" required value={form.name} onChange={handleChange} placeholder="John Smith" />
+                    <TextField id="contact-company" name="company" type="text" label="Company" value={form.company} onChange={handleChange} placeholder="Acme Corp" />
                   </div>
 
                   {/* Email + Phone */}
                   <div className="grid gap-5 sm:grid-cols-2">
-                    <div className="space-y-1.5">
-                      <label htmlFor="contact-email" className="block text-xs font-bold uppercase tracking-widest text-white/45">
-                        Work email <span className="text-[#38bdf8]">*</span>
-                      </label>
-                      <input
-                        id="contact-email"
-                        name="email"
-                        type="email"
-                        required
-                        value={form.email}
-                        onChange={handleChange}
-                        placeholder="john@company.com"
-                        className="w-full rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition focus:border-[#38bdf8]/50 focus:bg-white/[0.07] focus:ring-1 focus:ring-[#38bdf8]/20"
-                      />
-                    </div>
+                    <TextField id="contact-email" name="email" type="email" label="Work email" required value={form.email} onChange={handleChange} placeholder="john@company.com" />
                     <div className="space-y-1.5">
                       <label htmlFor="contact-phone" className="block text-xs font-bold uppercase tracking-widest text-white/45">
                         Phone
@@ -286,7 +243,7 @@ export default function ContactPage() {
                       <div className={`flex overflow-hidden rounded-lg border bg-white/[0.04] transition focus-within:bg-white/[0.07] focus-within:ring-1 ${
                         phoneError
                           ? "border-red-400/60 focus-within:ring-red-400/20"
-                          : "border-white/10 focus-within:border-[#38bdf8]/50 focus-within:ring-[#38bdf8]/20"
+                          : "border-white/10 focus-within:border-[#7dd3fc]/60 focus-within:ring-[#7dd3fc]/25"
                       }`}>
                         <select
                           aria-label="Phone country code"
@@ -336,8 +293,8 @@ export default function ContactPage() {
                           onClick={() => setSelectedService(s === selectedService ? "" : s)}
                           className={`rounded-full border px-4 py-1.5 text-xs font-semibold transition-all duration-200 ${
                             selectedService === s
-                              ? "border-[#38bdf8]/60 bg-[#38bdf8]/15 text-[#38bdf8]"
-                              : "border-white/10 bg-white/[0.03] text-white/45 hover:border-white/25 hover:text-white/75"
+                              ? "border-[#7dd3fc]/60 bg-[#7dd3fc]/15 text-[#7dd3fc]"
+                              : "border-white/10 bg-white/[0.03] text-white/45 hover-fine:-translate-y-0.5 hover-fine:border-white/25 hover-fine:text-white/75"
                           }`}
                         >
                           {s}
@@ -347,37 +304,29 @@ export default function ContactPage() {
                   </div>
 
                   {/* Message */}
-                  <div className="space-y-1.5">
-                    <label htmlFor="contact-message" className="block text-xs font-bold uppercase tracking-widest text-white/45">
-                      Message
-                    </label>
-                    <textarea
+                  <TextareaField
                       id="contact-message"
                       name="message"
                       rows={5}
+                      label="Message"
                       value={form.message}
                       onChange={handleChange}
                       placeholder="Tell us about your current finance challenges and what you're looking to achieve…"
-                      className="w-full resize-none rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition focus:border-[#38bdf8]/50 focus:bg-white/[0.07] focus:ring-1 focus:ring-[#38bdf8]/20"
                     />
-                  </div>
 
                   {/* Submit */}
                   <button
                     type="submit"
                     disabled={formState === "submitting"}
-                    className="group relative w-full overflow-hidden rounded-lg bg-white px-6 py-4 text-sm font-black text-black transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] disabled:opacity-60"
+                    className="group relative w-full overflow-hidden rounded-lg bg-white px-6 py-4 text-sm font-black text-black transition-all duration-300 hover-fine:-translate-y-0.5 hover-fine:shadow-[0_0_40px_rgba(255,255,255,0.2)] disabled:opacity-60"
                   >
                     <span className={`flex items-center justify-center gap-2 transition-all duration-200 ${formState === "submitting" ? "opacity-0" : "opacity-100"}`}>
                       Send message
-                      <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                      <span aria-hidden="true" className="transition-transform duration-300 group-hover-fine:translate-x-1">→</span>
                     </span>
                     {formState === "submitting" && (
                       <span className="absolute inset-0 flex items-center justify-center">
-                        <svg className="h-5 w-5 animate-spin text-black" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                        </svg>
+                        <LoaderCircle className="h-5 w-5 animate-spin text-black" aria-hidden="true" />
                       </span>
                     )}
                   </button>
@@ -401,6 +350,6 @@ export default function ContactPage() {
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 }

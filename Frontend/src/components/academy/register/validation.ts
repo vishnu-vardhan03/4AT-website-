@@ -39,7 +39,7 @@ export function validatePhone(value: string, label: string): string | null {
     if (!isValidPhoneNumber(value)) {
       return `Please enter a valid ${label.toLowerCase()} matching country standards`;
     }
-  } catch (e) {
+  } catch {
     return `Please enter a valid ${label.toLowerCase()} matching country standards`;
   }
   return null;

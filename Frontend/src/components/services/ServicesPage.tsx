@@ -76,18 +76,6 @@ export function ServicesPage() {
       <ScrollProgress />
       <MouseGlow />
 
-      {/* Twinkle keyframes style block */}
-      <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes starTwinkle {
-          0%, 100% { opacity: 0.15; transform: scale(0.85); }
-          50% { opacity: var(--star-max-opacity, 0.8); transform: scale(1.15); }
-        }
-        .animate-star-twinkle {
-          animation: starTwinkle var(--star-duration) ease-in-out infinite;
-          animation-delay: var(--star-delay);
-        }
-      `}} />
-
       {/* Fixed Ambient Background Tint (stuck behind scrolling content) */}
       <div className="fixed inset-0 bg-gradient-to-br from-[#011116] via-[#01030e] to-[#010e17] pointer-events-none z-0" />
 

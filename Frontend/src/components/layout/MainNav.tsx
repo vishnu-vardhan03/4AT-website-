@@ -132,6 +132,7 @@ function NavDropdown({
 export function Nav({ contactHref = "/contact" }: { contactHref?: string }) {
   const pathname = usePathname();
   const [isDarkBg, setIsDarkBg] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isNavHidden, setIsNavHidden] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileGroup, setMobileGroup] = useState<string | null>(null);
@@ -145,6 +146,7 @@ export function Nav({ contactHref = "/contact" }: { contactHref?: string }) {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 24);
       const headerPos = 60; // position of navbar on screen
       const sections = document.querySelectorAll("section, div[id]");
       let activeBgIsLight = false;
@@ -194,7 +196,13 @@ export function Nav({ contactHref = "/contact" }: { contactHref?: string }) {
       initial={{ opacity: 0, y: -20 }}
       animate={isNavHidden ? { opacity: 0, y: -88 } : { opacity: 1, y: 0 }}
       transition={{ duration: 0.28, ease: "easeOut" }}
-      className="fixed left-1/2 top-3 z-50 w-[min(1400px,calc(100%-2rem))] -translate-x-1/2 font-[family-name:var(--font-geist-sans)]"
+      className={`fixed left-1/2 top-3 z-50 w-[min(1400px,calc(100%-2rem))] -translate-x-1/2 rounded-2xl border font-[family-name:var(--font-geist-sans)] transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 ${
+        isScrolled
+          ? isDarkBg
+            ? "border-white/10 bg-[#070a14]/92 shadow-[0_16px_45px_rgba(0,0,0,.35)] backdrop-blur-xl"
+            : "border-black/10 bg-white/92 shadow-[0_16px_45px_rgba(0,0,0,.14)] backdrop-blur-xl"
+          : "border-transparent bg-transparent shadow-none"
+      }`}
     >
       <div
         className="grid min-h-14 grid-cols-[1fr_auto] items-center gap-4 px-1 transition-all duration-300 md:grid-cols-[1fr_auto_1fr] md:px-3"

@@ -44,109 +44,92 @@ export function SecuritySection() {
 }
 
 /* ── PRICING ─────────────────────────────────────────── */
-const plans = [
-  {
-    name: "Free",
-    price: "$0", period: "/mo",
-    desc: "For small teams running basic accounting workflows.",
-    popular: false,
-    features: ["Basic General Ledger","Simple Journal Entries","5 Reports / Month",
-      "Email Support","Single User Account","CSV Export","Mobile App"],
-    cta: "Start Free", ctaStyle: "ghost",
-  },
-  {
-    name: "Professional",
-    price: "$499", period: "/mo",
-    desc: "Advanced automation for growing finance teams.",
-    popular: true,
-    features: ["Full GL Suite","Accounts Payable & Receivable","Advanced Analytics",
-      "Multi-user (up to 10)","API Integration","Automated Reconciliation",
-      "Custom Workflows","Priority Support","Budget Management"],
-    cta: "Start Pro Trial", ctaStyle: "primary",
-  },
-  {
-    name: "Enterprise",
-    price: "Custom", period: "",
-    desc: "Tailored AI deployment for complex multi-entity organizations.",
-    popular: false,
-    features: ["Full Platform Access","Unlimited Users","Custom Integrations",
-      "Dedicated AI Specialist","24/7 Phone Support","Advanced Security & Compliance",
-      "Custom Training & Onboarding","SLA Guarantee"],
-    cta: "Contact Sales", ctaStyle: "ghost",
-  },
-];
-
 export function PricingSection() {
   return (
-    <section id="pricing" className="section" style={{ background: "#060916" }}>
+    <section
+      id="pricing"
+      className="section"
+      style={{ background: "#060916" }}
+    >
       <AmbientBackground variant="violet" intensity={0.55} />
+
       <div className="section-inner">
+        {/* Heading */}
         <div className="text-center mb-14">
-          <div className="eyebrow mb-6 justify-center"><span className="dot" />Flexible ways to adopt 4AT AI </div>
-          <h2 className="font-bold tracking-tight mb-4"
-            style={{ fontSize: "clamp(4rem,4vw,3.2rem)" }}>
-            Transparent <span className="grad-v">Plans</span>
+          <div className="eyebrow mb-6 justify-center">
+            <span className="dot" />
+            Flexible Pricing
+          </div>
+
+          <h2
+            className="font-bold tracking-tight mb-4"
+            style={{ fontSize: "clamp(3rem,5vw,4rem)" }}
+          >
+            Tailored <span className="grad-v">Enterprise Plans</span>
           </h2>
-          <p className="text-white mx-auto text-xl">Start free. Scale as your operation grows.</p>
+
+          <p className="text-white/70 mx-auto text-xl max-w-3xl">
+            Every organization is different. We'll work with you to create the
+            perfect plan for your business.
+          </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {plans.map((plan) => (
-            <TiltCard
-              key={plan.name}
-              glowColor={plan.popular ? "rgba(167,139,250,0.2)" : "rgba(255,255,255,0.06)"}
-              className={`rounded-[20px] p-9 flex flex-col transition-all duration-300
-                ${plan.popular
-                  ? "relative bg-[rgba(20,14,42,.95)] shadow-[0_0_60px_rgba(167,139,250,.12)]"
-                  : "glass-card"}`}
-              style={plan.popular ? { border: "1px solid rgba(167,139,250,.35)" } : {}}
-            >
-              {plan.popular && (
-                <div className="absolute top-[4px] left-1/2 -translate-x-1/2
-                  px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest whitespace-nowrap"
-                  style={{ background: "linear-gradient(90deg,#a78bfa,#c084fc)", color: "#fff" }}>
-                  Most Popular
-                </div>
-              )}
-              <h3 className="text-[15px] font-bold uppercase tracking-[2px] text-white/55 mb-2">
-                {plan.name}
-              </h3>
-              <div className="text-5xl font-bold leading-none mb-1">
-                {plan.price}
-                <span className="text-base font-normal text-white/40">{plan.period}</span>
+
+        {/* Single Pricing Card */}
+        <TiltCard
+          glowColor="rgba(167,139,250,.18)"
+          className="glass-card rounded-[28px] p-8 md:p-10 transition-all duration-300"
+        >
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+
+            {/* Left */}
+            <div className="flex items-start gap-5 max-w-3xl">
+
+              <div
+                className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl font-semibold"
+                style={{
+                  background: "rgba(167,139,250,.12)",
+                  color: "#a78bfa",
+                  border: "1px solid rgba(167,139,250,.2)",
+                }}
+              >
+                $
               </div>
-              <p className="text-sm text-white/42 mt-4 mb-7 flex-grow-0">{plan.desc}</p>
-              <a href="/contact"
-                className={`w-full flex items-center justify-center gap-2 px-6 py-3.5
-                  rounded-xl text-sm font-bold transition-all duration-250 mb-7
-                  ${plan.ctaStyle === "primary"
-                    ? "text-white hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(167,139,250,.4)]"
-                    : "text-white border border-white/20 bg-white/5 hover:bg-white/10"}`}
-                style={plan.ctaStyle === "primary"
-                  ? { background: "linear-gradient(90deg,#a78bfa,#c084fc)" } : {}}>
-                {plan.cta}
-              </a>
-              <ul className="flex flex-col gap-0 flex-1">
-                {plan.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2.5 py-2.5 text-sm text-white/62"
-                    style={{ borderBottom: "1px solid rgba(255,255,255,.05)" }}>
-                    <span className="font-bold flex-shrink-0" style={{ color: "#2dd4bf" }}>✓</span>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-            </TiltCard>
-          ))}
-        </div>
+
+              <div>
+                <h3 className="text-3xl font-bold text-white mb-3">
+                  Need a Custom Pricing Plan?
+                </h3>
+
+                <p className="text-white/65 text-lg leading-relaxed">
+                  Whether you're a startup, mid-sized company, or enterprise,
+                  we'll recommend the right AI solution and pricing based on
+                  your workflows, integrations, and business goals.
+                </p>
+              </div>
+            </div>
+
+            {/* Right */}
+            <a
+              href="/contact"
+              className="flex items-center justify-center whitespace-nowrap px-8 py-4 rounded-2xl font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(167,139,250,.4)]"
+              style={{
+                background:
+                  "linear-gradient(90deg,#a78bfa 0%,#c084fc 100%)",
+              }}
+            >
+              Contact Sales →
+            </a>
+          </div>
+        </TiltCard>
       </div>
     </section>
   );
 }
 
-
 /* ── FAQ ─────────────────────────────────────────────── */
 const faqs = [
   { q: "How accurate is 4AT's reconciliation AI?",
-    a: "4AT achieves 99.7% transaction match accuracy across multi-ledger, multi-currency reconciliations. Every unmatched item surfaces with a full explanation including which data was used, the logic applied, and a confidence score — one click from posted entry to raw transaction." },
+    a: "4AT is built to flag exceptions rather than claim perfection — every unmatched item surfaces with a full explanation and a confidence score, one click from posted entry to raw transaction. " },
   { q: "Is my financial data secure and compliant?",
     a: "4AT is SOC 2 Type II certified, GDPR-compliant, and HIPAA-ready. All data uses AES-256 encryption. Every action produces an immutable timestamped audit log. We run on AWS (EC2 + RDS PostgreSQL + ElastiCache Redis + CloudFront CDN) with strict data residency policies." },
   { q: "Does AI post journal entries automatically?",

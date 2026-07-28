@@ -333,8 +333,8 @@ export default function WhySection() {
             </span>{" "}
             for Impact.
           </h2>
-          <p className="text-white mx-auto text-lg" style={{ maxWidth: 600, lineHeight: 1.9, fontSize: "1.2rem" }}>
-            Our platform combines AI, automation, and human expertise to deliver accurate financial intelligence—faster.
+          <p className="text-white mx-auto text-lg" style={{ maxWidth: 1000, lineHeight: 1.9, fontSize: "1.2rem" }}>
+           Most AI tools are built horizontally and then adapted for finance. 4AT starts with accounting logic, controls, review workflows, and implementation realities from the beginning. 
           </p>
         </div>
 
