@@ -6,7 +6,7 @@ export function TestimonialsSocialProof() {
   return (
     <section
       id="testimonials"
-      className="w-full bg-transparent text-white pt-2 md:pt-4 pb-12 md:pb-16 overflow-x-hidden relative max-w-full"
+      className="w-full bg-transparent text-white section-padding overflow-x-hidden relative max-w-full"
     >
       {/* Background ambient lighting blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">

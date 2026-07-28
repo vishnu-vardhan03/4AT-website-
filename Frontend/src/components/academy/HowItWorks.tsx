@@ -475,7 +475,7 @@ export function HowItWorks({ sectionId = "selection-metrics" }: { sectionId?: st
 
         <div className="site-shell relative z-10 w-full h-full">
           {/* Inner Content Wrapper - full height flex layout: header top, stages center, footer bottom */}
-          <div className="hiw-content-wrapper w-full min-h-[100dvh] md:h-full flex flex-col justify-between py-10 md:py-16 relative z-10">
+          <div className="hiw-content-wrapper w-full min-h-[100dvh] md:h-full flex flex-col justify-between py-14 md:py-20 relative z-10">
 
             {/* Header Section */}
             <div className="hiw-header-fade flex flex-col items-start max-w-4xl w-full mb-8 md:mb-12">
