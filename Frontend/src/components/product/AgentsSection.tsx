@@ -12,7 +12,8 @@ const agents = [
     desc: "Matches and reconciles transactions across your ledgers, surfacing exceptions for review instead of guessing past them. ",
     img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80",
     imgAlt: "Reconciliation dashboard showing matched transaction tables and ledger audit trails",
-    
+    badgeColor: "t",
+    service: "Iris"
   },
   {
     id: "Compliance",
@@ -21,6 +22,8 @@ const agents = [
     desc: "Matches and reconciles transactions across your ledgers, surfacing exceptions for review instead of guessing past them. ",
     img: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=600&q=80",
     imgAlt: "Fraud detection heatmap dashboard showing transaction risk scores and anomaly alerts",
+    badgeColor: "v",
+    service: "Guardian"
   },
   {
     id: "Analytics",
@@ -29,6 +32,8 @@ const agents = [
     desc: "Turns your finance data into reports and forward-looking views. ",
     img: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80",
     imgAlt: "Financial analytics dashboard showing P&L charts, cash flow forecasting, and variance analysis",
+    badgeColor: "b",
+    service: "Atlas"
   },
   {
     id: "Integration",
@@ -37,6 +42,8 @@ const agents = [
     desc: "Keeps your ERP, ledgers, and adjacent systems in sync so the other three agents work inside your actual data. ",
     img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80",
     imgAlt: "Integration flow diagram showing ERP, banking, and payment gateway connections",
+    badgeColor: "p",
+    service: "Connector"
   },
 ];
 
