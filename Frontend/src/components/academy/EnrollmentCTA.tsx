@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Button } from "./Button";
+import { SectionPill } from "./SectionPill";
 
 type EnrollmentCTAProps = {
   href: string;
@@ -59,7 +60,7 @@ export function EnrollmentCTA({ href, sectionId = "enroll" }: EnrollmentCTAProps
     <section
       ref={sectionRef}
       id={sectionId}
-      className="site-shell bg-transparent section-padding overflow-x-hidden relative flex items-center justify-center min-h-[70vh]"
+      className="w-full bg-transparent section-padding overflow-x-hidden relative flex items-center justify-center min-h-[70vh]"
     >
       {/* Subtle gradient fade divider replacing the hard border */}
       <div className="absolute top-0 left-0 right-0 h-[120px] bg-gradient-to-b from-[#9C5BFF]/8 via-[#2ACDFF]/8 to-transparent blur-[60px] pointer-events-none opacity-10 z-20" />
@@ -78,9 +79,9 @@ export function EnrollmentCTA({ href, sectionId = "enroll" }: EnrollmentCTAProps
       <div className="site-shell relative z-10 text-left">
         <div className="max-w-[800px] flex flex-col items-start">
           
-          <span className="cta-element-animate section-eyebrow mb-6">
+          <SectionPill className="cta-element-animate mb-6">
             TAKE THE NEXT STEP
-          </span>
+          </SectionPill>
 
           <h2 className="cta-element-animate section-title text-left mb-8 mt-0">
             Ready to transition from learning to{" "}

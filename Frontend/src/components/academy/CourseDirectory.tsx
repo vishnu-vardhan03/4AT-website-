@@ -5,7 +5,7 @@ import { offerings } from "@/components/academy/data";
 
 export function CourseDirectory({ sectionId = "courses" }: { sectionId?: string }) {
   return (
-    <section id={sectionId} className="site-shell section-frame section-padding">
+    <section id={sectionId} className="site-shell section-padding">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

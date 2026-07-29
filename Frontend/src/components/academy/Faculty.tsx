@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight, Globe, FileText, Users } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SectionPill } from "./SectionPill";
 
 interface TrackItem {
   name: string;
@@ -205,7 +206,7 @@ export function Faculty({ sectionId = "faculty" }: { sectionId?: string }) {
     <section
       ref={sectionRef}
       id={sectionId}
-      className={`site-shell section-padding overflow-x-hidden relative mentors-section-layout ${
+      className={`w-full section-padding overflow-x-hidden relative mentors-section-layout ${
         isAnimated ? "animate-active" : ""
       }`}
     >
@@ -256,12 +257,9 @@ export function Faculty({ sectionId = "faculty" }: { sectionId?: string }) {
           
           <div className="max-w-[620px] flex flex-col items-start">
             {/* Section Eyebrow Pill */}
-            <div className="inline-flex items-center gap-2 border border-[rgba(94,234,212,0.18)] bg-white/[0.02] rounded-full py-1.5 px-4 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#5EEAD4] animate-pulse" />
-              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#5EEAD4] font-sans">
-                EXECUTIVE MENTORS
-              </span>
-            </div>
+            <SectionPill className="mb-6">
+              EXECUTIVE MENTORS
+            </SectionPill>
 
             <h2 className="section-title">
               Finance leaders behind the training <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400">standard.</span>

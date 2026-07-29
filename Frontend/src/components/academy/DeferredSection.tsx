@@ -70,7 +70,7 @@ function SectionSkeleton({ minHeight }: { minHeight: string }) {
   return (
     <div
       aria-hidden="true"
-      className="site-shell section-frame py-10"
+      className="site-shell py-10"
       style={{ minHeight }}
     >
       <div className="h-full w-full animate-pulse rounded-[28px] border border-border/70 bg-surface/70" />
@@ -147,7 +147,7 @@ export function DeferredSection({ section, sectionId, href }: DeferredSectionPro
           })()}
         </div>
       ) : (
-        <div key="skeleton-wrapper" className="site-shell section-frame py-10">
+        <div key="skeleton-wrapper" className="site-shell py-10">
           <SectionSkeleton minHeight={getSkeletonHeight(section)} />
         </div>
       )}

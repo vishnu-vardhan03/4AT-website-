@@ -7,6 +7,7 @@ import { featureCards, ratings, type FeatureCard } from "@/components/academy/da
 import { ScrollRevealText } from "@/components/academy/ScrollRevealText";
 import { DecryptedText } from "@/components/academy/DecryptedText";
 import { NeonGlowOrb } from "@/components/academy/NeonGlowOrb";
+import { SectionPill } from "@/components/academy/SectionPill";
 
 // Per-card ambient accent config (index 0–4)
 const CARD_ACCENTS = [
@@ -258,9 +259,9 @@ export function Features({ sectionId = "programs" }: { sectionId?: string }) {
         <div className="features-heading relative z-10 flex flex-col gap-6">
           {/* Eyebrow Label */}
           <div>
-            <span className="section-eyebrow">
+            <SectionPill>
               WHY OUR PRODUCT
-            </span>
+            </SectionPill>
           </div>
 
           {/* Main heading and description layout */}

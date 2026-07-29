@@ -4,6 +4,7 @@ import { useRef, useLayoutEffect } from "react";
 import { Users, BookOpen, Wrench, Briefcase, ArrowRight, Check } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SectionPill } from "./SectionPill";
 
 interface AudienceCard {
   id: string;
@@ -130,7 +131,7 @@ export function TargetAudience({ sectionId = "audience-spectrum" }: { sectionId?
     <section 
       ref={sectionRef}
       id={sectionId} 
-      className="site-shell section-padding relative overflow-hidden bg-transparent text-white border-t border-white/[0.03]"
+      className="w-full section-padding relative overflow-hidden bg-transparent text-white border-t border-white/[0.03]"
     >
       {/* Decorative Grid Mesh */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f293708_1px,transparent_1px),linear-gradient(to_bottom,#1f293708_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
@@ -144,10 +145,9 @@ export function TargetAudience({ sectionId = "audience-spectrum" }: { sectionId?
         {/* Header Section */}
         <div className="diff-heading flex flex-col items-start mb-12 max-w-4xl audience-header-animate">
           {/* Neon pill eyebrow */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.15em] uppercase text-emerald-400 font-mono mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <SectionPill className="mb-6">
             AUDIENCE SPECTRUM
-          </div>
+          </SectionPill>
           
           <h2 className="section-title">
             Built for two different <span className="career-journeys-gradient font-sans">career journeys</span> <br /> without compromising either.

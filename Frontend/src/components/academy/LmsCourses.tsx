@@ -8,6 +8,7 @@ import { Lock, ArrowLeft, ArrowRight, Star } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Button } from "@/components/academy/Button";
+import { SectionPill } from "@/components/academy/SectionPill";
 
 const getCategoryColor = (category: string) => {
   switch (category) {
@@ -172,7 +173,7 @@ export function LmsCourses({ sectionId = "courses" }: { sectionId?: string }) {
     <section
       ref={sectionRef}
       id={sectionId}
-      className="site-shell section-padding font-sans select-none overflow-x-hidden relative"
+      className="w-full section-padding font-sans select-none overflow-x-hidden relative"
       style={{ backgroundColor: "#07090D", color: "#ffffff" }}
     >
       
@@ -197,12 +198,9 @@ export function LmsCourses({ sectionId = "courses" }: { sectionId?: string }) {
         {/* Harmonized Section Header */}
         <div id="explore-pathways-header" className="flex flex-col items-start text-left max-w-[850px] mb-16">
           {/* Eyebrow Badge Pill */}
-          <div className="inline-flex items-center gap-2 border border-[rgba(167,139,250,0.22)] bg-[rgba(124,58,237,0.08)] rounded-full py-2 px-[18px] mb-7">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#A855F7] animate-pulse" />
-            <span className="text-[12px] font-semibold uppercase tracking-[0.25em] text-[#A78BFA] font-sans">
-              EXPLORE PATHWAYS
-            </span>
-          </div>
+          <SectionPill className="mb-7">
+            EXPLORE PATHWAYS
+          </SectionPill>
 
           {/* Title with Gradient */}
           <h2 className="section-title">
