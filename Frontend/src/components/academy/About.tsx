@@ -16,6 +16,7 @@ import {
   FileText
 } from "lucide-react";
 import { NeonGlowOrb } from "@/components/academy/NeonGlowOrb";
+import { SectionPill } from "@/components/academy/SectionPill";
 
 // --- CUSTOM HIGH-FIDELITY SVG LOGOS MATCHING THE MOCKUP ---
 const renderExcelLogo = () => (
@@ -254,7 +255,7 @@ export function About() {
     <section
       ref={sectionRef}
       id="about"
-      className="site-shell bg-transparent text-white section-padding overflow-x-hidden relative min-h-[100dvh] flex items-center"
+      className="w-full bg-transparent text-white section-padding overflow-x-hidden relative min-h-[100dvh] flex items-center"
     >
       <style>{`
         /* Cohesive Bento Card design system token matching Vercel/Nothing layout */
@@ -444,9 +445,9 @@ export function About() {
         {/* Header Block */}
         <div className="max-w-[720px] mb-8 md:mb-10 flex flex-col gap-4 text-left">
           <div>
-            <span className="section-eyebrow">
+            <SectionPill>
               ABOUT ACADEMY
-            </span>
+            </SectionPill>
           </div>
           <h2 className="section-title">
             Where learning converts into <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">career readiness</span>.

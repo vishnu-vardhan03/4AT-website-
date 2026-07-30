@@ -9,7 +9,7 @@ interface Props {
   style?: React.CSSProperties;
 }
 
-export default function TiltCard({ children, className = "", glowColor = "rgba(167,139,250,0.18)" , style, }: Props) {
+export default function TiltCard({ children, className = "", glowColor = "rgba(167,139,250,0.01 )" , style, }: Props) {
   const { ref, onMove, onLeave } = useTilt(10);
 
   return (
@@ -23,7 +23,7 @@ export default function TiltCard({ children, className = "", glowColor = "rgba(1
     >
       {/* Mouse-follow glow */}
       <div
-        className="pointer-events-none absolute inset-0 rounded-[inherit] z-10 transition-opacity duration-300"
+        className="pointer-events-none absolute inset-0 rounded-[inherit] z-10 transition-opacity duration-150"
         style={{
           background: `radial-gradient(280px circle at var(--gx, 50%) var(--gy, 50%), ${glowColor}, transparent 70%)`,
           opacity: "var(--glow-opacity, 0)",
