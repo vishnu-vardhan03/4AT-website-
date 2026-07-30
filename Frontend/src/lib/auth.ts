@@ -12,7 +12,16 @@ function getJwtExpiry(accessToken: string): number {
   }
 }
 
+if (!process.env.NEXTAUTH_URL) {
+  process.env.NEXTAUTH_URL = process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+    : process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000";
+}
+
 export const authOptions: NextAuthOptions = {
+  secret: process.env.NEXTAUTH_SECRET || "4at-secret-key-fallback-for-auth",
   providers: [
     CredentialsProvider({
       name: "Admin credentials",
