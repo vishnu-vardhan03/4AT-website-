@@ -93,58 +93,49 @@ const FUITestimonialWithSlide: React.FC<SlidingTestimonialProps> = ({
 
   return (
     <div className="site-shell overflow-hidden">
-        {/* Heading Section */}
-        <div
-          id="testimonials-heading"
-          className="mb-8 sm:mb-10 text-center flex flex-col items-center relative"
-        >
-          <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center z-0">
-            <NeonGlowOrb
-              className="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 max-w-full"
-              size={450}
-              opacity={0.18}
-              blur={50}
-            />
-          </div>
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-[72px]">
+
+        {/* Left Column — Pill + Heading + Subheading */}
+        <div className="w-full lg:w-[48%] flex flex-col items-center lg:items-start text-center lg:text-left relative">
           <SectionPill className="relative z-10">ALUMNI TESTIMONIALS</SectionPill>
-          <h2 className="section-title text-center max-w-3xl mx-auto relative z-10">
+          <h2 className="section-title max-w-[620px] relative z-10 mt-4">
             Career transformations from learners who moved into finance{" "}
             <span className="font-serif italic text-accent">roles</span>.
           </h2>
-          <p className="section-desc text-center mt-3 max-w-xl mx-auto relative z-10 leading-relaxed text-sm sm:text-base">
+          <p className="section-desc relative z-10 mt-7 max-w-[540px] leading-relaxed text-sm sm:text-base">
             Structured mentorship, real case work, and placement support are
             helping our first cohorts move from theory into finance roles.
           </p>
         </div>
 
-        {/* Testimonials Content or Placeholder */}
-        {hasTestimonials ? (
-          <div className="relative w-full max-w-full overflow-hidden shrink-0 min-w-0">
-            <div className="flex gap-5 overflow-x-auto py-4">
-              {testimonials.map((testimonial, indx) => (
-                <div
-                  key={testimonial.id || indx}
-                  className="border border-[#151e2e] flex flex-col bg-[#121212] rounded-2xl shrink-0 w-[min(300px,calc(100vw-2.5rem))] sm:w-[480px] md:w-[580px] justify-between overflow-hidden shadow-[0_20px_45px_rgba(0,0,0,0.5)]"
-                >
-                  <p className="px-6 py-6 text-body font-normal text-ink-secondary font-sans leading-relaxed">
-                    &quot;{testimonial.description}&quot;
-                  </p>
-                  <div className="border-t border-white/8 w-full flex items-center justify-between px-6 py-4">
-                    <div>
-                      <h5 className="text-small font-semibold text-white font-sans">
-                        {testimonial.name}
-                      </h5>
-                      <p className="text-ink-secondary text-xs font-sans">
-                        {testimonial.profession}
-                      </p>
+        {/* Right Column — Placeholder Card */}
+        <div className="w-full lg:w-[42%] flex justify-center lg:justify-end relative z-10">
+          {hasTestimonials ? (
+            <div className="relative w-full max-w-[500px] overflow-hidden shrink-0 min-w-0">
+              <div className="flex gap-5 overflow-x-auto py-4">
+                {testimonials.map((testimonial, indx) => (
+                  <div
+                    key={testimonial.id || indx}
+                    className="border border-[#151e2e] flex flex-col bg-[#121212] rounded-2xl shrink-0 w-[min(300px,calc(100vw-2.5rem))] sm:w-[480px] md:w-[580px] justify-between overflow-hidden shadow-[0_20px_45px_rgba(0,0,0,0.5)]"
+                  >
+                    <p className="px-6 py-6 text-body font-normal text-ink-secondary font-sans leading-relaxed">
+                      &quot;{testimonial.description}&quot;
+                    </p>
+                    <div className="border-t border-white/8 w-full flex items-center justify-between px-6 py-4">
+                      <div>
+                        <h5 className="text-small font-semibold text-white font-sans">
+                          {testimonial.name}
+                        </h5>
+                        <p className="text-ink-secondary text-xs font-sans">
+                          {testimonial.profession}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        ) : (
-          <div className="max-w-xl mx-auto relative z-10">
+          ) : (
             <motion.div
               initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 16 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -153,7 +144,7 @@ const FUITestimonialWithSlide: React.FC<SlidingTestimonialProps> = ({
                 duration: shouldReduceMotion ? 0.3 : 0.6,
                 ease: [0.25, 1, 0.5, 1],
               }}
-              className="relative border border-teal-500/35 bg-gradient-to-b from-[#141c28]/95 via-[#0f1520]/95 to-[#0b0e16]/95 backdrop-blur-xl rounded-2xl p-6 sm:p-8 text-center shadow-[0_0_40px_rgba(45,212,191,0.15),0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden group hover:border-teal-400/50 transition-all duration-300"
+              className="relative w-full max-w-[500px] border border-teal-500/35 bg-gradient-to-b from-[#141c28]/95 via-[#0f1520]/95 to-[#0b0e16]/95 backdrop-blur-xl rounded-2xl p-6 sm:p-8 text-center shadow-[0_0_40px_rgba(45,212,191,0.15),0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden group hover:border-teal-400/50 transition-all duration-300"
             >
               {/* Ambient glows inside card */}
               <div className="absolute -top-20 -left-20 w-44 h-44 bg-teal-500/20 rounded-full blur-2xl pointer-events-none" />
@@ -178,9 +169,11 @@ const FUITestimonialWithSlide: React.FC<SlidingTestimonialProps> = ({
               {/* Tagline with Continuous Typewriter Animation */}
               <ContinuousTypewriterTagline />
             </motion.div>
-          </div>
-        )}
+          )}
+        </div>
+
       </div>
+    </div>
   );
 };
 
