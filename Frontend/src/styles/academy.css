@@ -621,6 +621,9 @@
   --react-international-phone-dropdown-item-background-color-hover: rgba(255, 255, 255, 0.08);
   --react-international-phone-dropdown-item-text-color: #ffffff;
   --react-international-phone-dropdown-item-dial-code-color: rgba(255, 255, 255, 0.5);
+  --react-international-phone-selected-dropdown-item-background-color: rgba(59, 130, 246, 0.3);
+  --react-international-phone-selected-dropdown-item-text-color: #ffffff;
+  --react-international-phone-selected-dropdown-item-dial-code-color: rgba(255, 255, 255, 0.7);
   width: 100%;
 }
 

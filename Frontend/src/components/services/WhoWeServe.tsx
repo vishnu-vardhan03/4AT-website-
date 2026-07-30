@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { SegmentDoodle } from "./SegmentDoodle";
-import { TiltCard } from "./TiltCard";
+import TiltCard from "@/components/ui/TiltCard";
 
 const segments = [
   {

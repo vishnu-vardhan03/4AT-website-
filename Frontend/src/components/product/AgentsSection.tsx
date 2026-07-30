@@ -7,6 +7,9 @@ import AmbientBackground from "@/components/product/AmbientBackground";
 const agents = [
   {
     id: "Reconciliation",
+    service: "Accounting",
+    badge: "Always-on",
+    stat: "Continuous ledger matching",
     name: "Reconciliation",
     role: "GL · AP · AR · Bank Feeds",
     desc: "Matches and reconciles transactions across your ledgers, surfacing exceptions for review instead of guessing past them. ",
@@ -16,6 +19,9 @@ const agents = [
   },
   {
     id: "Compliance",
+    service: "Risk",
+    badge: "Controls",
+    stat: "Continuous anomaly monitoring",
     name: "Compliance",
     role: "Risk · Compliance · Anomaly",
     desc: "Matches and reconciles transactions across your ledgers, surfacing exceptions for review instead of guessing past them. ",
@@ -24,6 +30,9 @@ const agents = [
   },
   {
     id: "Analytics",
+    service: "Planning",
+    badge: "Insights",
+    stat: "Forward-looking finance views",
     name: "Analytics",
     role: "Forecasting · Reporting · Insights",
     desc: "Turns your finance data into reports and forward-looking views. ",
@@ -32,6 +41,9 @@ const agents = [
   },
   {
     id: "Integration",
+    service: "Systems",
+    badge: "Connected",
+    stat: "Synchronized finance data",
     name: "Integration",
     role: "ERP · Banking · Payroll · Billing",
     desc: "Keeps your ERP, ledgers, and adjacent systems in sync so the other three agents work inside your actual data. ",
@@ -40,17 +52,11 @@ const agents = [
   },
 ];
 
-const badgeColorMap: Record<string, { bg: string; text: string }> = {
-  t: { bg: "rgba(45,212,191,.15)",  text: "#5eead4" },
-  v: { bg: "rgba(167,139,250,.15)", text: "#c4b5fd" },
-  b: { bg: "rgba(125,211,252,.12)", text: "#7dd3fc" },
-  p: { bg: "rgba(192,132,252,.12)", text: "#d8b4fe" },
-};
 const glowColorMap: Record<string, string> = {
-  t: "rgba(45,212,191,0.15)",
-  v: "rgba(167,139,250,0.18)",
-  b: "rgba(125,211,252,0.14)",
-  p: "rgba(192,132,252,0.14)",
+  Reconciliation: "rgba(45,212,191,0.15)",
+  Compliance: "rgba(167,139,250,0.18)",
+  Analytics: "rgba(125,211,252,0.14)",
+  Integration: "rgba(192,132,252,0.14)",
 };
 
 export default function AgentsSection() {
@@ -72,11 +78,10 @@ export default function AgentsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {agents.map((agent) => {
-            const bc = badgeColorMap[agent.badgeColor];
             return (
               <TiltCard
                 key={agent.id}
-                glowColor={glowColorMap[agent.badgeColor]}
+                glowColor={glowColorMap[agent.id]}
                 className="glass-card rounded-[18px] overflow-hidden transition-all duration-300 hover:border-white/15"
               >
                 {/* Dashboard image */}

@@ -2,28 +2,20 @@
 
 import { useState } from "react";
 import { Check, Clock3, LoaderCircle } from "lucide-react";
+import { isValidPhoneNumber } from "libphonenumber-js";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
 import { Nav } from "@/components/layout/MainNav";
 import { Footer } from "@/components/layout/Footer";
 import { TextareaField, TextField } from "@/components/lead-collection/FormFields";
 
 const services = ["4AT Consulting", "4AT Academy", "4AT.AI", "Hybrid Services", "Other"];
 
-const phoneCountries = [
-  { code: "IN", name: "India", dialCode: "+91", digits: 10 },
-  { code: "US", name: "United States", dialCode: "+1", digits: 10 },
-  { code: "CA", name: "Canada", dialCode: "+1", digits: 10 },
-  { code: "GB", name: "United Kingdom", dialCode: "+44", digits: 10 },
-  { code: "AU", name: "Australia", dialCode: "+61", digits: 9 },
-  { code: "AE", name: "United Arab Emirates", dialCode: "+971", digits: 9 },
-  { code: "SG", name: "Singapore", dialCode: "+65", digits: 8 },
-];
-
 type FormState = "idle" | "submitting" | "success" | "error";
 
 export default function ContactPage() {
   const [formState, setFormState] = useState<FormState>("idle");
   const [selectedService, setSelectedService] = useState("");
-  const [phoneCountry, setPhoneCountry] = useState("IN");
   const [phoneError, setPhoneError] = useState("");
   const [form, setForm] = useState({
     name: "",
@@ -37,24 +29,15 @@ export default function ContactPage() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const selectedPhoneCountry = phoneCountries.find((country) => country.code === phoneCountry) ?? phoneCountries[0];
-
   const handlePhoneChange = (value: string) => {
-    const digits = value.replace(/\D/g, "").slice(0, selectedPhoneCountry.digits);
-    setForm((prev) => ({ ...prev, phone: digits }));
-    setPhoneError("");
-  };
-
-  const handlePhoneCountryChange = (countryCode: string) => {
-    setPhoneCountry(countryCode);
-    setForm((prev) => ({ ...prev, phone: "" }));
+    setForm((prev) => ({ ...prev, phone: value }));
     setPhoneError("");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (form.phone && form.phone.length !== selectedPhoneCountry.digits) {
-      setPhoneError(`Enter exactly ${selectedPhoneCountry.digits} digits for ${selectedPhoneCountry.name}`);
+    if (form.phone && !isValidPhoneNumber(form.phone)) {
+      setPhoneError("Enter a valid phone number for the selected country");
       return;
     }
     setFormState("submitting");
@@ -64,7 +47,6 @@ export default function ContactPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
-          phone: form.phone ? `${selectedPhoneCountry.dialCode}${form.phone}` : "",
           service: selectedService || "Other",
           description: form.message,
         }),
@@ -212,7 +194,6 @@ export default function ContactPage() {
                       setFormState("idle");
                       setForm({ name: "", email: "", company: "", phone: "", message: "" });
                       setSelectedService("");
-                      setPhoneCountry("IN");
                       setPhoneError("");
                     }}
                     className="mt-10 rounded-full border border-white/15 px-7 py-2.5 text-sm font-semibold text-white/60 transition hover-fine:-translate-y-0.5 hover-fine:border-white/30 hover-fine:text-white"
@@ -240,43 +221,15 @@ export default function ContactPage() {
                       <label htmlFor="contact-phone" className="block text-xs font-bold uppercase tracking-widest text-white/45">
                         Phone
                       </label>
-                      <div className={`flex overflow-hidden rounded-lg border bg-white/[0.04] transition focus-within:bg-white/[0.07] focus-within:ring-1 ${
-                        phoneError
-                          ? "border-red-400/60 focus-within:ring-red-400/20"
-                          : "border-white/10 focus-within:border-[#7dd3fc]/60 focus-within:ring-[#7dd3fc]/25"
-                      }`}>
-                        <select
-                          aria-label="Phone country code"
-                          value={phoneCountry}
-                          onChange={(e) => handlePhoneCountryChange(e.target.value)}
-                          className="w-[92px] shrink-0 cursor-pointer border-r border-white/10 bg-[#0b0e19] px-2 text-xs font-bold text-[#7dd3fc] outline-none"
-                        >
-                          {phoneCountries.map((country) => (
-                            <option key={country.code} value={country.code} className="bg-[#0b0e19] text-white">
-                              {country.code} {country.dialCode}
-                            </option>
-                          ))}
-                        </select>
-                        <input
-                          id="contact-phone"
-                          name="phone"
-                          type="tel"
-                          inputMode="numeric"
-                          minLength={selectedPhoneCountry.digits}
-                          maxLength={selectedPhoneCountry.digits}
-                          value={form.phone}
-                          onChange={(e) => handlePhoneChange(e.target.value)}
-                          placeholder={`${selectedPhoneCountry.digits} digit number`}
-                          className="min-w-0 flex-1 bg-transparent px-3 py-3 text-sm text-white placeholder-white/20 outline-none"
-                        />
-                      </div>
-                      {phoneError ? (
-                        <p className="text-[11px] text-red-400">{phoneError}</p>
-                      ) : (
-                        <p className="text-[11px] text-white/30">
-                          {selectedPhoneCountry.digits} digits for {selectedPhoneCountry.name}
-                        </p>
-                      )}
+                      <PhoneInput
+                        defaultCountry="in"
+                        value={form.phone}
+                        onChange={handlePhoneChange}
+                        placeholder="Enter phone number"
+                        inputProps={{ id: "contact-phone", name: "phone", autoComplete: "tel" }}
+                        className={`lead-phone-input ${phoneError ? "lead-phone-input--error" : ""}`}
+                      />
+                      {phoneError && <p className="text-[11px] text-red-400">{phoneError}</p>}
                     </div>
                   </div>
 
