@@ -230,20 +230,21 @@ export type LmsCourse = {
   locked: boolean;
   category: string;
   instructor: string;
-  price: string;
+  price?: string;
   originalPrice?: string;
   image: string;
   badgeType?: 'bestseller' | 'new' | 'hot';
+  ctaText?: string;
 };
 
 export const lmsCourses: LmsCourse[] = [
   {
-    title: "MNC Finance Readiness: Level 1",
-    subtitle: "Beginner – MNC Placement Track",
-    badge: "Commitment Fee: ₹999 + GST",
+    title: "FinTech Engineering — Acc L1",
+    subtitle: "Beginner · MNC Placement Track",
+    badge: "Flagship · Freshers",
     rating: 4.8,
     reviewsCount: 141,
-    description: "Comprehensive MNC placement training covering Accounting, ERP, Financial Tools, Automation, and soft skills.",
+    description: "Practical training in finance, accounting and audit for freshers and final-semester students targeting MNC placements. The core FEP placement track.",
     bullets: [
       "60-70 Hour Program",
       "Hands-on ERP, AI & Automation Tools",
@@ -253,90 +254,89 @@ export const lmsCourses: LmsCourse[] = [
     locked: false,
     category: "Accounting & ERP",
     instructor: "4AT Academy Core",
-    price: "₹999",
-    originalPrice: "₹2,999",
     image: "/acc_l1_thumb.webp",
-    badgeType: "bestseller"
+    badgeType: "bestseller",
+    ctaText: "View Curriculum"
   },
   {
-    title: "Advanced Corporate Accounting & ERP: Level 2",
-    subtitle: "For 3+ Years Experienced Professionals",
+    title: "FinTech Engineering — Acc L2",
+    subtitle: "Experienced Professionals",
+    badge: "3+ Years",
     rating: 4.7,
     reviewsCount: 28,
-    description: "Deep dive into complex financial reporting, IFRS, and automation built for advancing finance professionals.",
+    description: "A deep dive into complex financial reporting and automation for finance professionals sharpening their expertise.",
     bullets: [
       "Real-World Case Studies",
       "AI & Automation in Accounting",
       "Industry Mentorship",
       "Advanced Reporting & IFRS"
     ],
-    locked: true,
+    locked: false,
     category: "Accounting & ERP",
     instructor: "Chartered Accountants Core",
-    price: "₹2,499",
-    originalPrice: "₹5,999",
     image: "/acc_l2_thumb.webp",
-    badgeType: "new"
+    badgeType: "new",
+    ctaText: "Check Fit"
   },
   {
-    title: "Specialized Course in Advanced Corporate Audit & Taxation",
-    subtitle: "For 2+ Years Experienced Professionals",
+    title: "FinTech Engineering — IA L1",
+    subtitle: "Internal Audit Track",
+    badge: "2+ Years",
     rating: 4.9,
     reviewsCount: 21,
-    description: "Internal audits, risk analysis, and compliance strategies structured for high-stakes audit roles.",
+    description: "Internal audit, risk analysis and compliance covering SOX, internal controls, Big 4 audit standards, and practical audit simulations.",
     bullets: [
       "SOX & Internal Controls",
       "Big 4 Audit Standards",
       "Practical Audit Simulations",
       "Risk & Compliance Strategy"
     ],
-    locked: true,
+    locked: false,
     category: "Audit & Risk",
     instructor: "Big 4 Audit Experts",
-    price: "₹3,499",
-    originalPrice: "₹7,999",
     image: "/ia_l1_thumb.webp",
-    badgeType: "hot"
+    badgeType: "hot",
+    ctaText: "Check Fit"
   },
   {
-    title: "Global Audit & Tax Management Pathway",
-    subtitle: "For 5+ Years Experienced Professionals",
+    title: "FinTech Engineering — SOC 2",
+    subtitle: "Compliance & Controls Track",
+    badge: "Advanced",
     rating: 4.6,
     reviewsCount: 38,
-    description: "US federal tax laws, compliance, and advisory training for professionals aiming for global tax roles.",
+    description: "SOC 2, ISO 27001 and controls frameworks for professionals moving into compliance and assurance roles.",
     bullets: [
-      "IRS & SEC Regulations",
-      "Advanced Tax Planning",
-      "Career Elevation in Global Taxation",
-      "Global Audit & Compliance"
+      "SOC 2 & ISO 27001 Controls",
+      "Compliance & Assurance",
+      "Risk & Governance Frameworks",
+      "Security Audits & Certifications"
     ],
-    locked: true,
+    locked: false,
     category: "Global Taxation",
     instructor: "Global Tax Counsel",
-    price: "₹4,999",
-    originalPrice: "₹9,999",
     image: "/soc2_thumb.webp",
-    badgeType: "bestseller"
+    badgeType: "bestseller",
+    ctaText: "Check Fit"
   },
   {
-    title: "Strategic Program in Financial Planning & Analysis (FP&A)",
-    subtitle: "For 3+ Years Experienced Professionals",
+    title: "FinTech Engineering — FP&A",
+    subtitle: "Financial Planning & Analysis",
+    badge: "Advanced",
     rating: 4.8,
     reviewsCount: 28,
-    description: "Financial planning, analysis, modeling, and strategic budgeting for corporate FP&A pathways.",
+    description: "Budgeting, forecasting, variance analysis and management reporting for professionals moving into FP&A, controllership and business-partnering roles.",
     bullets: [
       "Financial Modeling & Valuation",
       "Strategic Budgeting & Forecasting",
       "Corporate FP&A Best Practices",
       "Excel & BI Dashboards"
     ],
-    locked: true,
+    locked: false,
     category: "FP&A & Modeling",
     instructor: "Corporate FP&A Directors",
-    price: "₹3,999",
-    originalPrice: "₹8,999",
     image: "/fpna_thumb.webp",
-    badgeType: "new"
+    badgeType: "new",
+    ctaText: "Check Fit"
   }
 ];
 
