@@ -68,7 +68,7 @@ export function PricingSection() {
             Tailored <span className="grad-v">Enterprise Plans</span>
           </h2>
 
-          <p className="text-white/70 mx-auto text-xl max-w-3xl">
+          <p className="text-white mx-auto text-xl max-w-3xl">
             Every organization is different. We'll work with you to create the
             perfect plan for your business.
           </p>
