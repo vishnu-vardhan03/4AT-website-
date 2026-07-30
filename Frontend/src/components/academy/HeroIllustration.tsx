@@ -234,28 +234,28 @@ export function HeroIllustration() {
         </motion.div>
       </motion.div>
 
-      {/* Floating Glassmorphic Cards (Decorative Icons in 3D Orbits) */}
+      {/* Floating Glassmorphic Cards (Organic Asymmetric Layout around Asset) */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-35 overflow-visible">
         
-        {/* Card 1 (Left): Profile Icon - Purple Glow */}
+        {/* Card 1 (Top-Left): Profile Icon */}
         <motion.div
           style={{ x: card1X, y: card1Y }}
-          className="absolute top-[42%] left-[4%] sm:left-[8%] md:left-[10%] lg:left-[5%] z-30 hidden sm:flex"
+          className="absolute top-[12%] left-[0%] sm:left-[0%] md:left-[0%] lg:left-[0%] z-30 hidden sm:flex"
           initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.7, y: prefersReducedMotion ? 0 : 20 }}
           animate={isRevealed ? { opacity: 1, scale: 1, y: 0 } : undefined}
           transition={{
             duration: prefersReducedMotion ? 0.3 : 0.5,
             delay: prefersReducedMotion ? 0 : 1.0,
-            ease: [0.34, 1.56, 0.64, 1] // ease-out-back
+            ease: [0.34, 1.56, 0.64, 1]
           }}
         >
           <motion.div
-            animate={isRevealed && !prefersReducedMotion ? { y: [0, -6, 0] } : {}}
+            animate={isRevealed && !prefersReducedMotion ? { y: [0, -7, 0] } : {}}
             transition={{
-              duration: 3,
+              duration: 3.4,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: 1.5
+              delay: 0.5
             }}
             className="group pointer-events-auto"
             style={{ perspective: "600px" }}
@@ -279,19 +279,19 @@ export function HeroIllustration() {
             }}
           >
             <div
-              className="card-inner flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/[0.02] backdrop-blur-xl border border-white/10 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_10px_30px_rgba(0,0,0,0.6)] group-hover:border-purple-400/40 group-hover:shadow-[0_0_25px_rgba(168,109,255,0.3)] transition-shadow duration-300 ease-out cursor-pointer relative overflow-hidden"
+              className="card-inner flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.02] backdrop-blur-xl border border-white/10 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_10px_30px_rgba(0,0,0,0.6)] group-hover:border-purple-400/40 group-hover:shadow-[0_0_25px_rgba(168,109,255,0.3)] transition-shadow duration-300 ease-out cursor-pointer relative overflow-hidden"
               style={{ transition: "transform 0.15s ease-out", transformStyle: "preserve-3d" }}
             >
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" style={{ background: "radial-gradient(circle at var(--sx, 50%) var(--sy, 50%), rgba(168,109,255,0.18) 0%, transparent 60%)" }} />
-              <User className="w-6 h-6 text-[#A86DFF] filter drop-shadow-[0_0_8px_rgba(168,109,255,0.6)] group-hover:scale-110 transition-transform duration-300 relative z-10" />
+              <User className="w-5 h-5 sm:w-6 sm:h-6 text-[#A86DFF] filter drop-shadow-[0_0_8px_rgba(168,109,255,0.6)] group-hover:scale-110 transition-transform duration-300 relative z-10" />
             </div>
           </motion.div>
         </motion.div>
 
-        {/* Card 2 (Top-Right): Analytics Icon - Cyan Glow */}
+        {/* Card 2 (Top-Right): Analytics Icon */}
         <motion.div
           style={{ x: card2X, y: card2Y }}
-          className="absolute top-[12%] right-[22%] sm:right-[26%] md:right-[28%] lg:right-[25%] z-30 hidden sm:flex"
+          className="absolute top-[6%] right-[2%] sm:right-[2%] md:right-[2%] lg:right-[2%] z-30 hidden sm:flex"
           initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.7, y: prefersReducedMotion ? 0 : 20 }}
           animate={isRevealed ? { opacity: 1, scale: 1, y: 0 } : undefined}
           transition={{
@@ -301,12 +301,12 @@ export function HeroIllustration() {
           }}
         >
           <motion.div
-            animate={isRevealed && !prefersReducedMotion ? { y: [0, -6, 0] } : {}}
+            animate={isRevealed && !prefersReducedMotion ? { y: [0, -11, 0] } : {}}
             transition={{
-              duration: 3,
+              duration: 4.2,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: 1.62
+              delay: 1.2
             }}
             className="group pointer-events-auto"
             style={{ perspective: "600px" }}
@@ -330,19 +330,19 @@ export function HeroIllustration() {
             }}
           >
             <div
-              className="card-inner flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/[0.02] backdrop-blur-xl border border-white/10 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_10px_30px_rgba(0,0,0,0.6)] group-hover:border-cyan-400/40 group-hover:shadow-[0_0_25px_rgba(83,231,255,0.3)] transition-shadow duration-300 ease-out cursor-pointer relative overflow-hidden"
+              className="card-inner flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.02] backdrop-blur-xl border border-white/10 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_10px_30px_rgba(0,0,0,0.6)] group-hover:border-cyan-400/40 group-hover:shadow-[0_0_25px_rgba(83,231,255,0.3)] transition-shadow duration-300 ease-out cursor-pointer relative overflow-hidden"
               style={{ transition: "transform 0.15s ease-out", transformStyle: "preserve-3d" }}
             >
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" style={{ background: "radial-gradient(circle at var(--sx, 50%) var(--sy, 50%), rgba(83,231,255,0.18) 0%, transparent 60%)" }} />
-              <TrendingUp className="w-6 h-6 text-[#53E7FF] filter drop-shadow-[0_0_8px_rgba(83,231,255,0.6)] group-hover:scale-110 transition-transform duration-300 relative z-10" />
+              <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-[#53E7FF] filter drop-shadow-[0_0_8px_rgba(83,231,255,0.6)] group-hover:scale-110 transition-transform duration-300 relative z-10" />
             </div>
           </motion.div>
         </motion.div>
 
-        {/* Card 3 (Right): Briefcase Icon - Purple Glow */}
+        {/* Card 3 (Mid-Right): Briefcase Icon */}
         <motion.div
           style={{ x: card3X, y: card3Y }}
-          className="absolute top-[35%] right-[2%] sm:right-[6%] md:right-[8%] lg:right-[4%] z-30 hidden sm:flex"
+          className="absolute top-[48%] right-[-1%] sm:right-[-1%] md:right-[-1%] lg:right-[-1%] z-30 hidden sm:flex"
           initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.7, y: prefersReducedMotion ? 0 : 20 }}
           animate={isRevealed ? { opacity: 1, scale: 1, y: 0 } : undefined}
           transition={{
@@ -352,12 +352,12 @@ export function HeroIllustration() {
           }}
         >
           <motion.div
-            animate={isRevealed && !prefersReducedMotion ? { y: [0, -6, 0] } : {}}
+            animate={isRevealed && !prefersReducedMotion ? { y: [0, -5, 0] } : {}}
             transition={{
-              duration: 3,
+              duration: 2.8,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: 1.74
+              delay: 2.0
             }}
             className="group pointer-events-auto"
             style={{ perspective: "600px" }}
@@ -381,19 +381,19 @@ export function HeroIllustration() {
             }}
           >
             <div
-              className="card-inner flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/[0.02] backdrop-blur-xl border border-white/10 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_10px_30px_rgba(0,0,0,0.6)] group-hover:border-purple-400/40 group-hover:shadow-[0_0_25px_rgba(168,109,255,0.3)] transition-shadow duration-300 ease-out cursor-pointer relative overflow-hidden"
+              className="card-inner flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.02] backdrop-blur-xl border border-white/10 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_10px_30px_rgba(0,0,0,0.6)] group-hover:border-purple-400/40 group-hover:shadow-[0_0_25px_rgba(168,109,255,0.3)] transition-shadow duration-300 ease-out cursor-pointer relative overflow-hidden"
               style={{ transition: "transform 0.15s ease-out", transformStyle: "preserve-3d" }}
             >
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" style={{ background: "radial-gradient(circle at var(--sx, 50%) var(--sy, 50%), rgba(168,109,255,0.18) 0%, transparent 60%)" }} />
-              <Briefcase className="w-6 h-6 text-[#A86DFF] filter drop-shadow-[0_0_8px_rgba(168,109,255,0.6)] group-hover:scale-110 transition-transform duration-300 relative z-10" />
+              <Briefcase className="w-5 h-5 sm:w-6 sm:h-6 text-[#A86DFF] filter drop-shadow-[0_0_8px_rgba(168,109,255,0.6)] group-hover:scale-110 transition-transform duration-300 relative z-10" />
             </div>
           </motion.div>
         </motion.div>
 
-        {/* Card 4 (Bottom-Right): Chart Icon - Cyan Glow */}
+        {/* Card 4 (Bottom-Left): Chart Icon */}
         <motion.div
           style={{ x: card4X, y: card4Y }}
-          className="absolute bottom-[15%] right-[16%] sm:right-[20%] md:right-[22%] lg:right-[18%] z-30 hidden sm:flex"
+          className="absolute bottom-[10%] left-[-2%] sm:left-[-2%] md:left-[-2%] lg:left-[-2%] z-30 hidden sm:flex"
           initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.7, y: prefersReducedMotion ? 0 : 20 }}
           animate={isRevealed ? { opacity: 1, scale: 1, y: 0 } : undefined}
           transition={{
@@ -403,12 +403,12 @@ export function HeroIllustration() {
           }}
         >
           <motion.div
-            animate={isRevealed && !prefersReducedMotion ? { y: [0, -6, 0] } : {}}
+            animate={isRevealed && !prefersReducedMotion ? { y: [0, -9, 0] } : {}}
             transition={{
-              duration: 3,
+              duration: 3.6,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: 1.86
+              delay: 1.6
             }}
             className="group pointer-events-auto"
             style={{ perspective: "600px" }}
@@ -432,11 +432,11 @@ export function HeroIllustration() {
             }}
           >
             <div
-              className="card-inner flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/[0.02] backdrop-blur-xl border border-white/10 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_10px_30px_rgba(0,0,0,0.6)] group-hover:border-cyan-400/40 group-hover:shadow-[0_0_25px_rgba(83,231,255,0.3)] transition-shadow duration-300 ease-out cursor-pointer relative overflow-hidden"
+              className="card-inner flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.02] backdrop-blur-xl border border-white/10 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_10px_30px_rgba(0,0,0,0.6)] group-hover:border-cyan-400/40 group-hover:shadow-[0_0_25px_rgba(83,231,255,0.3)] transition-shadow duration-300 ease-out cursor-pointer relative overflow-hidden"
               style={{ transition: "transform 0.15s ease-out", transformStyle: "preserve-3d" }}
             >
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" style={{ background: "radial-gradient(circle at var(--sx, 50%) var(--sy, 50%), rgba(83,231,255,0.18) 0%, transparent 60%)" }} />
-              <BarChart3 className="w-6 h-6 text-[#53E7FF] filter drop-shadow-[0_0_8px_rgba(83,231,255,0.6)] group-hover:scale-110 transition-transform duration-300 relative z-10" />
+              <BarChart3 className="w-5 h-5 sm:w-6 sm:h-6 text-[#53E7FF] filter drop-shadow-[0_0_8px_rgba(83,231,255,0.6)] group-hover:scale-110 transition-transform duration-300 relative z-10" />
             </div>
           </motion.div>
         </motion.div>
