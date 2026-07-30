@@ -180,70 +180,7 @@ export function Features({ sectionId = "programs" }: { sectionId?: string }) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const ctx = gsap.context(() => {
-      // Heading block reveal
-      gsap.fromTo(
-        ".features-heading",
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.0,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".features-heading",
-            start: "top 85%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      );
-
-      // Staggered tile reveals — each tile lifts in individually
-      const tiles = gsap.utils.toArray(".feature-tile-wrapper");
-      if (tiles.length > 0) {
-        gsap.fromTo(
-          tiles,
-          { opacity: 0, y: 50 },
-          {
-            opacity: 1,
-            y: 0,
-            stagger: 0.1,
-            duration: 1.0,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: ".features-grid",
-              start: "top 80%",
-              toggleActions: "play reverse play reverse",
-            },
-          }
-        );
-      }
-
-      // Ratings strip — staggered scale+fade
-      const stats = gsap.utils.toArray(".feature-stat");
-      if (stats.length > 0) {
-        gsap.fromTo(
-          stats,
-          { opacity: 0, y: 20, scale: 0.95 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            stagger: 0.12,
-            duration: 0.9,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: ".features-stats-grid",
-              start: "top 90%",
-              toggleActions: "play reverse play reverse",
-            },
-          }
-        );
-      }
-    }, sectionRef.current || undefined);
-
-    return () => ctx.revert();
+    // All animations removed per user directive - static rendering
   }, []);
 
   return (
@@ -256,7 +193,7 @@ export function Features({ sectionId = "programs" }: { sectionId?: string }) {
         {/* Background ambient radial glow */}
         <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#00e5c3]/5 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="features-heading relative z-10 flex flex-col gap-6">
+        <div className="features-heading relative z-10 flex flex-col gap-6" style={{ opacity: 1 }}>
           {/* Eyebrow Label */}
           <div>
             <SectionPill>
@@ -284,10 +221,9 @@ export function Features({ sectionId = "programs" }: { sectionId?: string }) {
             <div className="w-full h-px bg-[#151e2e] lg:w-px lg:h-auto lg:self-stretch lg:my-2" />
 
             <div className="lg:pt-2.5 max-w-[560px]">
-              <ScrollRevealText
-                text="We engineered this platform specifically for the complexity, compliance demands, and pace of financial education. That means structured tracks built around real job roles, with SOX, IFRS, and Big 4 standards treated as foundation rather than add-ons."
-                className="section-desc"
-              />
+              <p className="section-desc">
+                We engineered this platform specifically for the complexity, compliance demands, and pace of financial education. That means structured tracks built around real job roles, with SOX, IFRS, and Big 4 standards treated as foundation rather than add-ons.
+              </p>
             </div>
           </div>
         </div>
