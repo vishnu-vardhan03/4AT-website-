@@ -145,10 +145,7 @@ function FeatureTile({ card, index }: { card: FeatureCard; index: number }) {
         />
 
         <div className="relative z-10">
-          <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-[#00e5c3]/70 font-mono">
-            {card.id}
-          </p>
-          <h3 className="mt-8 lg:mt-12 text-h3 font-bold leading-[1.25] tracking-[-0.02em] text-white font-sans group-hover-fine:text-accent transition-colors duration-300">
+          <h3 className="text-h3 font-bold leading-[1.25] tracking-[-0.02em] text-white font-sans group-hover-fine:text-accent transition-colors duration-300">
             {card.title}
           </h3>
           <p className="mt-4 text-small font-normal leading-[1.65] tracking-[0.015em] text-ink-secondary font-sans max-w-[58ch]">

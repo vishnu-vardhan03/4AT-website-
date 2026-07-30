@@ -49,10 +49,10 @@ export type FeatureCard = {
 export const featureCards: FeatureCard[] = [
   {
     id: "01",
-    title: "Career-aligned tracks",
+    title: "Built by a working F&A firm",
     body:
-      "Start with the job you want, then follow a learning path built backward from that destination.",
-    tags: ["Career Destination", "Role-Based"],
+      "You learn on real client standards from a firm that runs finance & accounting for global clients — not from a textbook.",
+    tags: ["Career Destination", "ROI-Focussed"],
     tone: "dark",
   },
   {
@@ -65,9 +65,9 @@ export const featureCards: FeatureCard[] = [
   },
   {
     id: "03",
-    title: "AI and automation exposure",
+    title: "Our own AI platform",
     body:
-      "Build fluency in the digital tools modern finance teams increasingly expect.",
+      "You train on 4AT's AI-powered finance tools alongside industry platforms — learning to work with AI, not around it.",
     tags: ["Digital Fluency", "Modern Tools"],
     tone: "light",
   },

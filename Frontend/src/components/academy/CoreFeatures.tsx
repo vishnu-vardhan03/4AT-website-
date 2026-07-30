@@ -194,9 +194,6 @@ function BentoCard({
 
             {/* Right: Text Container (Heading & Description with increased vertical rhythm) */}
             <div className="flex flex-col justify-start pt-1.5 sm:pt-0">
-              <span className={`text-[10px] font-mono tracking-[0.15em] uppercase font-semibold ${numColor}`}>
-                {id}
-              </span>
               <h3 className="mt-3.5 text-lg sm:text-xl font-bold leading-[1.2] tracking-tight text-white/95 font-display group-hover:text-white transition-colors duration-300">
                 {title}
               </h3>
@@ -281,13 +278,13 @@ export function CoreFeatures({ sectionId = "core-features" }: { sectionId?: stri
         {/* [BENTO GRID WORKSPACE] */}
         <div className="bento-grid grid grid-cols-1 md:grid-cols-6 gap-6">
 
-          {/* Card 01 - Career-aligned tracks */}
+          {/* Card 01 - Built by a working F&A firm */}
           <BentoCard
             id="01"
-            title="Career-aligned tracks"
-            body="Start with the job you want, then follow a learning path built backward from that destination."
+            title="Built by a working F&A firm"
+            body="You learn on real client standards from a firm that runs finance & accounting for global clients — not from a textbook."
             icon={Target}
-            badges={["Career Destination", "Role-Based"]}
+            badges={["Career Destination", "ROI-Focussed"]}
             glowColor="rgba(45, 212, 191, 0.08)"
             themeColorClass="text-emerald-400 border-emerald-500/20 bg-emerald-500/5"
             spanClass="col-span-1 md:col-span-2"
@@ -390,11 +387,11 @@ export function CoreFeatures({ sectionId = "core-features" }: { sectionId?: stri
             }
           />
 
-          {/* Card 03 - AI and automation exposure */}
+          {/* Card 03 - Our own AI platform */}
           <BentoCard
             id="03"
-            title="AI and automation exposure"
-            body="Build fluency in the digital tools modern finance teams increasingly expect."
+            title="Our own AI platform"
+            body="You train on 4AT's AI-powered finance tools alongside industry platforms — learning to work with AI, not around it."
             icon={Bot}
             badges={["Digital Fluency", "Modern Tools"]}
             glowColor="rgba(139, 92, 246, 0.1)"
