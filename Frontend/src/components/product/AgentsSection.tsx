@@ -51,7 +51,6 @@ const agents = [
   },
 ];
 
-<<<<<<< HEAD
 const glowColorMap: Record<string, string> = {
   Reconciliation: "rgba(45,212,191,0.15)",
   Compliance: "rgba(167,139,250,0.18)",
@@ -59,8 +58,6 @@ const glowColorMap: Record<string, string> = {
   Integration: "rgba(192,132,252,0.14)",
 };
 
-=======
->>>>>>> 3b6225ad00974781d77c1d2405ead8874fea5db8
 export default function AgentsSection() {
   return (
     <section
@@ -95,28 +92,10 @@ export default function AgentsSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-<<<<<<< HEAD
-          {agents.map((agent) => {
-            return (
-              <TiltCard
-                key={agent.id}
-                glowColor={glowColorMap[agent.id]}
-                className="glass-card rounded-[18px] overflow-hidden transition-all duration-300 hover:border-white/15"
-              >
-                {/* Dashboard image */}
-                <div className="relative" style={{ height: 160 }}>
-                  <Image
-                    src={agent.img}
-                    alt={agent.imgAlt}
-                    fill
-                    className="object-cover opacity-55"
-                    sizes="(max-width: 768px) 100vw, 560px"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[rgba(8,11,26,.95)]" />
-=======
           {agents.map((agent) => (
             <TiltCard
               key={agent.id}
+              glowColor={glowColorMap[agent.id]}
               className="glass-card rounded-[18px] overflow-hidden transition-all duration-300 hover:border-white/15"
             >
               <div className="relative" style={{ height: 160 }}>
@@ -127,7 +106,6 @@ export default function AgentsSection() {
                   className="object-cover opacity-55"
                   sizes="(max-width: 768px) 100vw, 560px"
                 />
->>>>>>> 3b6225ad00974781d77c1d2405ead8874fea5db8
 
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[rgba(8,11,26,.95)]" />
 
