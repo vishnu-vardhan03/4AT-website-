@@ -8,6 +8,7 @@ const SectionLoader = () => <div className="h-[50vh] w-full animate-pulse bg-sur
 
 const About = dynamic(() => import("@/components/academy/About").then(mod => mod.About), { loading: () => <SectionLoader /> });
 const CoreFeatures = dynamic(() => import("@/components/academy/CoreFeatures").then(mod => mod.CoreFeatures), { loading: () => <SectionLoader /> });
+const OurProgram = dynamic(() => import("@/components/academy/OurProgram").then(mod => mod.OurProgram), { loading: () => <SectionLoader /> });
 const CredibilityRecruiters = dynamic(() => import("@/components/academy/CredibilityRecruiters").then(mod => mod.CredibilityRecruiters), { loading: () => <SectionLoader /> });
 const Faculty = dynamic(() => import("@/components/academy/Faculty").then(mod => mod.Faculty), { loading: () => <SectionLoader /> });
 const TestimonialsSocialProof = dynamic(() => import("@/components/academy/TestimonialsSocialProof").then(mod => mod.TestimonialsSocialProof), { loading: () => <SectionLoader /> });
@@ -19,6 +20,7 @@ export function PageShell({ ctaRoute }: { ctaRoute: string }) {
     <>
       <About />
       <CoreFeatures />
+      <OurProgram />
       <ProductCurtain>
         <DeferredSection section="lms-courses" sectionId="courses" />
         <HowItWorks sectionId="features" />
