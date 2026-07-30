@@ -15,6 +15,7 @@ export default function HomePage() {
         </Hero>
         <PageShell ctaRoute={ctaRoute} />
       </main>
+      <div className="w-full h-px bg-white/[0.06]" />
       <Footer />
     </>
   );

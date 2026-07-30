@@ -199,7 +199,7 @@ export function LmsCourses({ sectionId = "courses" }: { sectionId?: string }) {
         <div id="explore-pathways-header" className="flex flex-col items-start text-left max-w-[850px] mb-16">
           {/* Eyebrow Badge Pill */}
           <SectionPill className="mb-7">
-            EXPLORE PATHWAYS
+            EXPLORE COURSES
           </SectionPill>
 
           {/* Title with Gradient */}

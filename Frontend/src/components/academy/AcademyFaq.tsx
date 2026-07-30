@@ -50,7 +50,7 @@ export function AcademyFaq({ sectionId = "faq" }: { sectionId?: string }) {
         <div className="flex flex-col items-start text-left w-full lg:w-[65%] mb-10 md:mb-12">
           <div className="mb-3">
             <SectionPill>
-              QUESTIONS
+              FREQUENTLY ASKED QUESTIONS
             </SectionPill>
           </div>
           <h2 className="section-title text-left w-full">

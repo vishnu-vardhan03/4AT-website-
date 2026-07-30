@@ -143,7 +143,7 @@ export function TargetAudience({ sectionId = "audience-spectrum" }: { sectionId?
         <div className="diff-heading flex flex-col items-start mb-12 max-w-4xl audience-header-animate">
           {/* Neon pill eyebrow */}
           <SectionPill className="mb-6">
-            AUDIENCE SPECTRUM
+            WHO IS IT FOR
           </SectionPill>
 
           <h2 className="section-title">
