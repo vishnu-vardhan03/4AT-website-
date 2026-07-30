@@ -139,6 +139,14 @@
 .academy-page .section-desc {
   color: var(--academy-ink-secondary);
   @apply site-subheading;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 1024px) {
+  .academy-page .section-desc {
+    font-size: 1.2rem;
+  }
 }
 
 .academy-page .section-copy-label {

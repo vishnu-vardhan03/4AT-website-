@@ -587,7 +587,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 
 @utility site-subheading {
-  @apply text-sm md:text-base leading-relaxed max-w-2xl mt-4;
+  @apply text-base sm:text-lg md:text-[1.125rem] lg:text-[1.2rem] leading-relaxed max-w-3xl mt-4;
 }
 
 @utility site-section-y {
