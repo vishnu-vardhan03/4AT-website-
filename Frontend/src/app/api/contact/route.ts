@@ -20,6 +20,9 @@ function getLeadEndpoint(service: string): LeadEndpoint {
     case "accounting":
     case "auditing":
     case "hybrid services":
+    case "reengineering":
+    case "transformation":
+    case "re-engineering & transformation":
     case "other":
       return "consulting-leads";
     case "4at academy":

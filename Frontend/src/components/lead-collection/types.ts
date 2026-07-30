@@ -1,9 +1,8 @@
 export const SERVICE_OPTIONS = [
-  "Accounting",
-  "Auditing",
+  "Hybrid Services",
+  "Re-engineering & Transformation",
   "4AT.AI",
   "4AT Academy",
-  "Hybrid Services",
 ] as const;
 
 export type ServiceOption = (typeof SERVICE_OPTIONS)[number];

@@ -299,10 +299,10 @@ export function LmsCourses({ sectionId = "courses" }: { sectionId?: string }) {
                       className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
 
-                    {/* Category badge top-right */}
-                    <div className="absolute top-3 right-3 z-30 px-3 py-1.5 rounded-full bg-[rgba(91,33,182,0.20)] border border-[rgba(167,139,250,0.18)] backdrop-blur-md">
+                    {/* Category / Badge top-right */}
+                    <div className="absolute top-3 right-3 z-30 px-3 py-1.5 rounded-full bg-[rgba(91,33,182,0.30)] border border-[rgba(167,139,250,0.30)] backdrop-blur-md shadow-sm">
                       <span className="text-[11px] font-bold uppercase text-[#A78BFA] tracking-wider">
-                        {colors.badgeText}
+                        {course.badge || colors.badgeText}
                       </span>
                     </div>
 
@@ -328,13 +328,18 @@ export function LmsCourses({ sectionId = "courses" }: { sectionId?: string }) {
                       {course.title}
                     </h3>
 
-                    {/* Instructor / Subtitle */}
+                    {/* Subtitle */}
                     <p className="text-[13px] font-semibold leading-[1.4] text-slate-400 mt-1">
-                      {course.instructor || "4AT Academy Core"}
+                      {course.subtitle}
+                    </p>
+
+                    {/* Description */}
+                    <p className="mt-2.5 text-[12px] font-normal leading-[1.5] text-slate-400/90 line-clamp-3 border-t border-white/5 pt-2.5">
+                      {course.description}
                     </p>
 
                     {/* Rating Row */}
-                    <div className="mt-2.5 flex items-center gap-1">
+                    <div className="mt-3 flex items-center gap-1">
                       <span className="text-[13px] font-bold leading-[1.4] text-amber-500">{course.rating.toFixed(1)}</span>
                       <div className="flex gap-0.5">
                         {[...Array(5)].map((_, i) => {
@@ -351,46 +356,20 @@ export function LmsCourses({ sectionId = "courses" }: { sectionId?: string }) {
                         ({course.reviewsCount})
                       </span>
                     </div>
-
-                    {/* Description subtitle with horizontal line */}
-                    <p className="mt-3.5 text-[13px] font-medium leading-[1.4] italic text-white/68 line-clamp-1 border-t border-white/5 pt-2.5">
-                      {course.subtitle}
-                    </p>
                   </div>
 
-                  {/* Footer Container */}
-                  <div className="mt-6 pt-3.5 border-t border-white/5 flex items-center justify-between z-10">
-                    <div className="flex items-baseline">
-                      <span className="text-[15px] font-extrabold leading-[1.4] text-white">{course.price}</span>
-                      {course.originalPrice && (
-                        <span className="text-[11px] font-medium leading-[1.4] line-through text-white/40 ml-1.5">
-                          {course.originalPrice}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Harmonized Primary Button / Locked state */}
-                    {!isLocked ? (
-                      <button
-                        className="px-5 py-2.5 rounded-xl text-[11px] tracking-[0.12em] uppercase font-bold text-black bg-gradient-to-r from-[#8B5CF6] to-[#A78BFA] shadow-[0_8px_28px_rgba(139,92,246,0.25)] hover:-translate-y-1 hover:brightness-110 active:scale-95 transition-all duration-300 cursor-pointer"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          const slug = course.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-                          router.push(`/academy/courses/${slug}`);
-                        }}
-                      >
-                        Enroll
-                      </button>
-                    ) : (
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        disabled
-                        className="!px-5 !py-2.5 rounded-xl !text-[11px] !tracking-[0.12em] uppercase font-bold !bg-[#04060f] !border-white/10 !text-white/35 !shadow-none cursor-not-allowed"
-                      >
-                        Locked
-                      </Button>
-                    )}
+                  {/* Footer Container - CTA Button (Pricing excluded per spec) */}
+                  <div className="mt-5 pt-3.5 border-t border-white/5 flex items-center justify-between z-10">
+                    <button
+                      className="w-full py-2.5 rounded-xl text-[11px] tracking-[0.12em] uppercase font-bold text-black bg-gradient-to-r from-[#8B5CF6] to-[#A78BFA] shadow-[0_8px_28px_rgba(139,92,246,0.25)] hover:-translate-y-1 hover:brightness-110 active:scale-95 transition-all duration-300 cursor-pointer text-center"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const slug = course.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+                        router.push(`/academy/courses/${slug}`);
+                      }}
+                    >
+                      {course.ctaText || "View Curriculum"}
+                    </button>
                   </div>
                 </div>
               );

@@ -7,6 +7,9 @@ import AmbientBackground from "@/components/product/AmbientBackground";
 const agents = [
   {
     id: "Reconciliation",
+    service: "Accounting",
+    badge: "Always-on",
+    stat: "Continuous ledger matching",
     name: "Reconciliation",
     role: "GL · AP · AR · Bank Feeds",
     desc: "Matches and reconciles transactions across your ledgers, surfacing exceptions for review instead of guessing past them.",
@@ -15,6 +18,9 @@ const agents = [
   },
   {
     id: "Compliance",
+    service: "Risk",
+    badge: "Controls",
+    stat: "Continuous anomaly monitoring",
     name: "Compliance",
     role: "Risk · Compliance · Anomaly",
     desc: "Matches and reconciles transactions across your ledgers, surfacing exceptions for review instead of guessing past them.",
@@ -23,6 +29,9 @@ const agents = [
   },
   {
     id: "Analytics",
+    service: "Planning",
+    badge: "Insights",
+    stat: "Forward-looking finance views",
     name: "Analytics",
     role: "Forecasting · Reporting · Insights",
     desc: "Turns your finance data into reports and forward-looking views.",
@@ -31,6 +40,9 @@ const agents = [
   },
   {
     id: "Integration",
+    service: "Systems",
+    badge: "Connected",
+    stat: "Synchronized finance data",
     name: "Integration",
     role: "ERP · Banking · Payroll · Billing",
     desc: "Keeps your ERP, ledgers, and adjacent systems in sync so the other three agents work inside your actual data.",
@@ -38,6 +50,13 @@ const agents = [
     alt: "Integration flow diagram showing ERP, banking, and payment gateway connections",
   },
 ];
+
+const glowColorMap: Record<string, string> = {
+  Reconciliation: "rgba(45,212,191,0.15)",
+  Compliance: "rgba(167,139,250,0.18)",
+  Analytics: "rgba(125,211,252,0.14)",
+  Integration: "rgba(192,132,252,0.14)",
+};
 
 export default function AgentsSection() {
   return (
@@ -76,6 +95,7 @@ export default function AgentsSection() {
           {agents.map((agent) => (
             <TiltCard
               key={agent.id}
+              glowColor={glowColorMap[agent.id]}
               className="glass-card rounded-[18px] overflow-hidden transition-all duration-300 hover:border-white/15"
             >
               <div className="relative" style={{ height: 160 }}>

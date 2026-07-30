@@ -54,23 +54,23 @@ export function HeroContent() {
         }
       `}} />
 
-      {/* Career Badge */}
+      {/* Eyebrow Pill */}
       <motion.div
         initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 12, scale: prefersReducedMotion ? 1 : 0.96 }}
         animate={isRevealed ? { opacity: 1, y: 0, scale: 1 } : undefined}
         transition={{
           duration: prefersReducedMotion ? 0.3 : 0.5,
           delay: prefersReducedMotion ? 0 : 0.3,
-          ease: [0.34, 1.56, 0.64, 1] // ease-out-back
+          ease: [0.34, 1.56, 0.64, 1]
         }}
-        className="relative inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.03] backdrop-blur-xl border border-white/10 shadow-[inset_0_1px_rgba(255,255,255,0.1),0_8px_32px_rgba(0,0,0,0.2)] mb-6 select-none"
+        className="relative inline-flex items-center gap-2.5 px-4.5 py-1.5 rounded-full bg-gradient-to-r from-emerald-500/15 via-teal-500/10 to-emerald-500/15 backdrop-blur-xl border border-emerald-400/35 shadow-[0_0_24px_rgba(16,185,129,0.28),inset_0_1px_rgba(255,255,255,0.25)] mb-6 select-none"
       >
         <span className="relative flex h-2 w-2">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10B981] shadow-[0_0_8px_#10B981]"></span>
         </span>
-        <span className="text-[11px] font-bold uppercase tracking-widest text-[#A7A9C4] font-sans">
-          Career-Focused Training
+        <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-emerald-300 font-sans drop-shadow-[0_0_12px_rgba(16,185,129,0.4)]">
+          A 4AT Initiative
         </span>
       </motion.div>
 
@@ -164,13 +164,9 @@ export function HeroContent() {
           delay: prefersReducedMotion ? 0 : 1.35,
           ease: [0.25, 1, 0.5, 1]
         }}
-        className="font-sans font-light text-[#A7A9C4] text-base md:text-[1.125rem] leading-[1.6] max-w-[560px] mt-6"
+        className="font-sans font-light text-[#A7A9C4] text-base md:text-[1.125rem] leading-[1.6] max-w-[720px] mt-6"
       >
-        From{" "}
-        <span className="text-[#A86DFF] font-semibold">training</span> to{" "}
-        <span className="text-[#C86DFF] font-semibold">hiring</span> to{" "}
-        <span className="text-[#53E7FF] font-semibold">deployment</span>, our
-        model is designed to turn finance learners into employer-ready talent.
+        The <span className="text-white font-semibold">FinTech Engineering Program (FEP)</span> bridges the gap between academia and industry — equipping commerce graduates with the practical skills of a finance professional with <span className="text-[#47D8FF] font-semibold">2–3 years&apos; experience</span>, and a path to certification, internship and placement.
       </motion.p>
 
       {/* Action Buttons */}
