@@ -336,7 +336,7 @@ export function HowItWorks({ sectionId = "selection-metrics" }: { sectionId?: st
     <div ref={wrapperRef} id={sectionId} className="md:h-[550vh] relative">
     <div
       ref={sectionRef}
-      className="w-full relative bg-[var(--color-canvas)] md:sticky md:top-0 md:h-screen h-auto border-t border-white/[0.03]"
+      className="w-full relative bg-[var(--color-canvas)] md:sticky md:top-0 md:h-screen h-auto"
     >
       {/* Container centers content vertically and spans full height on desktop */}
       <div className="relative w-full h-full z-10">
@@ -352,7 +352,7 @@ export function HowItWorks({ sectionId = "selection-metrics" }: { sectionId?: st
             <div className="hiw-header-fade flex flex-col items-start max-w-4xl w-full mb-6 md:mb-8">
               {/* Eyebrow */}
               <SectionPill className="mb-3 md:mb-4">
-                SELECTION METRICS
+                HOW IT WORKS
               </SectionPill>
 
               <h2 className="section-title">
