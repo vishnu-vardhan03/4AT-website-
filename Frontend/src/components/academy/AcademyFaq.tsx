@@ -19,7 +19,7 @@ const faqItems = [
   {
     question: "Is placement guaranteed?",
     answer:
-      "Candidates who clear the assessments and interview earn an internship and a placement pathway — at 4AT or a partner.",
+      "Candidates who clear the assessments and interview earn an internship and a placement pathway, either at 4AT or a partner.",
   },
   {
     question: "How is this different from a normal course?",

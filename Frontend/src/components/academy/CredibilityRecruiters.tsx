@@ -10,7 +10,7 @@ import { SectionPill } from "@/components/academy/SectionPill";
 const SECTION_CONTENT = {
   eyebrow: "For Recruiters",
   headline: ["Hire finance talent", "with real baseline", "readiness."],
-  description: "4AT Academy helps employers access candidates who already understand the workflows, tools, and expectations behind modern finance roles — reducing ramp time and lowering the burden of training from scratch."
+  description: "4AT Academy helps employers access candidates who already understand the workflows, tools, and expectations behind modern finance roles, reducing ramp time and lowering the burden of training from scratch."
 };
 
 interface NodeData {
@@ -322,7 +322,7 @@ export function CredibilityRecruiters() {
                 Hire finance talent with <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">real baseline</span> readiness.
               </h2>
               <p className="section-desc">
-                4AT Academy helps employers access candidates who already understand the workflows, tools, and expectations behind modern finance roles — reducing ramp time and training burden.
+                4AT Academy helps employers access candidates who already understand the workflows, tools, and expectations behind modern finance roles, reducing ramp time and training burden.
               </p>
             </div>
 

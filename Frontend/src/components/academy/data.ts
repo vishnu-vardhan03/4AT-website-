@@ -51,7 +51,7 @@ export const featureCards: FeatureCard[] = [
     id: "01",
     title: "Built by a working F&A firm",
     body:
-      "You learn on real client standards from a firm that runs finance & accounting for global clients — not from a textbook.",
+      "You learn on real client standards from a firm that runs finance & accounting for global clients, not from a textbook.",
     tags: ["Career Destination", "ROI-Focussed"],
     tone: "dark",
   },
@@ -67,7 +67,7 @@ export const featureCards: FeatureCard[] = [
     id: "03",
     title: "Our own AI platform",
     body:
-      "You train on 4AT's AI-powered finance tools alongside industry platforms — learning to work with AI, not around it.",
+      "You train on 4AT's AI-powered finance tools alongside industry platforms, learning to work with AI, not around it.",
     tags: ["Digital Fluency", "Modern Tools"],
     tone: "light",
   },

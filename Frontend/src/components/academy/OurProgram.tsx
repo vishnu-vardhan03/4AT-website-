@@ -56,7 +56,7 @@ export function OurProgram({ sectionId = "program" }: { sectionId?: string }) {
               </h4>
 
               <p className="text-white/80 font-sans text-sm sm:text-base leading-relaxed">
-                The FinTech Engineering Program (FEP) bridges the gap between academia and industry — equipping commerce graduates with the practical skills of a finance professional with 2–3 years&apos; experience, and a path to certification, internship and placement.
+                The FinTech Engineering Program (FEP) bridges the gap between academia and industry, equipping commerce graduates with the practical skills of a finance professional with 2–3 years&apos; experience, and a path to certification, internship and placement.
               </p>
             </div>
           </div>
@@ -82,7 +82,7 @@ export function OurProgram({ sectionId = "program" }: { sectionId?: string }) {
               </h4>
 
               <p className="text-white/80 font-sans text-sm sm:text-base leading-relaxed">
-                Closing the books, reconciling accounts, working live ERP systems, engaging clients — that&apos;s what finance teams hire for. 4AT Academy bridges that gap: practice-led training, built and run by a working finance &amp; accounting consulting firm, that takes a commerce graduate to the capability of a professional with 2–3 years&apos; experience.
+                Closing the books, reconciling accounts, working live ERP systems, and engaging clients: that&apos;s what finance teams hire for. 4AT Academy bridges that gap with practice-led training, built and run by a working finance &amp; accounting consulting firm, that takes a commerce graduate to the capability of a professional with 2–3 years&apos; experience.
               </p>
             </div>
           </div>

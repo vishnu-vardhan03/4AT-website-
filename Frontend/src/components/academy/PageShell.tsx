@@ -27,7 +27,6 @@ export function PageShell({ ctaRoute }: { ctaRoute: string }) {
         <CredibilityRecruiters />
         <Faculty />
         <TestimonialsSocialProof />
-        <DeferredSection section="enrollment-cta" sectionId="enroll" href={ctaRoute} />
         <AcademyFaq />
       </ProductCurtain>
     </>

@@ -282,7 +282,7 @@ export function CoreFeatures({ sectionId = "core-features" }: { sectionId?: stri
           <BentoCard
             id="01"
             title="Built by a working F&A firm"
-            body="You learn on real client standards from a firm that runs finance & accounting for global clients — not from a textbook."
+            body="You learn on real client standards from a firm that runs finance & accounting for global clients, not from a textbook."
             icon={Target}
             badges={["Career Destination", "ROI-Focussed"]}
             glowColor="rgba(45, 212, 191, 0.08)"
@@ -391,7 +391,7 @@ export function CoreFeatures({ sectionId = "core-features" }: { sectionId?: stri
           <BentoCard
             id="03"
             title="Our own AI platform"
-            body="You train on 4AT's AI-powered finance tools alongside industry platforms — learning to work with AI, not around it."
+            body="You train on 4AT's AI-powered finance tools alongside industry platforms, learning to work with AI, not around it."
             icon={Bot}
             badges={["Digital Fluency", "Modern Tools"]}
             glowColor="rgba(139, 92, 246, 0.1)"
