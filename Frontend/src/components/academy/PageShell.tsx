@@ -24,6 +24,7 @@ export function PageShell({ ctaRoute }: { ctaRoute: string }) {
       <OurProgram />
       <ProductCurtain>
         <DeferredSection section="lms-courses" sectionId="courses" />
+        <DeferredSection section="course-recommender" sectionId="course-recommender" href={ctaRoute} />
         <CredibilityRecruiters />
         <Faculty />
         <TestimonialsSocialProof />
