@@ -14,7 +14,7 @@ const Faculty = dynamic(() => import("@/components/academy/Faculty").then(mod =>
 const TestimonialsSocialProof = dynamic(() => import("@/components/academy/TestimonialsSocialProof").then(mod => mod.TestimonialsSocialProof), { loading: () => <SectionLoader /> });
 const AcademyFaq = dynamic(() => import("@/components/academy/AcademyFaq").then(mod => mod.AcademyFaq), { loading: () => <SectionLoader /> });
 
-import { HowItWorks } from "@/components/academy/HowItWorks";
+
 
 export function PageShell({ ctaRoute }: { ctaRoute: string }) {
   return (
@@ -22,7 +22,6 @@ export function PageShell({ ctaRoute }: { ctaRoute: string }) {
       <About />
       <CoreFeatures />
       <OurProgram />
-      <HowItWorks sectionId="features" />
       <ProductCurtain>
         <DeferredSection section="lms-courses" sectionId="courses" />
         <CredibilityRecruiters />
