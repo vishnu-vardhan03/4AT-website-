@@ -12,6 +12,7 @@ const OurProgram = dynamic(() => import("@/components/academy/OurProgram").then(
 const Faculty = dynamic(() => import("@/components/academy/Faculty").then(mod => mod.Faculty), { loading: () => <SectionLoader /> });
 const TestimonialsSocialProof = dynamic(() => import("@/components/academy/TestimonialsSocialProof").then(mod => mod.TestimonialsSocialProof), { loading: () => <SectionLoader /> });
 const AcademyFaq = dynamic(() => import("@/components/academy/AcademyFaq").then(mod => mod.AcademyFaq), { loading: () => <SectionLoader /> });
+const FinalCTA = dynamic(() => import("@/components/academy/FinalCTA").then(mod => mod.FinalCTA), { loading: () => <SectionLoader /> });
 
 
 
@@ -27,6 +28,7 @@ export function PageShell({ ctaRoute }: { ctaRoute: string }) {
         <Faculty />
         <TestimonialsSocialProof />
         <AcademyFaq />
+        <FinalCTA />
       </ProductCurtain>
     </>
   );
