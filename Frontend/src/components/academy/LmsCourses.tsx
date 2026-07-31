@@ -7,7 +7,7 @@ import { lmsCourses } from "@/components/academy/data";
 import { Lock, ArrowLeft, ArrowRight, Star, Clock, Check, Building2, Monitor } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Button } from "@/components/academy/Button";
+import Link from "next/link";
 import { SectionPill } from "@/components/academy/SectionPill";
 
 const getCategoryColor = (category: string) => {
@@ -235,7 +235,14 @@ export function LmsCourses({ sectionId = "courses" }: { sectionId?: string }) {
           </div>
 
           {/* Navigation Arrows (Secondary Button style) */}
-          <div className="flex gap-4 shrink-0 justify-end">
+          <div className="flex items-center gap-3 shrink-0 justify-end">
+            <Link
+              href="/academy/courses"
+              className="h-11 px-5 rounded-[16px] border border-[#5EEAD4]/30 bg-[#5EEAD4]/10 flex items-center justify-center text-[10px] font-bold uppercase tracking-[0.14em] text-[#5EEAD4] hover:bg-[#5EEAD4] hover:text-black hover:shadow-[0_0_15px_rgba(94,234,212,0.22)] active:scale-95 transition-all"
+              aria-label="View all courses"
+            >
+              View all courses
+            </Link>
             <button
               onClick={scrollLeft}
               className="w-11 h-11 rounded-[16px] border border-white/10 bg-transparent flex items-center justify-center text-white hover:border-[#A78BFA] hover:shadow-[0_0_15px_rgba(167,139,250,0.2)] active:scale-95 transition-all cursor-pointer"

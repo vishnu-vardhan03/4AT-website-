@@ -2,7 +2,7 @@
 
 import { use, useState, useMemo } from "react";
 import Link from "next/link";
-import { Star, Clock, Award, CheckCircle, ChevronDown, BookOpen, AlertCircle, Sparkles, UserCheck } from "lucide-react";
+import { Star, Clock, Award, CheckCircle, ChevronDown, BookOpen, AlertCircle, Sparkles, UserCheck, ArrowLeft } from "lucide-react";
 import { ctaRoute, lmsCourses } from "@/components/academy/data";
 import { Nav } from "@/components/layout/MainNav";
 import { Footer } from "@/components/layout/Footer";
@@ -412,9 +412,18 @@ export default function CourseDetailsPage({
           
           {/* Headline Texts */}
           <div className="lg:col-span-2 flex flex-col justify-center">
+            <Link
+              href="/academy/courses"
+              className="mb-5 inline-flex h-10 w-max items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-4 text-xs font-semibold text-slate-300 transition-all hover-fine:border-accent/40 hover-fine:text-accent active:scale-95"
+              aria-label="Back to all courses"
+            >
+              <ArrowLeft className="size-4" />
+              Back to courses
+            </Link>
+
             {/* Breadcrumb */}
             <div className="flex items-center gap-2 text-[10px] text-slate-500 font-mono uppercase mb-4">
-              <Link href="/" className="hover-fine:text-accent">Home</Link>
+              <Link href="/academy" className="hover-fine:text-accent">Home</Link>
               <span>&gt;</span>
               <Link href="/academy/courses" className="hover-fine:text-accent">Courses</Link>
               <span>&gt;</span>

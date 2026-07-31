@@ -15,7 +15,7 @@ const steps = [
     number: "02",
     timing: "Days 1–7",
     title: "Onboard",
-    body: "Connector ingests your ERP, ledgers, and policies. Your dedicated pod, combining AI agents with senior practitioners, is live within 7 days.",
+    body: "Connector ingests your ERP, ledgers, and policies. Your dedicated pod, combining AI agents with experienced finance professionals, is live within 7 days.",
     detail: "You don't change tools. We meet you inside the systems you already use.",
     color: "#2dd4bf",
   },
@@ -23,7 +23,7 @@ const steps = [
     number: "03",
     timing: "Day 8 onward",
     title: "We run it",
-    body: "Iris reconciles. Guardian monitors controls. Atlas builds your reports. Senior practitioners review everything before it reaches you.",
+    body: "Iris reconciles. Guardian monitors controls. Atlas builds your reports. Experienced finance professionals review everything before it reaches you.",
     detail: "You see it all in one dashboard. One bill. One team.",
     color: "#a78bfa",
   },
@@ -82,7 +82,7 @@ export function HowItWorks() {
               How an engagement works
             </span>
             <h2 className="mt-3 site-heading">
-              <span className="text-brand-gradient-flow">Four steps.</span>
+              <span className="text-brand-gradient-flow">Four steps</span>
             </h2>
             <p className="site-subheading mt-3 max-w-3xl text-white/70">
             The teams who switch to 4AT Hybrid all share one thing: they&apos;re done

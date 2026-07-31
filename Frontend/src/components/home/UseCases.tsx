@@ -21,7 +21,7 @@ const scenarios: ScrollCardItem[] = [
   {
     title: "You're growing, but can't hire fast enough",
     pain: "Volume is up 40%. You can't find experienced controllers. Hiring a full team takes 6 months and a Big 4 firm quotes you a fortune.",
-    action: "You subscribe. We deploy a hybrid pod (AI agents + senior practitioners) in under 7 days.",
+    action: "You subscribe. We deploy a hybrid pod (AI agents + experienced finance professionals) in under 7 days.",
     outcome: "Capacity without headcount. Senior judgment without senior salaries. Scale up or down by service line.",
     color: "#2dd4bf",
   },

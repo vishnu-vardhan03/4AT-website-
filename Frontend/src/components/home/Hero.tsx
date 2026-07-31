@@ -8,7 +8,7 @@ const reveal = {
   visible: { opacity: 1, y: 0 },
 };
 
-const HYBRID_SERVICES = ["Accounting.", "Audit.", "Advisory.", "Assurance.", "TAX.", "FP&A.", "Transformation."];
+const HYBRID_SERVICES = ["Accounting", "Audit", "Advisory", "Assurance", "TAX", "FP&A", "Transformation"];
 
 export function Hero() {
   const [activeService, setActiveService] = useState(0);
@@ -83,7 +83,7 @@ export function Hero() {
           className="mt-10 flex flex-col items-start gap-8"
         >
           <p className="site-hero-subheading max-w-2xl text-white/75">
-            4AT pairs AI-powered workflows with senior practitioners in one ecosystem, so finance teams stop choosing between firms that bill by the hour and AI tools they can&apos;t sign off on.
+            4AT pairs AI-powered workflows with experienced finance professionals in one ecosystem, so finance teams stop choosing between firms that bill by the hour and AI tools they can&apos;t sign off on.
           </p>
 
           <div className="flex shrink-0 flex-wrap gap-3">
