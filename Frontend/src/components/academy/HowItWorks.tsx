@@ -182,13 +182,13 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
       const segs = [seg1Ref, seg2Ref, seg3Ref, seg4Ref, seg5Ref];
 
       // ── Set initial state (Stage 01 active, rest dim) ──────────────────
-      gsap.set(".pipeline-node-wrapper", { opacity: 0.45 });
-      gsap.set(".stage-text-block",      { opacity: 0.45, y: 12 });
+      gsap.set(".pipeline-node-wrapper", { opacity: 0.92 });
+      gsap.set(".stage-text-block",      { opacity: 0.92, y: 0 });
       gsap.set(".active-ring-overlay",   { opacity: 0, scale: 0.8 });
       gsap.set(".active-halo-overlay",   { opacity: 0 });
-      gsap.set(".stage-label",           { color: "rgba(255,255,255,0.3)" });
-      gsap.set(".stage-title",           { color: "rgba(255,255,255,0.55)" });
-      gsap.set(".stage-desc",            { color: "rgba(255,255,255,0.45)" });
+      gsap.set(".stage-label",           { color: "rgba(255,255,255,0.5)" });
+      gsap.set(".stage-title",           { color: "rgba(255,255,255,0.8)" });
+      gsap.set(".stage-desc",            { color: "rgba(255,255,255,0.65)" });
 
       gsap.set(".node-wrapper-0",        { opacity: 1.0 });
       gsap.set(".node-circle-0",         { scale: 1.08, borderColor: "#14F195", boxShadow: "0 0 24px rgba(20,241,149,0.45)" });
@@ -280,7 +280,7 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
       // ── SIMULTANEOUS RESET (HOLD_END → RESET_END, 0.2 s) ───────────────
       // All nodes and connectors fade to their default inactive state together.
       for (let i = 0; i < 6; i++) {
-        tl.to(`.node-wrapper-${i}`, { opacity: 0.45, duration: RESET_DUR, ease: "power2.in" }, HOLD_END);
+        tl.to(`.node-wrapper-${i}`, { opacity: 0.92, duration: RESET_DUR, ease: "power2.in" }, HOLD_END);
         tl.to(`.node-circle-${i}`, {
           scale: 1.0,
           background: "#0B0F12",
@@ -290,13 +290,13 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
           duration: RESET_DUR,
           ease: "power2.in"
         }, HOLD_END);
-        tl.to(`.node-icon-${i}`,           { scale: 1.0, filter: "brightness(0.5) saturate(0.5)", duration: RESET_DUR, ease: "power2.in" }, HOLD_END);
+        tl.to(`.node-icon-${i}`,           { scale: 1.0, filter: "brightness(0.85) saturate(0.85)", duration: RESET_DUR, ease: "power2.in" }, HOLD_END);
         tl.to(`.active-ring-overlay-${i}`, { opacity: 0, scale: 0.8, duration: RESET_DUR }, HOLD_END);
         tl.to(`.active-halo-overlay-${i}`, { opacity: 0, duration: RESET_DUR }, HOLD_END);
-        tl.to(`.stage-text-block-${i}`,    { opacity: 0.45, y: 12, duration: RESET_DUR, ease: "power2.in" }, HOLD_END);
-        tl.to(`.stage-label-${i}`,         { color: "rgba(255,255,255,0.3)", duration: RESET_DUR }, HOLD_END);
-        tl.to(`.stage-title-${i}`,         { color: "rgba(255,255,255,0.55)", duration: RESET_DUR }, HOLD_END);
-        tl.to(`.stage-desc-${i}`,          { color: "rgba(255,255,255,0.45)", duration: RESET_DUR }, HOLD_END);
+        tl.to(`.stage-text-block-${i}`,    { opacity: 0.92, y: 0, duration: RESET_DUR, ease: "power2.in" }, HOLD_END);
+        tl.to(`.stage-label-${i}`,         { color: "rgba(255,255,255,0.5)", duration: RESET_DUR }, HOLD_END);
+        tl.to(`.stage-title-${i}`,         { color: "rgba(255,255,255,0.8)", duration: RESET_DUR }, HOLD_END);
+        tl.to(`.stage-desc-${i}`,          { color: "rgba(255,255,255,0.65)", duration: RESET_DUR }, HOLD_END);
       }
       for (let i = 0; i < N; i++) {
         const seg = segs[i];
@@ -361,142 +361,173 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
   const pauseAnim  = () => { tlRef.current?.pause(); };
   const resumeAnim = () => { tlRef.current?.resume(); };
 
+  const diagram = (
+    <>
+      {/* ── Pipeline Diagram ──────────────────────────────────────────── */}
+      <div className="w-full py-4 md:py-6">
+        {/* overflow-visible so the PROCESS watermark is never clipped;
+            horizontal overflow is contained by the section's overflow-x-clip */}
+        <div className="relative w-full" style={{ minHeight: "200px" }}>
+
+          {/* Background watermark */}
+          <div className="absolute left-1/2 top-[35px] -translate-x-1/2 -translate-y-1/2 text-[100px] sm:text-[160px] lg:text-[220px] xl:text-[240px] font-black tracking-[0.14em] pl-[0.14em] text-white/[0.045] pointer-events-none select-none z-0 font-display text-center whitespace-nowrap">
+            PROCESS
+          </div>
+
+          {/* Desktop horizontal connectors (segmented across 6 nodes) */}
+
+          {/* Segment 1: 01 (8.333%) → 02 (25%) */}
+          <div className="hidden md:block absolute top-[35px] left-[8.333%] w-[16.667%] h-[3px] pointer-events-none z-0">
+            <div className="absolute inset-0 bg-[#262A31]" />
+            <div ref={seg1Ref} className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#14F195] to-[#2ACDFF] w-0 shadow-[0_0_8px_rgba(42,205,255,0.3)] brightness-[120%]" />
+          </div>
+
+          {/* Segment 2: 02 (25%) → 03 (41.667%) */}
+          <div className="hidden md:block absolute top-[35px] left-[25%] w-[16.667%] h-[3px] pointer-events-none z-0">
+            <div className="absolute inset-0 bg-[#262A31]" />
+            <div ref={seg2Ref} className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#2ACDFF] to-[#9C5BFF] w-0 shadow-[0_0_8px_rgba(156,91,255,0.3)] brightness-[120%]" />
+          </div>
+
+          {/* Segment 3: 03 (41.667%) → 04 (58.333%) */}
+          <div className="hidden md:block absolute top-[35px] left-[41.667%] w-[16.667%] h-[3px] pointer-events-none z-0">
+            <div className="absolute inset-0 bg-[#262A31]" />
+            <div ref={seg3Ref} className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#9C5BFF] to-[#F472B6] w-0 shadow-[0_0_8px_rgba(244,114,182,0.3)] brightness-[120%]" />
+          </div>
+
+          {/* Segment 4: 04 (58.333%) → 05 (75%) */}
+          <div className="hidden md:block absolute top-[35px] left-[58.333%] w-[16.667%] h-[3px] pointer-events-none z-0">
+            <div className="absolute inset-0 bg-[#262A31]" />
+            <div ref={seg4Ref} className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#F472B6] to-[#FBBF24] w-0 shadow-[0_0_8px_rgba(251,191,36,0.3)] brightness-[120%]" />
+          </div>
+
+          {/* Segment 5: 05 (75%) → 06 (91.667%) */}
+          <div className="hidden md:block absolute top-[35px] left-[75%] w-[16.667%] h-[3px] pointer-events-none z-0">
+            <div className="absolute inset-0 bg-[#262A31]" />
+            <div ref={seg5Ref} className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#FBBF24] to-[#14F195] w-0 shadow-[0_0_8px_rgba(20,241,149,0.3)] brightness-[120%]" />
+          </div>
+
+          {/* Glowing energy particle — travels along the connectors */}
+          <div
+            ref={particleRef}
+            className="hidden md:block absolute top-[35px] -translate-y-1/2 -translate-x-1/2 w-3 h-3 rounded-full z-[5] pointer-events-none"
+            style={{
+              left: "8.333%",
+              background: "#14F195",
+              boxShadow: "0 0 8px #fff, 0 0 14px #14F195"
+            }}
+          >
+            {/* Inner glow rings — slightly tighter for a crisper, faster-feeling trail */}
+            <div className="absolute inset-[-2px] rounded-full blur-[2px] opacity-45 bg-inherit" />
+            <div className="absolute inset-[-5px] rounded-full blur-[4px] opacity-15 bg-inherit" />
+          </div>
+
+          {/* Nodes & process-block grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6 lg:gap-2 relative z-10">
+            {stepsData.map((step, idx) => {
+              const IconComponent = step.icon;
+              return (
+                <div
+                  key={step.step}
+                  ref={(el) => { nodeContainerRefs.current[idx] = el; }}
+                  className={`node-container-${idx} flex flex-col items-start lg:items-center text-left lg:text-center group transition-all duration-500`}
+                  onMouseEnter={pauseAnim}
+                  onMouseLeave={resumeAnim}
+                >
+                  {/* Node circle */}
+                  <div className={`pipeline-node-wrapper node-wrapper-${idx} relative mb-4 lg:mx-auto flex items-center justify-center`}>
+
+                    {/* Ambient halo (activated by GSAP) */}
+                    <div
+                      className={`active-halo-overlay active-halo-overlay-${idx} absolute inset-[-14px] rounded-full blur-[8px] pointer-events-none opacity-0`}
+                      style={{ background: step.accentColor }}
+                    />
+
+                    {/* Dashed orbit ring (activated by GSAP) */}
+                    <div
+                      className={`active-ring-overlay active-ring-overlay-${idx} absolute inset-[-6px] rounded-full border border-dashed animate-spin-slow pointer-events-none opacity-0`}
+                      style={{ borderColor: step.accentColor }}
+                    />
+
+                    {/* Main node circle */}
+                    <div
+                      className={`pipeline-node node-circle-${idx} w-[70px] h-[70px] rounded-full border-[2px] flex items-center justify-center relative z-10 backdrop-blur-md`}
+                      style={{
+                        background: idx === 0
+                          ? `radial-gradient(circle at center, ${step.glowColor} 0%, #0B0F12 100%)`
+                          : "#0B0F12",
+                        borderColor: idx === 0 ? step.accentColor : "rgba(255,255,255,0.08)",
+                        boxShadow: idx === 0
+                          ? `0 0 10px ${step.accentColor}2e, 0 0 18px ${step.accentColor}1a, 0 0 30px ${step.accentColor}0d`
+                          : "none",
+                      }}
+                    >
+                      {/* Inner concentric ring */}
+                      <div
+                        className="absolute rounded-full pointer-events-none"
+                        style={{
+                          width: "78%", height: "78%",
+                          top: "50%", left: "50%",
+                          transform: "translate(-50%,-50%)",
+                          border: `1px solid ${idx === 0 ? step.accentColor + "38" : "rgba(255,255,255,0.06)"}`,
+                        }}
+                      />
+                      {/* Inner glow core */}
+                      <div
+                        className="absolute rounded-full pointer-events-none"
+                        style={{
+                          width: "56%", height: "56%",
+                          top: "50%", left: "50%",
+                          transform: "translate(-50%,-50%)",
+                          background: idx === 0 ? `${step.accentColor}14` : "transparent",
+                        }}
+                      />
+                      <IconComponent
+                        className={`w-6 h-6 stroke-[1.5] transition-all duration-300 node-icon-${idx} relative z-10 ${
+                          idx === 0
+                            ? `${step.iconColor} brightness-110 node-icon-breathe`
+                            : `${step.iconColor} opacity-70`
+                        }`}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Step text */}
+                  <div className={`stage-text-block stage-text-block-${idx} w-full max-w-[190px] lg:mx-auto flex flex-col items-start lg:items-center transform`}>
+                    <span className={`stage-label stage-label-${idx} text-[10px] font-mono tracking-widest uppercase font-semibold mb-1 transition-colors duration-300`}>
+                      STAGE {step.step}
+                    </span>
+                    <h3 className={`stage-title stage-title-${idx} text-sm sm:text-base lg:text-lg font-bold tracking-tight mb-1 leading-[1.2] font-display transition-all duration-300`}>
+                      {step.title}
+                    </h3>
+                    <p className={`stage-desc stage-desc-${idx} text-white/72 text-[11px] sm:text-[12px] leading-[1.4] font-sans font-normal transition-colors duration-300`}>
+                      {step.description}
+                    </p>
+                  </div>
+
+                </div>
+              );
+            })}
+          </div>
+
+        </div>
+      </div>
+
+      {/* ── Footer note ───────────────────────────────────────────────── */}
+      <div className="w-full">
+        <div className="w-full h-[1px] bg-white/12 mb-4 relative z-10" />
+        <div className="text-left relative z-10 max-w-3xl px-4">
+          <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.22em] text-white/55 uppercase block leading-relaxed font-semibold">
+            Only learners who successfully complete every evaluation stage proceed to placement support.
+          </span>
+        </div>
+      </div>
+    </>
+  );
+
   if (hideHeader) {
     return (
       <div ref={sectionRef} className="w-full relative py-4">
-        {/* ── Pipeline Diagram ──────────────────────────────────────────── */}
-        <div className="w-full py-4 md:py-6">
-          <div className="relative w-full" style={{ minHeight: "200px" }}>
-
-            {/* Background watermark */}
-            <div className="absolute left-1/2 top-[35px] -translate-x-1/2 -translate-y-1/2 text-[100px] sm:text-[160px] lg:text-[220px] xl:text-[240px] font-black tracking-[0.14em] pl-[0.14em] text-white/[0.045] pointer-events-none select-none z-0 font-display text-center whitespace-nowrap">
-              PROCESS
-            </div>
-
-            {/* Desktop horizontal connectors (segmented across 6 nodes) */}
-            <div className="hidden md:block absolute top-[35px] left-[8.333%] w-[16.667%] h-[3px] pointer-events-none z-0">
-              <div className="absolute inset-0 bg-[#262A31]" />
-              <div ref={seg1Ref} className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#14F195] to-[#2ACDFF] w-0 shadow-[0_0_8px_rgba(42,205,255,0.3)] brightness-[120%]" />
-            </div>
-            <div className="hidden md:block absolute top-[35px] left-[25%] w-[16.667%] h-[3px] pointer-events-none z-0">
-              <div className="absolute inset-0 bg-[#262A31]" />
-              <div ref={seg2Ref} className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#2ACDFF] to-[#9C5BFF] w-0 shadow-[0_0_8px_rgba(156,91,255,0.3)] brightness-[120%]" />
-            </div>
-            <div className="hidden md:block absolute top-[35px] left-[41.667%] w-[16.667%] h-[3px] pointer-events-none z-0">
-              <div className="absolute inset-0 bg-[#262A31]" />
-              <div ref={seg3Ref} className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#9C5BFF] to-[#F472B6] w-0 shadow-[0_0_8px_rgba(244,114,182,0.3)] brightness-[120%]" />
-            </div>
-            <div className="hidden md:block absolute top-[35px] left-[58.333%] w-[16.667%] h-[3px] pointer-events-none z-0">
-              <div className="absolute inset-0 bg-[#262A31]" />
-              <div ref={seg4Ref} className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#F472B6] to-[#FBBF24] w-0 shadow-[0_0_8px_rgba(251,191,36,0.3)] brightness-[120%]" />
-            </div>
-            <div className="hidden md:block absolute top-[35px] left-[75%] w-[16.667%] h-[3px] pointer-events-none z-0">
-              <div className="absolute inset-0 bg-[#262A31]" />
-              <div ref={seg5Ref} className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#FBBF24] to-[#14F195] w-0 shadow-[0_0_8px_rgba(20,241,149,0.3)] brightness-[120%]" />
-            </div>
-
-            {/* Glowing energy particle */}
-            <div
-              ref={particleRef}
-              className="hidden md:block absolute top-[35px] -translate-y-1/2 -translate-x-1/2 w-3 h-3 rounded-full z-[5] pointer-events-none"
-              style={{
-                left: "8.333%",
-                background: "#14F195",
-                boxShadow: "0 0 8px #fff, 0 0 14px #14F195"
-              }}
-            >
-              <div className="absolute inset-[-2px] rounded-full blur-[2px] opacity-45 bg-inherit" />
-              <div className="absolute inset-[-5px] rounded-full blur-[4px] opacity-15 bg-inherit" />
-            </div>
-
-            {/* Nodes & process-block grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6 lg:gap-2 relative z-10">
-              {stepsData.map((step, idx) => {
-                const IconComponent = step.icon;
-                return (
-                  <div
-                    key={step.step}
-                    ref={(el) => { nodeContainerRefs.current[idx] = el; }}
-                    className={`node-container-${idx} flex flex-col items-start lg:items-center text-left lg:text-center group transition-all duration-500`}
-                    onMouseEnter={pauseAnim}
-                    onMouseLeave={resumeAnim}
-                  >
-                    <div className={`pipeline-node-wrapper node-wrapper-${idx} relative mb-4 lg:mx-auto flex items-center justify-center`}>
-                      <div
-                        className={`active-halo-overlay active-halo-overlay-${idx} absolute inset-[-14px] rounded-full blur-[8px] pointer-events-none opacity-0`}
-                        style={{ background: step.accentColor }}
-                      />
-                      <div
-                        className={`active-ring-overlay active-ring-overlay-${idx} absolute inset-[-6px] rounded-full border border-dashed animate-spin-slow pointer-events-none opacity-0`}
-                        style={{ borderColor: step.accentColor }}
-                      />
-                      <div
-                        className={`pipeline-node node-circle-${idx} w-[70px] h-[70px] rounded-full border-[2px] flex items-center justify-center relative z-10 backdrop-blur-md`}
-                        style={{
-                          background: idx === 0
-                            ? `radial-gradient(circle at center, ${step.glowColor} 0%, #0B0F12 100%)`
-                            : "#0B0F12",
-                          borderColor: idx === 0 ? step.accentColor : "rgba(255,255,255,0.08)",
-                          boxShadow: idx === 0
-                            ? `0 0 10px ${step.accentColor}2e, 0 0 18px ${step.accentColor}1a, 0 0 30px ${step.accentColor}0d`
-                            : "none",
-                        }}
-                      >
-                        <div
-                          className="absolute rounded-full pointer-events-none"
-                          style={{
-                            width: "78%", height: "78%",
-                            top: "50%", left: "50%",
-                            transform: "translate(-50%,-50%)",
-                            border: `1px solid ${idx === 0 ? step.accentColor + "38" : "rgba(255,255,255,0.06)"}`,
-                          }}
-                        />
-                        <div
-                          className="absolute rounded-full pointer-events-none"
-                          style={{
-                            width: "56%", height: "56%",
-                            top: "50%", left: "50%",
-                            transform: "translate(-50%,-50%)",
-                            background: idx === 0 ? `${step.accentColor}14` : "transparent",
-                          }}
-                        />
-                        <IconComponent
-                          className={`w-6 h-6 stroke-[1.5] transition-all duration-300 node-icon-${idx} relative z-10 ${
-                            idx === 0
-                              ? `${step.iconColor} brightness-110 node-icon-breathe`
-                              : `${step.iconColor} opacity-40`
-                          }`}
-                        />
-                      </div>
-                    </div>
-
-                    <div className={`stage-text-block stage-text-block-${idx} w-full max-w-[190px] lg:mx-auto flex flex-col items-start lg:items-center transform`}>
-                      <span className={`stage-label stage-label-${idx} text-[10px] font-mono tracking-widest uppercase font-semibold mb-1 transition-colors duration-300`}>
-                        STAGE {step.step}
-                      </span>
-                      <h3 className={`stage-title stage-title-${idx} text-sm sm:text-base lg:text-lg font-bold tracking-tight mb-1 leading-[1.2] font-display transition-all duration-300`}>
-                        {step.title}
-                      </h3>
-                      <p className={`stage-desc stage-desc-${idx} text-white/72 text-[11px] sm:text-[12px] leading-[1.4] font-sans font-normal transition-colors duration-300`}>
-                        {step.description}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* ── Footer note ───────────────────────────────────────────────── */}
-        <div className="w-full">
-          <div className="w-full h-[1px] bg-white/12 mb-4 relative z-10" />
-          <div className="text-left relative z-10 max-w-3xl px-4">
-            <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.22em] text-white/55 uppercase block leading-relaxed font-semibold">
-              Only learners who successfully complete every evaluation stage proceed to placement support.
-            </span>
-          </div>
-        </div>
+        {diagram}
       </div>
     );
   }
@@ -541,164 +572,7 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
             </p>
           </div>
 
-          {/* ── Pipeline Diagram ──────────────────────────────────────────── */}
-          <div className="w-full py-4 md:py-6">
-            {/* overflow-visible so the PROCESS watermark is never clipped;
-                horizontal overflow is contained by the section's overflow-x-clip */}
-            <div className="relative w-full" style={{ minHeight: "200px" }}>
-
-              {/* Background watermark */}
-              <div className="absolute left-1/2 top-[35px] -translate-x-1/2 -translate-y-1/2 text-[100px] sm:text-[160px] lg:text-[220px] xl:text-[240px] font-black tracking-[0.14em] pl-[0.14em] text-white/[0.045] pointer-events-none select-none z-0 font-display text-center whitespace-nowrap">
-                PROCESS
-              </div>
-
-              {/* Desktop horizontal connectors (segmented across 6 nodes) */}
-
-              {/* Segment 1: 01 (8.333%) → 02 (25%) */}
-              <div className="hidden md:block absolute top-[35px] left-[8.333%] w-[16.667%] h-[3px] pointer-events-none z-0">
-                <div className="absolute inset-0 bg-[#262A31]" />
-                <div ref={seg1Ref} className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#14F195] to-[#2ACDFF] w-0 shadow-[0_0_8px_rgba(42,205,255,0.3)] brightness-[120%]" />
-              </div>
-
-              {/* Segment 2: 02 (25%) → 03 (41.667%) */}
-              <div className="hidden md:block absolute top-[35px] left-[25%] w-[16.667%] h-[3px] pointer-events-none z-0">
-                <div className="absolute inset-0 bg-[#262A31]" />
-                <div ref={seg2Ref} className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#2ACDFF] to-[#9C5BFF] w-0 shadow-[0_0_8px_rgba(156,91,255,0.3)] brightness-[120%]" />
-              </div>
-
-              {/* Segment 3: 03 (41.667%) → 04 (58.333%) */}
-              <div className="hidden md:block absolute top-[35px] left-[41.667%] w-[16.667%] h-[3px] pointer-events-none z-0">
-                <div className="absolute inset-0 bg-[#262A31]" />
-                <div ref={seg3Ref} className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#9C5BFF] to-[#F472B6] w-0 shadow-[0_0_8px_rgba(244,114,182,0.3)] brightness-[120%]" />
-              </div>
-
-              {/* Segment 4: 04 (58.333%) → 05 (75%) */}
-              <div className="hidden md:block absolute top-[35px] left-[58.333%] w-[16.667%] h-[3px] pointer-events-none z-0">
-                <div className="absolute inset-0 bg-[#262A31]" />
-                <div ref={seg4Ref} className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#F472B6] to-[#FBBF24] w-0 shadow-[0_0_8px_rgba(251,191,36,0.3)] brightness-[120%]" />
-              </div>
-
-              {/* Segment 5: 05 (75%) → 06 (91.667%) */}
-              <div className="hidden md:block absolute top-[35px] left-[75%] w-[16.667%] h-[3px] pointer-events-none z-0">
-                <div className="absolute inset-0 bg-[#262A31]" />
-                <div ref={seg5Ref} className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#FBBF24] to-[#14F195] w-0 shadow-[0_0_8px_rgba(20,241,149,0.3)] brightness-[120%]" />
-              </div>
-
-              {/* Glowing energy particle — travels along the connectors */}
-              <div
-                ref={particleRef}
-                className="hidden md:block absolute top-[35px] -translate-y-1/2 -translate-x-1/2 w-3 h-3 rounded-full z-[5] pointer-events-none"
-                style={{
-                  left: "8.333%",
-                  background: "#14F195",
-                  boxShadow: "0 0 8px #fff, 0 0 14px #14F195"
-                }}
-              >
-                {/* Inner glow rings — slightly tighter for a crisper, faster-feeling trail */}
-                <div className="absolute inset-[-2px] rounded-full blur-[2px] opacity-45 bg-inherit" />
-                <div className="absolute inset-[-5px] rounded-full blur-[4px] opacity-15 bg-inherit" />
-              </div>
-
-              {/* Nodes & process-block grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6 lg:gap-2 relative z-10">
-                {stepsData.map((step, idx) => {
-                  const IconComponent = step.icon;
-                  return (
-                    <div
-                      key={step.step}
-                      ref={(el) => { nodeContainerRefs.current[idx] = el; }}
-                      className={`node-container-${idx} flex flex-col items-start lg:items-center text-left lg:text-center group transition-all duration-500`}
-                      onMouseEnter={pauseAnim}
-                      onMouseLeave={resumeAnim}
-                    >
-                      {/* Node circle */}
-                      <div className={`pipeline-node-wrapper node-wrapper-${idx} relative mb-4 lg:mx-auto flex items-center justify-center`}>
-
-                        {/* Ambient halo (activated by GSAP) */}
-                        <div
-                          className={`active-halo-overlay active-halo-overlay-${idx} absolute inset-[-14px] rounded-full blur-[8px] pointer-events-none opacity-0`}
-                          style={{ background: step.accentColor }}
-                        />
-
-                        {/* Dashed orbit ring (activated by GSAP) */}
-                        <div
-                          className={`active-ring-overlay active-ring-overlay-${idx} absolute inset-[-6px] rounded-full border border-dashed animate-spin-slow pointer-events-none opacity-0`}
-                          style={{ borderColor: step.accentColor }}
-                        />
-
-                        {/* Main node circle */}
-                        <div
-                          className={`pipeline-node node-circle-${idx} w-[70px] h-[70px] rounded-full border-[2px] flex items-center justify-center relative z-10 backdrop-blur-md`}
-                          style={{
-                            background: idx === 0
-                              ? `radial-gradient(circle at center, ${step.glowColor} 0%, #0B0F12 100%)`
-                              : "#0B0F12",
-                            borderColor: idx === 0 ? step.accentColor : "rgba(255,255,255,0.08)",
-                            boxShadow: idx === 0
-                              ? `0 0 10px ${step.accentColor}2e, 0 0 18px ${step.accentColor}1a, 0 0 30px ${step.accentColor}0d`
-                              : "none",
-                          }}
-                        >
-                          {/* Inner concentric ring */}
-                          <div
-                            className="absolute rounded-full pointer-events-none"
-                            style={{
-                              width: "78%", height: "78%",
-                              top: "50%", left: "50%",
-                              transform: "translate(-50%,-50%)",
-                              border: `1px solid ${idx === 0 ? step.accentColor + "38" : "rgba(255,255,255,0.06)"}`,
-                            }}
-                          />
-                          {/* Inner glow core */}
-                          <div
-                            className="absolute rounded-full pointer-events-none"
-                            style={{
-                              width: "56%", height: "56%",
-                              top: "50%", left: "50%",
-                              transform: "translate(-50%,-50%)",
-                              background: idx === 0 ? `${step.accentColor}14` : "transparent",
-                            }}
-                          />
-                          <IconComponent
-                            className={`w-6 h-6 stroke-[1.5] transition-all duration-300 node-icon-${idx} relative z-10 ${
-                              idx === 0
-                                ? `${step.iconColor} brightness-110 node-icon-breathe`
-                                : `${step.iconColor} opacity-40`
-                            }`}
-                          />
-                        </div>
-                      </div>
-
-                      {/* Step text */}
-                      <div className={`stage-text-block stage-text-block-${idx} w-full max-w-[190px] lg:mx-auto flex flex-col items-start lg:items-center transform`}>
-                        <span className={`stage-label stage-label-${idx} text-[10px] font-mono tracking-widest uppercase font-semibold mb-1 transition-colors duration-300`}>
-                          STAGE {step.step}
-                        </span>
-                        <h3 className={`stage-title stage-title-${idx} text-sm sm:text-base lg:text-lg font-bold tracking-tight mb-1 leading-[1.2] font-display transition-all duration-300`}>
-                          {step.title}
-                        </h3>
-                        <p className={`stage-desc stage-desc-${idx} text-white/72 text-[11px] sm:text-[12px] leading-[1.4] font-sans font-normal transition-colors duration-300`}>
-                          {step.description}
-                        </p>
-                      </div>
-
-                    </div>
-                  );
-                })}
-              </div>
-
-            </div>
-          </div>
-
-          {/* ── Footer note ───────────────────────────────────────────────── */}
-          <div className="w-full">
-            <div className="w-full h-[1px] bg-white/12 mb-4 relative z-10" />
-            <div className="text-left relative z-10 max-w-3xl px-4">
-              <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.22em] text-white/55 uppercase block leading-relaxed font-semibold">
-                Only learners who successfully complete every evaluation stage proceed to placement support.
-              </span>
-            </div>
-          </div>
+          {diagram}
 
         </div>
       </div>
