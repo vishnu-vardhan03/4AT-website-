@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { lmsCourses } from "@/components/academy/data";
-import { Lock, ArrowLeft, ArrowRight, Star } from "lucide-react";
+import { Lock, ArrowLeft, ArrowRight, Star, Clock, Check, Building2, Monitor } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -199,7 +199,7 @@ export function LmsCourses({ sectionId = "courses" }: { sectionId?: string }) {
         <div id="explore-pathways-header" className="flex flex-col items-start text-left max-w-[850px] mb-16">
           {/* Eyebrow Badge Pill */}
           <SectionPill className="mb-7">
-            EXPLORE PATHWAYS
+            EXPLORE COURSES
           </SectionPill>
 
           {/* Title with Gradient */}
@@ -287,17 +287,17 @@ export function LmsCourses({ sectionId = "courses" }: { sectionId?: string }) {
                     const slug = course.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
                     router.push(`/academy/courses/${slug}`);
                   }}
-                  className={`snap-start shrink-0 w-[230px] sm:w-[260px] md:w-[290px] group relative flex flex-col justify-between p-4 rounded-[22px] border border-white/[0.07] bg-[#141318] cursor-pointer transition-[border-color,transform,opacity,box-shadow] duration-300 min-h-[390px] ${
+                  className={`snap-start shrink-0 w-[280px] sm:w-[310px] md:w-[335px] group relative flex flex-col justify-between p-4.5 sm:p-5 rounded-[22px] border border-white/10 bg-[#090B12] cursor-pointer transition-all duration-300 min-h-[340px] ${
                     isMobile ? "active:scale-[0.98] transition-transform duration-200" : ""
                   }`}
                   style={{
                     willChange: "transform",
-                    borderColor: hoveredIndex === idx ? "rgba(167, 139, 250, 0.25)" : "rgba(255, 255, 255, 0.07)",
-                    boxShadow: hoveredIndex === idx ? "0 10px 40px rgba(139, 92, 246, 0.10)" : "none"
+                    borderColor: hoveredIndex === idx ? "rgba(167, 139, 250, 0.35)" : "rgba(255, 255, 255, 0.09)",
+                    boxShadow: hoveredIndex === idx ? "0 12px 40px rgba(139, 92, 246, 0.15)" : "none"
                   }}
                 >
-                  {/* Thumbnail Container */}
-                  <div className="relative aspect-video w-full rounded-lg overflow-hidden bg-[#04060f] mb-4">
+                  {/* Thumbnail Image Container (Preserving existing image) */}
+                  <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-[#04060f] mb-3 shrink-0">
                     <Image
                       src={course.image}
                       alt={course.title}
@@ -306,76 +306,78 @@ export function LmsCourses({ sectionId = "courses" }: { sectionId?: string }) {
                       className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
 
-                    {/* Category / Badge top-right */}
-                    <div className="absolute top-3 right-3 z-30 px-3 py-1.5 rounded-full bg-[rgba(91,33,182,0.30)] border border-[rgba(167,139,250,0.30)] backdrop-blur-md shadow-sm">
-                      <span className="text-[11px] font-bold uppercase text-[#A78BFA] tracking-wider">
-                        {course.badge || colors.badgeText}
+                    {/* Overlaid Badge Top-Right */}
+                    <div className="absolute top-2.5 right-2.5 z-30 px-3 py-1 rounded-full bg-[rgba(91,33,182,0.55)] border border-[rgba(167,139,250,0.40)] backdrop-blur-md shadow-lg">
+                      <span className="text-[10px] font-extrabold uppercase text-[#D8B4FE] tracking-wider font-sans whitespace-nowrap">
+                        {course.badge || "FLAGSHIP • FRESHERS"}
                       </span>
                     </div>
 
                     {/* Lock Overlay for locked courses */}
                     {isLocked && (
                       <div className="absolute inset-0 bg-[#04060f]/60 backdrop-blur-[2px] flex items-center justify-center z-20">
-                        <div className="bg-[#0b0e1a]/95 text-white rounded-full p-2.5 shadow-md border border-white/10">
-                          <Lock className="size-4" />
+                        <div className="bg-[#0b0e1a]/95 text-white rounded-full p-2 shadow-md border border-white/10">
+                          <Lock className="size-3.5" />
                         </div>
                       </div>
                     )}
                   </div>
 
-                  {/* Content Container */}
-                  <div className="flex flex-col flex-grow">
-                    {/* Course Category Label */}
-                    <span className="text-[10px] font-bold tracking-[0.18em] uppercase text-white/40 font-mono mt-1">
-                      {course.category === "Accounting & ERP" ? "F&A" : course.category}
-                    </span>
-
-                    {/* Title */}
-                    <h3 className="font-bold text-lead tracking-tight text-white transition-colors duration-300 group-hover:text-[#A78BFA] font-sans mt-1.5 line-clamp-2 min-h-[40px] sm:min-h-[44px]">
-                      {course.title}
-                    </h3>
-
-                    {/* Subtitle */}
-                    <p className="text-[13px] font-semibold leading-[1.4] text-slate-400 mt-1">
-                      {course.subtitle}
-                    </p>
-
-                    {/* Description */}
-                    <p className="mt-2.5 text-[12px] font-normal leading-[1.5] text-slate-400/90 line-clamp-3 border-t border-white/5 pt-2.5">
-                      {course.description}
-                    </p>
-
-                    {/* Rating Row */}
-                    <div className="mt-3 flex items-center gap-1">
-                      <span className="text-[13px] font-bold leading-[1.4] text-amber-500">{course.rating.toFixed(1)}</span>
-                      <div className="flex gap-0.5">
-                        {[...Array(5)].map((_, i) => {
-                          const isFilled = i < Math.floor(course.rating);
-                          return (
-                            <Star
-                              key={i}
-                              className={`size-3 ${isFilled ? "fill-amber-500 text-amber-500" : "text-white/10"}`}
-                            />
-                          );
-                        })}
+                  {/* Card Main Body */}
+                  <div className="flex flex-col flex-grow justify-between">
+                    <div>
+                      {/* Metadata Row (Below Image) */}
+                      <div className="flex flex-wrap items-center gap-1.5 mb-2.5 min-h-[26px]">
+                        {course.duration && (
+                          <div className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[#0F131C] border border-white/10 text-slate-200 font-medium text-[11px] whitespace-nowrap">
+                            <Clock className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                            <span>{course.duration}</span>
+                          </div>
+                        )}
+                        {course.mode && (
+                          <div className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[#0F131C] border border-white/10 text-slate-200 font-medium text-[11px] whitespace-nowrap">
+                            <Monitor className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                            <span>{course.mode}</span>
+                          </div>
+                        )}
                       </div>
-                      <span className="text-[10px] font-medium tracking-[0.13em] uppercase text-white/40 font-sans">
-                        ({course.reviewsCount})
+
+                      {/* Category Label */}
+                      <span className="text-[10px] font-medium tracking-wider uppercase text-slate-400 font-mono block mt-1">
+                        {course.category === "Accounting & ERP" ? "F&A" : course.category === "Audit & Risk" ? "D&A" : course.category === "Global Taxation" ? "T&I" : course.category === "FP&A & Modeling" ? "B&M" : course.category}
                       </span>
+
+                      {/* Title */}
+                      <h3 className="font-bold text-lg sm:text-[1.2rem] tracking-tight text-white transition-colors duration-300 group-hover:text-[#A78BFA] font-sans mt-0.5 leading-snug line-clamp-1">
+                        {course.title}
+                      </h3>
+
+                      {/* Subtitle */}
+                      {course.subtitle && (
+                        <p className="text-[12.5px] font-semibold text-[#818CF8] mt-0.5 line-clamp-1">
+                          {course.subtitle}
+                        </p>
+                      )}
+
+                      {/* Description */}
+                      <p className="mt-2 text-[12px] font-normal leading-relaxed text-slate-300/80 font-sans line-clamp-3">
+                        {course.description}
+                      </p>
                     </div>
                   </div>
 
-                  {/* Footer Container - CTA Button (Pricing excluded per spec) */}
-                  <div className="mt-5 pt-3.5 border-t border-white/5 flex items-center justify-between z-10">
+                  {/* CTA Full-Width Button */}
+                  <div className="mt-4 pt-2.5 border-t border-white/5 z-10 shrink-0">
                     <button
-                      className="w-full py-2.5 rounded-xl text-[11px] tracking-[0.12em] uppercase font-bold text-black bg-gradient-to-r from-[#8B5CF6] to-[#A78BFA] shadow-[0_8px_28px_rgba(139,92,246,0.25)] hover:-translate-y-1 hover:brightness-110 active:scale-95 transition-all duration-300 cursor-pointer text-center"
+                      className="w-full py-2.5 rounded-xl text-[11px] tracking-[0.14em] uppercase font-bold text-black bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#A78BFA] shadow-[0_6px_20px_rgba(139,92,246,0.22)] hover:-translate-y-0.5 hover:brightness-110 active:scale-95 transition-all duration-300 cursor-pointer text-center flex items-center justify-center gap-1.5"
                       onClick={(e) => {
                         e.stopPropagation();
                         const slug = course.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
                         router.push(`/academy/courses/${slug}`);
                       }}
                     >
-                      {course.ctaText || "View Curriculum"}
+                      <span>{course.ctaText || "VIEW CURRICULUM"}</span>
+                      <span className="text-sm font-normal">→</span>
                     </button>
                   </div>
                 </div>

@@ -320,7 +320,7 @@ export function Hero({ children }: { children?: React.ReactNode }) {
 
       {/* Hero Section Grid Area */}
       <div className="site-shell relative z-10 flex-1 flex items-center justify-center pt-[110px] pb-[96px] lg:pt-[96px] lg:pb-[96px]">
-        <div className="grid grid-cols-1 lg:grid-cols-[46%_54%] items-center gap-12 lg:gap-[64px] w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-[60%_30%] justify-between items-center gap-6 lg:gap-8 w-full">
           
           {/* Left Column: Children (HeroContent) */}
           <div className="w-full flex items-center justify-start z-20">
@@ -348,17 +348,7 @@ export function Hero({ children }: { children?: React.ReactNode }) {
       >
         <div className="flex flex-col md:flex-row items-center">
           
-          {/* Left static label */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isRevealed ? { opacity: 1 } : undefined}
-            transition={{ duration: 0.5, delay: 1.9 }}
-            className="z-10 flex items-center justify-center bg-transparent px-8 py-5 border-b md:border-b-0 md:border-r border-white/10 w-full md:w-auto md:min-w-[280px] backdrop-blur-xl"
-          >
-            <p className="text-center md:text-left text-xs font-semibold uppercase tracking-wider text-white/60 max-w-[220px]">
-              {badgeCopy}
-            </p>
-          </motion.div>
+
 
           {/* Scrolling track */}
           <div

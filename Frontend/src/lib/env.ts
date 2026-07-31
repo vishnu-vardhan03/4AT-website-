@@ -1,17 +1,29 @@
-import { z } from "zod";
+const DEFAULT_URL = "http://localhost:5000";
 
-const envSchema = z.object({
-  NEXT_PUBLIC_API_URL: z.string().url(),
-  BACKEND_URL: z.string().url(),
-});
+function safeUrl(val: string | undefined): string {
+  if (!val || typeof val !== "string" || !val.trim()) {
+    return DEFAULT_URL;
+  }
+  const trimmed = val.trim();
+  if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
+    return trimmed;
+  }
+  return `https://${trimmed}`;
+}
 
-export const env = envSchema.parse({
-  NEXT_PUBLIC_API_URL:
-    process.env.NEXT_PUBLIC_API_URL ??
-    (process.env.NODE_ENV === "development" ? "http://localhost:5000" : undefined),
-  BACKEND_URL:
-    process.env.BACKEND_URL ??
-    process.env.BACKEND_API_URL ??
-    process.env.NEXT_PUBLIC_API_URL ??
-    (process.env.NODE_ENV === "development" ? "http://localhost:5000" : undefined),
-});
+export const env = {
+  NEXT_PUBLIC_API_URL: safeUrl(
+    process.env.NEXT_PUBLIC_API_URL ||
+    process.env.NEXT_PUBLIC_VERCEL_URL ||
+    process.env.VERCEL_URL
+  ),
+  BACKEND_URL: safeUrl(
+    process.env.BACKEND_URL ||
+    process.env.BACKEND_API_URL ||
+    safeUrl(
+      process.env.NEXT_PUBLIC_API_URL ||
+      process.env.NEXT_PUBLIC_VERCEL_URL ||
+      process.env.VERCEL_URL
+    )
+  ),
+};

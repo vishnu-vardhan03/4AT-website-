@@ -194,9 +194,6 @@ function BentoCard({
 
             {/* Right: Text Container (Heading & Description with increased vertical rhythm) */}
             <div className="flex flex-col justify-start pt-1.5 sm:pt-0">
-              <span className={`text-[10px] font-mono tracking-[0.15em] uppercase font-semibold ${numColor}`}>
-                {id}
-              </span>
               <h3 className="mt-3.5 text-lg sm:text-xl font-bold leading-[1.2] tracking-tight text-white/95 font-display group-hover:text-white transition-colors duration-300">
                 {title}
               </h3>
@@ -234,64 +231,7 @@ export function CoreFeatures({ sectionId = "core-features" }: { sectionId?: stri
   const containerRef = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const ctx = gsap.context(() => {
-      // Fade-in headings
-      gsap.fromTo(
-        ".diff-heading",
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".diff-heading",
-            start: "top 85%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      );
-
-      // Bento cards staggered entrance
-      gsap.fromTo(
-        ".bento-card-wrapper",
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          stagger: 0.1,
-          duration: 0.8,
-          ease: "power3.out",
-          clearProps: "transform",
-          scrollTrigger: {
-            trigger: ".bento-grid",
-            start: "top 80%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      );
-
-      // Metrics strip stagger entrance
-      gsap.fromTo(
-        ".metric-block",
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          stagger: 0.1,
-          duration: 0.6,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".metrics-strip",
-            start: "top 90%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      );
-    }, containerRef.current || undefined);
-
-    return () => ctx.revert();
+    // All animations removed per user directive - static rendering
   }, []);
 
   return (
@@ -303,55 +243,13 @@ export function CoreFeatures({ sectionId = "core-features" }: { sectionId?: stri
       {/* Decorative Grid Mesh (Clean Neutral Overlay) */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f293708_1px,transparent_1px),linear-gradient(to_bottom,#1f293708_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
-      {/* Embedded Animations CSS Stylesheet */}
-      <style dangerouslySetInnerHTML={{
-        __html: `
-        @keyframes dash {
-          to {
-            stroke-dashoffset: -20;
-          }
-        }
-        .animate-road {
-          stroke-dasharray: 6 4;
-          animation: dash 3s linear infinite;
-        }
-        .group:hover .animate-road {
-          animation: dash 1.5s linear infinite;
-        }
-        @keyframes float-hologram {
-          0% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-6px) rotate(1deg); }
-          100% { transform: translateY(0px) rotate(0deg); }
-        }
-        .float-visual {
-          animation: float-hologram 5s ease-in-out infinite;
-        }
-        .bar-transition {
-          transform-origin: bottom;
-          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .group:hover .bar-1 { transform: scaleY(1.15); }
-        .group:hover .bar-2 { transform: scaleY(1.25); }
-        .group:hover .bar-3 { transform: scaleY(1.35); }
-
-        .bento-card {
-          position: relative;
-          backdrop-filter: blur(28px);
-          -webkit-backdrop-filter: blur(28px);
-          transition: background 0.5s ease-out, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease-out;
-        }
-        .bento-card:hover {
-          transform: translateY(-2px) scale(1.005);
-        }
-      `}} />
-
       <div className="site-shell relative z-10">
 
-        {/* [TOP HEADER ZONE] */}
-        <div className="diff-heading flex flex-col items-start mb-16 lg:mb-20 max-w-4xl">
+        {/* [TOP HEADER ZONE - Static] */}
+        <div className="diff-heading flex flex-col items-start mb-16 lg:mb-20 max-w-4xl opacity-100">
           {/* Green outline pill badge matching reference */}
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.15em] uppercase text-emerald-400 font-mono mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
             WHY OUR PRODUCT
           </div>
 
@@ -380,13 +278,13 @@ export function CoreFeatures({ sectionId = "core-features" }: { sectionId?: stri
         {/* [BENTO GRID WORKSPACE] */}
         <div className="bento-grid grid grid-cols-1 md:grid-cols-6 gap-6">
 
-          {/* Card 01 - Career-aligned tracks */}
+          {/* Card 01 - Built by a working F&A firm */}
           <BentoCard
             id="01"
-            title="Career-aligned tracks"
-            body="Start with the job you want, then follow a learning path built backward from that destination."
+            title="Built by a working F&A firm"
+            body="You learn on real client standards from a firm that runs finance & accounting for global clients, not from a textbook."
             icon={Target}
-            badges={["Career Destination", "Role-Based"]}
+            badges={["Career Destination", "ROI-Focussed"]}
             glowColor="rgba(45, 212, 191, 0.08)"
             themeColorClass="text-emerald-400 border-emerald-500/20 bg-emerald-500/5"
             spanClass="col-span-1 md:col-span-2"
@@ -489,11 +387,11 @@ export function CoreFeatures({ sectionId = "core-features" }: { sectionId?: stri
             }
           />
 
-          {/* Card 03 - AI and automation exposure */}
+          {/* Card 03 - Our own AI platform */}
           <BentoCard
             id="03"
-            title="AI and automation exposure"
-            body="Build fluency in the digital tools modern finance teams increasingly expect."
+            title="Our own AI platform"
+            body="You train on 4AT's AI-powered finance tools alongside industry platforms, learning to work with AI, not around it."
             icon={Bot}
             badges={["Digital Fluency", "Modern Tools"]}
             glowColor="rgba(139, 92, 246, 0.1)"

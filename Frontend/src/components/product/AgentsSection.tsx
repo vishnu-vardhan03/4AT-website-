@@ -14,7 +14,11 @@ const agents = [
     role: "GL · AP · AR · Bank Feeds",
     desc: "Matches and reconciles transactions across your ledgers, surfacing exceptions for review instead of guessing past them.",
     img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80",
+<<<<<<< HEAD
     imgAlt: "Reconciliation dashboard showing matched transaction tables and ledger audit trails",
+=======
+    imgAlt: "Reconciliation dashboard showing matched transaction tables and ledger audit trails"
+>>>>>>> 311e80b528e03cc2cab68362c8797705719eb025
   },
   {
     id: "Compliance",
@@ -25,7 +29,11 @@ const agents = [
     role: "Risk · Compliance · Anomaly",
     desc: "Matches and reconciles transactions across your ledgers, surfacing exceptions for review instead of guessing past them.",
     img: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=600&q=80",
+<<<<<<< HEAD
     imgAlt: "Fraud detection heatmap dashboard showing transaction risk scores and anomaly alerts",
+=======
+    imgAlt: "Fraud detection heatmap dashboard showing transaction risk scores and anomaly alerts"
+>>>>>>> 311e80b528e03cc2cab68362c8797705719eb025
   },
   {
     id: "Analytics",
@@ -92,6 +100,7 @@ export default function AgentsSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+<<<<<<< HEAD
           {agents.map((agent) => {
             return (
               <TiltCard
@@ -109,6 +118,22 @@ export default function AgentsSection() {
                     sizes="(max-width: 768px) 100vw, 560px"
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[rgba(8,11,26,.95)]" />
+=======
+          {agents.map((agent) => (
+            <TiltCard
+              key={agent.id}
+              glowColor={glowColorMap[agent.id]}
+              className="glass-card rounded-[18px] overflow-hidden transition-all duration-300 hover:border-white/15"
+            >
+              <div className="relative" style={{ height: 160 }}>
+                <Image
+                  src={agent.img}
+                  alt={agent.imgAlt}
+                  fill
+                  className="object-cover opacity-55"
+                  sizes="(max-width: 768px) 100vw, 560px"
+                />
+>>>>>>> 311e80b528e03cc2cab68362c8797705719eb025
 
                   <div className="absolute top-3 right-3 text-[10px] font-bold px-2.5 py-1.5 rounded-lg bg-black/50 backdrop-blur-sm text-white/50 border border-white/10" />
                 </div>

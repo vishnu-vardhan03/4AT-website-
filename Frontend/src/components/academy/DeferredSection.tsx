@@ -9,8 +9,7 @@ type DeferredSectionName =
   | "features"
   | "how-it-works"
   | "lms-courses"
-  | "target-audience"
-  | "enrollment-cta";
+  | "target-audience";
 
 type DeferredSectionProps = {
   section: DeferredSectionName;
@@ -58,13 +57,7 @@ const TargetAudience = dynamic(
   }
 );
 
-const EnrollmentCTA = dynamic(
-  () => import("@/components/academy/EnrollmentCTA").then((mod) => mod.EnrollmentCTA),
-  {
-    ssr: false,
-    loading: () => <SectionSkeleton minHeight="760px" />,
-  }
-);
+
 
 function SectionSkeleton({ minHeight }: { minHeight: string }) {
   return (
@@ -139,8 +132,7 @@ export function DeferredSection({ section, sectionId, href }: DeferredSectionPro
                 return <LmsCourses sectionId={innerId} />;
               case "target-audience":
                 return <TargetAudience sectionId={innerId} />;
-              case "enrollment-cta":
-                return <EnrollmentCTA sectionId={innerId} href={href ?? "/academy/register"} />;
+
               default:
                 return null;
             }
@@ -167,8 +159,7 @@ function getSkeletonHeight(section: DeferredSectionName) {
       return "980px";
     case "target-audience":
       return "980px";
-    case "enrollment-cta":
-      return "760px";
+
     default:
       return "800px";
   }
