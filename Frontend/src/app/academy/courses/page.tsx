@@ -64,11 +64,8 @@ export default function CoursesPage() {
             </nav>
           </div>
 
-          <span className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.15em] uppercase text-accent border border-accent/20 bg-accent/5 px-3 py-1 rounded-md mb-6">
-            EDUCATION CATALOG
-          </span>
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4 font-sans max-w-3xl">
-            Explore Professional Finance & Accounting Tracks
+            Courses
           </h1>
           <p className="text-base sm:text-lg text-slate-400 max-w-2xl leading-relaxed">
             All pathways are designed backwards from specific job role outcomes and Big 4 requirements, equipping you with decision-grade execution.
@@ -142,17 +139,17 @@ export default function CoursesPage() {
             </div>
 
             {filteredCourses.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                 {filteredCourses.map((course) => {
                   const slug = getCourseSlug(course.title);
                   return (
                     <Link
                       key={course.title}
                       href={`/academy/courses/${slug}`}
-                      className="group flex flex-col justify-between border border-white/8 bg-[#0b0e1a]/40 hover-fine:border-accent/30 rounded-2xl p-4 transition-[border-color,box-shadow,transform] duration-300 hover-fine:shadow-[0_20px_40px_rgba(0,0,0,0.15)] hover-fine:-translate-y-1 relative"
+                      className="group flex flex-col justify-between border border-white/8 bg-[#0b0e1a]/40 hover-fine:border-accent/30 rounded-xl p-3 transition-[border-color,box-shadow,transform] duration-300 hover-fine:shadow-[0_12px_28px_rgba(0,0,0,0.15)] hover-fine:-translate-y-0.5 relative"
                     >
                       {/* Thumbnail */}
-                      <div className="relative aspect-video w-full rounded-lg overflow-hidden bg-brand-soft/5 mb-4">
+                      <div className="relative w-full h-36 rounded-lg overflow-hidden bg-brand-soft/5 mb-3">
                         <Image
                           src={course.image}
                           alt={course.title}
@@ -188,22 +185,22 @@ export default function CoursesPage() {
                         </span>
 
                         {/* Title */}
-                        <h3 className="mt-2 text-xl font-bold tracking-tight text-white group-hover-fine:text-accent transition-colors duration-200 font-sans">
+                        <h3 className="mt-1.5 text-base font-bold tracking-tight text-white group-hover-fine:text-accent transition-colors duration-200 font-sans">
                           {course.title}
                         </h3>
 
                         {/* Subtitle */}
-                        <p className="mt-2 text-xs font-semibold text-slate-400">
+                        <p className="mt-1 text-[11px] font-semibold text-slate-400">
                           {course.subtitle}
                         </p>
 
                         {/* Description */}
-                        <p className="mt-4 text-xs text-slate-400 leading-relaxed line-clamp-3">
+                        <p className="mt-2 text-[11px] text-slate-400 leading-relaxed line-clamp-2">
                           {course.description}
                         </p>
 
                         {/* Stars */}
-                        <div className="mt-4 flex items-center gap-1.5">
+                        <div className="mt-3 flex items-center gap-1.5">
                           <span className="text-xs font-bold text-[#fbbf24]">{course.rating.toFixed(1)}</span>
                           <div className="flex gap-0.5">
                             {Array.from({ length: 5 }).map((_, i) => (
@@ -224,7 +221,7 @@ export default function CoursesPage() {
                       </div>
 
                       {/* Course Meta Info Strip */}
-                      <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between">
+                      <div className="mt-3 pt-3 border-t border-white/5 flex items-center justify-between">
                         <div className="flex items-center gap-4 text-[10px] text-slate-500 font-mono uppercase">
                           <div className="flex items-center gap-1">
                             <Clock className="size-3 text-accent" />
