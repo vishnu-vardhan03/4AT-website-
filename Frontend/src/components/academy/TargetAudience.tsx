@@ -35,13 +35,13 @@ const cardsData: AudienceCard[] = [
     bulletAccentClass: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
     badgeColors: "border-emerald-500/20 bg-emerald-500/5 text-emerald-400",
     title: "Freshers Track",
-    description: "Build role clarity, confidence, and your first credible finance portfolio.",
+    description: "Build role clarity and your first credible finance portfolio.",
     bullets: [
       "Structured MNC accounting and audit tracks",
       "Interview and resume calibration from day one",
       "Tool-first learning with guided mentorship"
     ],
-    idealForText: "Students, graduates, and freshers beginning their finance career journey.",
+    idealForText: "Students and freshers starting their finance career.",
     watermark: "01",
     cardBg: "linear-gradient(to bottom, rgba(16, 201, 129, 0.05), rgba(9, 11, 17, 0)) padding-box, radial-gradient(circle at top left, rgba(16, 201, 129, 0.1) 0%, transparent 60%) padding-box, linear-gradient(#090b11, #06070a) padding-box",
     cardBorderGrad: "linear-gradient(to bottom right, rgba(16, 201, 129, 0.28) 0%, rgba(16, 201, 129, 0.15) 50%, rgba(16, 201, 129, 0.26) 100%)",
@@ -58,13 +58,13 @@ const cardsData: AudienceCard[] = [
     bulletAccentClass: "text-purple-400 bg-purple-500/10 border-purple-500/20",
     badgeColors: "border-purple-500/20 bg-purple-500/5 text-purple-400",
     title: "Professionals Track",
-    description: "Move from experience to specialization with sharper compliance and strategic exposure.",
+    description: "Move from experience to specialization with sharper compliance exposure.",
     bullets: [
       "Advanced IFRS, SOX, IA, and FP&A pathways",
       "Promotion-oriented project simulations",
       "Placement support for global finance teams"
     ],
-    idealForText: "Working professionals, analysts, and finance experts seeking career acceleration.",
+    idealForText: "Professionals and analysts seeking career acceleration.",
     watermark: "02",
     cardBg: "linear-gradient(to bottom, rgba(139, 92, 246, 0.05), rgba(9, 11, 17, 0)) padding-box, radial-gradient(circle at top right, rgba(139, 92, 246, 0.1) 0%, transparent 60%) padding-box, linear-gradient(#090b11, #06070a) padding-box",
     cardBorderGrad: "linear-gradient(to bottom right, rgba(139, 92, 246, 0.28) 0%, rgba(139, 92, 246, 0.15) 50%, rgba(139, 92, 246, 0.26) 100%)",
@@ -163,7 +163,7 @@ export function TargetAudience({ sectionId = "audience-spectrum" }: { sectionId?
           {cardsData.map((card) => (
             <div
               key={card.id}
-              className="audience-card-animate audience-card group relative rounded-[28px] pt-[44px] px-[48px] pb-[44px] min-h-[320px] sm:min-h-[210px] md:min-h-[350px] lg:min-h-[330px] flex flex-col justify-between overflow-hidden"
+              className="audience-card-animate audience-card group relative rounded-[28px] pt-[30px] px-[36px] pb-[30px] min-h-[260px] sm:min-h-[190px] md:min-h-[270px] lg:min-h-[250px] flex flex-col justify-between overflow-hidden"
               style={{
                 "--card-bg": card.cardBg,
                 "--card-border-grad": card.cardBorderGrad,
@@ -201,7 +201,7 @@ export function TargetAudience({ sectionId = "audience-spectrum" }: { sectionId?
 
               <div>
                 {/* Eyebrow badge and dot */}
-                <div className="flex items-center gap-3 mb-8 relative z-10">
+                <div className="flex items-center gap-3 mb-5 relative z-10">
                   <div className={`w-2.5 h-2.5 rounded-full animate-pulse ${card.id === "01" ? "bg-emerald-400 shadow-[0_0_8px_#10b981]" : "bg-purple-400 shadow-[0_0_8px_#a855f7]"}`} />
                   <span className={`inline-block text-[10px] font-bold tracking-widest px-3.5 py-1.5 rounded-full border font-mono ${card.badgeColors}`}>
                     {card.level}
@@ -212,22 +212,22 @@ export function TargetAudience({ sectionId = "audience-spectrum" }: { sectionId?
                 </div>
 
                 {/* Sub-eyebrow */}
-                <div className={`text-[12px] font-mono uppercase tracking-wider font-semibold mb-4 ${card.id === "01" ? "text-emerald-400/90" : "text-purple-400/90"}`}>
+                <div className={`text-[12px] font-mono uppercase tracking-wider font-semibold mb-3 ${card.id === "01" ? "text-emerald-400/90" : "text-purple-400/90"}`}>
                   {card.subEyebrow}
                 </div>
 
                 {/* Title */}
-                <h3 className="text-3xl font-bold text-white tracking-tight mb-6 transition-colors duration-300 font-display">
+                <h3 className="text-3xl font-bold text-white tracking-tight mb-4 transition-colors duration-300 font-display">
                   {card.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-white/60 text-[14px] leading-[1.7] mb-8 max-w-[70%] font-sans font-normal">
+                <p className="text-white/60 text-[14px] leading-[1.7] mb-5 max-w-[70%] font-sans font-normal">
                   {card.description}
                 </p>
 
                 {/* Bullet points */}
-                <ul className="space-y-5 mt-6 relative z-10">
+                <ul className="space-y-3 relative z-10">
                   {card.bullets.map((bullet, idx) => (
                     <li key={idx} className="flex items-start gap-4">
                       <span className={`relative shrink-0 mt-1 select-none w-[22px] h-[22px] rounded-full flex items-center justify-center border ${card.bulletAccentClass}`}>
@@ -242,8 +242,8 @@ export function TargetAudience({ sectionId = "audience-spectrum" }: { sectionId?
               </div>
 
               {/* Ideal For Section */}
-              <div className="w-full mt-8 relative z-10">
-                <div className="w-full h-[1px] bg-white/10 mb-5" />
+              <div className="w-full mt-5 relative z-10">
+                <div className="w-full h-[1px] bg-white/10 mb-4" />
                 <div className="flex items-center gap-4">
                   <div className={`w-11 h-11 rounded-full flex items-center justify-center shrink-0 border ${
                     card.id === "01"
