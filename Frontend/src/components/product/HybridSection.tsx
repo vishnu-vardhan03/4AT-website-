@@ -99,7 +99,7 @@ export default function HybridSection() {
 
             <div className="px-7 py-6">
               <div className="text-[15px] uppercase tracking-widest text-white mb-3">
-                What AI handles instantly
+                What AI handles instantly 
               </div>
               {aiItems.map((item) => (
                 <div key={item} className="flex items-start gap-3 py-2.5"

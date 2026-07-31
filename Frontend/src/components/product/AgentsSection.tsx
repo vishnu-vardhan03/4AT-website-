@@ -15,10 +15,14 @@ const agents = [
     desc: "Matches and reconciles transactions across your ledgers, surfacing exceptions for review instead of guessing past them.",
     img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80",
 <<<<<<< HEAD
+<<<<<<< HEAD
     imgAlt: "Reconciliation dashboard showing matched transaction tables and ledger audit trails",
 =======
     imgAlt: "Reconciliation dashboard showing matched transaction tables and ledger audit trails"
 >>>>>>> 311e80b528e03cc2cab68362c8797705719eb025
+=======
+    alt: "Reconciliation dashboard showing matched transaction tables and ledger audit trails",
+>>>>>>> a0ce1caec966a62344b98c6de02976ed8200c9f5
   },
   {
     id: "Compliance",
@@ -30,10 +34,14 @@ const agents = [
     desc: "Matches and reconciles transactions across your ledgers, surfacing exceptions for review instead of guessing past them.",
     img: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=600&q=80",
 <<<<<<< HEAD
+<<<<<<< HEAD
     imgAlt: "Fraud detection heatmap dashboard showing transaction risk scores and anomaly alerts",
 =======
     imgAlt: "Fraud detection heatmap dashboard showing transaction risk scores and anomaly alerts"
 >>>>>>> 311e80b528e03cc2cab68362c8797705719eb025
+=======
+    alt: "Fraud detection heatmap dashboard showing transaction risk scores and anomaly alerts",
+>>>>>>> a0ce1caec966a62344b98c6de02976ed8200c9f5
   },
   {
     id: "Analytics",
@@ -44,7 +52,7 @@ const agents = [
     role: "Forecasting · Reporting · Insights",
     desc: "Turns your finance data into reports and forward-looking views.",
     img: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80",
-    imgAlt: "Financial analytics dashboard showing P&L charts, cash flow forecasting, and variance analysis",
+    alt: "Financial analytics dashboard showing P&L charts, cash flow forecasting, and variance analysis",
   },
   {
     id: "Integration",
@@ -55,7 +63,7 @@ const agents = [
     role: "ERP · Banking · Payroll · Billing",
     desc: "Keeps your ERP, ledgers, and adjacent systems in sync so the other three agents work inside your actual data.",
     img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80",
-    imgAlt: "Integration flow diagram showing ERP, banking, and payment gateway connections",
+    alt: "Integration flow diagram showing ERP, banking, and payment gateway connections",
   },
 ];
 
@@ -128,7 +136,7 @@ export default function AgentsSection() {
               <div className="relative" style={{ height: 160 }}>
                 <Image
                   src={agent.img}
-                  alt={agent.imgAlt}
+                  alt={agent.alt}
                   fill
                   className="object-cover opacity-55"
                   sizes="(max-width: 768px) 100vw, 560px"
