@@ -105,24 +105,24 @@ export function CourseRecommender({ sectionId = "course-recommender", href = "/a
       />
 
       <div className="site-shell relative z-10">
-        <div className="flex flex-col items-start text-left max-w-[850px] mb-14">
-          <SectionPill className="mb-7">FIND YOUR PROGRAM</SectionPill>
-
-          <h2 className="section-title">
-            Not sure where to{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">
-              start?
-            </span>
-          </h2>
-
-          <p className="section-desc">
-            Answer two quick questions and we&apos;ll recommend the best learning path based on your background and interests.
-          </p>
-        </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-[42%_58%] gap-10 lg:gap-16 items-start">
-          {/* Left: conversational quiz */}
+          {/* Left: header + conversational quiz — recommender's top lines up with the pill above */}
           <div className="flex flex-col gap-9">
+            <div className="flex flex-col items-start text-left">
+              <SectionPill className="mb-7">FIND YOUR PROGRAM</SectionPill>
+
+              <h2 className="section-title">
+                Not sure where to{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">
+                  start?
+                </span>
+              </h2>
+
+              <p className="section-desc">
+                Answer two quick questions and we&apos;ll recommend the best learning path based on your background and interests.
+              </p>
+            </div>
+
             <div className="w-full max-w-[420px] h-[3px] bg-white/5 rounded-full overflow-hidden">
               <motion.div
                 className="h-full rounded-full bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400"
@@ -191,7 +191,8 @@ export function CourseRecommender({ sectionId = "course-recommender", href = "/a
             </div>
           </div>
 
-          {/* Right: recommendation — always visible, content re-flows as answers refine it */}
+          {/* Right: recommendation — always visible, content re-flows as answers refine it.
+              Same grid row as the left column, so its top lines up with the FIND YOUR PROGRAM pill. */}
           <div className="relative lg:sticky lg:top-28 w-full">
             <div className="flex items-center gap-2 mb-4">
               <Sparkles className="w-3.5 h-3.5 text-[#5EEAD4]" />
