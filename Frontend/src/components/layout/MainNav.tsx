@@ -212,33 +212,21 @@ export function Nav({ contactHref = "/contact" }: { contactHref?: string }) {
           className="relative flex items-center justify-self-start"
         >
           <motion.div
-            initial="initial"
-            whileHover="hover"
-            className="flex items-center cursor-pointer"
+            className="flex cursor-pointer items-center gap-2.5"
           >
             <motion.span
               aria-label="4AT Logo"
               role="img"
               className="brand-logo-gradient relative z-10 !h-8 !w-12"
               style={{ WebkitMaskImage: `url(${logo.src})`, maskImage: `url(${logo.src})` }}
-              variants={{
-                initial: { scale: 1 },
-                hover: { scale: 1.1 }
-              }}
-              transition={{ type: "spring", stiffness: 200, damping: 15 }}
             />
-            <motion.span
-              variants={{
-                initial: { width: 0, opacity: 0, marginLeft: 0 },
-                hover: { width: "auto", opacity: 1, marginLeft: 10 }
-              }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className={`overflow-hidden whitespace-nowrap text-[28px] font-black uppercase leading-7 tracking-wide ${
+            <span
+              className={`whitespace-nowrap text-[32px] font-black uppercase leading-8 tracking-wide ${
                 isDarkBg ? "text-white" : "text-black"
               }`}
             >
               4AT
-            </motion.span>
+            </span>
           </motion.div>
         </Link>
         <nav

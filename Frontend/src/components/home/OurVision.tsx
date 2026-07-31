@@ -14,7 +14,7 @@ export function OurVision() {
         <div className="max-w-4xl">
           <span className="section-badge">The market gap</span>
           <h2 className="mt-5 max-w-3xl site-heading">
-            Beyond the <span className="text-brand-gradient-flow">Trade-off.</span>
+            Beyond the <span className="text-brand-gradient-flow">Trade-off</span>
           </h2>
           <p className="site-subheading mt-6 max-w-4xl text-white/75">
             Traditional firms are too slow. Pure AI is too risky. We engineered a third way.

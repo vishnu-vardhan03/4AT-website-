@@ -314,29 +314,6 @@ export default function CapabilitiesSection() {
                   {cap.desc}
                 </p>
 
-<<<<<<< HEAD
-=======
-                {/* Stat */}
-                {/* {cap.stat && ( */}
-                  <div className="pt-5 border-t border-white/8">
-                    <div
-                      className="text-2xl sm:text-3xl font-bold"
-                      style={{
-                        color:
-                          cap.color === "t"
-                            ? "#5eead4"
-                            : cap.color === "v"
-                            ? "#c4b5fd"
-                            : "#7dd3fc",
-                      }}
-                    >
-                      {/* {cap.stat} */}
-                    </div>
-                    <div className="text-xs text-white/35 uppercase tracking-widest mt-1">
-                      {/* {cap.statLabel} */}
-                    </div>
-                  </div>
->>>>>>> 3b6225ad00974781d77c1d2405ead8874fea5db8
               </TiltCard>
             );
           })}

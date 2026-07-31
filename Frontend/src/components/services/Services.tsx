@@ -50,7 +50,7 @@ const serviceGroups: Group[] = [
         n: "03",
         title: "Interim Resource Alignment",
         desc: "Pre-vetted controllers, managers, and analysts deployed in days, not months.",
-        standard: "Drop-in or hybrid-pod options · matched to your stack and stage · senior practitioner backstop",
+        standard: "Drop-in or hybrid-pod options · matched to your stack and stage · experienced finance professional backstop",
         trigger: "Maternity/paternity gap · hiring takes too long · interim controller while you search",
         cta: "Talk to us →"
       }

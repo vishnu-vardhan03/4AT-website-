@@ -113,7 +113,7 @@ export function ContactCTA() {
                 )}
               </h2>
               <p className="mt-6 text-base md:text-lg text-zinc-300 font-light leading-relaxed max-w-xl">
-                A 30-minute conversation with a senior practitioner. No decks, no
+                A 30-minute conversation with an experienced finance professional. No decks, no
                 templates, just the right questions.
               </p>
               <div className="mt-10">

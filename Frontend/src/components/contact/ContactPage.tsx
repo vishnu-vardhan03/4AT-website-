@@ -83,7 +83,7 @@ export default function ContactPage() {
               <span className="text-brand-gradient-flow">extraordinary.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">
-                Whether you&apos;re ready to start or just exploring, a senior practitioner will get back to you within one business day. No decks, no sales scripts.
+                Whether you&apos;re ready to start or just exploring, an experienced finance professional will get back to you within one business day. No decks, no sales scripts.
             </p>
           </div>
         </section>
@@ -168,7 +168,7 @@ export default function ContactPage() {
                   <div>
                     <p className="text-sm font-bold text-white">1 business day response</p>
                     <p className="mt-1 text-xs leading-relaxed text-white/50">
-                    Every submission is reviewed by a senior practitioner, not a bot or SDR.
+                    Every submission is reviewed by an experienced finance professional, not a bot or SDR.
                     </p>
                   </div>
                 </div>
@@ -187,7 +187,7 @@ export default function ContactPage() {
                   </div>
                   <h3 className="text-3xl font-black text-white">Message sent!</h3>
                   <p className="mt-4 text-sm leading-relaxed text-white/55 max-w-xs">
-                    A senior practitioner from 4AT will reach out within one business day.
+                    An experienced finance professional from 4AT will reach out within one business day.
                   </p>
                   <button
                     onClick={() => {
