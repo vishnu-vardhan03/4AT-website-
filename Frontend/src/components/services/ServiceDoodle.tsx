@@ -195,7 +195,7 @@ export function ServiceDoodle({ serviceId, sizeClass = "w-24 h-24" }: DoodleProp
           </svg>
         );
 
-      case "06": // Audit Outsourcing
+      case "13": // Audit Outsourcing
         return (
           <svg className="w-full h-full text-purple-400" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2">
             {/* Document sheet */}
@@ -226,7 +226,50 @@ export function ServiceDoodle({ serviceId, sizeClass = "w-24 h-24" }: DoodleProp
           </svg>
         );
 
-      case "07": // Financial Audit Readiness
+      case "14": // GRC Audit Delivery
+        return (
+          <svg className="w-full h-full text-sky-400" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2">
+            {/* Shield/GRC Frame */}
+            <motion.path
+              d="M 30 25 C 40 22, 50 18, 50 18 C 50 18, 60 22, 70 25 C 70 45, 50 78, 50 78 C 50 78, 30 45, 30 25 Z"
+              className="opacity-30"
+              strokeWidth="1.5"
+            />
+            {/* Timezone / Shift Sync Loop */}
+            <motion.circle
+              cx="50" cy="46" r="22"
+              strokeDasharray="4 4"
+              className="text-purple-400 opacity-60"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              style={{ transformOrigin: "50px 46px" }}
+            />
+            {/* Sun & Moon nodes representing 2 shifts */}
+            <motion.g
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              style={{ transformOrigin: "50px 46px" }}
+            >
+              {/* Sun (Day Shift) */}
+              <circle cx="50" cy="24" r="3" fill="currentColor" className="text-sky-400" />
+              {/* Moon (Night/Offshore Shift) */}
+              <path d="M 50 68 A 3 3 0 0 1 47 65 A 3 3 0 0 0 50 68" fill="currentColor" className="text-purple-400" />
+            </motion.g>
+            {/* Central Check/Compliance Marker */}
+            <motion.path
+              d="M 43 46 L 48 51 L 57 41"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={drawTransition}
+            />
+          </svg>
+        );
+
+      case "06": // Financial Audit Readiness
         return (
           <svg className="w-full h-full text-sky-400" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2">
             {/* Calendar base or folder */}
@@ -260,7 +303,7 @@ export function ServiceDoodle({ serviceId, sizeClass = "w-24 h-24" }: DoodleProp
           </svg>
         );
 
-      case "08": // IPO Readiness
+      case "07": // IPO Readiness
         return (
           <svg className="w-full h-full text-purple-400" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2">
             {/* Global orbit ring */}
@@ -291,7 +334,7 @@ export function ServiceDoodle({ serviceId, sizeClass = "w-24 h-24" }: DoodleProp
           </svg>
         );
 
-      case "09": // Tax Advisory
+      case "08": // Tax Advisory
         return (
           <svg className="w-full h-full text-sky-400" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2">
             {/* Balance scales representing Tax structure */}
@@ -317,7 +360,7 @@ export function ServiceDoodle({ serviceId, sizeClass = "w-24 h-24" }: DoodleProp
           </svg>
         );
 
-      case "10": // MacTax
+      case "09": // MacTax
         return (
           <svg className="w-full h-full text-purple-400" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2">
             {/* Double concentric circles with rotating nodes */}
@@ -387,7 +430,7 @@ export function ServiceDoodle({ serviceId, sizeClass = "w-24 h-24" }: DoodleProp
           </svg>
         );
 
-      case "12": // Transaction & Migration Support (Data moving between databases)
+      case "10": // Transaction & Migration Support (Data moving between databases)
         return (
           <svg className="w-full h-full text-purple-400" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2">
             {/* Source Database */}
@@ -410,7 +453,7 @@ export function ServiceDoodle({ serviceId, sizeClass = "w-24 h-24" }: DoodleProp
           </svg>
         );
 
-      case "13": // Finance Function Reengineering (Process gear/cog with target/metrics)
+      case "12": // Finance Function Reengineering (Process gear/cog with target/metrics)
         return (
           <svg className="w-full h-full text-sky-400" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2">
             {/* Process loops/cycle */}

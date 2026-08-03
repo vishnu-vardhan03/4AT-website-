@@ -310,7 +310,7 @@ export function ServiceBlueprintDoodle({ serviceId }: BlueprintProps) {
           </>
         );
 
-      case "06": // Audit Outsourcing (stacked papers, scanner lens, partner nodes)
+      case "13": // Audit Outsourcing (stacked papers, scanner lens, partner nodes)
         return (
           <>
             {/* Document Stack (Left) */}
@@ -359,7 +359,39 @@ export function ServiceBlueprintDoodle({ serviceId }: BlueprintProps) {
           </>
         );
 
-      case "07": // Financial Audit Readiness (PBC portal, folder, checklists)
+      case "14": // GRC Audit Delivery (2-shift timezone handover, overnight compliance testing)
+        return (
+          <>
+            {/* Day Shift Input (Left - US Queue) */}
+            <g transform="translate(35, 45)">
+              <rect x="0" y="0" width="75" height="50" rx="4" className="stroke-sky-500/50 fill-[#0b1020]/40" strokeWidth="1.5" />
+              <text x="37.5" y="22" className="fill-sky-300 text-[8px] font-mono" textAnchor="middle">{"US DAY SHIFT"}</text>
+              <text x="37.5" y="36" className="fill-zinc-400 text-[7px]" textAnchor="middle">{"Evidence Queue"}</text>
+            </g>
+
+            {/* Overnight timezone bridge */}
+            <path d="M 110 70 H 215" className="stroke-sky-400/40" strokeWidth="1.5" strokeDasharray="3 3" />
+            
+            {/* Sync Hub (Middle - IST Hours) */}
+            <g transform="translate(215, 50)">
+              <rect x="0" y="0" width="70" height="40" rx="4" className="stroke-purple-500/50 fill-[#0b1020]/40" strokeWidth="1.5" />
+              <text x="35" y="18" className="fill-purple-300 text-[8px] font-mono" textAnchor="middle">{"OVERNIGHT"}</text>
+              <text x="35" y="30" className="fill-purple-400 text-[7px] font-bold" textAnchor="middle">{"IST Shifts"}</text>
+            </g>
+
+            {/* Handover to compliance audit */}
+            <path d="M 285 70 H 390" className="stroke-purple-400/40" strokeWidth="1.5" strokeDasharray="3 3" />
+
+            {/* GRC Audit Testing (Right - India Delivery) */}
+            <g transform="translate(390, 45)">
+              <rect x="0" y="0" width="75" height="50" rx="4" className="stroke-emerald-500/50 fill-[#0b1020]/40" strokeWidth="1.5" />
+              <text x="37.5" y="22" className="fill-emerald-300 text-[8px] font-mono" textAnchor="middle">{"GRC DELIVERY"}</text>
+              <text x="37.5" y="36" className="fill-zinc-400 text-[7px]" textAnchor="middle">{"Review-Ready"}</text>
+            </g>
+          </>
+        );
+
+      case "06": // Financial Audit Readiness (PBC portal, folder, checklists)
         return (
           <>
             {/* PBC portal tray (Left) */}
@@ -400,7 +432,7 @@ export function ServiceBlueprintDoodle({ serviceId }: BlueprintProps) {
           </>
         );
 
-      case "08": // IPO Readiness (Rocket launcher, ascending bars, listing sequences)
+      case "07": // IPO Readiness (Rocket launcher, ascending bars, listing sequences)
         return (
           <>
             {/* Launchpad baseline */}
@@ -448,7 +480,7 @@ export function ServiceBlueprintDoodle({ serviceId }: BlueprintProps) {
           </>
         );
 
-      case "09": // Tax Advisory (Jurisdiction maps, tax percentages)
+      case "08": // Tax Advisory (Jurisdiction maps, tax percentages)
         return (
           <>
             {/* Entity Jurisdiction Map layout (Left - Pulsating Nodes) */}
@@ -497,7 +529,7 @@ export function ServiceBlueprintDoodle({ serviceId }: BlueprintProps) {
           </>
         );
 
-      case "10": // MacTax (Tax engine concentric circles, code, shield)
+      case "09": // MacTax (Tax engine concentric circles, code, shield)
         return (
           <>
             {/* Concentric Tax orbits (Left) */}
@@ -588,7 +620,7 @@ export function ServiceBlueprintDoodle({ serviceId }: BlueprintProps) {
             </g>
           </>
         );
-      case "12": // Transaction & Migration Support
+      case "10": // Transaction & Migration Support
         return (
           <>
             {/* Database source (Left) */}
@@ -616,7 +648,7 @@ export function ServiceBlueprintDoodle({ serviceId }: BlueprintProps) {
           </>
         );
 
-      case "13": // Finance Function Reengineering
+      case "12": // Finance Function Reengineering
         return (
           <>
             {/* Diagnose / Audit Box (Left) */}

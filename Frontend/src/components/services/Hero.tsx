@@ -193,7 +193,7 @@ export function Hero() {
               className="mt-8 text-[clamp(2.2rem,5.2vw,4.8rem)] font-black tracking-tight leading-[0.95] text-foreground max-w-5xl select-none"
             >
               <span className="block text-white opacity-95">
-                Eleven services
+                Built to your scope, not our catalog
               </span>
               <span className="block py-2.5 px-1 bg-gradient-to-r from-sky-400 via-purple-500 to-sky-400 bg-clip-text text-transparent filter drop-shadow-[0_4px_20px_rgba(99,102,241,0.25)] animate-gradient-x">
                 One subscription

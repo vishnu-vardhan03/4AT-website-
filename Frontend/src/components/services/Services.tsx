@@ -80,14 +80,6 @@ const serviceGroups: Group[] = [
       },
       {
         n: "06",
-        title: "Audit Outsourcing (for firms)",
-        desc: "Co-source and outsource models for assurance firms under capacity pressure. Workpapers in your format, your timeline, white-labeled if needed.",
-        standard: "PCAOB-aligned workpapers · senior reviewer on every file · capacity surge during busy season",
-        trigger: "Tax season overflow · firm losing client work to capacity gaps · M&A integration on the firm side",
-        cta: "Talk to us about firm partnerships →"
-      },
-      {
-        n: "07",
         title: "Financial Audit Readiness",
         desc: "PBC playbooks, pre-audit closes, and clean walk-throughs before day one. Atlas auto-builds the PBC list.",
         standard: "PBC list automation · pre-audit close · walk-through prep · auditor liaison · post-audit remediation",
@@ -103,7 +95,7 @@ const serviceGroups: Group[] = [
     triggerText: "We have 12 months to be ready.",
     services: [
       {
-        n: "08",
+        n: "07",
         title: "IPO Readiness",
         desc: "End-to-end IPO prep, from books to SOX to S-1 narrative, backed by our Virtual CFO bench.",
         standard: "Audit-ready financials · SOX-ready controls · S-1 drafting support · investor reporting infrastructure · first-earnings playbook",
@@ -111,7 +103,7 @@ const serviceGroups: Group[] = [
         cta: "Talk to an IPO lead →"
       },
       {
-        n: "09",
+        n: "08",
         title: "Tax Advisory",
         desc: "Cross-border structuring, provisioning, and ongoing tax compliance.",
         standard: "Federal/state/local provisions · transfer pricing · entity structuring · ongoing compliance filings · tax memo trail",
@@ -119,7 +111,7 @@ const serviceGroups: Group[] = [
         cta: "Add to subscription →"
       },
       {
-        n: "10",
+        n: "09",
         title: "MacTax",
         desc: "Coming soon. Specialized tax advisory for cross-border and high-growth teams. Full details soon; talk to us in the meantime.",
         standard: "Specialized tax advisory for cross-border & high-growth teams · coming soon",
@@ -127,7 +119,7 @@ const serviceGroups: Group[] = [
         cta: "Talk to us →"
       },
       {
-        n: "12",
+        n: "10",
         title: "Transaction & Migration Support",
         desc: "Moving finance data and systems cleanly through an M&A, carve-out, or ERP change. Without losing a transaction in the process.",
         standard: "Data Migration & Validation · Testing & UAT Support · Go-Live & Cutover Support · Post-Go-Live Hypercare · Reconciliation & Issue Resolution · Training & Adoption Support · Build-Operate-Transfer (BOT)",
@@ -151,12 +143,36 @@ const serviceGroups: Group[] = [
         cta: "Talk to a tech lead →"
       },
       {
-        n: "13",
+        n: "12",
         title: "Finance Function Reengineering",
         desc: "We audit how your finance function runs today, redesign the operating model, then roll out the AI to match. Not a tech swap, a redesign.",
         standard: "Diagnose (process assessment) → Design (standardization, governance, controls) → Deploy (automation, system enablement, change management) → Measure (KPI/SLA tracking, continuous improvement)",
         trigger: "Manual processes breaking under growth · no clear ownership of controls · tech decisions made without a process redesign first",
         cta: "Talk to a tech lead →"
+      }
+    ]
+  },
+  {
+    id: "grow-my-practice",
+    title: "Group 5: Grow My Practice, Not My Headcount",
+    forText: "CPA firms, accounting firms, and assurance practices needing more delivery capacity.",
+    triggerText: "We're at capacity and can't hire fast enough to keep up.",
+    services: [
+      {
+        n: "13",
+        title: "Audit Outsourcing (for accounting firms)",
+        desc: "Co-source and outsource models for assurance firms under capacity pressure. Workpapers in your format, your timeline, white-labeled if needed.",
+        standard: "PCAOB-aligned workpapers · senior reviewer on every file · capacity surge during busy season",
+        trigger: "Tax season overflow · firm losing client work to capacity gaps · M&A integration on the firm side",
+        cta: "Talk to us about firm partnerships →"
+      },
+      {
+        n: "14",
+        title: "GRC Audit Delivery",
+        desc: "Your assurance practice, running two shifts instead of one. Submit evidence requests at the end of your day. Our dedicated offshore audit delivery team in India, working IST hours, picks them up overnight, so the bottleneck's already cleared by the time you're back at your desk.",
+        standard: "Control walkthroughs and risk assessment · Evidence collection and testing across SOC 1, SOC 2, ISO 27001, HIPAA, NIST, and HITRUST · Design and operating-effectiveness evaluations · Review-ready reports for partner sign-off",
+        trigger: "Assurance practice at capacity during audit season · Need SOC 2, ISO 27001, or HIPAA specialty coverage without hiring · Scaling engagement volume without adding headcount",
+        cta: "Talk to us about firm partnerships →"
       }
     ]
   }
@@ -399,7 +415,7 @@ const serviceDetails: Record<string, {
       }
     ]
   },
-  "06": {
+  "13": {
     title: "Audit Outsourcing",
     subtitle: "Deliver uncompromised accountability and controllership with minimized disruption.",
     intro: "Constant changes in non-negotiable regulations require enterprises to build enhanced transparency. Shareholders, boards, and bankers seek unshakeable trust in financial statements. 4AT's Audit Outsourcing services deliver audit and assurance excellence that goes beyond cost marginalization to provide long-term advisory value, leveraging our deep regulatory understanding and industry expertise.",
@@ -449,7 +465,7 @@ const serviceDetails: Record<string, {
       }
     ]
   },
-  "07": {
+  "06": {
     title: "Financial Audit Readiness",
     subtitle: "Navigate audits with compliance, accuracy, and authenticity under Big 4 guidance.",
     intro: "Our Financial Audit Readiness service defines the key tasks and activities required to make reporting entities fully audit-ready. We optimize your overall bookkeeping and accounting processes, aligning them with the methodologies auditors use to assess financial statements. With our prolific 'Big 4' expertise, we provide the tools and competencies to help you sail through both internal and external audits.",
@@ -494,7 +510,7 @@ const serviceDetails: Record<string, {
       }
     ]
   },
-  "09": {
+  "08": {
     title: "Tax Advisory",
     subtitle: "Navigate the complex tax maze and prevent surprise exposures with expert oversight.",
     intro: "Tax compliance is a critical non-negotiable for businesses of any scale. Handling highly complex, regulated tax landscapes poses ongoing risks of penalties and sanctions due to inadvertent errors. With rapidly evolving regulatory codes, real-time expert intervention is essential. 4AT’s Tax Advisory services provide tailormade strategies and compliance structures to protect and position your business optimally.",
@@ -529,7 +545,7 @@ const serviceDetails: Record<string, {
       }
     ]
   },
-  "08": {
+  "07": {
     title: "IPO Readiness",
     subtitle: "Navigate the complex journey from a private to a public status successfully.",
     intro: "Transitioning from a privately owned enterprise to going public is one of the most monumental milestones for any organization. Paving the path toward a successful IPO is extremely challenging and time-consuming. The key to success is preparation. Once you decide to pursue an IPO, developing a comprehensive, forward-looking, and risk-averse strategy is critical.",
@@ -665,7 +681,7 @@ const serviceDetails: Record<string, {
       }
     ]
   },
-  "10": {
+  "09": {
     title: "MacTax",
     subtitle: "Specialized tax advisory for cross-border and high-growth teams.",
     intro: "MacTax: Coming soon. Specialized tax advisory for cross-border and high-growth teams. Full details soon; talk to us in the meantime.",
@@ -732,7 +748,7 @@ const serviceDetails: Record<string, {
       }
     ]
   },
-  "12": {
+  "10": {
     title: "Transaction & Migration Support",
     subtitle: "Moving finance data and systems cleanly through transaction milestones.",
     intro: "Whether navigating an M&A, carve-out, divestiture, or major ERP change, moving finance data and systems cleanly is critical to business continuity. 4AT provides comprehensive Transaction & Migration Support to ensure a cutover with nothing lost in migration and nothing broken at go-live.",
@@ -768,7 +784,7 @@ const serviceDetails: Record<string, {
       }
     ]
   },
-  "13": {
+  "12": {
     title: "Finance Function Reengineering",
     subtitle: "Process-first redesign for scalable automated finance functions.",
     intro: "Technology alone cannot fix a broken process. We audit how your finance function runs today, redesign the operating model to support automation, and then roll out the AI systems to match. It is not a tech swap; it's a structural redesign.",
@@ -803,6 +819,29 @@ const serviceDetails: Record<string, {
         ]
       }
     ]
+  },
+  "14": {
+    title: "GRC Audit Delivery",
+    subtitle: "Your assurance practice, running two shifts instead of one.",
+    intro: "Your assurance practice, running two shifts instead of one. Submit evidence requests at the end of your day. Our dedicated offshore audit delivery team in India, working IST hours, picks them up overnight, so the bottleneck's already cleared by the time you're back at your desk.",
+    sections: [
+      {
+        title: "Strategic Offshoring",
+        content: "Expand your assurance practice footprint with an overnight workflow model, leveraging timezone differences to clear evidence collection roadblocks before you start your day."
+      }
+    ],
+    capabilities: [
+      {
+        title: "Key Activities",
+        desc: "Core capabilities delivered by our offshore assurance teams:",
+        activities: [
+          "Control walkthroughs and risk assessment",
+          "Evidence collection and testing across SOC 1, SOC 2, ISO 27001, HIPAA, NIST, and HITRUST",
+          "Design and operating-effectiveness evaluations",
+          "Review-ready reports for partner sign-off"
+        ]
+      }
+    ]
   }
 };
 
@@ -830,7 +869,7 @@ export function Services() {
                 Services
               </div>
               <h2 className="text-display text-[clamp(2.5rem,5.2vw,4.5rem)] text-white font-black leading-[0.95]">
-                Eleven services
+                Fourteen services
                 <span className="block mt-2 py-2 px-1 text-[clamp(1.4rem,3vw,2.6rem)] tracking-tight bg-gradient-to-r from-sky-400 via-purple-500 to-sky-400 bg-clip-text text-transparent filter drop-shadow-[0_2px_10px_rgba(99,102,241,0.25)] animate-gradient-x">
                   Grouped by what&apos;s keeping you up at night
                 </span>
@@ -928,11 +967,11 @@ export function Services() {
                             </p>
                           </div>
 
-                          {/* Trigger to Add */}
+                          {/* Good Fit If */}
                           <div>
                             <span className="text-[10px] uppercase tracking-wider text-zinc-500 flex items-center gap-1.5 mb-1.5">
                               <AlertCircle className="h-3 w-3 text-purple-400" />
-                              Trigger to Add
+                              Good Fit If
                             </span>
                             <p className="text-xs text-zinc-300 font-light leading-relaxed">
                               {service.trigger}
