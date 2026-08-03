@@ -71,7 +71,9 @@ export const INITIAL_FORM_DATA: RegistrationFormData = {
 
   applicantType: "student",
   college: "",
-  programName: "Fintech Engineering",
+  // Must start empty: a prefilled value self-satisfies the required-field check, so every
+  // untouched student registration silently recorded a course the applicant never chose.
+  programName: "",
   academicYear: "",
   department: "",
 

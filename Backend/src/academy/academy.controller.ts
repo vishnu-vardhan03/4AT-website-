@@ -30,7 +30,8 @@ export class AcademyController {
   @Post() @Throttle({ default: { limit: 5, ttl: 60_000 } }) create(
     @Body() dto: CreateAcademyLeadDto,
   ) {
-    this.logger.log(`Received academy lead: ${JSON.stringify(dto)}`);
+    // Never log the DTO: it carries applicant PII (name, email, phone, employer, city).
+    this.logger.log('Received academy lead submission');
     return this.service.create(dto);
   }
   @Get() @UseGuards(JwtAuthGuard) findAll(@Query() query: AcademyQueryDto) {
@@ -40,7 +41,8 @@ export class AcademyController {
   @Post("registrations")
   @Throttle({ default: { limit: 5, ttl: 60_000 } })
   createReg(@Body() dto: CreateAcademyRegistrationDto) {
-    this.logger.log(`Received academy registration: ${JSON.stringify(dto)}`);
+    // Never log the DTO: it carries applicant PII (name, email, phone, employer, city).
+    this.logger.log('Received academy registration submission');
     return this.service.createRegistration(dto);
   }
   @Get("registrations") @UseGuards(JwtAuthGuard) findAllReg(

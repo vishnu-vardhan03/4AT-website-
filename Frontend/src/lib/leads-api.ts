@@ -5,7 +5,9 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { z } from "zod";
 
-export type LeadCategory = "academy" | "consulting" | "ai" | "academy_registration";
+/** Categories `GET /leads` can serve. Academy registrations live in their own table and
+ *  are fetched through `getAcademyRegistrations`, never as a lead category. */
+export type LeadCategory = "academy" | "consulting" | "ai";
 
 export interface LeadRecord {
   id: number;
@@ -33,6 +35,8 @@ export interface LeadsQuery {
 const leadsStatsSchema = z.object({
   academyLeads: z.number().finite().nonnegative(),
   academyRegistrations: z.number().finite().nonnegative(),
+  studentRegistrations: z.number().finite().nonnegative(),
+  professionalRegistrations: z.number().finite().nonnegative(),
   consultingLeads: z.number().finite().nonnegative(),
   aiLeads: z.number().finite().nonnegative(),
   totalLeads: z.number().finite().nonnegative(),
@@ -46,7 +50,7 @@ const leadRecordSchema = z.object({
   phone: z.string().nullable(),
   message: z.string().nullable(),
   createdAt: z.string().nullable(),
-  category: z.enum(["academy", "consulting", "ai", "academy_registration"]),
+  category: z.enum(["academy", "consulting", "ai"]),
 });
 
 const leadsPageSchema = z.object({
@@ -124,7 +128,7 @@ export async function getLeadsSummary(accessToken?: string): Promise<LeadsStats 
     }
     return parseLeadsSummary(await response.json());
   } catch (error) {
-    console.error(`[leads-api] Failed to load ${env.BACKEND_URL}/leads/summary: ${errorMessage(error)}`);
+    console.error(`[leads-api] Failed to load /leads/summary: ${errorMessage(error)}`);
     return null;
   }
 }
@@ -151,7 +155,7 @@ export async function getLeads(query: LeadsQuery = {}, accessToken?: string): Pr
     }
     return parseLeadsPage(await response.json());
   } catch (error) {
-    console.error(`[leads-api] Failed to load ${env.BACKEND_URL}/leads: ${errorMessage(error)}`);
+    console.error(`[leads-api] Failed to load /leads: ${errorMessage(error)}`);
     return null;
   }
 }
@@ -185,16 +189,36 @@ export interface RegistrationsPage {
   meta: { total: number; page: number; limit: number; totalPages: number };
 }
 
-export async function getAcademyRegistrations(accessToken?: string): Promise<RegistrationsPage | null> {
+export interface RegistrationsQuery {
+  page?: number;
+  /** Capped at 100 by the backend's PaginationQueryDto. */
+  limit?: number;
+}
+
+/**
+ * Fetches one page of academy registrations. Pagination MUST be sent explicitly: the
+ * backend defaults to `limit=20`, which previously truncated the dashboard silently.
+ * Use `meta.total` — never `data.length` — for any count shown to an operator.
+ */
+export async function getAcademyRegistrations(
+  query: RegistrationsQuery = {},
+  accessToken?: string,
+): Promise<RegistrationsPage | null> {
   const headers = await dashboardHeaders(accessToken);
   if (!headers) return null;
+  const params = new URLSearchParams({
+    page: String(query.page ?? 1),
+    limit: String(query.limit ?? 100),
+  });
   try {
-    const url = `${env.BACKEND_URL}/academy-leads/registrations`;
+    const url = `${env.BACKEND_URL}/academy-leads/registrations?${params.toString()}`;
     const response = await fetch(url, {
       cache: "no-store",
       headers,
     });
     if (!response.ok) {
+      const detail = await response.text();
+      console.error(`[leads-api] GET ${url} failed with ${response.status} ${response.statusText}`, detail);
       return null;
     }
     return (await response.json()) as RegistrationsPage;

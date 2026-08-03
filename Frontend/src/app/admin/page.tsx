@@ -15,7 +15,7 @@ export default async function AdminPage() {
   const [stats, leads, registrations] = await Promise.all([
     getLeadsSummary(session.accessToken),
     getLeads({ page: 1, limit: 100 }, session.accessToken),
-    getAcademyRegistrations(session.accessToken),
+    getAcademyRegistrations({ page: 1, limit: 100 }, session.accessToken),
   ]);
 
   return (

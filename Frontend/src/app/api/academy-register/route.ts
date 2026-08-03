@@ -1,4 +1,5 @@
 import { validationError } from "@/lib/server/lead-api";
+import { env } from "@/lib/env";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -40,8 +41,7 @@ export async function POST(request: Request) {
   const body = parsed.data;
 
   try {
-    const apiUrl = process.env.BACKEND_URL ?? process.env.BACKEND_API_URL ?? "http://localhost:5000";
-    const response = await fetch(`${apiUrl}/academy-leads/registrations`, {
+    const response = await fetch(`${env.BACKEND_URL}/academy-leads/registrations`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { getCountries, getCountryCallingCode, isValidPhoneNumber, type CountryCode } from "libphonenumber-js";
 import { Check, Clock3, LoaderCircle } from "lucide-react";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import { PhoneInput } from "react-international-phone";
@@ -258,14 +259,15 @@ export default function ContactPage() {
 
                   {/* Message */}
                   <TextareaField
-                      id="contact-message"
-                      name="message"
-                      rows={5}
-                      label="Message"
-                      value={form.message}
-                      onChange={handleChange}
-                      placeholder="Tell us about your current finance challenges and what you're looking to achieve…"
-                    />
+                    id="contact-message"
+                    name="message"
+                    label="Message"
+                    rows={5}
+                    maxLength={MAX_MESSAGE_CHARS}
+                    value={form.message}
+                    onChange={handleChange}
+                    placeholder="Tell us about your current finance challenges and what you're looking to achieve…"
+                  />
 
                   {/* Submit */}
                   <button
