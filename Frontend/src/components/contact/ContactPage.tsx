@@ -3,41 +3,20 @@
 import { useState } from "react";
 import { getCountries, getCountryCallingCode, isValidPhoneNumber, type CountryCode } from "libphonenumber-js";
 import { Check, Clock3, LoaderCircle } from "lucide-react";
+import { isValidPhoneNumber } from "libphonenumber-js";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
 import { Nav } from "@/components/layout/MainNav";
 import { Footer } from "@/components/layout/Footer";
 import { TextareaField, TextField } from "@/components/lead-collection/FormFields";
 
 const services = ["4AT Consulting", "4AT Academy", "4AT.AI", "Hybrid Services", "Other"];
 
-/** E.164 caps a full number at 15 digits including the country code; this is a generous
- *  input guard only — validity is decided by libphonenumber, not by length. */
-const MAX_PHONE_DIGITS = 18;
-/** Must leave headroom for the Service / Company size / Budget prefix the API route
- *  prepends, because the backend caps the composed `message` at 5000 characters. */
-const MAX_MESSAGE_CHARS = 4000;
-
-// Every dialling country, not a seven-entry whitelist: the old list silently truncated
-// out-of-list numbers to India's digit count, or hard-blocked the enquiry outright.
-const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
-const allPhoneCountries = getCountries()
-  .map((code) => ({
-    code,
-    name: regionNames.of(code) ?? code,
-    dialCode: `+${getCountryCallingCode(code)}`,
-  }))
-  .sort((left, right) => left.name.localeCompare(right.name));
-// India first — primary market — then the rest alphabetically.
-const phoneCountries = [
-  ...allPhoneCountries.filter((country) => country.code === "IN"),
-  ...allPhoneCountries.filter((country) => country.code !== "IN"),
-];
-
 type FormState = "idle" | "submitting" | "success" | "error";
 
 export default function ContactPage() {
   const [formState, setFormState] = useState<FormState>("idle");
   const [selectedService, setSelectedService] = useState("");
-  const [phoneCountry, setPhoneCountry] = useState<CountryCode>("IN");
   const [phoneError, setPhoneError] = useState("");
   const [form, setForm] = useState({
     name: "",
@@ -51,28 +30,15 @@ export default function ContactPage() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const selectedPhoneCountry = phoneCountries.find((country) => country.code === phoneCountry) ?? phoneCountries[0];
-
   const handlePhoneChange = (value: string) => {
-    // Digits only, but never truncated to a per-country length — national number lengths
-    // vary, and slicing produced valid-looking numbers that belonged to nobody.
-    const digits = value.replace(/\D/g, "").slice(0, MAX_PHONE_DIGITS);
-    setForm((prev) => ({ ...prev, phone: digits }));
-    setPhoneError("");
-  };
-
-  const handlePhoneCountryChange = (countryCode: string) => {
-    setPhoneCountry(countryCode as CountryCode);
+    setForm((prev) => ({ ...prev, phone: value }));
     setPhoneError("");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const fullPhone = form.phone ? `${selectedPhoneCountry.dialCode}${form.phone}` : "";
-    // Validate against the selected country's real numbering plan instead of one hardcoded
-    // digit count, so no legitimate international number is rejected.
-    if (fullPhone && !isValidPhoneNumber(fullPhone)) {
-      setPhoneError(`Enter a valid phone number for ${selectedPhoneCountry.name}`);
+    if (form.phone && !isValidPhoneNumber(form.phone)) {
+      setPhoneError("Enter a valid phone number for the selected country");
       return;
     }
     setFormState("submitting");
@@ -82,7 +48,6 @@ export default function ContactPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
-          phone: fullPhone,
           service: selectedService || "Other",
           description: form.message,
         }),
@@ -230,7 +195,6 @@ export default function ContactPage() {
                       setFormState("idle");
                       setForm({ name: "", email: "", company: "", phone: "", message: "" });
                       setSelectedService("");
-                      setPhoneCountry("IN");
                       setPhoneError("");
                     }}
                     className="mt-10 rounded-full border border-white/15 px-7 py-2.5 text-sm font-semibold text-white/60 transition hover-fine:-translate-y-0.5 hover-fine:border-white/30 hover-fine:text-white"
@@ -258,46 +222,15 @@ export default function ContactPage() {
                       <label htmlFor="contact-phone" className="block text-xs font-bold uppercase tracking-widest text-white/45">
                         Phone
                       </label>
-                      <div className={`flex overflow-hidden rounded-lg border bg-white/[0.04] transition focus-within:bg-white/[0.07] focus-within:ring-1 ${
-                        phoneError
-                          ? "border-red-400/60 focus-within:ring-red-400/20"
-                          : "border-white/10 focus-within:border-[#7dd3fc]/60 focus-within:ring-[#7dd3fc]/25"
-                      }`}>
-                        <select
-                          aria-label="Phone country code"
-                          value={phoneCountry}
-                          onChange={(e) => handlePhoneCountryChange(e.target.value)}
-                          className="w-[104px] shrink-0 cursor-pointer border-r border-white/10 bg-[#0b0e19] px-2 text-xs font-bold text-[#7dd3fc] outline-none"
-                        >
-                          {phoneCountries.map((country) => (
-                            <option key={country.code} value={country.code} className="bg-[#0b0e19] text-white">
-                              {country.code} {country.dialCode}
-                            </option>
-                          ))}
-                        </select>
-                        <input
-                          id="contact-phone"
-                          name="phone"
-                          type="tel"
-                          inputMode="numeric"
-                          maxLength={MAX_PHONE_DIGITS}
-                          value={form.phone}
-                          onChange={(e) => handlePhoneChange(e.target.value)}
-                          placeholder="Phone number"
-                          aria-describedby="contact-phone-hint"
-                          aria-invalid={phoneError ? true : undefined}
-                          className="min-w-0 flex-1 bg-transparent px-3 py-3 text-sm text-white placeholder-white/20 outline-none"
-                        />
-                      </div>
-                      {phoneError ? (
-                        <p id="contact-phone-hint" role="alert" className="text-[11px] text-red-400">
-                          {phoneError}
-                        </p>
-                      ) : (
-                        <p id="contact-phone-hint" className="text-[11px] text-white/30">
-                          {selectedPhoneCountry.name} ({selectedPhoneCountry.dialCode}) — digits only, no dial code
-                        </p>
-                      )}
+                      <PhoneInput
+                        defaultCountry="in"
+                        value={form.phone}
+                        onChange={handlePhoneChange}
+                        placeholder="Enter phone number"
+                        inputProps={{ id: "contact-phone", name: "phone", autoComplete: "tel" }}
+                        className={`lead-phone-input ${phoneError ? "lead-phone-input--error" : ""}`}
+                      />
+                      {phoneError && <p className="text-[11px] text-red-400">{phoneError}</p>}
                     </div>
                   </div>
 

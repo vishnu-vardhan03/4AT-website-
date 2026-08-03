@@ -85,7 +85,8 @@ export default function HybridSection() {
             {/* Stats grid */}
             <div className="grid grid-cols-2" style={{ borderBottom: "1px solid rgba(255,255,255,.06)" }}>
               {[
-               
+                ["Response Speed", "< 5 seconds"],
+                ["Auto-Resolution", "85% of queries"]
               ].map(([label, val]) => (
                 <div key={label} className="px-5 py-4"
                   style={{ borderRight: "1px solid rgba(255,255,255,.05)", background: "rgba(4,6,15,.4)" }}>
@@ -98,7 +99,7 @@ export default function HybridSection() {
 
             <div className="px-7 py-6">
               <div className="text-[15px] uppercase tracking-widest text-white mb-3">
-                What AI handles instantly
+                What AI handles instantly 
               </div>
               {aiItems.map((item) => (
                 <div key={item} className="flex items-start gap-3 py-2.5"
@@ -141,7 +142,8 @@ export default function HybridSection() {
             {/* Stats grid */}
             <div className="grid grid-cols-2" style={{ borderBottom: "1px solid rgba(255,255,255,.06)" }}>
               {[
-                
+                ["Escalation SLA", "< 15 mins"],
+                ["Expert Support", "24/7 Coverage"]
               ].map(([label, val]) => (
                 <div key={label} className="px-5 py-4"
                   style={{ borderRight: "1px solid rgba(255,255,255,.05)", background: "rgba(4,6,15,.4)" }}>

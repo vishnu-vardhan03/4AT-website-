@@ -82,7 +82,7 @@ function ReconcileViz() {
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-2">
             <span className="w-5 h-5 rounded-sm flex items-center justify-center bg-[rgba(45,212,191,.2)] text-[#5eead4] text-xs">✓</span>
-            <span className="text-xs text-white/60">Matched</span>
+            <span className="text-xs text-white">Matched</span>
           </div>
           <div className="text-lg font-bold text-white">24,268</div>
           <div className="w-full h-1.5 bg-[rgba(255,255,255,.1)] rounded-full mt-2">
@@ -92,15 +92,15 @@ function ReconcileViz() {
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-2">
             <span className="w-5 h-5 rounded-sm flex items-center justify-center bg-[rgba(255,255,255,.1)] text-white/50 text-xs">◯</span>
-            <span className="text-xs text-white/60">Unmatched</span>
+            <span className="text-xs text-white">Unmatched</span>
           </div>
           <div className="text-lg font-bold text-white/60">27</div>
           <div className="w-full h-1.5 bg-[rgba(255,255,255,.1)] rounded-full mt-2">
-            <div className="h-full w-[6%] bg-white/30 rounded-full"></div>
+            <div className="h-full w-[6%] bg-white rounded-full"></div>
           </div>
         </div>
       </div>
-      <div className="text-xs text-white/50 mb-1">Match Accuracy</div>
+      <div className="text-xs text-white mb-1">Match Accuracy</div>
       <svg height="40" viewBox="0 0 200 40" className="w-full" preserveAspectRatio="none">
         <polyline points="0,35 20,32 40,34 60,28 80,25 100,20 120,18 140,15 160,10 180,8 200,5"
           fill="none" stroke="#5eead4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -131,7 +131,7 @@ function AnomalyViz() {
         ))}
       </svg>
       <div className="text-xs text-[#ef4444] mb-2 flex items-center gap-1.5">
-        <span>▲</span> Anomalous transaction detected <span className="text-white/40 ml-auto">10:42:31 AM</span>
+        <span>▲</span> Anomalous transaction detected <span className="text-white ml-auto">10:42:31 AM</span>
       </div>
     </div>
   );
@@ -142,21 +142,21 @@ function DocumentViz() {
     <div className="mb-5">
       <div className="flex gap-3 mb-4">
         <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-[#7dd3fc]/30 to-[#2dd4bf]/20 flex items-center justify-center">
-          <span className="text-white/40 text-xs">PDF</span>
+          <span className="text-white text-xs">PDF</span>
         </div>
         <div className="flex-1 text-xs">
-          <div className="text-white/80 mb-1">Invoice_8421.pdf</div>
-          <div className="text-white/50 mb-2">Extracting...</div>
+          <div className="text-white mb-1">Invoice_8421.pdf</div>
+          <div className="text-white mb-2">Extracting...</div>
           <div className="w-full h-1.5 bg-[rgba(255,255,255,.1)] rounded-full">
             <div className="h-full w-[72%] bg-[#7dd3fc] rounded-full"></div>
           </div>
         </div>
       </div>
       <div className="grid grid-cols-2 gap-3 text-xs">
-        <div><span className="text-white/50">Vendor</span><div className="font-bold">Acme Corp</div></div>
-        <div><span className="text-white/50">Amount</span><div className="font-bold text-[#5eead4]">$24,850.00</div></div>
-        <div><span className="text-white/50">Invoice Date</span><div className="font-bold">May 24, 2024</div></div>
-        <div><span className="text-white/50">Due Date</span><div className="font-bold">May 30, 2024</div></div>
+        <div><span className="text-white">Vendor</span><div className="font-bold">Acme Corp</div></div>
+        <div><span className="text-white">Amount</span><div className="font-bold text-[#5eead4]">$24,850.00</div></div>
+        <div><span className="text-white">Invoice Date</span><div className="font-bold">May 24, 2024</div></div>
+        <div><span className="text-white">Due Date</span><div className="font-bold">May 30, 2024</div></div>
       </div>
       <div className="mt-2 text-xs flex items-center gap-1 text-[#5eead4]">
         <span>✓</span> Extracted
@@ -182,7 +182,7 @@ function ForecastViz() {
           </svg>
         </div>
       </div>
-      <div className="flex justify-between text-xs text-white/50">
+      <div className="flex justify-between text-xs text-white">
         <span>Jul</span><span>Aug</span><span className="text-right">Sep 30<br/>$2.45M</span>
       </div>
     </div>
@@ -207,7 +207,7 @@ function AuditViz() {
           }`}>
             {t.status === "Complete" ? "✓" : "◆"}
           </span>
-          <span className="text-white/70">{t.name}</span>
+          <span className="text-white">{t.name}</span>
           <span className={`ml-auto ${t.status === "Complete" ? "text-[#5eead4]" : "text-[#c4b5fd]"}`}>
             {t.status}
           </span>
@@ -220,7 +220,7 @@ function AuditViz() {
 function ErpViz() {
   const systems = [
     { name: "NetSuite", x: 5, c: "#999" },
-    { name: "Oracle", x: 52, c: "#ef4444" },
+    { name: "Oracle", x: 53, c: "#ef4444" },
     { name: "SAP", x: 87, c: "#2563eb" },
     { name: "Dynamics 365", x: 140, c: "#7c3aed" },
   ];
@@ -241,7 +241,7 @@ function ErpViz() {
         ))}
         {/* Labels */}
         {systems.map((sys) => (
-          <text key={`${sys.name}-label`} x={sys.x} y="50" textAnchor="middle" className="text-xs fill-white/50" fontSize="10">
+          <text key={`${sys.name}-label`} x={sys.x} y="50" textAnchor="middle" className="text-xs fill-white" fontSize="10">
             {sys.name}
           </text>
         ))}
@@ -296,7 +296,7 @@ export default function CapabilitiesSection() {
                 }`}
               >
                 {/* Header with badge */}
-                <div className="flex items-center justify-between gap-3 mb-5 pb-5 border-b border-white/8">
+                <div className="flex items-center justify-between gap-3 mb-5 pb-5 border-b border-white">
                   <h3 className="text-base sm:text-[17px] font-bold">{cap.title}</h3>
                   <span
                     className="text-[10px] sm:text-[11px] font-bold px-2.5 py-1.5 rounded-lg whitespace-nowrap flex-shrink-0 uppercase tracking-wide"
@@ -310,13 +310,13 @@ export default function CapabilitiesSection() {
                 {VizComponent && <VizComponent />}
 
                 {/* Description */}
-                <p className="text-xs sm:text-sm text-white/52 leading-relaxed flex-1 mb-5">
+                <p className="text-xs sm:text-sm text-white leading-relaxed flex-1 mb-5">
                   {cap.desc}
                 </p>
 
                 {/* Stat */}
-                {cap.stat && (
-                  <div className="pt-5 border-t border-white/8">
+                {/* {cap.stat && ( */}
+                  <div className="pt-5 border-t border-white">
                     <div
                       className="text-2xl sm:text-3xl font-bold"
                       style={{
@@ -328,13 +328,12 @@ export default function CapabilitiesSection() {
                             : "#7dd3fc",
                       }}
                     >
-                      {cap.stat}
+                      {/* {cap.stat} */}
                     </div>
                     <div className="text-xs text-white/35 uppercase tracking-widest mt-1">
-                      {cap.statLabel}
+                      {/* {cap.statLabel} */}
                     </div>
                   </div>
-                )}
               </TiltCard>
             );
           })}

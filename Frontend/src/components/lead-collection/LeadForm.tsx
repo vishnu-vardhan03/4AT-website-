@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { Loader2 } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
 import { SelectField, TextareaField, TextField } from "./FormFields";
 import { SuccessMessage } from "./SuccessMessage";
 import { SERVICE_OPTIONS } from "./types";
@@ -84,17 +86,25 @@ export function LeadForm({ onClose, bookMeetingHref = "/contact" }: LeadFormProp
           onChange={(e) => updateField("email", e.target.value)}
           error={errors.email}
         />
-        <TextField
-          id="lead-phone"
-          type="tel"
-          label="Phone Number"
-          required
-          placeholder="+1 000 000 0000"
-          autoComplete="tel"
-          value={formData.phone}
-          onChange={(e) => updateField("phone", e.target.value)}
-          error={errors.phone}
-        />
+        <div>
+          <label
+            htmlFor="lead-phone"
+            className="mb-2 block text-[11px] font-bold uppercase tracking-widest text-white/45"
+          >
+            Phone Number <span className="text-[#7dd3fc]">*</span>
+          </label>
+          <PhoneInput
+            defaultCountry="in"
+            value={formData.phone}
+            onChange={(value) => updateField("phone", value)}
+            placeholder="Enter phone number"
+            inputProps={{ id: "lead-phone", autoComplete: "tel" }}
+            className={`lead-phone-input ${errors.phone ? "lead-phone-input--error" : ""}`}
+          />
+          {errors.phone && (
+            <p className="mt-1.5 text-[11px] font-medium text-red-400">{errors.phone}</p>
+          )}
+        </div>
       </div>
 
       <SelectField
