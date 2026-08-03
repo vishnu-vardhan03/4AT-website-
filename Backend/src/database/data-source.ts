@@ -1,9 +1,11 @@
 import 'dotenv/config';
 import { DataSource } from 'typeorm';
 import { AcademyLead } from '../academy/academy-lead.entity';
+import { AcademyRegistration } from '../academy/academy-registration.entity';
 import { AiLead } from '../ai/ai-lead.entity';
 import { ConsultingLead } from '../consulting/consulting-lead.entity';
 import { InitialLeadTables1721640000000 } from './migrations/1721640000000-initial-lead-tables';
+import { AcademyRegistrations1721640000001 } from './migrations/1721640000001-academy-registrations';
 
 const useUrl = Boolean(process.env.DATABASE_URL);
 
@@ -20,6 +22,6 @@ export default new DataSource({
       }),
   ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
   synchronize: false,
-  entities: [AcademyLead, ConsultingLead, AiLead],
-  migrations: [InitialLeadTables1721640000000],
+  entities: [AcademyLead, AcademyRegistration, ConsultingLead, AiLead],
+  migrations: [InitialLeadTables1721640000000, AcademyRegistrations1721640000001],
 });
