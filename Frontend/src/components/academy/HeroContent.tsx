@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, PhoneCall } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/academy/Button";
 
@@ -152,8 +152,8 @@ export function HeroContent() {
             ease: [0.34, 1.56, 0.64, 1]
           }}
         >
-          <Button href="/academy/register" variant="primary">
-            Check your eligibility
+          <Button href="/academy/courses" variant="primary">
+            Explore programs
             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Button>
         </motion.div>
@@ -167,9 +167,9 @@ export function HeroContent() {
             ease: [0.34, 1.56, 0.64, 1]
           }}
         >
-          <Button href="/academy/courses" variant="secondary">
-            Explore programs
-            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+          <Button href="/contact" variant="secondary">
+            Contact us
+            <PhoneCall className="w-4 h-4 transition-transform duration-300 group-hover:scale-110 shrink-0" />
           </Button>
         </motion.div>
       </div>
