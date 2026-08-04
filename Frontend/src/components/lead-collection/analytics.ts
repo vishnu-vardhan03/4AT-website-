@@ -1,4 +1,4 @@
-import { trackEvent } from "@/lib/analytics";
+import { trackEvent, type AnalyticsEventParameters } from "@/lib/analytics";
 
 export type LeadWidgetAnalyticsEvent =
   | "widget_displayed"
@@ -10,7 +10,7 @@ export type LeadWidgetAnalyticsEvent =
 // Forward the existing lead-widget lifecycle to the shared, consent-aware GA4 utility.
 export function trackLeadWidgetEvent(
   event: LeadWidgetAnalyticsEvent,
-  payload?: Record<string, unknown>,
+  payload?: AnalyticsEventParameters,
 ) {
-  trackEvent(event, payload as Record<string, string | number | boolean | undefined> | undefined);
+  trackEvent(event, payload);
 }

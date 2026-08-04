@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import ConsentAnalytics from "@/components/ConsentAnalytics";
 import CookieConsent from "@/components/CookieConsent";
@@ -49,11 +50,12 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full antialiased`}
-      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col" suppressHydrationWarning>
+      <body className="min-h-full flex flex-col">
         {children}
-        <ConsentAnalytics />
+        <Suspense fallback={null}>
+          <ConsentAnalytics />
+        </Suspense>
         <CookieConsent />
       </body>
     </html>

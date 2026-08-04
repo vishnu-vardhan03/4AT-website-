@@ -45,7 +45,7 @@ const nextConfig = {
       // react-international-phone serves its Twemoji country flags from cdnjs.
       "img-src 'self' blob: data: https://cdn.sanity.io https://images.unsplash.com https://api.dicebear.com https://cdnjs.cloudflare.com",
       "media-src 'self'",
-      "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://vitals.vercel-insights.com",
+      "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://vitals.vercel-insights.com",
       "upgrade-insecure-requests",
     ].join("; ");
     return [{

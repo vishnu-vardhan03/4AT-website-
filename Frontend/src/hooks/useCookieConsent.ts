@@ -1,33 +1,38 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
+import {
+  COOKIE_CONSENT_EVENT,
+  COOKIE_CONSENT_KEY,
+  parseCookieConsent,
+  readCookieConsent,
+  type ConsentState,
+} from "@/lib/analytics";
 
-type ConsentState = {
-  necessary: true;
-  analytics: boolean;
-  marketing: boolean;
-};
-
-export function useCookieConsent() {
+export function useCookieConsent(): ConsentState | null {
   const [consent, setConsent] = useState<ConsentState | null>(null);
 
   useEffect(() => {
-    const stored = localStorage.getItem('4at_cookie_consent');
-    if (stored) {
-      try {
-        setConsent(JSON.parse(stored));
-      } catch {
-        setConsent(null);
-      }
-    }
+    setConsent(readCookieConsent());
 
-    const handler = (e: Event) => {
-      const custom = e as CustomEvent<ConsentState>;
-      setConsent(custom.detail);
+    const handleConsentUpdate = (event: Event) => {
+      if (!(event instanceof CustomEvent)) return;
+      const detail = event.detail as unknown;
+      setConsent(parseCookieConsent(JSON.stringify(detail)));
     };
 
-    window.addEventListener('cookie-consent-updated', handler);
-    return () => window.removeEventListener('cookie-consent-updated', handler);
+    const handleStorage = (event: StorageEvent) => {
+      if (event.key === COOKIE_CONSENT_KEY) {
+        setConsent(parseCookieConsent(event.newValue));
+      }
+    };
+
+    window.addEventListener(COOKIE_CONSENT_EVENT, handleConsentUpdate);
+    window.addEventListener("storage", handleStorage);
+    return () => {
+      window.removeEventListener(COOKIE_CONSENT_EVENT, handleConsentUpdate);
+      window.removeEventListener("storage", handleStorage);
+    };
   }, []);
 
   return consent;

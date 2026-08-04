@@ -1,42 +1,93 @@
 "use client";
 
-type AnalyticsEventParameters = Record<string, string | number | boolean | undefined>;
+export const COOKIE_CONSENT_KEY = "4at_cookie_consent";
+export const COOKIE_CONSENT_EVENT = "cookie-consent-updated";
+
+export type ConsentState = {
+  necessary: true;
+  analytics: boolean;
+  marketing: boolean;
+};
+
+export type AnalyticsEventParameters = Record<
+  string,
+  string | number | boolean | undefined
+>;
+
+type GtagCommand =
+  | [command: "js", date: Date]
+  | [command: "config", measurementId: string, parameters?: AnalyticsEventParameters]
+  | [command: "event", eventName: string, parameters?: AnalyticsEventParameters]
+  | [command: "consent", action: "default" | "update", parameters: AnalyticsEventParameters];
 
 declare global {
   interface Window {
-    dataLayer: unknown[][];
-    gtag?: (...args: unknown[]) => void;
+    dataLayer: GtagCommand[];
+    gtag?: (...args: GtagCommand) => void;
   }
 }
 
-// Keep analytics inert during SSR, local development, tests, and before analytics consent.
-function canTrackAnalytics() {
-  if (typeof window === "undefined" || process.env.NODE_ENV !== "production") return false;
+export function parseCookieConsent(value: string | null): ConsentState | null {
+  if (value === null) return null;
+
   try {
-    const consent = JSON.parse(localStorage.getItem("4at_cookie_consent") ?? "null") as { analytics?: boolean } | null;
-    return consent?.analytics === true;
+    const parsed: unknown = JSON.parse(value);
+    if (typeof parsed !== "object" || parsed === null) return null;
+
+    const consent = parsed as Record<string, unknown>;
+    if (
+      consent.necessary !== true ||
+      typeof consent.analytics !== "boolean" ||
+      typeof consent.marketing !== "boolean"
+    ) {
+      return null;
+    }
+
+    return {
+      necessary: true,
+      analytics: consent.analytics,
+      marketing: consent.marketing,
+    };
   } catch {
-    return false;
+    return null;
   }
 }
 
-// Centralize custom GA4 events so components never access gtag or dataLayer directly.
-export function trackEvent(eventName: string, parameters: AnalyticsEventParameters = {}) {
-  if (!canTrackAnalytics() || !window.gtag) return;
+export function readCookieConsent(): ConsentState | null {
+  if (typeof window === "undefined") return null;
+  return parseCookieConsent(window.localStorage.getItem(COOKIE_CONSENT_KEY));
+}
+
+export function hasAnalyticsConsent(): boolean {
+  return readCookieConsent()?.analytics === true;
+}
+
+export function trackEvent(
+  eventName: string,
+  parameters: AnalyticsEventParameters = {},
+): void {
+  if (!hasAnalyticsConsent() || typeof window.gtag !== "function") return;
   window.gtag("event", eventName, parameters);
 }
 
-// Use GA4's recommended form_submit event with a stable form identifier.
-export function trackFormSubmit(formName: string, parameters: AnalyticsEventParameters = {}) {
-  trackEvent("form_submit", { form_name: formName, ...parameters });
+export function trackPageView(path: string): void {
+  if (typeof window === "undefined") return;
+  trackEvent("page_view", {
+    page_location: window.location.href,
+    page_path: path,
+    page_title: document.title,
+  });
 }
 
-// Standardize CTA/button reporting while preserving a readable label and location.
-export function trackButtonClick(buttonName: string, location: string) {
-  trackEvent("button_click", { button_name: buttonName, location });
+export function trackButtonClick(name: string, location: string): void {
+  trackEvent("button_click", { button_name: name, location });
 }
 
-// Report App Router navigations after the initial page view emitted by GoogleAnalytics.
-export function trackPageView(path: string) {
-  trackEvent("page_view", { page_location: window.location.href, page_path: path, page_title: document.title });
+export function trackFormSubmit(
+  name: string,
+  parameters: AnalyticsEventParameters = {},
+): void {
+  trackEvent("form_submit", { form_name: name, ...parameters });
 }
+
+export {};
