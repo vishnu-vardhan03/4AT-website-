@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { lmsCourses } from "@/components/academy/data";
-import { Lock, ArrowLeft, ArrowRight, Star, Clock, Check, Building2, Monitor } from "lucide-react";
+import { Lock, ArrowLeft, ArrowRight, Clock, Monitor } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -270,21 +270,21 @@ export function LmsCourses({ sectionId = "courses" }: { sectionId?: string }) {
           <div className="flex items-center gap-3 shrink-0 justify-end">
             <Link
               href="/academy/courses"
-              className="h-11 px-5 rounded-[16px] border border-[#5EEAD4]/30 bg-[#5EEAD4]/10 flex items-center justify-center text-[10px] font-bold uppercase tracking-[0.14em] text-[#5EEAD4] hover:bg-[#5EEAD4] hover:text-black hover:shadow-[0_0_15px_rgba(94,234,212,0.22)] active:scale-95 transition-all"
+              className="h-11 px-5 rounded-full fx-primary-btn text-white flex items-center justify-center text-[10px] font-bold uppercase tracking-[0.14em] transition-all"
               aria-label="View all courses"
             >
               View all courses
             </Link>
             <button
               onClick={scrollLeft}
-              className="w-11 h-11 rounded-[16px] border border-white/10 bg-transparent flex items-center justify-center text-white hover:border-[#A78BFA] hover:shadow-[0_0_15px_rgba(167,139,250,0.2)] active:scale-95 transition-all cursor-pointer"
+              className="w-11 h-11 rounded-full fx-ghost-btn text-white flex items-center justify-center transition-all cursor-pointer"
               aria-label="Scroll left"
             >
               <ArrowLeft className="w-4 h-4" />
             </button>
             <button
               onClick={scrollRight}
-              className="w-11 h-11 rounded-[16px] border border-white/10 bg-transparent flex items-center justify-center text-white hover:border-[#A78BFA] hover:shadow-[0_0_15px_rgba(167,139,250,0.2)] active:scale-95 transition-all cursor-pointer"
+              className="w-11 h-11 rounded-full fx-ghost-btn text-white flex items-center justify-center transition-all cursor-pointer"
               aria-label="Scroll right"
             >
               <ArrowRight className="w-4 h-4" />
@@ -304,7 +304,6 @@ export function LmsCourses({ sectionId = "courses" }: { sectionId?: string }) {
           >
             {filteredCourses.map((course, idx) => {
               const isLocked = course.locked;
-              const colors = getCategoryColor(course.category);
 
               return (
                 <div
@@ -418,7 +417,7 @@ export function LmsCourses({ sectionId = "courses" }: { sectionId?: string }) {
                   {/* CTA Buttons */}
                   <div className="mt-4 pt-2.5 border-t border-white/5 z-10 shrink-0 flex gap-2">
                     <button
-                      className="flex-1 py-2.5 rounded-xl text-[11px] tracking-[0.14em] uppercase font-bold text-black bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#A78BFA] shadow-[0_6px_20px_rgba(139,92,246,0.22)] hover:-translate-y-0.5 hover:brightness-110 active:scale-95 transition-all duration-300 cursor-pointer text-center flex items-center justify-center gap-1.5"
+                      className="flex-1 py-2.5 px-4 rounded-full text-[11px] tracking-[0.1em] uppercase font-bold text-white fx-primary-btn flex items-center justify-center gap-1.5 transition-all duration-300 cursor-pointer"
                       onClick={(e) => {
                         e.stopPropagation();
                         const slug = course.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -426,10 +425,10 @@ export function LmsCourses({ sectionId = "courses" }: { sectionId?: string }) {
                       }}
                     >
                       <span>{course.ctaText || "VIEW CURRICULUM"}</span>
-                      <span className="text-sm font-normal">→</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-white transition-transform duration-300 group-hover:translate-x-0.5" />
                     </button>
                     <button
-                      className="shrink-0 px-3.5 py-2.5 rounded-xl text-[11px] tracking-[0.14em] uppercase font-bold text-white/70 border border-white/10 hover:border-[#A78BFA]/50 hover:text-[#A78BFA] hover:bg-[#A78BFA]/5 active:scale-95 transition-all duration-300 cursor-pointer whitespace-nowrap"
+                      className="shrink-0 px-4 py-2.5 rounded-full text-[11px] tracking-[0.1em] uppercase font-bold text-white fx-ghost-btn transition-all duration-300 cursor-pointer whitespace-nowrap"
                       onClick={(e) => {
                         e.stopPropagation();
                         router.push("/academy/register");
