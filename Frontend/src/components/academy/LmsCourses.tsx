@@ -4,76 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { lmsCourses } from "@/components/academy/data";
-import { Lock, ArrowLeft, ArrowRight, Star, Clock, Check, Building2, Monitor } from "lucide-react";
+import { Lock, ArrowLeft, ArrowRight, Clock, Monitor } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { SectionPill } from "@/components/academy/SectionPill";
-
-const getCategoryColor = (category: string) => {
-  switch (category) {
-    case "Accounting & ERP":
-      return {
-        text: "text-[#5EEAD4]", // Cyan
-        bg: "bg-[#5EEAD4]",
-        bgSubtle: "bg-[#5EEAD4]/10",
-        border: "rgba(94, 234, 212, 0.3)",
-        borderHover: "rgba(167, 139, 250, 0.25)",
-        btnBg: "bg-gradient-to-r from-[#8B5CF6] to-[#A78BFA]",
-        btnText: "text-black",
-        accentHex: "#5EEAD4",
-        badgeText: "ACCOUNTING"
-      };
-    case "Audit & Risk":
-      return {
-        text: "text-[#60A5FA]", // Blue
-        bg: "bg-[#60A5FA]",
-        bgSubtle: "bg-[#60A5FA]/10",
-        border: "rgba(96, 165, 250, 0.3)",
-        borderHover: "rgba(167, 139, 250, 0.25)",
-        btnBg: "bg-gradient-to-r from-[#8B5CF6] to-[#A78BFA]",
-        btnText: "text-black",
-        accentHex: "#60A5FA",
-        badgeText: "AUDIT"
-      };
-    case "Global Taxation":
-      return {
-        text: "text-[#A78BFA]", // Lavender
-        bg: "bg-[#A78BFA]",
-        bgSubtle: "bg-[#A78BFA]/10",
-        border: "rgba(167, 139, 250, 0.3)",
-        borderHover: "rgba(167, 139, 250, 0.25)",
-        btnBg: "bg-gradient-to-r from-[#8B5CF6] to-[#A78BFA]",
-        btnText: "text-black",
-        accentHex: "#A78BFA",
-        badgeText: "TAXATION"
-      };
-    case "FP&A & Modeling":
-      return {
-        text: "text-[#8B5CF6]", // Violet
-        bg: "bg-[#8B5CF6]",
-        bgSubtle: "bg-[#8B5CF6]/10",
-        border: "rgba(139, 92, 246, 0.3)",
-        borderHover: "rgba(167, 139, 250, 0.25)",
-        btnBg: "bg-gradient-to-r from-[#8B5CF6] to-[#A78BFA]",
-        btnText: "text-black",
-        accentHex: "#8B5CF6",
-        badgeText: "FP&A"
-      };
-    default:
-      return {
-        text: "text-[#A78BFA]",
-        bg: "bg-[#A78BFA]",
-        bgSubtle: "bg-[#A78BFA]/10",
-        border: "rgba(167, 139, 250, 0.3)",
-        borderHover: "rgba(167, 139, 250, 0.25)",
-        btnBg: "bg-gradient-to-r from-[#8B5CF6] to-[#A78BFA]",
-        btnText: "text-black",
-        accentHex: "#A78BFA",
-        badgeText: "COURSE"
-      };
-  }
-};
 
 export function LmsCourses({ sectionId = "courses" }: { sectionId?: string }) {
   const router = useRouter();
@@ -272,8 +207,6 @@ export function LmsCourses({ sectionId = "courses" }: { sectionId?: string }) {
           >
             {filteredCourses.map((course, idx) => {
               const isLocked = course.locked;
-              const colors = getCategoryColor(course.category);
-
               return (
                 <div
                   key={course.title}

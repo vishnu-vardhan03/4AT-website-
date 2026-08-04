@@ -3,7 +3,7 @@
 import React from "react";
 import { SectionPill } from "./SectionPill";
 import { HowItWorks } from "./HowItWorks";
-import { BookOpen, Target, ShieldCheck, Zap, Layers, Award } from "lucide-react";
+import { BookOpen, Target } from "lucide-react";
 
 export function OurProgram({ sectionId = "program" }: { sectionId?: string }) {
   return (
