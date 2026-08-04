@@ -15,7 +15,7 @@ const DEFAULT_CONSENT: ConsentState = {
   necessary: true,
   analytics: false,
   marketing: false,
-};
+}
 
 function saveConsent(consent: ConsentState) {
   localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));

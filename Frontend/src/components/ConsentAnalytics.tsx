@@ -1,37 +1,73 @@
 'use client';
 
-import { Analytics } from '@vercel/analytics/next';
-import { usePathname } from 'next/navigation';
+import Script from 'next/script';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { useCookieConsent } from '@/hooks/useCookieConsent';
-import { trackPageView } from '@/lib/analytics';
+
+declare global {
+  interface Window {
+    dataLayer: unknown[];
+    gtag: (...args: unknown[]) => void;
+  }
+}
 
 export default function ConsentAnalytics() {
   const consent = useCookieConsent();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
+  const enabled =
+    process.env.NODE_ENV === 'production' &&
+    consent?.analytics === true &&
+    !!measurementId;
 
   useEffect(() => {
-    if (process.env.NODE_ENV !== 'production' || consent?.analytics !== true) return;
-    const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-    if (!measurementId || document.querySelector('script[data-4at-ga]')) return;
+    if (!enabled) return;
+    if (typeof window.gtag !== 'function') return;
 
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = (...args: unknown[]) => window.dataLayer.push(args);
-    window.gtag('js', new Date());
-    window.gtag('config', measurementId, { send_page_view: false });
+    window.gtag('event', 'page_view', {
+      page_title: document.title,
+      page_location: window.location.href,
+      page_path:
+        pathname +
+        (searchParams.toString()
+          ? `?${searchParams.toString()}`
+          : ''),
+    });
+  }, [enabled, pathname, searchParams]);
 
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
-    script.dataset['4atGa'] = 'true';
-    document.head.appendChild(script);
-  }, [consent]);
+  if (!enabled) {
+    return null;
+  }
 
-  useEffect(() => {
-    // Record the current route after consent and every subsequent client-side navigation.
-    if (consent?.analytics === true) trackPageView(pathname);
-  }, [consent?.analytics, pathname]);
+  return (
+    <>
+      <Script
+        id="ga-script"
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
+      />
 
-  // Keep the existing Vercel provider behind the same analytics preference.
-  return consent?.analytics === true ? <Analytics /> : null;
+      <Script id="ga-init" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+
+          function gtag(){
+            dataLayer.push(arguments);
+          }
+
+          window.gtag = gtag;
+
+          gtag('js', new Date());
+
+          gtag('config', '${measurementId}', {
+            send_page_view: false
+          });
+        `}
+      </Script>
+    </>
+  );
 }
