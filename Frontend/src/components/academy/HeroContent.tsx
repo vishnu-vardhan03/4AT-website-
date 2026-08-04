@@ -18,13 +18,12 @@ export function HeroContent() {
   }, []);
 
   const headlineWords = [
-    { text: "Building", delay: 0.5, highlight: false },
-    { text: "Future-Ready", delay: 0.522, highlight: false },
-    { text: "Finance,", delay: 0.624, highlight: "careers" },
-    { text: "Accounting", delay: 0.646, highlight: false },
-    { text: "&", delay: 0.668, highlight: false },
-    { text: "Audit", delay: 0.69, highlight: false },
-    { text: "Professionals", delay: 0.792, highlight: "certificates" }
+    { text: "Built", delay: 0.5, highlight: false },
+    { text: "for", delay: 0.522, highlight: false },
+    { text: "careers,", delay: 0.624, highlight: "careers" },
+    { text: "not", delay: 0.646, highlight: false },
+    { text: "just", delay: 0.668, highlight: false },
+    { text: "certificates.", delay: 0.792, highlight: "certificates" }
   ];
 
   const trustChips = [

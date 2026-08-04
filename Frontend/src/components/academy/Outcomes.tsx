@@ -209,7 +209,7 @@ export function Outcomes() {
           <p className="text-sm sm:text-base text-white/70 font-sans leading-relaxed">
             Every graduate earns the{" "}
             <span className="text-white font-semibold">4AT Academy — FinTech Engineering</span>{" "}
-            certification, recognised across our hiring-partner network.
+            certification.
           </p>
         </div>
 

@@ -9,7 +9,7 @@ const faqItems = [
   {
     question: "Who can apply?",
     answer:
-      "Commerce, accounting or finance graduates and final-semester students. All candidates clear a short screening assessment.",
+      "Commerce, accounting, or finance graduates and final-semester students. All clear a short screening assessment; experienced professionals can take the advanced tracks.",
   },
   {
     question: "What does it cost?",
@@ -19,17 +19,17 @@ const faqItems = [
   {
     question: "Is placement guaranteed?",
     answer:
-      "Candidates who clear the assessments and interview earn an internship and a placement pathway, either at 4AT or a partner.",
+      "Candidates who clear the assessments and interview earn an internship and a placement pathway — at 4AT or a partner.",
   },
   {
     question: "How is this different from a normal course?",
     answer:
-      "It's practice-led and run by a working Finance & Accounting consulting firm. You'll train on live ERP systems and AI-powered finance tools, work on real client-style scenarios, and follow the Train • Hire • Deploy model designed to prepare you for real finance careers.",
+      "Practice-led and run by a working finance, accounting, and audit firm — real systems, AI tools, client-style work, and a Train–Hire–Deploy model that ends in a job.",
   },
   {
-    question: "Do I need prior experience or coding skills?",
+    question: "Do I need prior experience?",
     answer:
-      "No. The flagship Acc L1 track is built for freshers. You'll learn the AI and ERP tools as part of the program.",
+      "No — the fresher tracks (Acc L1, IA L1, SOC 2) are built from the ground up. Acc L2 and FP&A are for experienced professionals.",
   },
 ];
 

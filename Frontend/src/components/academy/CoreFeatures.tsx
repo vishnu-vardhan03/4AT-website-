@@ -250,17 +250,13 @@ export function CoreFeatures({ sectionId = "core-features" }: { sectionId?: stri
           {/* Green outline pill badge matching reference */}
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.15em] uppercase text-emerald-400 font-mono mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            WHY OUR PRODUCT
+            4AT DIFFERENCE
           </div>
 
           <h2 className="section-title">
-            Built for{" "}
+            Not a coaching class — a finance firm that{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">
-              Finance,
-            </span>{" "}
-            Designed for{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">
-              Outcomes.
+              trains its own.
             </span>
           </h2>
 
@@ -271,7 +267,7 @@ export function CoreFeatures({ sectionId = "core-features" }: { sectionId?: stri
           </div>
 
           <p className="section-desc">
-            We engineered this platform specifically for the complexity, compliance demands, and pace of financial education. That means structured tracks built around real job roles, with SOX, IFRS, and Big 4 standards treated as foundation rather than add-ons.
+            Built by a working finance, accounting & audit firm — you learn on real client standards, not from a textbook.
           </p>
         </div>
 

@@ -25,33 +25,33 @@ export function FinalCTA({ sectionId = "enroll" }: { sectionId?: string }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-white font-bold text-center pt-10 lg:whitespace-nowrap"
+          className="text-white font-bold text-center pt-10"
           style={{
             fontSize: "clamp(1.9rem, 3.2vw, 4rem)",
             lineHeight: 1.1,
             letterSpacing: "-0.03em",
           }}
         >
-          From graduate to finance professional.{" "}
+          From graduate to{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">
-            Start today.
+            finance professional.
           </span>
         </motion.h2>
 
         <p
-          className="text-center pt-10"
+          className="text-center pt-8"
           style={{
             maxWidth: 760,
             color: "var(--academy-ink-secondary)",
-            fontSize: "clamp(1rem, 1.4vw, 1.375rem)",
+            fontSize: "clamp(1rem, 1.4vw, 1.2rem)",
             lineHeight: 1.6,
           }}
         >
-          Take the free pre-assessment and step onto a path that ends in a job.
+          The pre-assessment is free and takes a few minutes. Everything after — training, certification, placement — is built to end in a job, not a certificate.
         </p>
 
-        <Button href="#course-recommender" variant="primary" className="mt-14">
-          Take Free Assessment
+        <Button href="/academy/register" variant="primary" className="mt-10">
+          Check your eligibility
           <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
         </Button>
       </motion.div>

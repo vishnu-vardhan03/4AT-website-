@@ -59,17 +59,12 @@ const recommendationMap: Record<Background, Record<Interest, string>> = {
   },
 };
 
-function slugify(title: string) {
-  return title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-}
-
 type CourseRecommenderProps = {
   sectionId?: string;
   href?: string;
 };
 
-export function CourseRecommender({ sectionId = "course-recommender", href = "/academy/register" }: CourseRecommenderProps) {
-  const router = useRouter();
+export function CourseRecommender({ sectionId = "course-recommender" }: CourseRecommenderProps) {
   const [background, setBackground] = useState<Background | null>(null);
   const [interest, setInterest] = useState<Interest | null>(null);
 
@@ -109,17 +104,17 @@ export function CourseRecommender({ sectionId = "course-recommender", href = "/a
           {/* Left: header + conversational quiz — recommender's top lines up with the pill above */}
           <div className="flex flex-col gap-9">
             <div className="flex flex-col items-start text-left">
-              <SectionPill className="mb-7">FIND YOUR PROGRAM</SectionPill>
+              <SectionPill className="mb-7">READY TO START?</SectionPill>
 
               <h2 className="section-title">
-                Not sure where to{" "}
+                Find your program, then take the{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">
-                  start?
+                  free pre-assessment.
                 </span>
               </h2>
 
               <p className="section-desc">
-                Answer two quick questions and we&apos;ll recommend the best learning path based on your background and interests.
+                Tell us where you&apos;re headed — we&apos;ll recommend your track.
               </p>
             </div>
 
@@ -267,17 +262,19 @@ export function CourseRecommender({ sectionId = "course-recommender", href = "/a
                   ))}
                 </div>
 
-                <div className="flex flex-wrap gap-3 w-full mt-6">
-                  <Button
-                    variant="primary"
-                    className="flex-1"
-                    onClick={() => router.push(`/academy/courses/${slugify(displayCourse.title)}`)}
-                  >
-                    View Program
-                  </Button>
-                  <Button variant="secondary" href={href} className="flex-1">
-                    Enroll Now
-                  </Button>
+                <div className="mt-5 pt-4 border-t border-white/5">
+                  <p className="text-[11px] text-slate-400 font-mono leading-relaxed mb-4">
+                    Fee: <span className="text-white font-semibold">₹999 + GST</span> to confirm seat. Flow: <span className="text-emerald-400 font-semibold">Free pre-assessment → ₹999 → train → certify → intern → placed</span>
+                  </p>
+                  <div className="flex flex-wrap gap-3 w-full">
+                    <Button
+                      variant="primary"
+                      className="w-full"
+                      href="/academy/register"
+                    >
+                      Take the free pre-assessment
+                    </Button>
+                  </div>
                 </div>
               </div>
             </motion.div>
