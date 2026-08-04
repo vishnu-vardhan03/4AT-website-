@@ -244,20 +244,21 @@ export type LmsCourse = {
 };
 
 export const lmsCourses: LmsCourse[] = [
+  // ── Freshers ──────────────────────────────────────────────────────────────
   {
     title: "FinTech Engineering — Acc L1",
-    subtitle: "Beginner • MNC Placement Track",
-    badge: "FLAGSHIP • FRESHERS",
+    subtitle: "Freshers · Accounting · Flagship",
+    badge: "FLAGSHIP · FRESHERS",
     duration: "2 months",
-    mode: "In-person + Remote",
+    mode: "Hybrid",
     rating: 4.8,
     reviewsCount: 141,
-    description: "Practical training in finance, accounting and audit for freshers targeting MNC placements.",
+    description: "Practical finance, accounting and audit — ending in certification, internship and placement.",
     bullets: [
-      "60-70 Hour Program",
-      "Hands-on ERP, AI & Automation Tools",
-      "Soft Skills & Business Communication",
-      "Global Finance & Compliance Readiness"
+      "Finance, Accounting & Audit",
+      "Accounting platforms & tools",
+      "AI-powered automation",
+      "Client-facing readiness"
     ],
     topics: [
       "Live ERP accounting systems",
@@ -273,47 +274,19 @@ export const lmsCourses: LmsCourse[] = [
     ctaText: "VIEW CURRICULUM"
   },
   {
-    title: "FinTech Engineering — Acc L2",
-    subtitle: "Experienced • Advanced Reporting Track",
-    badge: "EXPERIENCED • 3+ YRS",
-    duration: "3 months",
-    mode: "Live + Practice",
-    rating: 4.7,
-    reviewsCount: 28,
-    description: "Complex financial reporting, multi-entity consolidation, and automation for experienced professionals.",
-    bullets: [
-      "Real-World Case Studies",
-      "AI & Automation in Accounting",
-      "Industry Mentorship",
-      "Advanced Reporting & IFRS"
-    ],
-    topics: [
-      "Multi-entity consolidation",
-      "IFRS & SOX reporting standards",
-      "AI & accounting automation",
-      "Executive case simulations"
-    ],
-    locked: false,
-    category: "Accounting & ERP",
-    instructor: "Chartered Accountants Core",
-    image: "/acc_l2_thumb.webp",
-    badgeType: "new",
-    ctaText: "VIEW CURRICULUM"
-  },
-  {
     title: "FinTech Engineering — IA L1",
-    subtitle: "Internal Audit • Big 4 Track",
-    badge: "AUDIT • 2+ YRS",
-    duration: "2.5 months",
-    mode: "Remote + Labs",
+    subtitle: "Freshers · Audit",
+    badge: "AUDIT · FRESHERS",
+    duration: "2 months",
+    mode: "Hybrid",
     rating: 4.9,
     reviewsCount: 21,
-    description: "Internal audit, risk analysis and compliance covering Big 4 standards and practical workpaper drills.",
+    description: "Internal audit, risk and controls, SOX and Big 4 standards, taught through practical simulations. Ends in certification, internship and placement.",
     bullets: [
+      "Internal Audit & Risk",
       "SOX & Internal Controls",
       "Big 4 Audit Standards",
-      "Practical Audit Simulations",
-      "Risk & Compliance Strategy"
+      "Practical Audit Simulations"
     ],
     topics: [
       "SOX internal controls",
@@ -330,18 +303,18 @@ export const lmsCourses: LmsCourse[] = [
   },
   {
     title: "FinTech Engineering — SOC 2",
-    subtitle: "Security & Controls • Risk Track",
-    badge: "COMPLIANCE • ADVANCED",
-    duration: "2 months",
-    mode: "Mentor Led",
+    subtitle: "Freshers · Risk & Compliance",
+    badge: "RISK & COMPLIANCE · FRESHERS",
+    duration: "1.5 months",
+    mode: "Hybrid",
     rating: 4.6,
     reviewsCount: 38,
-    description: "SOC 2, ISO 27001 and controls frameworks for professionals moving into compliance and governance roles.",
+    description: "SOC 2, ISO 27001 and controls frameworks, built from the ground up. Ends in certification, internship and placement.",
     bullets: [
-      "SOC 2 & ISO 27001 Controls",
-      "Compliance & Assurance",
-      "Risk & Governance Frameworks",
-      "Security Audits & Certifications"
+      "SOC 2 & ISO 27001",
+      "Controls Design & Testing",
+      "Risk & Compliance",
+      "Audit-Readiness & Reporting"
     ],
     topics: [
       "SOC 2 & ISO 27001 controls",
@@ -356,20 +329,49 @@ export const lmsCourses: LmsCourse[] = [
     badgeType: "bestseller",
     ctaText: "VIEW CURRICULUM"
   },
+  // ── Experienced ───────────────────────────────────────────────────────────
+  {
+    title: "FinTech Engineering — Acc L2",
+    subtitle: "Experienced · 3+ years",
+    badge: "EXPERIENCED · 3+ YRS",
+    duration: "1.5 months",
+    mode: "Hybrid",
+    rating: 4.7,
+    reviewsCount: 28,
+    description: "Advanced financial reporting, GAAP and automation to deepen your expertise.",
+    bullets: [
+      "Complex Reporting & GAAP",
+      "Close & Consolidation",
+      "AI & Automation",
+      "Management Reporting"
+    ],
+    topics: [
+      "Multi-entity consolidation",
+      "IFRS & SOX reporting standards",
+      "AI & accounting automation",
+      "Executive case simulations"
+    ],
+    locked: false,
+    category: "Accounting & ERP",
+    instructor: "Chartered Accountants Core",
+    image: "/acc_l2_thumb.webp",
+    badgeType: "new",
+    ctaText: "VIEW CURRICULUM"
+  },
   {
     title: "FinTech Engineering — FP&A",
-    subtitle: "Financial Planning & Analysis Track",
-    badge: "FP&A • STRATEGIC",
-    duration: "3 months",
-    mode: "Executive Track",
+    subtitle: "Experienced",
+    badge: "FP&A · EXPERIENCED",
+    duration: "1.5 months",
+    mode: "Hybrid",
     rating: 4.8,
     reviewsCount: 28,
-    description: "Budgeting, forecasting, variance analysis and management reporting for controllership and FP&A roles.",
+    description: "Planning & analysis, controllership and business partnering: budgeting, forecasting and management reporting.",
     bullets: [
-      "Financial Modeling & Valuation",
-      "Strategic Budgeting & Forecasting",
-      "Corporate FP&A Best Practices",
-      "Excel & BI Dashboards"
+      "Budgeting & Forecasting",
+      "Variance & Reporting",
+      "Controllership",
+      "Business Partnering"
     ],
     topics: [
       "Financial modeling & valuation",
@@ -385,6 +387,8 @@ export const lmsCourses: LmsCourse[] = [
     ctaText: "VIEW CURRICULUM"
   }
 ];
+
+
 
 export const featuresList = [
   {

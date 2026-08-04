@@ -193,14 +193,9 @@ export function RegisterForm() {
                   <ChevronRight className="size-4" />
                 </button>
               ) : (
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  variant="primary"
-                  className="!px-8 !py-3 text-xs rounded-xl"
-                >
+                <Button type="submit" disabled={isSubmitting} variant="primary">
                   <span>{isSubmitting ? "Saving..." : "Submit Registration"}</span>
-                  <ArrowRight className="size-4 ml-1" />
+                  <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Button>
               )}
             </div>
@@ -242,7 +237,7 @@ export function RegisterForm() {
               <Button
                 onClick={() => router.push("/academy")}
                 variant="primary"
-                className="w-full sm:w-auto px-10 py-3.5 text-xs rounded-xl"
+                className="w-full sm:w-auto"
               >
                 Done
               </Button>

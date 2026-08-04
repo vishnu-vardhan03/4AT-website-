@@ -5,6 +5,7 @@ import { HeroContent } from "@/components/academy/HeroContent";
 import { ctaRoute } from "@/components/academy/data";
 import { PageShell } from "@/components/academy/PageShell";
 
+
 export default function HomePage() {
   return (
     <>

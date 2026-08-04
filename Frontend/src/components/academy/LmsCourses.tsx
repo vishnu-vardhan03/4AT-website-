@@ -195,23 +195,55 @@ export function LmsCourses({ sectionId = "courses" }: { sectionId?: string }) {
 
       <div className="site-shell relative z-10">
         
-        {/* Harmonized Section Header */}
-        <div id="explore-pathways-header" className="flex flex-col items-start text-left max-w-[850px] mb-16">
-          {/* Eyebrow Badge Pill */}
+        {/* Section Header */}
+        <div id="explore-pathways-header" className="flex flex-col items-start text-left max-w-[850px] mb-10">
           <SectionPill className="mb-7">
-            EXPLORE COURSES
+            PROGRAMS
           </SectionPill>
 
-          {/* Title with Gradient */}
           <h2 className="section-title">
-            Specialized Finance <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">Curriculum</span> built for <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">execution.</span>
+            Programs that turn{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">graduates</span>{" "}
+            into professionals.
           </h2>
-          
-          {/* Optional Description */}
-          <p className="section-desc">
-            Deep dive into our highly actionable, workflow-driven pathways designed to align your capabilities with the modern expectations of elite global employers.
-          </p>
         </div>
+
+        {/* Tools Strip */}
+        <div className="border border-white/[0.06] rounded-[24px] bg-[#0b0e1a]/50 backdrop-blur-xl p-6 sm:p-8 mb-12">
+          <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-10">
+            <div className="flex-1 min-w-0">
+              <span className="text-[10px] font-mono font-bold tracking-[0.2em] uppercase text-white/40 block mb-2">
+                The tools the industry actually uses
+              </span>
+              <p className="text-sm sm:text-base font-semibold text-white font-display leading-snug mb-5">
+                Hands-on, practical training on the platforms you&apos;ll use from day one.
+              </p>
+              {/* Tool chips */}
+              <div className="flex flex-wrap gap-2">
+                {["QuickBooks (QBO)", "SAP", "Bill.com", "Excel", "NetSuite", "4AT AI Tools"].map((tool) => (
+                  <span
+                    key={tool}
+                    className="px-3 py-1.5 rounded-full text-[11px] font-semibold font-mono tracking-wide border border-emerald-500/25 bg-emerald-500/5 text-emerald-300"
+                  >
+                    {tool}
+                  </span>
+                ))}
+              </div>
+            </div>
+            {/* Divider */}
+            <div className="hidden md:block w-[1px] bg-white/[0.06] self-stretch" />
+            {/* Facts */}
+            <div className="flex flex-col gap-3 shrink-0 justify-center">
+              {["Classroom + Live Online", "6-month LMS access", "Practice-led — simulations & live projects"].map((fact) => (
+                <div key={fact} className="flex items-center gap-2.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_6px_#22d3ee] shrink-0" />
+                  <span className="text-[13px] text-white/65 font-sans">{fact}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
 
         {/* Category Pills & Navigation Controls */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-6 border-b border-white/5 pb-6">
@@ -363,13 +395,30 @@ export function LmsCourses({ sectionId = "courses" }: { sectionId?: string }) {
                       <p className="mt-2 text-[12px] font-normal leading-relaxed text-slate-300/80 font-sans line-clamp-3">
                         {course.description}
                       </p>
+
+                      {/* Covers / Key Topics */}
+                      {course.bullets && course.bullets.length > 0 && (
+                        <div className="mt-3 pt-2.5 border-t border-white/5">
+                          <span className="text-[10px] font-bold tracking-wider uppercase text-slate-400 font-mono block mb-1.5">
+                            Covers:
+                          </span>
+                          <ul className="space-y-1">
+                            {course.bullets.map((bullet, i) => (
+                              <li key={i} className="flex items-start gap-2 text-[11.5px] text-slate-200/90 font-sans leading-snug">
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1 shrink-0 shadow-[0_0_6px_#10B981]" />
+                                <span>{bullet}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                     </div>
                   </div>
 
-                  {/* CTA Full-Width Button */}
-                  <div className="mt-4 pt-2.5 border-t border-white/5 z-10 shrink-0">
+                  {/* CTA Buttons */}
+                  <div className="mt-4 pt-2.5 border-t border-white/5 z-10 shrink-0 flex gap-2">
                     <button
-                      className="w-full py-2.5 rounded-xl text-[11px] tracking-[0.14em] uppercase font-bold text-black bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#A78BFA] shadow-[0_6px_20px_rgba(139,92,246,0.22)] hover:-translate-y-0.5 hover:brightness-110 active:scale-95 transition-all duration-300 cursor-pointer text-center flex items-center justify-center gap-1.5"
+                      className="flex-1 py-2.5 rounded-xl text-[11px] tracking-[0.14em] uppercase font-bold text-black bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#A78BFA] shadow-[0_6px_20px_rgba(139,92,246,0.22)] hover:-translate-y-0.5 hover:brightness-110 active:scale-95 transition-all duration-300 cursor-pointer text-center flex items-center justify-center gap-1.5"
                       onClick={(e) => {
                         e.stopPropagation();
                         const slug = course.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -378,6 +427,15 @@ export function LmsCourses({ sectionId = "courses" }: { sectionId?: string }) {
                     >
                       <span>{course.ctaText || "VIEW CURRICULUM"}</span>
                       <span className="text-sm font-normal">→</span>
+                    </button>
+                    <button
+                      className="shrink-0 px-3.5 py-2.5 rounded-xl text-[11px] tracking-[0.14em] uppercase font-bold text-white/70 border border-white/10 hover:border-[#A78BFA]/50 hover:text-[#A78BFA] hover:bg-[#A78BFA]/5 active:scale-95 transition-all duration-300 cursor-pointer whitespace-nowrap"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        router.push("/academy/register");
+                      }}
+                    >
+                      Check fit
                     </button>
                   </div>
                 </div>

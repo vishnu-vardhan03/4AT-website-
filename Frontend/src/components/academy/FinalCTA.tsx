@@ -50,7 +50,7 @@ export function FinalCTA({ sectionId = "enroll" }: { sectionId?: string }) {
           Take the free pre-assessment and step onto a path that ends in a job.
         </p>
 
-        <Button href="#course-recommender" variant="primary" size="lg" className="mt-14">
+        <Button href="#course-recommender" variant="primary" className="mt-14">
           Take Free Assessment
           <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
         </Button>

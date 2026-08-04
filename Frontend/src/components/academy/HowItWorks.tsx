@@ -21,7 +21,7 @@ const stepsData: StepData[] = [
   {
     step: "01",
     title: "Pre-assessment",
-    description: "Choose your track & take a free eligibility check.",
+    description: "Choose your track and take a free eligibility check.",
     icon: ClipboardCheck,
     accentColor: "#4ade80",
     accentRgb: "74, 222, 128",
@@ -43,7 +43,7 @@ const stepsData: StepData[] = [
   {
     step: "03",
     title: "Learn",
-    description: "Hands-on training from industry experts.",
+    description: "Hands-on training from industry practitioners.",
     icon: MessageCircle,
     accentColor: "#a78bfa",
     accentRgb: "167, 139, 250",
@@ -53,8 +53,8 @@ const stepsData: StepData[] = [
   },
   {
     step: "04",
-    title: "AI & ML",
-    description: "Master AI-driven finance tools & automation.",
+    title: "AI in Finance",
+    description: "Learn to apply AI and automation across real finance work.",
     icon: Users,
     accentColor: "#f472b6",
     accentRgb: "244, 114, 182",
@@ -65,7 +65,7 @@ const stepsData: StepData[] = [
   {
     step: "05",
     title: "Mentorship",
-    description: "Finance-leader mentoring & career readiness.",
+    description: "Finance-leader mentoring and career readiness.",
     icon: MessageCircle,
     accentColor: "#fbbf24",
     accentRgb: "251, 191, 36",
@@ -75,8 +75,8 @@ const stepsData: StepData[] = [
   },
   {
     step: "06",
-    title: "Assess & Place",
-    description: "Post-assessment → interview → placement.",
+    title: "Assess, Intern & Place",
+    description: "Post-assessment → interview → internship → placement.",
     icon: TrendingUp,
     accentColor: "#4ade80",
     accentRgb: "74, 222, 128",
@@ -512,15 +512,7 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
         </div>
       </div>
 
-      {/* ── Footer note ───────────────────────────────────────────────── */}
-      <div className="w-full">
-        <div className="w-full h-[1px] bg-white/12 mb-4 relative z-10" />
-        <div className="text-left relative z-10 max-w-3xl px-4">
-          <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.22em] text-white/55 uppercase block leading-relaxed font-semibold">
-            Only learners who successfully complete every evaluation stage proceed to placement support.
-          </span>
-        </div>
-      </div>
+
     </>
   );
 

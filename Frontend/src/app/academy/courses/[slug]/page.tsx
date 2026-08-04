@@ -655,18 +655,10 @@ export default function CourseDetailsPage({
 
                 {/* Main CTAs */}
                 <div className="flex flex-col gap-3">
-                  <Button
-                    href={ctaRoute}
-                    variant="primary"
-                    className="w-full font-bold tracking-wider py-4 shadow-[0_0_20px_rgba(0,229,195,0.2)] text-center justify-center"
-                  >
+                  <Button href={ctaRoute} variant="primary" className="w-full">
                     Enroll Now
                   </Button>
-                  <Button
-                    href="/#contact-us"
-                    variant="secondary"
-                    className="w-full font-bold tracking-wider py-4 text-center justify-center"
-                  >
+                  <Button href="/#contact-us" variant="secondary" className="w-full">
                     Book A Counseling Call
                   </Button>
                 </div>

@@ -291,7 +291,7 @@ export function HeroIllustration() {
         {/* Card 2 (Top-Right): Analytics Icon */}
         <motion.div
           style={{ x: card2X, y: card2Y }}
-          className="absolute top-[6%] right-[2%] sm:right-[2%] md:right-[2%] lg:right-[2%] z-30 hidden sm:flex"
+          className="absolute top-[16%] right-[4%] sm:right-[4%] md:right-[4%] lg:right-[4%] z-30 hidden sm:flex"
           initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.7, y: prefersReducedMotion ? 0 : 20 }}
           animate={isRevealed ? { opacity: 1, scale: 1, y: 0 } : undefined}
           transition={{

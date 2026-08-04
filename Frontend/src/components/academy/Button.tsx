@@ -11,14 +11,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   showHudCorners?: boolean;
   neon?: boolean;
   variant?: "primary" | "secondary" | "ghost" | "nav";
-  size?: "sm" | "md" | "lg";
 }
-
-const sizeClasses = {
-  sm: "!px-5 !py-2 !text-[10px] !tracking-wider rounded-[10px]",
-  md: "!px-8 !py-3.5 !text-xs rounded-[14px]",
-  lg: "!px-10 !py-4.5 !text-sm rounded-[18px]",
-};
 
 export const Button = React.forwardRef<
   HTMLElement,
@@ -34,7 +27,6 @@ export const Button = React.forwardRef<
       showHudCorners: _showHudCorners = true,
       neon: _neon = true,
       variant = "primary",
-      size = "md",
       type = "button",
       ...props
     },
@@ -122,12 +114,12 @@ export const Button = React.forwardRef<
     }, []);
 
     const buttonClass = cn(
-      "relative group inline-flex items-center justify-center font-sans font-bold capitalize tracking-[0.08em] transition-[transform,opacity,background-color,border-color,color,box-shadow,backdrop-filter] duration-300 ease-out select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas active:scale-95 disabled:pointer-events-none disabled:opacity-50",
+      "relative group inline-flex items-center justify-center font-sans font-bold capitalize tracking-[0.05em] transition-[transform,opacity,background-color,border-color,color,box-shadow,backdrop-filter] duration-300 ease-out select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50",
+      (variant === "primary" || variant === "secondary") && "text-sm px-7 py-3.5 rounded-xl",
       variant === "primary" && "fx-primary-btn text-white",
       variant === "secondary" && "fx-ghost-btn text-white",
       variant === "ghost" && "border border-transparent bg-transparent hover-fine:border-accent/30 hover-fine:bg-accent-subtle/5 text-ink-primary hover-fine:text-accent rounded-full",
       variant === "nav" && "text-xs px-3 py-1 bg-transparent text-ink-secondary hover-fine:text-accent font-medium transition-colors rounded-full",
-      sizeClasses[size],
       className
     );
 

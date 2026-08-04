@@ -3,6 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowRight } from "lucide-react";
 import { Button } from "./Button";
 import { SectionPill } from "./SectionPill";
 
@@ -99,25 +100,14 @@ export function EnrollmentCTA({ href, sectionId = "enroll" }: EnrollmentCTAProps
           </p>
 
           <div className="cta-element-animate flex flex-col md:flex-row gap-4 justify-start items-start w-full md:w-auto">
-            <Button
-              href={href}
-              variant="primary"
-              className="w-full md:w-auto px-10 py-5 text-sm rounded-xl font-bold hover-fine:shadow-cta transition-[transform,opacity,box-shadow,background-color,border-color] duration-300"
-            >
-              Enroll Now →
+            <Button href={href} variant="primary" className="w-full md:w-auto">
+              Enroll Now
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Button>
-            <Button
-              href="/academy#features"
-              variant="secondary"
-              className="w-full md:w-auto px-10 py-5 text-sm rounded-xl font-bold backdrop-blur-md bg-white/[0.02] border-white/10"
-            >
+            <Button href="/academy#features" variant="secondary" className="w-full md:w-auto">
               Assess Your Fit
             </Button>
-            <Button
-              href="/contact"
-              variant="secondary"
-              className="w-full md:w-auto px-10 py-5 text-sm rounded-xl font-bold backdrop-blur-md bg-white/[0.02] border-white/10"
-            >
+            <Button href="/contact" variant="secondary" className="w-full md:w-auto">
               Talk to an Advisor
             </Button>
           </div>

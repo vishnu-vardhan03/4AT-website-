@@ -274,19 +274,15 @@ export function CourseRecommender({ sectionId = "course-recommender", href = "/a
                   ))}
                 </div>
 
-                <div className="flex gap-3 w-full mt-6">
+                <div className="flex flex-wrap gap-3 w-full mt-6">
                   <Button
                     variant="primary"
-                    className="flex-1 px-6 py-3 text-xs rounded-xl font-bold"
+                    className="flex-1"
                     onClick={() => router.push(`/academy/courses/${slugify(displayCourse.title)}`)}
                   >
                     View Program
                   </Button>
-                  <Button
-                    variant="secondary"
-                    href={href}
-                    className="flex-1 px-6 py-3 text-xs rounded-xl font-bold backdrop-blur-md bg-white/[0.02] border-white/10"
-                  >
+                  <Button variant="secondary" href={href} className="flex-1">
                     Enroll Now
                   </Button>
                 </div>

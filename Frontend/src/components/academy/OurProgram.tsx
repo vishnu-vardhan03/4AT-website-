@@ -48,15 +48,13 @@ export function OurProgram({ sectionId = "program" }: { sectionId?: string }) {
                 </h3>
               </div>
 
-              {/* Subtle Glowing Accent Line */}
-              <div className="h-[2px] w-12 bg-gradient-to-r from-emerald-400 to-transparent mb-6" />
 
               <h4 className="text-2xl sm:text-3xl font-bold text-white font-display leading-tight mb-4">
-                An intensive, role-based <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">finance engineering</span> track.
+                About the <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">program</span>
               </h4>
 
               <p className="text-white/80 font-sans text-sm sm:text-base leading-relaxed">
-                The FinTech Engineering Program (FEP) bridges the gap between academia and industry, equipping commerce graduates with the practical skills of a finance professional with 2–3 years&apos; experience, and a path to certification, internship and placement.
+                The FinTech Engineering Program (FEP) is a practice-led program that takes commerce graduates to the capability of a 2–3-year professional — through to certification, internship and placement. Advanced tracks are available for experienced professionals.
               </p>
             </div>
           </div>
@@ -74,15 +72,17 @@ export function OurProgram({ sectionId = "program" }: { sectionId?: string }) {
                 </h3>
               </div>
 
-              {/* Subtle Glowing Accent Line */}
-              <div className="h-[2px] w-12 bg-gradient-to-r from-cyan-400 to-transparent mb-6" />
 
               <h4 className="text-2xl sm:text-3xl font-bold text-white font-display leading-tight mb-4">
-                A degree gives you theory. <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">Employers want the job done.</span>
+                Built for <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">careers</span>, not just <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">certificates</span>.
               </h4>
 
+              <p className="text-white/80 font-sans text-sm sm:text-base leading-relaxed mb-3">
+                A degree gives you theory. Employers want the job done.
+              </p>
+
               <p className="text-white/80 font-sans text-sm sm:text-base leading-relaxed">
-                Closing the books, reconciling accounts, working live ERP systems, and engaging clients: that&apos;s what finance teams hire for. 4AT Academy bridges that gap with practice-led training, built and run by a working finance &amp; accounting consulting firm, that takes a commerce graduate to the capability of a professional with 2–3 years&apos; experience.
+                Recording transactions, reconciling accounts, closing the books, preparing financial statements, auditing the numbers, and engaging clients — that&apos;s what finance and audit teams hire for. 4AT Academy bridges that gap with practice-led training, built and run by a working finance, accounting and audit firm.
               </p>
             </div>
           </div>
@@ -94,19 +94,30 @@ export function OurProgram({ sectionId = "program" }: { sectionId?: string }) {
         {/* ── 4. BOTTOM SUBSECTION: HOW IT WORKS ───────────────────────────── */}
         <div className="w-full">
           <div className="flex flex-col items-start mb-8">
-            <div className="flex items-center gap-2.5 mb-2">
+            <div className="flex items-center gap-2.5 mb-3">
               <div className="w-2 h-2 rounded-full bg-purple-400 shadow-[0_0_8px_#a855f7]" />
               <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-purple-400">
                 HOW IT WORKS
               </span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-white font-display">
+            <h3 className="text-2xl sm:text-3xl font-bold text-white font-display mb-3">
               Every learner is <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">evaluated</span> before becoming job-ready.
             </h3>
+            <p className="text-white/60 font-sans text-sm sm:text-base">
+              From pre-assessment to placement — a guided path.
+            </p>
           </div>
 
           {/* Autoplay Process Timeline Embedded Cleanly */}
           <HowItWorks hideHeader={true} />
+
+          {/* Qualifier */}
+          <div className="mt-3 flex items-start gap-3 p-4 sm:p-5 rounded-xl border border-white/[0.08] bg-white/[0.02]">
+            <div className="shrink-0 mt-0.5 w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_6px_#fbbf24] mt-1" />
+            <p className="text-[13px] sm:text-sm text-white/50 font-sans leading-relaxed">
+              Only learners who successfully complete every evaluation stage proceed to internship and placement support.
+            </p>
+          </div>
         </div>
 
       </div>
