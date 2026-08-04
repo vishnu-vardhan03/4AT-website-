@@ -100,7 +100,7 @@ export function AudienceSpectrum({ sectionId = "audience-spectrum" }: { sectionI
           <div className="audience-column-animate relative flex flex-col justify-between py-2">
             {/* Top Row: Level Badge + Translucent Number */}
             <div className="flex items-center justify-between mb-4">
-              <span className="inline-block px-3.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold font-mono tracking-widest uppercase bg-emerald-500/10 border border-emerald-500/30 text-[#14F195] shadow-[0_0_12px_rgba(20,241,149,0.15)]">
+              <span className="inline-block px-3.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold font-mono tracking-widest uppercase bg-emerald-500/10 border border-emerald-500/30 text-[#14F195]">
                 LEVEL 1
               </span>
               <span className="text-[64px] sm:text-[80px] font-extrabold font-mono leading-none select-none text-emerald-500/20 tracking-tight shrink-0">
@@ -125,7 +125,7 @@ export function AudienceSpectrum({ sectionId = "audience-spectrum" }: { sectionI
 
               {/* Feature 1 */}
               <div className="relative z-10 flex items-center gap-4 group">
-                <div className="w-11 h-11 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[#14F195] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(20,241,149,0.2)] transition-transform duration-300 group-hover:scale-110">
+                <div className="w-11 h-11 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[#14F195] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110">
                   <BarChart3 className="w-5 h-5" />
                 </div>
                 <p className="text-white/80 text-[14px] sm:text-[15px] font-medium font-sans leading-snug">
@@ -135,7 +135,7 @@ export function AudienceSpectrum({ sectionId = "audience-spectrum" }: { sectionI
 
               {/* Feature 2 */}
               <div className="relative z-10 flex items-center gap-4 group">
-                <div className="w-11 h-11 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[#14F195] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(20,241,149,0.2)] transition-transform duration-300 group-hover:scale-110">
+                <div className="w-11 h-11 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[#14F195] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110">
                   <Monitor className="w-5 h-5" />
                 </div>
                 <p className="text-white/80 text-[14px] sm:text-[15px] font-medium font-sans leading-snug">
@@ -145,7 +145,7 @@ export function AudienceSpectrum({ sectionId = "audience-spectrum" }: { sectionI
 
               {/* Feature 3 */}
               <div className="relative z-10 flex items-center gap-4 group">
-                <div className="w-11 h-11 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[#14F195] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(20,241,149,0.2)] transition-transform duration-300 group-hover:scale-110">
+                <div className="w-11 h-11 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[#14F195] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110">
                   <GraduationCap className="w-5 h-5" />
                 </div>
                 <p className="text-white/80 text-[14px] sm:text-[15px] font-medium font-sans leading-snug">
@@ -159,7 +159,7 @@ export function AudienceSpectrum({ sectionId = "audience-spectrum" }: { sectionI
 
             {/* Bottom "Ideal For" Row */}
             <div className="flex items-center gap-4 pt-1">
-              <div className="w-11 h-11 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[#14F195] flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(20,241,149,0.15)]">
+              <div className="w-11 h-11 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[#14F195] flex items-center justify-center shrink-0">
                 <User className="w-5 h-5" />
               </div>
               <div>
@@ -185,7 +185,7 @@ export function AudienceSpectrum({ sectionId = "audience-spectrum" }: { sectionI
           <div className="audience-column-animate relative flex flex-col justify-between py-2">
             {/* Top Row: Level Badge + Translucent Number */}
             <div className="flex items-center justify-between mb-4">
-              <span className="inline-block px-3.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold font-mono tracking-widest uppercase bg-purple-500/10 border border-purple-500/30 text-[#A86DFF] shadow-[0_0_12px_rgba(168,109,255,0.15)]">
+              <span className="inline-block px-3.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold font-mono tracking-widest uppercase bg-purple-500/10 border border-purple-500/30 text-[#A86DFF]">
                 LEVEL 2+
               </span>
               <span className="text-[64px] sm:text-[80px] font-extrabold font-mono leading-none select-none text-purple-500/20 tracking-tight shrink-0">
@@ -210,7 +210,7 @@ export function AudienceSpectrum({ sectionId = "audience-spectrum" }: { sectionI
 
               {/* Feature 1 */}
               <div className="relative z-10 flex items-center gap-4 group">
-                <div className="w-11 h-11 rounded-full bg-purple-500/10 border border-purple-500/30 text-[#A86DFF] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(168,109,255,0.2)] transition-transform duration-300 group-hover:scale-110">
+                <div className="w-11 h-11 rounded-full bg-purple-500/10 border border-purple-500/30 text-[#A86DFF] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110">
                   <Building2 className="w-5 h-5" />
                 </div>
                 <p className="text-white/80 text-[14px] sm:text-[15px] font-medium font-sans leading-snug">
@@ -220,7 +220,7 @@ export function AudienceSpectrum({ sectionId = "audience-spectrum" }: { sectionI
 
               {/* Feature 2 */}
               <div className="relative z-10 flex items-center gap-4 group">
-                <div className="w-11 h-11 rounded-full bg-purple-500/10 border border-purple-500/30 text-[#A86DFF] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(168,109,255,0.2)] transition-transform duration-300 group-hover:scale-110">
+                <div className="w-11 h-11 rounded-full bg-purple-500/10 border border-purple-500/30 text-[#A86DFF] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110">
                   <Users className="w-5 h-5" />
                 </div>
                 <p className="text-white/80 text-[14px] sm:text-[15px] font-medium font-sans leading-snug">
@@ -230,7 +230,7 @@ export function AudienceSpectrum({ sectionId = "audience-spectrum" }: { sectionI
 
               {/* Feature 3 */}
               <div className="relative z-10 flex items-center gap-4 group">
-                <div className="w-11 h-11 rounded-full bg-purple-500/10 border border-purple-500/30 text-[#A86DFF] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(168,109,255,0.2)] transition-transform duration-300 group-hover:scale-110">
+                <div className="w-11 h-11 rounded-full bg-purple-500/10 border border-purple-500/30 text-[#A86DFF] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110">
                   <Target className="w-5 h-5" />
                 </div>
                 <p className="text-white/80 text-[14px] sm:text-[15px] font-medium font-sans leading-snug">
@@ -244,7 +244,7 @@ export function AudienceSpectrum({ sectionId = "audience-spectrum" }: { sectionI
 
             {/* Bottom "Ideal For" Row */}
             <div className="flex items-center gap-4 pt-1">
-              <div className="w-11 h-11 rounded-full bg-purple-500/10 border border-purple-500/30 text-[#A86DFF] flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(168,109,255,0.15)]">
+              <div className="w-11 h-11 rounded-full bg-purple-500/10 border border-purple-500/30 text-[#A86DFF] flex items-center justify-center shrink-0">
                 <User className="w-5 h-5" />
               </div>
               <div>

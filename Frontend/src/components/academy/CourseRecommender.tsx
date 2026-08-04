@@ -195,7 +195,7 @@ export function CourseRecommender({ sectionId = "course-recommender" }: CourseRe
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -10, scale: 0.98 }}
                   transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="relative rounded-[26px] border border-[rgba(167,139,250,0.3)] bg-[#090B12] shadow-[0_0_60px_rgba(139,92,246,0.15)] overflow-hidden transition-shadow duration-300 hover:shadow-[0_20px_60px_rgba(139,92,246,0.25)] flex flex-col box-border w-full max-w-[520px]"
+                  className="relative rounded-[26px] border border-white/10 bg-[#090B12] shadow-xl overflow-hidden transition-shadow duration-300 hover:shadow-2xl flex flex-col box-border w-full max-w-[520px]"
                 >
                   <div className="absolute -top-24 -right-24 w-[300px] h-[300px] rounded-full bg-[#8B5CF6]/10 blur-[100px] pointer-events-none z-0" />
 
