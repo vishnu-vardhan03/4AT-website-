@@ -25,30 +25,46 @@ const footerColumns: Array<{ title: string; href: string; items: FooterItem[] }>
       { label: "AI Agents", href: "/product#agents" },
       { label: "Integration", href: "/product#integrations" },
       { label: "Pricing", href: "/product#pricing" },
-      { label: "Support", href: "/product#hybrid" },
     ],
   },
   {
     title: "Academy",
     href: "/academy",
     items: [
-      { label: "Program", href: "/academy#programs" },
-      { label: "Blueprint", href: "/academy#features" },
-      { label: "Launch", href: "/academy#enroll" },
-      { label: "Connect", href: "/academy#contact-us" },
+      { label: "Programs", href: "/academy/courses" },
+      { label: "How it works", href: "/academy#program" },
+      { label: "Placements", href: "/academy#outcomes" },
+      { label: "Pre-assessment", href: "/academy/register" },
     ],
   },
   {
-    title: "Company",
-    href: "/about",
+    title: "Explore",
+    href: "/academy",
     items: [
-      { label: "About", href: "/about" },
-      { label: "Contact us", href: "/contact" },
+      { label: "For employers", href: "/contact" },
+      { label: "Fees & financing", href: "/academy/courses" },
+      { label: "Certification", href: "/academy#outcomes" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+  {
+    title: "Legal",
+    href: "/privacy",
+    items: [
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms & Conditions", href: "/terms" },
+      { label: "Refund Policy", href: "/terms" },
+      { label: "Student Login", href: "/admin/login" },
     ],
   },
 ];
 
-const legalLinks = ["Privacy policy", "Terms of service", "Cookies"];
+const legalLinks: FooterItem[] = [
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms & Conditions", href: "/terms" },
+  { label: "Refund Policy", href: "/terms" },
+  { label: "Student Login", href: "/admin/login" },
+];
 
 interface FooterProps {
   className?: string;
@@ -57,8 +73,8 @@ interface FooterProps {
 export function Footer({ className = "m-3" }: FooterProps) {
   return (
     <footer className={`overflow-hidden rounded-xl bg-[#0a0a0a] text-white ${className}`}>
-      <div className="mx-auto max-w-6xl px-8 pb-6 pt-8">
-        <div className="grid grid-cols-2 gap-x-8 gap-y-8 lg:grid-cols-[1.35fr_1.45fr_repeat(3,1fr)] lg:gap-5">
+      <div className="mx-auto max-w-7xl px-8 pb-6 pt-8">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-8 lg:grid-cols-[1.25fr_repeat(5,1fr)] lg:gap-6">
           <div className="col-span-2 lg:col-span-1">
             <Link
               href="/"
@@ -84,14 +100,14 @@ export function Footer({ className = "m-3" }: FooterProps) {
 
           {footerColumns.map((column) => (
             <div key={column.title}>
-              <h2 className="mb-2.5 text-[13px] font-medium text-white">
+              <h2 className="mb-2.5 text-[13px] font-semibold text-white uppercase tracking-wider font-mono">
                 <Link href={column.href} className="transition-colors hover-fine:text-sky-300">
                   {column.title}
                 </Link>
               </h2>
               <ul className="flex flex-col gap-2">
                 {column.items.map((item) => (
-                  <li key={item.label} className="text-[13px] leading-5">
+                  <li key={item.label} className="text-[13px] leading-5 font-sans">
                     <Link href={item.href} className="text-white/50 transition-colors hover-fine:text-white">
                       {item.label}
                     </Link>
@@ -103,12 +119,12 @@ export function Footer({ className = "m-3" }: FooterProps) {
         </div>
 
         <div className="mt-7 flex flex-col gap-3 border-t border-white/10 pt-4 sm:flex-row sm:items-center sm:justify-between">
-          <span className="text-xs text-white/40">© 2026 4AT. All rights reserved.</span>
+          <span className="text-xs text-white/40 font-mono">© 2026 4AT. All rights reserved.</span>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             {legalLinks.map((item) => (
-              <span key={item} className="text-xs text-white/40">
-                {item}
-              </span>
+              <Link key={item.label} href={item.href} className="text-xs text-white/40 hover:text-white transition-colors">
+                {item.label}
+              </Link>
             ))}
           </div>
         </div>
