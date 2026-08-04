@@ -49,10 +49,10 @@ export type FeatureCard = {
 export const featureCards: FeatureCard[] = [
   {
     id: "01",
-    title: "Career-aligned tracks",
+    title: "Built by a working F&A firm",
     body:
-      "Start with the job you want, then follow a learning path built backward from that destination.",
-    tags: ["Career Destination", "Role-Based"],
+      "You learn on real client standards from a firm that runs finance & accounting for global clients, not from a textbook.",
+    tags: ["Career Destination", "ROI-Focussed"],
     tone: "dark",
   },
   {
@@ -65,9 +65,9 @@ export const featureCards: FeatureCard[] = [
   },
   {
     id: "03",
-    title: "AI and automation exposure",
+    title: "Our own AI platform",
     body:
-      "Build fluency in the digital tools modern finance teams increasingly expect.",
+      "You train on 4AT's AI-powered finance tools alongside industry platforms, learning to work with AI, not around it.",
     tags: ["Digital Fluency", "Modern Tools"],
     tone: "light",
   },
@@ -224,10 +224,15 @@ export type LmsCourse = {
   title: string;
   subtitle: string;
   badge?: string;
+  duration?: string;
+  format?: string;
+  mode?: string;
+  modePills?: string[];
   rating: number;
   reviewsCount: number;
   description: string;
   bullets: string[];
+  topics?: string[];
   locked: boolean;
   category: string;
   instructor: string;
@@ -241,103 +246,143 @@ export type LmsCourse = {
 export const lmsCourses: LmsCourse[] = [
   {
     title: "FinTech Engineering — Acc L1",
-    subtitle: "Beginner · MNC Placement Track",
-    badge: "Flagship · Freshers",
+    subtitle: "Beginner • MNC Placement Track",
+    badge: "FLAGSHIP • FRESHERS",
+    duration: "2 months",
+    mode: "In-person + Remote",
     rating: 4.8,
     reviewsCount: 141,
-    description: "Practical training in finance, accounting and audit for freshers and final-semester students targeting MNC placements. The core FEP placement track.",
+    description: "Practical training in finance, accounting and audit for freshers targeting MNC placements.",
     bullets: [
       "60-70 Hour Program",
       "Hands-on ERP, AI & Automation Tools",
       "Soft Skills & Business Communication",
       "Global Finance & Compliance Readiness"
     ],
+    topics: [
+      "Live ERP accounting systems",
+      "AI-powered finance tools",
+      "Client-facing projects",
+      "Internship & placement pathway"
+    ],
     locked: false,
     category: "Accounting & ERP",
     instructor: "4AT Academy Core",
     image: "/acc_l1_thumb.webp",
     badgeType: "bestseller",
-    ctaText: "View Curriculum"
+    ctaText: "VIEW CURRICULUM"
   },
   {
     title: "FinTech Engineering — Acc L2",
-    subtitle: "Experienced Professionals",
-    badge: "3+ Years",
+    subtitle: "Experienced • Advanced Reporting Track",
+    badge: "EXPERIENCED • 3+ YRS",
+    duration: "3 months",
+    mode: "Live + Practice",
     rating: 4.7,
     reviewsCount: 28,
-    description: "A deep dive into complex financial reporting and automation for finance professionals sharpening their expertise.",
+    description: "Complex financial reporting, multi-entity consolidation, and automation for experienced professionals.",
     bullets: [
       "Real-World Case Studies",
       "AI & Automation in Accounting",
       "Industry Mentorship",
       "Advanced Reporting & IFRS"
     ],
+    topics: [
+      "Multi-entity consolidation",
+      "IFRS & SOX reporting standards",
+      "AI & accounting automation",
+      "Executive case simulations"
+    ],
     locked: false,
     category: "Accounting & ERP",
     instructor: "Chartered Accountants Core",
     image: "/acc_l2_thumb.webp",
     badgeType: "new",
-    ctaText: "Check Fit"
+    ctaText: "VIEW CURRICULUM"
   },
   {
     title: "FinTech Engineering — IA L1",
-    subtitle: "Internal Audit Track",
-    badge: "2+ Years",
+    subtitle: "Internal Audit • Big 4 Track",
+    badge: "AUDIT • 2+ YRS",
+    duration: "2.5 months",
+    mode: "Remote + Labs",
     rating: 4.9,
     reviewsCount: 21,
-    description: "Internal audit, risk analysis and compliance covering SOX, internal controls, Big 4 audit standards, and practical audit simulations.",
+    description: "Internal audit, risk analysis and compliance covering Big 4 standards and practical workpaper drills.",
     bullets: [
       "SOX & Internal Controls",
       "Big 4 Audit Standards",
       "Practical Audit Simulations",
       "Risk & Compliance Strategy"
     ],
+    topics: [
+      "SOX internal controls",
+      "Big 4 audit workpapers",
+      "Risk & fraud testing",
+      "Compliance strategy"
+    ],
     locked: false,
     category: "Audit & Risk",
     instructor: "Big 4 Audit Experts",
     image: "/ia_l1_thumb.webp",
     badgeType: "hot",
-    ctaText: "Check Fit"
+    ctaText: "VIEW CURRICULUM"
   },
   {
     title: "FinTech Engineering — SOC 2",
-    subtitle: "Compliance & Controls Track",
-    badge: "Advanced",
+    subtitle: "Security & Controls • Risk Track",
+    badge: "COMPLIANCE • ADVANCED",
+    duration: "2 months",
+    mode: "Mentor Led",
     rating: 4.6,
     reviewsCount: 38,
-    description: "SOC 2, ISO 27001 and controls frameworks for professionals moving into compliance and assurance roles.",
+    description: "SOC 2, ISO 27001 and controls frameworks for professionals moving into compliance and governance roles.",
     bullets: [
       "SOC 2 & ISO 27001 Controls",
       "Compliance & Assurance",
       "Risk & Governance Frameworks",
       "Security Audits & Certifications"
     ],
+    topics: [
+      "SOC 2 & ISO 27001 controls",
+      "Security evidence audits",
+      "Risk & governance frameworks",
+      "Continuous compliance AI"
+    ],
     locked: false,
     category: "Global Taxation",
     instructor: "Global Tax Counsel",
     image: "/soc2_thumb.webp",
     badgeType: "bestseller",
-    ctaText: "Check Fit"
+    ctaText: "VIEW CURRICULUM"
   },
   {
     title: "FinTech Engineering — FP&A",
-    subtitle: "Financial Planning & Analysis",
-    badge: "Advanced",
+    subtitle: "Financial Planning & Analysis Track",
+    badge: "FP&A • STRATEGIC",
+    duration: "3 months",
+    mode: "Executive Track",
     rating: 4.8,
     reviewsCount: 28,
-    description: "Budgeting, forecasting, variance analysis and management reporting for professionals moving into FP&A, controllership and business-partnering roles.",
+    description: "Budgeting, forecasting, variance analysis and management reporting for controllership and FP&A roles.",
     bullets: [
       "Financial Modeling & Valuation",
       "Strategic Budgeting & Forecasting",
       "Corporate FP&A Best Practices",
       "Excel & BI Dashboards"
     ],
+    topics: [
+      "Financial modeling & valuation",
+      "Strategic budgeting & forecasting",
+      "Corporate BI & dashboards",
+      "Executive business partnering"
+    ],
     locked: false,
     category: "FP&A & Modeling",
     instructor: "Corporate FP&A Directors",
     image: "/fpna_thumb.webp",
     badgeType: "new",
-    ctaText: "Check Fit"
+    ctaText: "VIEW CURRICULUM"
   }
 ];
 

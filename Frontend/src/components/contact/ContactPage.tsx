@@ -1,16 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { getCountries, getCountryCallingCode, isValidPhoneNumber, type CountryCode } from "libphonenumber-js";
-import { Check, Clock3, LoaderCircle } from "lucide-react";
 import { isValidPhoneNumber } from "libphonenumber-js";
+import { Check, Clock3, LoaderCircle } from "lucide-react";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 import { Nav } from "@/components/layout/MainNav";
 import { Footer } from "@/components/layout/Footer";
 import { TextareaField, TextField } from "@/components/lead-collection/FormFields";
+import { trackFormSubmit } from "@/lib/analytics";
 
 const services = ["4AT Consulting", "4AT Academy", "4AT.AI", "Hybrid Services", "Other"];
+const MAX_MESSAGE_CHARS = 4000;
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
@@ -56,6 +57,8 @@ export default function ContactPage() {
         const result = await response.json().catch(() => null);
         throw new Error(result?.message ?? result?.error ?? "Unable to send message");
       }
+      // Track only accepted submissions so validation or API failures do not inflate conversions.
+      trackFormSubmit("contact_form", { service: selectedService || "Other" });
       setFormState("success");
     } catch (error) {
       console.error("Contact submission failed", error);
@@ -84,7 +87,7 @@ export default function ContactPage() {
               <span className="text-brand-gradient-flow">extraordinary.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">
-                Whether you&apos;re ready to start or just exploring, a senior practitioner will get back to you within one business day. No decks, no sales scripts.
+                Whether you&apos;re ready to start or just exploring, an experienced finance professional will get back to you within one business day. No decks, no sales scripts.
             </p>
           </div>
         </section>
@@ -169,7 +172,7 @@ export default function ContactPage() {
                   <div>
                     <p className="text-sm font-bold text-white">1 business day response</p>
                     <p className="mt-1 text-xs leading-relaxed text-white/50">
-                    Every submission is reviewed by a senior practitioner, not a bot or SDR.
+                    Every submission is reviewed by an experienced finance professional, not a bot or SDR.
                     </p>
                   </div>
                 </div>
@@ -188,7 +191,7 @@ export default function ContactPage() {
                   </div>
                   <h3 className="text-3xl font-black text-white">Message sent!</h3>
                   <p className="mt-4 text-sm leading-relaxed text-white/55 max-w-xs">
-                    A senior practitioner from 4AT will reach out within one business day.
+                    An experienced finance professional from 4AT will reach out within one business day.
                   </p>
                   <button
                     onClick={() => {

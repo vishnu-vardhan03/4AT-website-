@@ -2,8 +2,6 @@
 
 import { useRef, useLayoutEffect } from "react";
 import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CountUpNumber } from "@/components/academy/CountUpNumber";
 import { Target, Briefcase, Bot, Globe, Users, Star, Shield, IndianRupee } from "lucide-react";
 
@@ -65,7 +63,6 @@ function BentoCard({
 
   let hoverAccentColor = "rgba(52, 211, 153, 0.25)"; // green/emerald
   let badgeColors = "text-emerald-400 border-emerald-500/20 bg-emerald-500/5 hover:shadow-[0_0_8px_rgba(45,212,191,0.25)]";
-  let numColor = "text-emerald-400/80";
   let radialGlowBg = "rgba(16, 201, 129, 0.25)";
   let cardBorderGrad = "linear-gradient(to bottom right, rgba(16, 201, 129, 0.24) 0%, rgba(45, 212, 191, 0.15) 50%, rgba(16, 201, 129, 0.24) 100%)";
   let cardGlowShadow = "0 8px 32px rgba(0,0,0,0.6), inset 0 0 15px rgba(16, 201, 129, 0.04)";
@@ -76,7 +73,6 @@ function BentoCard({
   if (glowColor.includes("168") || glowColor.includes("139") || glowColor.includes("purple") || glowColor.includes("indigo")) {
     hoverAccentColor = "rgba(168, 85, 247, 0.25)"; // purple
     badgeColors = "text-purple-400 border-purple-500/20 bg-purple-500/5 hover:shadow-[0_0_8px_rgba(168,85,247,0.25)]";
-    numColor = "text-purple-400/80";
     radialGlowBg = "rgba(168, 85, 247, 0.25)";
     cardBorderGrad = "linear-gradient(to bottom right, rgba(16, 85, 247, 0.24) 0%, rgba(139, 92, 246, 0.15) 50%, rgba(16, 85, 247, 0.24) 100%)";
     cardGlowShadow = "0 8px 32px rgba(0,0,0,0.6), inset 0 0 15px rgba(168, 85, 247, 0.04)";
@@ -86,7 +82,6 @@ function BentoCard({
   } else if (glowColor.includes("6,") || glowColor.includes("cyan")) {
     hoverAccentColor = "rgba(6, 182, 212, 0.25)"; // cyan
     badgeColors = "text-cyan-400 border-cyan-500/20 bg-cyan-500/5 hover:shadow-[0_0_8px_rgba(6,182,212,0.25)]";
-    numColor = "text-cyan-400/80";
     radialGlowBg = "rgba(6, 182, 212, 0.25)";
     cardBorderGrad = "linear-gradient(to bottom right, rgba(6, 182, 212, 0.24) 0%, rgba(56, 189, 248, 0.15) 50%, rgba(6, 182, 212, 0.24) 100%)";
     cardGlowShadow = "0 8px 32px rgba(0,0,0,0.6), inset 0 0 15px rgba(6, 182, 212, 0.04)";
@@ -112,6 +107,7 @@ function BentoCard({
   return (
     <div className={`bento-card-wrapper h-full ${spanClass}`}>
       <div
+        data-card-id={id}
         ref={cardRef}
         onMouseEnter={handleMouseEnter}
         onMouseMove={handleMouseMove}
@@ -194,9 +190,6 @@ function BentoCard({
 
             {/* Right: Text Container (Heading & Description with increased vertical rhythm) */}
             <div className="flex flex-col justify-start pt-1.5 sm:pt-0">
-              <span className={`text-[10px] font-mono tracking-[0.15em] uppercase font-semibold ${numColor}`}>
-                {id}
-              </span>
               <h3 className="mt-3.5 text-lg sm:text-xl font-bold leading-[1.2] tracking-tight text-white/95 font-display group-hover:text-white transition-colors duration-300">
                 {title}
               </h3>
@@ -281,13 +274,13 @@ export function CoreFeatures({ sectionId = "core-features" }: { sectionId?: stri
         {/* [BENTO GRID WORKSPACE] */}
         <div className="bento-grid grid grid-cols-1 md:grid-cols-6 gap-6">
 
-          {/* Card 01 - Career-aligned tracks */}
+          {/* Card 01 - Built by a working F&A firm */}
           <BentoCard
             id="01"
-            title="Career-aligned tracks"
-            body="Start with the job you want, then follow a learning path built backward from that destination."
+            title="Built by a working F&A firm"
+            body="You learn on real client standards from a firm that runs finance & accounting for global clients, not from a textbook."
             icon={Target}
-            badges={["Career Destination", "Role-Based"]}
+            badges={["Career Destination", "ROI-Focussed"]}
             glowColor="rgba(45, 212, 191, 0.08)"
             themeColorClass="text-emerald-400 border-emerald-500/20 bg-emerald-500/5"
             spanClass="col-span-1 md:col-span-2"
@@ -390,11 +383,11 @@ export function CoreFeatures({ sectionId = "core-features" }: { sectionId?: stri
             }
           />
 
-          {/* Card 03 - AI and automation exposure */}
+          {/* Card 03 - Our own AI platform */}
           <BentoCard
             id="03"
-            title="AI and automation exposure"
-            body="Build fluency in the digital tools modern finance teams increasingly expect."
+            title="Our own AI platform"
+            body="You train on 4AT's AI-powered finance tools alongside industry platforms, learning to work with AI, not around it."
             icon={Bot}
             badges={["Digital Fluency", "Modern Tools"]}
             glowColor="rgba(139, 92, 246, 0.1)"

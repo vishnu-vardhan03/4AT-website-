@@ -66,7 +66,7 @@ export function ClientVoices() {
             Client Voices
           </span>
           <h2 className="mt-5 site-heading">
-            Voices of <span className="text-brand-gradient-flow">trust.</span>
+            Voices of <span className="text-brand-gradient-flow">trust</span>
           </h2>
         </div>
 

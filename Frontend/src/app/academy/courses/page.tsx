@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { Star, Search, Filter, BookOpen, Clock, Award, Lock } from "lucide-react";
+import { Star, Search, Filter, BookOpen, Clock, Award, Lock, ArrowLeft, ChevronRight } from "lucide-react";
 import { lmsCourses } from "@/components/academy/data";
 import Image from "next/image";
 import { Nav } from "@/components/layout/MainNav";
@@ -42,6 +42,28 @@ export default function CoursesPage() {
       <section className="relative pt-[120px] pb-16 sm:pt-[132px] sm:pb-20 border-b border-white/5 bg-[#0a0a0a]">
         <div className="absolute top-1/2 left-1/4 w-[350px] h-[350px] bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
         <div className="site-shell relative z-10 text-left">
+          <div className="mb-8 flex flex-wrap items-center gap-x-5 gap-y-3">
+            <Link
+              href="/academy#courses"
+              className="inline-flex h-10 items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-4 text-xs font-semibold text-slate-300 transition-all hover-fine:border-accent/40 hover-fine:text-accent active:scale-95"
+              aria-label="Back to courses section"
+            >
+              <ArrowLeft className="size-4" />
+              Back
+            </Link>
+
+            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-slate-500">
+              <Link
+                href="/academy"
+                className="transition-colors hover-fine:text-accent"
+              >
+                Home
+              </Link>
+              <ChevronRight className="size-3.5" aria-hidden="true" />
+              <span className="text-slate-300" aria-current="page">Courses</span>
+            </nav>
+          </div>
+
           <span className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.15em] uppercase text-accent border border-accent/20 bg-accent/5 px-3 py-1 rounded-md mb-6">
             EDUCATION CATALOG
           </span>

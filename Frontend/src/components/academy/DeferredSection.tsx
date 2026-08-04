@@ -9,8 +9,8 @@ type DeferredSectionName =
   | "features"
   | "how-it-works"
   | "lms-courses"
-  | "target-audience"
-  | "enrollment-cta";
+  | "course-recommender"
+  | "target-audience";
 
 type DeferredSectionProps = {
   section: DeferredSectionName;
@@ -50,6 +50,14 @@ const LmsCourses = dynamic(
   }
 );
 
+const CourseRecommender = dynamic(
+  () => import("@/components/academy/CourseRecommender").then((mod) => mod.CourseRecommender),
+  {
+    ssr: false,
+    loading: () => <SectionSkeleton minHeight="640px" />,
+  }
+);
+
 const TargetAudience = dynamic(
   () => import("@/components/academy/TargetAudience").then((mod) => mod.TargetAudience),
   {
@@ -58,13 +66,7 @@ const TargetAudience = dynamic(
   }
 );
 
-const EnrollmentCTA = dynamic(
-  () => import("@/components/academy/EnrollmentCTA").then((mod) => mod.EnrollmentCTA),
-  {
-    ssr: false,
-    loading: () => <SectionSkeleton minHeight="760px" />,
-  }
-);
+
 
 function SectionSkeleton({ minHeight }: { minHeight: string }) {
   return (
@@ -137,10 +139,11 @@ export function DeferredSection({ section, sectionId, href }: DeferredSectionPro
                 return <HowItWorks sectionId={innerId} />;
               case "lms-courses":
                 return <LmsCourses sectionId={innerId} />;
+              case "course-recommender":
+                return <CourseRecommender sectionId={innerId} href={href ?? "/academy/register"} />;
               case "target-audience":
                 return <TargetAudience sectionId={innerId} />;
-              case "enrollment-cta":
-                return <EnrollmentCTA sectionId={innerId} href={href ?? "/academy/register"} />;
+
               default:
                 return null;
             }
@@ -165,10 +168,11 @@ function getSkeletonHeight(section: DeferredSectionName) {
       return "1100px";
     case "lms-courses":
       return "980px";
+    case "course-recommender":
+      return "640px";
     case "target-audience":
       return "980px";
-    case "enrollment-cta":
-      return "760px";
+
     default:
       return "800px";
   }

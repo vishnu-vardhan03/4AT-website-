@@ -70,7 +70,7 @@ export function HeroContent() {
           <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10B981] shadow-[0_0_8px_#10B981]"></span>
         </span>
         <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-emerald-300 font-sans drop-shadow-[0_0_12px_rgba(16,185,129,0.4)]">
-          A 4AT Initiative
+          Academy
         </span>
       </motion.div>
 
@@ -166,7 +166,7 @@ export function HeroContent() {
         }}
         className="font-sans font-light text-[#A7A9C4] text-base md:text-[1.125rem] leading-[1.6] max-w-[720px] mt-6"
       >
-        The <span className="text-white font-semibold">FinTech Engineering Program (FEP)</span> bridges the gap between academia and industry — equipping commerce graduates with the practical skills of a finance professional with <span className="text-[#47D8FF] font-semibold">2–3 years&apos; experience</span>, and a path to certification, internship and placement.
+        The <span className="text-white font-semibold">FinTech Engineering Program (FEP)</span> bridges the gap between academia and industry, equipping commerce graduates with the practical skills of a finance professional with <span className="text-[#47D8FF] font-semibold">2–3 years&apos; experience</span>, and a path to certification, internship and placement.
       </motion.p>
 
       {/* Action Buttons */}

@@ -9,13 +9,14 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:prod": "node dist/main.js",
-    "lint": "eslint \"{src,test}/**/*.ts\" --fix",
+    "lint": "eslint \"{src,test}/**/*.ts\" --max-warnings=0",
+    "lint:fix": "npm run lint -- --fix",
     "typeorm": "typeorm-ts-node-commonjs -d src/database/data-source.ts",
     "migration:show": "npm run typeorm -- migration:show",
     "migration:run": "npm run typeorm -- migration:run",
     "migration:revert": "npm run typeorm -- migration:revert",
     "test": "node --test --require ts-node/register test/*.test.ts",
-    "check": "npm run test && npm run build"
+    "check": "npm run lint && npm run test && npm run build"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.28",
@@ -52,6 +53,7 @@
     "source-map-support": "^0.5.21",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.66.0"
   }
 }

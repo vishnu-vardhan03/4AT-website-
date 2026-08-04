@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
 import logo from "@/assets/logo.png";
+import { trackButtonClick, trackEvent } from "@/lib/analytics";
 
 const productMenuItems = [
   { label: "Product", href: "/product#capabilities" },
@@ -24,10 +25,10 @@ const serviceMenuItems = [
 ];
 
 const academyMenuItems = [
-  { label: "Program", href: "/academy#courses" },
-  { label: "Blueprint", href: "/academy#features" },
-  { label: "Launch", href: "/academy#enroll" },
-  { label: "Connect", href: "/academy#contact-us" },
+  { label: "About", href: "/academy#about" },
+  { label: "Program", href: "/academy#program" },
+  { label: "Courses", href: "/academy#courses" },
+  { label: "Connect", href: "/contact" },
 ];
 
 const aboutMenuItems = [
@@ -143,6 +144,16 @@ export function Nav({ contactHref = "/contact" }: { contactHref?: string }) {
     setMobileGroup(null);
   };
 
+  // Track link activations at the nav boundary so desktop and mobile menus stay consistent.
+  const handleNavigationClick = (event: React.MouseEvent<HTMLElement>) => {
+    const link = (event.target as HTMLElement).closest("a");
+    if (!link) return;
+    const label = link.textContent?.trim() || link.getAttribute("aria-label") || "Navigation link";
+    const href = link.getAttribute("href") || "";
+    trackEvent("navigation_click", { link_text: label, link_url: href });
+    if (href === contactHref) trackButtonClick(label, "main_navigation");
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -193,6 +204,7 @@ export function Nav({ contactHref = "/contact" }: { contactHref?: string }) {
 
   return (
     <motion.header
+      onClick={handleNavigationClick}
       initial={{ opacity: 0, y: -20 }}
       animate={isNavHidden ? { opacity: 0, y: -88 } : { opacity: 1, y: 0 }}
       transition={{ duration: 0.28, ease: "easeOut" }}
@@ -212,33 +224,21 @@ export function Nav({ contactHref = "/contact" }: { contactHref?: string }) {
           className="relative flex items-center justify-self-start"
         >
           <motion.div
-            initial="initial"
-            whileHover="hover"
-            className="flex items-center cursor-pointer"
+            className="flex cursor-pointer items-center gap-2.5"
           >
             <motion.span
               aria-label="4AT Logo"
               role="img"
               className="brand-logo-gradient relative z-10 !h-8 !w-12"
               style={{ WebkitMaskImage: `url(${logo.src})`, maskImage: `url(${logo.src})` }}
-              variants={{
-                initial: { scale: 1 },
-                hover: { scale: 1.1 }
-              }}
-              transition={{ type: "spring", stiffness: 200, damping: 15 }}
             />
-            <motion.span
-              variants={{
-                initial: { width: 0, opacity: 0, marginLeft: 0 },
-                hover: { width: "auto", opacity: 1, marginLeft: 10 }
-              }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className={`overflow-hidden whitespace-nowrap text-[28px] font-black uppercase leading-7 tracking-wide ${
+            <span
+              className={`whitespace-nowrap text-[32px] font-black uppercase leading-8 tracking-wide ${
                 isDarkBg ? "text-white" : "text-black"
               }`}
             >
               4AT
-            </motion.span>
+            </span>
           </motion.div>
         </Link>
         <nav

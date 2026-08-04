@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useLayoutEffect } from "react";
-import { Users, BookOpen, Wrench, Briefcase, ArrowRight, Check } from "lucide-react";
+import { Users, Check } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SectionPill } from "./SectionPill";
@@ -16,8 +16,7 @@ interface AudienceCard {
   title: string;
   description: string;
   bullets: string[];
-  btnText: string;
-  href: string;
+  idealForText: string;
   watermark: string;
   cardBg: string;
   cardBorderGrad: string;
@@ -36,14 +35,13 @@ const cardsData: AudienceCard[] = [
     bulletAccentClass: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
     badgeColors: "border-emerald-500/20 bg-emerald-500/5 text-emerald-400",
     title: "Freshers Track",
-    description: "Build role clarity, confidence, and your first credible finance portfolio.",
+    description: "Build role clarity and your first credible finance portfolio.",
     bullets: [
       "Structured MNC accounting and audit tracks",
       "Interview and resume calibration from day one",
       "Tool-first learning with guided mentorship"
     ],
-    btnText: "Explore Freshers Track",
-    href: "#courses",
+    idealForText: "Students and freshers starting their finance career.",
     watermark: "01",
     cardBg: "linear-gradient(to bottom, rgba(16, 201, 129, 0.05), rgba(9, 11, 17, 0)) padding-box, radial-gradient(circle at top left, rgba(16, 201, 129, 0.1) 0%, transparent 60%) padding-box, linear-gradient(#090b11, #06070a) padding-box",
     cardBorderGrad: "linear-gradient(to bottom right, rgba(16, 201, 129, 0.28) 0%, rgba(16, 201, 129, 0.15) 50%, rgba(16, 201, 129, 0.26) 100%)",
@@ -60,14 +58,13 @@ const cardsData: AudienceCard[] = [
     bulletAccentClass: "text-purple-400 bg-purple-500/10 border-purple-500/20",
     badgeColors: "border-purple-500/20 bg-purple-500/5 text-purple-400",
     title: "Professionals Track",
-    description: "Move from experience to specialization with sharper compliance and strategic exposure.",
+    description: "Move from experience to specialization with sharper compliance exposure.",
     bullets: [
       "Advanced IFRS, SOX, IA, and FP&A pathways",
       "Promotion-oriented project simulations",
       "Placement support for global finance teams"
     ],
-    btnText: "Explore Professional Track",
-    href: "#courses",
+    idealForText: "Professionals and analysts seeking career acceleration.",
     watermark: "02",
     cardBg: "linear-gradient(to bottom, rgba(139, 92, 246, 0.05), rgba(9, 11, 17, 0)) padding-box, radial-gradient(circle at top right, rgba(139, 92, 246, 0.1) 0%, transparent 60%) padding-box, linear-gradient(#090b11, #06070a) padding-box",
     cardBorderGrad: "linear-gradient(to bottom right, rgba(139, 92, 246, 0.28) 0%, rgba(139, 92, 246, 0.15) 50%, rgba(139, 92, 246, 0.26) 100%)",
@@ -128,9 +125,9 @@ export function TargetAudience({ sectionId = "audience-spectrum" }: { sectionId?
   }, []);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id={sectionId} 
+      id={sectionId}
       className="w-full section-padding relative overflow-hidden bg-transparent text-white border-t border-white/[0.03]"
     >
       {/* Decorative Grid Mesh */}
@@ -146,9 +143,9 @@ export function TargetAudience({ sectionId = "audience-spectrum" }: { sectionId?
         <div className="diff-heading flex flex-col items-start mb-12 max-w-4xl audience-header-animate">
           {/* Neon pill eyebrow */}
           <SectionPill className="mb-6">
-            AUDIENCE SPECTRUM
+            WHO IS IT FOR
           </SectionPill>
-          
+
           <h2 className="section-title">
             Built for two different <span className="career-journeys-gradient font-sans">career journeys</span> <br /> without compromising either.
           </h2>
@@ -158,76 +155,15 @@ export function TargetAudience({ sectionId = "audience-spectrum" }: { sectionId?
           </p>
         </div>
 
-        {/* Career Stage strip - Centered beneath description, above cards grid */}
-        <div className="w-full max-w-[840px] mx-auto mt-10 mb-20 relative z-10 audience-header-animate">
-          <div className="stage-strip rounded-[20px] p-5 sm:py-4 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-4 shadow-[inset_0_2px_8px_rgba(0,0,0,0.8)]">
-            
-            {/* Stage Item */}
-            <div className="flex items-center gap-3.5 w-full md:w-auto">
-              <div className="w-11 h-11 rounded-xl border border-emerald-500/20 bg-emerald-500/5 flex items-center justify-center text-emerald-400 shadow-[inset_0_1.5px_0_rgba(255,255,255,0.05),0_0_10px_rgba(16,201,129,0.15)]">
-                <Users className="w-5 h-5" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[10px] font-mono tracking-[0.1em] uppercase text-emerald-400/90 font-bold">
-                  CAREER STAGE
-                </span>
-                <span className="text-[14px] font-bold text-white/90 whitespace-nowrap">
-                  Freshers <span className="text-white/40 mx-1">→</span> Professionals
-                </span>
-              </div>
-            </div>
-
-            {/* Vertical Divider */}
-            <div className="hidden md:block w-[1px] h-10 bg-white/[0.06]" />
-
-            {/* Feature 1 */}
-            <div className="flex items-center gap-3 w-full md:w-auto">
-              <div className="w-9 h-9 rounded-lg border border-emerald-500/10 bg-emerald-500/5 flex items-center justify-center text-emerald-400/95">
-                <BookOpen className="w-4.5 h-4.5" />
-              </div>
-              <span className="text-[12px] font-medium text-white/70 tracking-wide">
-                Role-based Learning
-              </span>
-            </div>
-
-            {/* Vertical Divider */}
-            <div className="hidden md:block w-[1px] h-10 bg-white/[0.06]" />
-
-            {/* Feature 2 */}
-            <div className="flex items-center gap-3 w-full md:w-auto">
-              <div className="w-9 h-9 rounded-lg border border-emerald-500/10 bg-emerald-500/5 flex items-center justify-center text-emerald-400/95">
-                <Wrench className="w-4.5 h-4.5" />
-              </div>
-              <span className="text-[12px] font-medium text-white/70 tracking-wide">
-                Industry Tools
-              </span>
-            </div>
-
-            {/* Vertical Divider */}
-            <div className="hidden md:block w-[1px] h-10 bg-white/[0.06]" />
-
-            {/* Feature 3 */}
-            <div className="flex items-center gap-3 w-full md:w-auto">
-              <div className="w-9 h-9 rounded-lg border border-emerald-500/10 bg-emerald-500/5 flex items-center justify-center text-emerald-400/95">
-                <Briefcase className="w-4.5 h-4.5" />
-              </div>
-              <span className="text-[12px] font-medium text-white/70 tracking-wide">
-                Placement Ready
-              </span>
-            </div>
-
-          </div>
-        </div>
-
         {/* Dual Cards Grid */}
-        <div 
+        <div
           ref={cardContainerRef}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full relative z-10"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-14 w-full relative z-10"
         >
           {cardsData.map((card) => (
             <div
               key={card.id}
-              className="audience-card-animate audience-card group relative rounded-[28px] pt-[38px] px-[38px] pb-[34px] min-h-[320px] sm:min-h-[210px] md:min-h-[350px] lg:min-h-[330px] flex flex-col justify-between overflow-hidden"
+              className="audience-card-animate audience-card group relative rounded-[28px] pt-[30px] px-[36px] pb-[30px] min-h-[260px] sm:min-h-[190px] md:min-h-[270px] lg:min-h-[250px] flex flex-col justify-between overflow-hidden"
               style={{
                 "--card-bg": card.cardBg,
                 "--card-border-grad": card.cardBorderGrad,
@@ -237,8 +173,8 @@ export function TargetAudience({ sectionId = "audience-spectrum" }: { sectionId?
               } as React.CSSProperties}
             >
               {/* Glowing Top-Left Corner Dot/Node */}
-              <div 
-                className="absolute top-0 left-[38px] w-4 h-[2px] z-20"
+              <div
+                className="absolute top-0 left-[48px] w-4 h-[2px] z-20"
                 style={{
                   backgroundColor: card.id === "01" ? "#10c981" : "#8b5cf6",
                   boxShadow: card.id === "01" ? "0 0 12px rgba(16,201,129,0.8)" : "0 0 12px rgba(139,92,246,0.8)"
@@ -246,8 +182,8 @@ export function TargetAudience({ sectionId = "audience-spectrum" }: { sectionId?
               />
 
               {/* Internal soft neon glow backing */}
-              <div 
-                className="absolute w-[240px] h-[240px] rounded-full blur-[70px] pointer-events-none z-0 opacity-20 transition-opacity duration-500 group-hover:opacity-30" 
+              <div
+                className="absolute w-[240px] h-[240px] rounded-full blur-[70px] pointer-events-none z-0 opacity-20 transition-opacity duration-500 group-hover:opacity-30"
                 style={{
                   background: card.id === "01" ? "rgba(16, 201, 129, 0.4)" : "rgba(139, 92, 246, 0.4)",
                   top: "-60px",
@@ -256,17 +192,16 @@ export function TargetAudience({ sectionId = "audience-spectrum" }: { sectionId?
               />
 
               {/* Large Watermark Number */}
-              <div 
-                className={`absolute right-6 top-4 text-[190px] font-bold font-mono tracking-tighter leading-none select-none pointer-events-none z-0 transition-opacity duration-500 opacity-[0.09] group-hover:opacity-15 ${
-                  card.id === "01" ? "text-emerald-400" : "text-purple-400"
-                }`}
+              <div
+                className={`absolute right-6 top-4 text-[190px] font-bold font-mono tracking-tighter leading-none select-none pointer-events-none z-0 transition-opacity duration-500 opacity-[0.09] group-hover:opacity-15 ${card.id === "01" ? "text-emerald-400" : "text-purple-400"
+                  }`}
               >
                 {card.watermark}
               </div>
 
               <div>
                 {/* Eyebrow badge and dot */}
-                <div className="flex items-center gap-3 mb-12 relative z-10">
+                <div className="flex items-center gap-3 mb-5 relative z-10">
                   <div className={`w-2.5 h-2.5 rounded-full animate-pulse ${card.id === "01" ? "bg-emerald-400 shadow-[0_0_8px_#10b981]" : "bg-purple-400 shadow-[0_0_8px_#a855f7]"}`} />
                   <span className={`inline-block text-[10px] font-bold tracking-widest px-3.5 py-1.5 rounded-full border font-mono ${card.badgeColors}`}>
                     {card.level}
@@ -277,28 +212,28 @@ export function TargetAudience({ sectionId = "audience-spectrum" }: { sectionId?
                 </div>
 
                 {/* Sub-eyebrow */}
-                <div className={`text-[12px] font-mono uppercase tracking-wider font-semibold mb-4 ${card.id === "01" ? "text-emerald-400/90" : "text-purple-400/90"}`}>
+                <div className={`text-[12px] font-mono uppercase tracking-wider font-semibold mb-3 ${card.id === "01" ? "text-emerald-400/90" : "text-purple-400/90"}`}>
                   {card.subEyebrow}
                 </div>
 
                 {/* Title */}
-                <h3 className="text-3xl font-bold text-white tracking-tight mb-5 transition-colors duration-300 font-display">
+                <h3 className="text-3xl font-bold text-white tracking-tight mb-4 transition-colors duration-300 font-display">
                   {card.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-white/60 text-[14px] leading-relaxed mb-10 max-w-[95%] font-sans font-normal">
+                <p className="text-white/60 text-[14px] leading-[1.7] mb-5 max-w-[70%] font-sans font-normal">
                   {card.description}
                 </p>
 
                 {/* Bullet points */}
-                <ul className="space-y-[28px] mt-8 relative z-10">
+                <ul className="space-y-3 relative z-10">
                   {card.bullets.map((bullet, idx) => (
                     <li key={idx} className="flex items-start gap-4">
                       <span className={`relative shrink-0 mt-1 select-none w-[22px] h-[22px] rounded-full flex items-center justify-center border ${card.bulletAccentClass}`}>
                         <Check className="w-3.5 h-3.5 stroke-[3]" />
                       </span>
-                      <p className="text-white/70 text-[14px] leading-relaxed font-sans font-normal">
+                      <p className="text-white/70 text-[14px] leading-relaxed font-sans font-normal max-w-[70%]">
                         {bullet}
                       </p>
                     </li>
@@ -306,31 +241,26 @@ export function TargetAudience({ sectionId = "audience-spectrum" }: { sectionId?
                 </ul>
               </div>
 
-              {/* Action Zone: Separated by line divider matching Card 05 */}
-              <div className="w-full mt-12">
-                <div className="w-full h-[1px] bg-white/10 mb-8" />
-                <a
-                  href={card.href}
-                  className={`w-full h-[58px] rounded-full border text-[12px] font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-300 shadow-[inset_0_1.5px_0_rgba(255,255,255,0.05)] cursor-pointer group/btn ${
+              {/* Ideal For Section */}
+              <div className="w-full mt-5 relative z-10">
+                <div className="w-full h-[1px] bg-white/10 mb-4" />
+                <div className="flex items-center gap-4">
+                  <div className={`w-11 h-11 rounded-full flex items-center justify-center shrink-0 border ${
                     card.id === "01"
-                      ? "border-emerald-500/25 bg-emerald-500/5 text-emerald-400 hover:bg-emerald-500/10 hover:shadow-[0_0_20px_rgba(16,201,129,0.15)]"
-                      : "border-purple-500/25 bg-purple-500/5 text-purple-400 hover:bg-purple-500/10 hover:shadow-[0_0_20px_rgba(139,92,246,0.15)]"
-                  }`}
-                >
-                  {card.btnText}
-                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
-                </a>
-
-                {/* Bottom Tag Strip */}
-                <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 relative z-10">
-                  {card.tags.map((tag) => (
-                    <div key={tag} className="flex items-center gap-2">
-                      <span className={`w-1.5 h-1.5 rounded-full ${card.id === "01" ? "bg-emerald-400" : "bg-purple-400"}`} />
-                      <span className="text-[10px] font-mono tracking-widest text-white/40 uppercase">{tag}</span>
-                    </div>
-                  ))}
+                      ? "border-emerald-500/20 bg-emerald-500/10 text-emerald-400"
+                      : "border-purple-500/20 bg-purple-500/10 text-purple-400"
+                  }`}>
+                    <Users className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${
+                      card.id === "01" ? "text-emerald-400" : "text-purple-400"
+                    }`}>Ideal For</p>
+                    <p className="text-white/55 text-[13px] leading-relaxed font-sans font-normal">{card.idealForText}</p>
+                  </div>
                 </div>
               </div>
+
 
             </div>
           ))}

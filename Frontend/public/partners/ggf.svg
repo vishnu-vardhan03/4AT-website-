@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="100%" height="100%">
+        <circle cx="35" cy="30" r="16" fill="none" stroke="white" stroke-width="4"/>
+        <path d="M35,14 A16,16 0 0,1 51,30" fill="none" stroke="white" stroke-width="4"/>
+        <text x="70" y="41" font-family="system-ui, sans-serif" font-weight="800" font-size="30" fill="white" letter-spacing="2">GGF</text>
+    </svg>

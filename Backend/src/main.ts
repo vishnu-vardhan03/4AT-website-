@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import helmet from 'helmet';
+import type { Express } from 'express';
 import { AppModule } from './app.module';
 import { GlobalExceptionFilter } from './common/filters/http-exception.filter';
 
@@ -10,7 +11,10 @@ async function bootstrap() {
   const logger = new Logger('Bootstrap');
   const app = await NestFactory.create(AppModule);
   const config = app.get(ConfigService);
-  if (config.get<string>('TRUST_PROXY') === 'true') app.getHttpAdapter().getInstance().set('trust proxy', 1);
+  if (config.get<string>('TRUST_PROXY') === 'true') {
+    const express = app.getHttpAdapter().getInstance() as Express;
+    express.set('trust proxy', 1);
+  }
   app.use(helmet());
   // Union of both variables, not one-as-the-default-of-the-other: FRONTEND_URL is
   // mandatory in production, which previously made ALLOWED_ORIGINS dead configuration.

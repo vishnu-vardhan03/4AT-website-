@@ -106,7 +106,7 @@ export function Results() {
           </TiltCard>
           <TiltCard>
             <TaskColumn
-              title="Senior practitioners handle the art"
+              title="Experienced finance professionals handle the art"
               label="Expert layer"
               tasks={expertTasks}
               footer="Led by senior CPAs, controllers, and tax leads"

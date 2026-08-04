@@ -211,7 +211,7 @@ export function Hero() {
               className="mt-6 max-w-2xl"
             >
               <p className="text-base md:text-lg text-white leading-relaxed font-light">
-                Whether you need your books closed, controls remediated, an audit prepared, or a CFO role filled, you get the same hybrid model: AI agents handle the science, and senior practitioners handle the art. You get one bill.
+                Whether you need your books closed, controls remediated, an audit prepared, or a CFO role filled, you get the same hybrid model: AI agents handle the science, and experienced finance professionals handle the art. You get one bill.
               </p>
             </motion.div>
 
@@ -233,7 +233,7 @@ export function Hero() {
                 href="/contact"
                 className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-md px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 hover:border-white transition-all duration-300 active:scale-95"
               >
-                Talk to a senior practitioner
+                Talk to an experienced finance professional
               </a>
             </motion.div>
 

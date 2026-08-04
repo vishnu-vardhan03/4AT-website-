@@ -106,7 +106,7 @@ export function HybridReminder() {
               </span>
 
               <h3 className="text-2xl lg:text-3xl font-black tracking-tight text-white mb-6">
-                Senior practitioners handle the art
+                Experienced finance professionals handle the art
               </h3>
 
               <div className="divide-y divide-white/5 border-t border-b border-white/5 mb-8">

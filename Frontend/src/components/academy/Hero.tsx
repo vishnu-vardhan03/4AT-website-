@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
-import { badgeCopy, partnerLogos } from "@/components/academy/data";
+import { partnerLogos } from "@/components/academy/data";
 import Image from "next/image";
 import { HeroIllustration } from "@/components/academy/HeroIllustration";
 import { motion } from "framer-motion";
@@ -348,17 +348,7 @@ export function Hero({ children }: { children?: React.ReactNode }) {
       >
         <div className="flex flex-col md:flex-row items-center">
           
-          {/* Left static label */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isRevealed ? { opacity: 1 } : undefined}
-            transition={{ duration: 0.5, delay: 1.9 }}
-            className="z-10 flex items-center justify-center bg-transparent px-8 py-5 border-b md:border-b-0 md:border-r border-white/10 w-full md:w-auto md:min-w-[280px] backdrop-blur-xl"
-          >
-            <p className="text-center md:text-left text-xs font-semibold uppercase tracking-wider text-white/60 max-w-[220px]">
-              {badgeCopy}
-            </p>
-          </motion.div>
+
 
           {/* Scrolling track */}
           <div

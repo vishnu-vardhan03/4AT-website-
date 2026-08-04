@@ -7,7 +7,7 @@ const pillars = [
   {
     eyebrow: "Hybrid Services",
     title: "The work, done.",
-    body: "End-to-end accounting, audit, tax, controls, and FP&A - delivered by senior practitioners and AI agents working as one pod. Subscribe on the website, and we run it.",
+    body: "End-to-end accounting, audit, tax, controls, and FP&A - delivered by experienced finance professionals and AI agents working as one pod. Subscribe on the website, and we run it.",
     link: "Explore services",
     href: "/services",
     color: "#38bdf8",
@@ -23,7 +23,7 @@ const pillars = [
   {
     eyebrow: "4AT Academy",
     title: "The talent behind every engagement.",
-    body: "The same training pipeline that produces our senior practitioners also produces hire-ready finance talent for your team. Train them, hire them, or let us run the work for you.",
+    body: "The same training pipeline that produces our experienced finance professionals also produces hire-ready finance talent for your team. Train them, hire them, or let us run the work for you.",
     link: "Explore the Academy",
     href: "/academy",
     color: "#2dd4bf",

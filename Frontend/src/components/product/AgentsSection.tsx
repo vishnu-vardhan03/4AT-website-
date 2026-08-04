@@ -106,7 +106,6 @@ export default function AgentsSection() {
                   className="object-cover opacity-55"
                   sizes="(max-width: 768px) 100vw, 560px"
                 />
-
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[rgba(8,11,26,.95)]" />
 
                 <div className="absolute top-3 right-3 text-[10px] font-bold px-2.5 py-1.5 rounded-lg bg-black/50 backdrop-blur-sm text-white/50 border border-white/10" />

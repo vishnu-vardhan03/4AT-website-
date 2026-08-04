@@ -9,13 +9,13 @@ const steps = [
     n: "2",
     title: "Onboard",
     timeline: "Days 1–7",
-    desc: "Connector ingests your ERP, ledgers, and policies. Your dedicated pod of AI agents plus senior practitioners is live within 7 days. You don't change tools. We meet you inside the systems you already use."
+    desc: "Connector ingests your ERP, ledgers, and policies. Your dedicated pod of AI agents plus experienced finance professionals is live within 7 days. You don't change tools. We meet you inside the systems you already use."
   },
   {
     n: "3",
     title: "We run it",
     timeline: "Day 8 onward",
-    desc: "Iris reconciles. Guardian monitors controls. Atlas builds your reports. Senior practitioners review everything before it reaches you. You see it all in one dashboard. One bill. One team."
+    desc: "Iris reconciles. Guardian monitors controls. Atlas builds your reports. Experienced finance professionals review everything before it reaches you. You see it all in one dashboard. One bill. One team."
   },
   {
     n: "4",

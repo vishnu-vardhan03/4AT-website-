@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const paths = [
   { title: "Ready to start", audience: "For CFOs and firm owners who've made the decision", body: "Subscribe in minutes. Your dedicated pod is live within 7 days. Cancel any month.", action: "Start your subscription", href: "/contact", color: "#38bdf8" },
-  { title: "Want to talk first", audience: "For buyers who want a senior practitioner on the call", body: "Book a 30-minute call. No deck. We'll ask about your current finance stack and tell you whether Hybrid actually fits.", action: "Book a call", href: "/contact", color: "#a78bfa" },
+  { title: "Want to talk first", audience: "For buyers who want an experienced finance professional on the call", body: "Book a 30-minute call. No deck. We'll ask about your current finance stack and tell you whether Hybrid actually fits.", action: "Book a call", href: "/contact", color: "#a78bfa" },
   { title: "Exploring the AI separately", audience: "For firms and enterprises who want the AI agents on their own infrastructure", body: "Get the latest product updates, feature announcements, and insights delivered to your inbox.", action: "Subscribe for updates", href: "/contact", color: "#2dd4bf" },
 ];
 
@@ -20,7 +20,7 @@ export function Contact() {
             <span className="text-brand-gradient-flow">AI you can&apos;t audit.</span>
           </h2>
           <p className="site-subheading mt-6 text-white/75">
-            4AT Hybrid is the third option. AI runs the speed, our senior practitioners run the judgment, and you run your business. Pick the path that fits where you are.
+            4AT Hybrid is the third option. AI runs the speed, our experienced finance professionals run the judgment, and you run your business. Pick the path that fits where you are.
           </p>
         </div>
 

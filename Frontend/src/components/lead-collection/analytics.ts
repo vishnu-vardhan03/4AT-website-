@@ -1,3 +1,5 @@
+import { trackEvent } from "@/lib/analytics";
+
 export type LeadWidgetAnalyticsEvent =
   | "widget_displayed"
   | "widget_opened"
@@ -5,13 +7,10 @@ export type LeadWidgetAnalyticsEvent =
   | "form_submitted"
   | "form_completed";
 
-// Clean extension point — wire this into PostHog (already installed in the
-// project) or another analytics provider once tracking is greenlit.
+// Forward the existing lead-widget lifecycle to the shared, consent-aware GA4 utility.
 export function trackLeadWidgetEvent(
   event: LeadWidgetAnalyticsEvent,
   payload?: Record<string, unknown>,
 ) {
-  if (typeof window === "undefined") return;
-  void event;
-  void payload;
+  trackEvent(event, payload as Record<string, string | number | boolean | undefined> | undefined);
 }

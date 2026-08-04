@@ -34,7 +34,8 @@
     ".next/dev/types/**/*.ts",
     ".next/types/**/*.ts",
     "next-env.d.ts",
-    "node_modules/.cache/4at-next-dev/types/**/*.ts"
+    "node_modules/.cache/4at-next-dev/types/**/*.ts",
+    "node_modules/.cache/4at-next-dev/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
