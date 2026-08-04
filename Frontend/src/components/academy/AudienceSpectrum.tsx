@@ -75,7 +75,7 @@ const cardsData: AudienceCard[] = [
   }
 ];
 
-export function TargetAudience({ sectionId = "audience-spectrum" }: { sectionId?: string }) {
+export function AudienceSpectrum({ sectionId = "audience-spectrum" }: { sectionId?: string }) {
   const sectionRef = useRef<HTMLElement>(null);
   const cardContainerRef = useRef<HTMLDivElement>(null);
 

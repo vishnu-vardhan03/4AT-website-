@@ -2,7 +2,7 @@
 
 import FUITestimonialWithSlide from "@/components/ui/SlidingTestimonial";
 
-export function TestimonialsSocialProof() {
+export function Testimonials() {
   return (
     <section
       id="testimonials"

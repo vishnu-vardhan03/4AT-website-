@@ -12,7 +12,7 @@ import { SectionPill } from "@/components/academy/SectionPill";
 
 
 
-export function LmsCourses({ sectionId = "courses" }: { sectionId?: string }) {
+export function Courses({ sectionId = "courses" }: { sectionId?: string }) {
   const router = useRouter();
   const sectionRef = useRef<HTMLElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);

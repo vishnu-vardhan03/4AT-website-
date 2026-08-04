@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { SectionPill } from "@/components/academy/SectionPill";
 import { Button } from "@/components/academy/Button";
 
-export function FinalCTA({ sectionId = "enroll" }: { sectionId?: string }) {
+export function CTA({ sectionId = "enroll" }: { sectionId?: string }) {
   return (
     <section
       id={sectionId}

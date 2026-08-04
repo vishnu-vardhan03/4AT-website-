@@ -13,7 +13,7 @@ export function ProductCurtain({
       {/* Dark Zone */}
       <div className="relative z-30 zone-dark">
         <DarkZoneWrapper>
-          <DeferredSection section="target-audience" sectionId="audience" />
+          <DeferredSection section="audience-spectrum" sectionId="audience" />
 
           {children}
         </DarkZoneWrapper>

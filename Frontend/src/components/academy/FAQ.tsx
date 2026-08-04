@@ -33,7 +33,7 @@ const faqItems = [
   },
 ];
 
-export function AcademyFaq({ sectionId = "faq" }: { sectionId?: string }) {
+export function FAQ({ sectionId = "faq" }: { sectionId?: string }) {
   const [openIndex, setOpenIndex] = useState<number | null>(4);
 
   const toggleFaq = (index: number) => {

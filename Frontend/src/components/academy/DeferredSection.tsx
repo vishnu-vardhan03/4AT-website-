@@ -8,9 +8,9 @@ type DeferredSectionName =
   | "course-directory"
   | "features"
   | "how-it-works"
-  | "lms-courses"
+  | "courses"
   | "course-recommender"
-  | "target-audience";
+  | "audience-spectrum";
 
 type DeferredSectionProps = {
   section: DeferredSectionName;
@@ -42,8 +42,8 @@ const HowItWorks = dynamic(
   }
 );
 
-const LmsCourses = dynamic(
-  () => import("@/components/academy/LmsCourses").then((mod) => mod.LmsCourses),
+const Courses = dynamic(
+  () => import("@/components/academy/Courses").then((mod) => mod.Courses),
   {
     ssr: false,
     loading: () => <SectionSkeleton minHeight="980px" />,
@@ -58,8 +58,8 @@ const CourseRecommender = dynamic(
   }
 );
 
-const TargetAudience = dynamic(
-  () => import("@/components/academy/TargetAudience").then((mod) => mod.TargetAudience),
+const AudienceSpectrum = dynamic(
+  () => import("@/components/academy/AudienceSpectrum").then((mod) => mod.AudienceSpectrum),
   {
     ssr: false,
     loading: () => <SectionSkeleton minHeight="980px" />,
@@ -137,12 +137,12 @@ export function DeferredSection({ section, sectionId, href }: DeferredSectionPro
                 return <Features sectionId={innerId} />;
               case "how-it-works":
                 return <HowItWorks sectionId={innerId} />;
-              case "lms-courses":
-                return <LmsCourses sectionId={innerId} />;
+              case "courses":
+                return <Courses sectionId={innerId} />;
               case "course-recommender":
                 return <CourseRecommender sectionId={innerId} href={href ?? "/academy/register"} />;
-              case "target-audience":
-                return <TargetAudience sectionId={innerId} />;
+              case "audience-spectrum":
+                return <AudienceSpectrum sectionId={innerId} />;
 
               default:
                 return null;
@@ -166,11 +166,11 @@ function getSkeletonHeight(section: DeferredSectionName) {
       return "980px";
     case "how-it-works":
       return "1100px";
-    case "lms-courses":
+    case "courses":
       return "980px";
     case "course-recommender":
       return "640px";
-    case "target-audience":
+    case "audience-spectrum":
       return "980px";
 
     default:
