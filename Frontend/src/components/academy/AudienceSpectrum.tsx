@@ -1,96 +1,27 @@
 "use client";
 
 import { useRef, useLayoutEffect } from "react";
-import { Users, Check } from "lucide-react";
+import { BarChart3, Monitor, GraduationCap, Building2, Users, Target, User } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SectionPill } from "./SectionPill";
 
-interface AudienceCard {
-  id: string;
-  level: string;
-  subEyebrow: string;
-  accentClass: string;
-  bulletAccentClass: string;
-  badgeColors: string;
-  title: string;
-  description: string;
-  bullets: string[];
-  idealForText: string;
-  watermark: string;
-  cardBg: string;
-  cardBorderGrad: string;
-  cardHoverBorderGrad: string;
-  cardGlowShadow: string;
-  cardHoverShadow: string;
-  tags: string[];
-}
-
-const cardsData: AudienceCard[] = [
-  {
-    id: "01",
-    level: "LEVEL 01",
-    subEyebrow: "Freshers",
-    accentClass: "text-emerald-400",
-    bulletAccentClass: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
-    badgeColors: "border-emerald-500/20 bg-emerald-500/5 text-emerald-400",
-    title: "Freshers Track",
-    description: "Build role clarity and your first credible finance portfolio.",
-    bullets: [
-      "Structured MNC accounting and audit tracks",
-      "Interview and resume calibration from day one",
-      "Tool-first learning with guided mentorship"
-    ],
-    idealForText: "Students and freshers starting their finance career.",
-    watermark: "01",
-    cardBg: "linear-gradient(to bottom, rgba(16, 201, 129, 0.05), rgba(9, 11, 17, 0)) padding-box, radial-gradient(circle at top left, rgba(16, 201, 129, 0.1) 0%, transparent 60%) padding-box, linear-gradient(#090b11, #06070a) padding-box",
-    cardBorderGrad: "linear-gradient(to bottom right, rgba(16, 201, 129, 0.28) 0%, rgba(16, 201, 129, 0.15) 50%, rgba(16, 201, 129, 0.26) 100%)",
-    cardHoverBorderGrad: "linear-gradient(to bottom right, rgba(16, 201, 129, 0.5) 0%, rgba(16, 201, 129, 0.25) 50%, rgba(16, 201, 129, 0.45) 100%)",
-    cardGlowShadow: "0 4px 20px rgba(0,0,0,0.8), inset 0 0 15px rgba(16, 201, 129, 0.04)",
-    cardHoverShadow: "0 12px 30px rgba(0,0,0,0.9), inset 0 0 25px rgba(16, 201, 129, 0.18)",
-    tags: ["INTERVIEW READY", "ROLE READY", "PORTFOLIO READY"]
-  },
-  {
-    id: "02",
-    level: "LEVEL 02+",
-    subEyebrow: "Professionals",
-    accentClass: "text-purple-400",
-    bulletAccentClass: "text-purple-400 bg-purple-500/10 border-purple-500/20",
-    badgeColors: "border-purple-500/20 bg-purple-500/5 text-purple-400",
-    title: "Professionals Track",
-    description: "Move from experience to specialization with sharper compliance exposure.",
-    bullets: [
-      "Advanced IFRS, SOX, IA, and FP&A pathways",
-      "Promotion-oriented project simulations",
-      "Placement support for global finance teams"
-    ],
-    idealForText: "Professionals and analysts seeking career acceleration.",
-    watermark: "02",
-    cardBg: "linear-gradient(to bottom, rgba(139, 92, 246, 0.05), rgba(9, 11, 17, 0)) padding-box, radial-gradient(circle at top right, rgba(139, 92, 246, 0.1) 0%, transparent 60%) padding-box, linear-gradient(#090b11, #06070a) padding-box",
-    cardBorderGrad: "linear-gradient(to bottom right, rgba(139, 92, 246, 0.28) 0%, rgba(139, 92, 246, 0.15) 50%, rgba(139, 92, 246, 0.26) 100%)",
-    cardHoverBorderGrad: "linear-gradient(to bottom right, rgba(139, 92, 246, 0.5) 0%, rgba(139, 92, 246, 0.25) 50%, rgba(139, 92, 246, 0.45) 100%)",
-    cardGlowShadow: "0 4px 20px rgba(0,0,0,0.8), inset 0 0 15px rgba(139, 92, 246, 0.04)",
-    cardHoverShadow: "0 12px 30px rgba(0,0,0,0.9), inset 0 0 25px rgba(139, 92, 246, 0.18)",
-    tags: ["IFRS", "SOX", "FP&A", "COMPLIANCE"]
-  }
-];
-
 export function AudienceSpectrum({ sectionId = "audience-spectrum" }: { sectionId?: string }) {
   const sectionRef = useRef<HTMLElement>(null);
-  const cardContainerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // 1. Header reveal
+      // Header reveal
       gsap.fromTo(
         ".audience-header-animate",
-        { opacity: 0, y: 50 },
+        { opacity: 0, y: 40 },
         {
           opacity: 1,
           y: 0,
-          duration: 1.0,
+          duration: 0.9,
           stagger: 0.15,
           ease: "power3.out",
           scrollTrigger: {
@@ -101,20 +32,19 @@ export function AudienceSpectrum({ sectionId = "audience-spectrum" }: { sectionI
         }
       );
 
-      // 2. Cards entrance
+      // Columns reveal
       gsap.fromTo(
-        ".audience-card-animate",
-        { opacity: 0, y: 80, scale: 0.97 },
+        ".audience-column-animate",
+        { opacity: 0, y: 50 },
         {
           opacity: 1,
           y: 0,
-          scale: 1,
-          duration: 1.0,
-          stagger: 0.15,
+          duration: 0.9,
+          stagger: 0.2,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: cardContainerRef.current,
-            start: "top 85%",
+            trigger: containerRef.current,
+            start: "top 80%",
             toggleActions: "play reverse play reverse",
           },
         }
@@ -133,15 +63,13 @@ export function AudienceSpectrum({ sectionId = "audience-spectrum" }: { sectionI
       {/* Decorative Grid Mesh */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f293708_1px,transparent_1px),linear-gradient(to_bottom,#1f293708_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
-      {/* Ambient glows behind cards */}
-      <div className="absolute bottom-[20%] right-1/4 translate-x-1/2 w-[500px] h-[500px] rounded-full bg-purple-500/5 blur-[120px] pointer-events-none" />
-
-
+      {/* Ambient background glows */}
+      <div className="absolute top-1/3 left-1/4 -translate-x-1/2 w-[400px] h-[400px] rounded-full bg-emerald-500/5 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/3 right-1/4 translate-x-1/2 w-[400px] h-[400px] rounded-full bg-purple-500/5 blur-[120px] pointer-events-none" />
 
       <div className="site-shell relative z-10">
         {/* Header Section */}
-        <div className="diff-heading flex flex-col items-start mb-12 max-w-4xl audience-header-animate">
-          {/* Neon pill eyebrow */}
+        <div className="diff-heading flex flex-col items-start mb-16 max-w-4xl audience-header-animate">
           <SectionPill className="mb-6">
             WHO IS IT FOR
           </SectionPill>
@@ -155,115 +83,180 @@ export function AudienceSpectrum({ sectionId = "audience-spectrum" }: { sectionI
           </p>
         </div>
 
-        {/* Dual Cards Grid */}
+        {/* Editorial Split Layout */}
         <div
-          ref={cardContainerRef}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-14 w-full relative z-10"
+          ref={containerRef}
+          className="relative grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-24 w-full items-stretch"
         >
-          {cardsData.map((card) => (
-            <div
-              key={card.id}
-              className="audience-card-animate audience-card group relative rounded-[28px] pt-[30px] px-[36px] pb-[30px] min-h-[260px] sm:min-h-[190px] md:min-h-[270px] lg:min-h-[250px] flex flex-col justify-between overflow-hidden"
-              style={{
-                "--card-bg": card.cardBg,
-                "--card-border-grad": card.cardBorderGrad,
-                "--card-hover-border-grad": card.cardHoverBorderGrad,
-                "--card-glow-shadow": card.cardGlowShadow,
-                "--card-hover-shadow": card.cardHoverShadow,
-              } as React.CSSProperties}
-            >
-              {/* Glowing Top-Left Corner Dot/Node */}
-              <div
-                className="absolute top-0 left-[48px] w-4 h-[2px] z-20"
-                style={{
-                  backgroundColor: card.id === "01" ? "#10c981" : "#8b5cf6",
-                  boxShadow: card.id === "01" ? "0 0 12px rgba(16,201,129,0.8)" : "0 0 12px rgba(139,92,246,0.8)"
-                }}
-              />
-
-              {/* Internal soft neon glow backing */}
-              <div
-                className="absolute w-[240px] h-[240px] rounded-full blur-[70px] pointer-events-none z-0 opacity-20 transition-opacity duration-500 group-hover:opacity-30"
-                style={{
-                  background: card.id === "01" ? "rgba(16, 201, 129, 0.4)" : "rgba(139, 92, 246, 0.4)",
-                  top: "-60px",
-                  right: "-60px"
-                }}
-              />
-
-              {/* Large Watermark Number */}
-              <div
-                className={`absolute right-6 top-4 text-[190px] font-bold font-mono tracking-tighter leading-none select-none pointer-events-none z-0 transition-opacity duration-500 opacity-[0.09] group-hover:opacity-15 ${card.id === "01" ? "text-emerald-400" : "text-purple-400"
-                  }`}
-              >
-                {card.watermark}
-              </div>
-
-              <div>
-                {/* Eyebrow badge and dot */}
-                <div className="flex items-center gap-3 mb-5 relative z-10">
-                  <div className={`w-2.5 h-2.5 rounded-full animate-pulse ${card.id === "01" ? "bg-emerald-400 shadow-[0_0_8px_#10b981]" : "bg-purple-400 shadow-[0_0_8px_#a855f7]"}`} />
-                  <span className={`inline-block text-[10px] font-bold tracking-widest px-3.5 py-1.5 rounded-full border font-mono ${card.badgeColors}`}>
-                    {card.level}
-                  </span>
-                  <span className="ml-auto text-[11px] font-mono text-white/20 select-none">
-                    {card.id === "01" ? "STAGE_01" : "STAGE_02"}
-                  </span>
-                </div>
-
-                {/* Sub-eyebrow */}
-                <div className={`text-[12px] font-mono uppercase tracking-wider font-semibold mb-3 ${card.id === "01" ? "text-emerald-400/90" : "text-purple-400/90"}`}>
-                  {card.subEyebrow}
-                </div>
-
-                {/* Title */}
-                <h3 className="text-3xl font-bold text-white tracking-tight mb-4 transition-colors duration-300 font-display">
-                  {card.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-white/60 text-[14px] leading-[1.7] mb-5 max-w-[70%] font-sans font-normal">
-                  {card.description}
-                </p>
-
-                {/* Bullet points */}
-                <ul className="space-y-3 relative z-10">
-                  {card.bullets.map((bullet, idx) => (
-                    <li key={idx} className="flex items-start gap-4">
-                      <span className={`relative shrink-0 mt-1 select-none w-[22px] h-[22px] rounded-full flex items-center justify-center border ${card.bulletAccentClass}`}>
-                        <Check className="w-3.5 h-3.5 stroke-[3]" />
-                      </span>
-                      <p className="text-white/70 text-[14px] leading-relaxed font-sans font-normal max-w-[70%]">
-                        {bullet}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Ideal For Section */}
-              <div className="w-full mt-5 relative z-10">
-                <div className="w-full h-[1px] bg-white/10 mb-4" />
-                <div className="flex items-center gap-4">
-                  <div className={`w-11 h-11 rounded-full flex items-center justify-center shrink-0 border ${
-                    card.id === "01"
-                      ? "border-emerald-500/20 bg-emerald-500/10 text-emerald-400"
-                      : "border-purple-500/20 bg-purple-500/10 text-purple-400"
-                  }`}>
-                    <Users className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${
-                      card.id === "01" ? "text-emerald-400" : "text-purple-400"
-                    }`}>Ideal For</p>
-                    <p className="text-white/55 text-[13px] leading-relaxed font-sans font-normal">{card.idealForText}</p>
-                  </div>
-                </div>
-              </div>
-
-
+          {/* Central Vertical Divider (Desktop) */}
+          <div className="hidden md:flex flex-col items-center absolute left-1/2 top-0 bottom-0 -translate-x-1/2 z-20 pointer-events-none">
+            <div className="w-px h-full bg-gradient-to-b from-emerald-500/20 via-white/15 to-purple-500/20" />
+            <div className="absolute top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-[#070913] border border-white/15 flex items-center justify-center shadow-[0_0_20px_rgba(0,0,0,0.9),0_0_10px_rgba(255,255,255,0.05)] text-[12px] font-mono text-white/50 lowercase select-none">
+              or
             </div>
-          ))}
+          </div>
+
+          {/* ── LEFT COLUMN: Freshers Track ──────────────────────────────── */}
+          <div className="audience-column-animate relative flex flex-col justify-between py-2">
+            {/* Top Row: Level Badge + Translucent Number */}
+            <div className="flex items-center justify-between mb-4">
+              <span className="inline-block px-3.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold font-mono tracking-widest uppercase bg-emerald-500/10 border border-emerald-500/30 text-[#14F195] shadow-[0_0_12px_rgba(20,241,149,0.15)]">
+                LEVEL 1
+              </span>
+              <span className="text-[64px] sm:text-[80px] font-extrabold font-mono leading-none select-none text-emerald-500/20 tracking-tight shrink-0">
+                01
+              </span>
+            </div>
+
+            {/* Title & Description */}
+            <div className="mb-8">
+              <h3 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-3">
+                Freshers <span className="text-[#14F195]">Track</span>
+              </h3>
+              <p className="text-white/60 text-[14px] sm:text-[15px] leading-relaxed max-w-lg font-sans">
+                Build job-ready skills and your first credible finance portfolio.
+              </p>
+            </div>
+
+            {/* 3 Feature Points with Dashed Vertical Connecting Line */}
+            <div className="relative space-y-7 mb-10 pl-1">
+              {/* Vertical Dashed Line */}
+              <div className="absolute left-[21px] top-[24px] bottom-[24px] w-px border-l border-dashed border-emerald-500/30 pointer-events-none" />
+
+              {/* Feature 1 */}
+              <div className="relative z-10 flex items-center gap-4 group">
+                <div className="w-11 h-11 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[#14F195] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(20,241,149,0.2)] transition-transform duration-300 group-hover:scale-110">
+                  <BarChart3 className="w-5 h-5" />
+                </div>
+                <p className="text-white/80 text-[14px] sm:text-[15px] font-medium font-sans leading-snug">
+                  Structured ERP accounting and audit tracks
+                </p>
+              </div>
+
+              {/* Feature 2 */}
+              <div className="relative z-10 flex items-center gap-4 group">
+                <div className="w-11 h-11 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[#14F195] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(20,241,149,0.2)] transition-transform duration-300 group-hover:scale-110">
+                  <Monitor className="w-5 h-5" />
+                </div>
+                <p className="text-white/80 text-[14px] sm:text-[15px] font-medium font-sans leading-snug">
+                  Live case and resume calibration from day one
+                </p>
+              </div>
+
+              {/* Feature 3 */}
+              <div className="relative z-10 flex items-center gap-4 group">
+                <div className="w-11 h-11 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[#14F195] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(20,241,149,0.2)] transition-transform duration-300 group-hover:scale-110">
+                  <GraduationCap className="w-5 h-5" />
+                </div>
+                <p className="text-white/80 text-[14px] sm:text-[15px] font-medium font-sans leading-snug">
+                  Tool-first learning with guided mentorship
+                </p>
+              </div>
+            </div>
+
+            {/* Horizontal Thin Separator */}
+            <div className="w-full h-px bg-white/10 mb-6" />
+
+            {/* Bottom "Ideal For" Row */}
+            <div className="flex items-center gap-4 pt-1">
+              <div className="w-11 h-11 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[#14F195] flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(20,241,149,0.15)]">
+                <User className="w-5 h-5" />
+              </div>
+              <div>
+                <span className="text-[10px] font-bold font-mono tracking-widest text-[#14F195] uppercase block mb-0.5">
+                  IDEAL FOR
+                </span>
+                <p className="text-white/60 text-[13px] sm:text-[14px] font-sans">
+                  Students and freshers exploring the finance career.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile Horizontal Divider */}
+          <div className="md:hidden relative w-full my-6 flex items-center justify-center">
+            <div className="w-full h-px bg-gradient-to-r from-emerald-500/20 via-white/15 to-purple-500/20" />
+            <div className="absolute w-8 h-8 rounded-full bg-[#070913] border border-white/15 flex items-center justify-center text-[11px] font-mono text-white/50 lowercase">
+              or
+            </div>
+          </div>
+
+          {/* ── RIGHT COLUMN: Professionals Track ──────────────────────────── */}
+          <div className="audience-column-animate relative flex flex-col justify-between py-2">
+            {/* Top Row: Level Badge + Translucent Number */}
+            <div className="flex items-center justify-between mb-4">
+              <span className="inline-block px-3.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold font-mono tracking-widest uppercase bg-purple-500/10 border border-purple-500/30 text-[#A86DFF] shadow-[0_0_12px_rgba(168,109,255,0.15)]">
+                LEVEL 2+
+              </span>
+              <span className="text-[64px] sm:text-[80px] font-extrabold font-mono leading-none select-none text-purple-500/20 tracking-tight shrink-0">
+                02
+              </span>
+            </div>
+
+            {/* Title & Description */}
+            <div className="mb-8">
+              <h3 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-3">
+                Professionals <span className="text-[#A86DFF]">Track</span>
+              </h3>
+              <p className="text-white/60 text-[14px] sm:text-[15px] leading-relaxed max-w-lg font-sans">
+                Move from experience to specialization with deeper compliance exposure.
+              </p>
+            </div>
+
+            {/* 3 Feature Points with Dashed Vertical Connecting Line */}
+            <div className="relative space-y-7 mb-10 pl-1">
+              {/* Vertical Dashed Line */}
+              <div className="absolute left-[21px] top-[24px] bottom-[24px] w-px border-l border-dashed border-purple-500/30 pointer-events-none" />
+
+              {/* Feature 1 */}
+              <div className="relative z-10 flex items-center gap-4 group">
+                <div className="w-11 h-11 rounded-full bg-purple-500/10 border border-purple-500/30 text-[#A86DFF] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(168,109,255,0.2)] transition-transform duration-300 group-hover:scale-110">
+                  <Building2 className="w-5 h-5" />
+                </div>
+                <p className="text-white/80 text-[14px] sm:text-[15px] font-medium font-sans leading-snug">
+                  Advanced ERP, ESG, IA, and IFRS pathways
+                </p>
+              </div>
+
+              {/* Feature 2 */}
+              <div className="relative z-10 flex items-center gap-4 group">
+                <div className="w-11 h-11 rounded-full bg-purple-500/10 border border-purple-500/30 text-[#A86DFF] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(168,109,255,0.2)] transition-transform duration-300 group-hover:scale-110">
+                  <Users className="w-5 h-5" />
+                </div>
+                <p className="text-white/80 text-[14px] sm:text-[15px] font-medium font-sans leading-snug">
+                  Promotion-oriented project modules
+                </p>
+              </div>
+
+              {/* Feature 3 */}
+              <div className="relative z-10 flex items-center gap-4 group">
+                <div className="w-11 h-11 rounded-full bg-purple-500/10 border border-purple-500/30 text-[#A86DFF] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(168,109,255,0.2)] transition-transform duration-300 group-hover:scale-110">
+                  <Target className="w-5 h-5" />
+                </div>
+                <p className="text-white/80 text-[14px] sm:text-[15px] font-medium font-sans leading-snug">
+                  Placement support for global finance teams
+                </p>
+              </div>
+            </div>
+
+            {/* Horizontal Thin Separator */}
+            <div className="w-full h-px bg-white/10 mb-6" />
+
+            {/* Bottom "Ideal For" Row */}
+            <div className="flex items-center gap-4 pt-1">
+              <div className="w-11 h-11 rounded-full bg-purple-500/10 border border-purple-500/30 text-[#A86DFF] flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(168,109,255,0.15)]">
+                <User className="w-5 h-5" />
+              </div>
+              <div>
+                <span className="text-[10px] font-bold font-mono tracking-widest text-[#A86DFF] uppercase block mb-0.5">
+                  IDEAL FOR
+                </span>
+                <p className="text-white/60 text-[13px] sm:text-[14px] font-sans">
+                  Professionals aiming at leadership or acceleration.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
