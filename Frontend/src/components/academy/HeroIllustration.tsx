@@ -3,12 +3,17 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
-import { User, Briefcase, TrendingUp, BarChart3 } from "lucide-react";
+import { User, Briefcase, TrendingUp, Cpu, Award } from "lucide-react";
 
 export function HeroIllustration() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const isRevealed = true;
+
+  // Ambient Icon Discovery Sequence State
+  const [activeIndex, setActiveIndex] = useState<number | null>(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isInView, setIsInView] = useState(true);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -17,6 +22,37 @@ export function HeroIllustration() {
     mediaQuery.addEventListener("change", listener);
     return () => mediaQuery.removeEventListener("change", listener);
   }, []);
+
+  // Viewport Intersection Observer
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // Clockwise Ambient Discovery Sequence Loop
+  // Order: 0: Mentorship, 1: AI Tools, 2: Certification, 3: Placement Support, 4: Internship
+  useEffect(() => {
+    if (prefersReducedMotion || hoveredIndex !== null || !isInView) return;
+
+    // Sequence Step Duration: reveal (350ms) + visible (1000ms) + fade (300ms) + delay (150ms) = 1800ms
+    const timer = setTimeout(() => {
+      setActiveIndex((prev) => (prev === null ? 0 : (prev + 1) % 5));
+    }, 1800);
+
+    return () => clearTimeout(timer);
+  }, [activeIndex, hoveredIndex, isInView, prefersReducedMotion]);
+
+  const isCardActive = (seqIndex: number) => {
+    if (hoveredIndex !== null) return hoveredIndex === seqIndex;
+    return activeIndex === seqIndex;
+  };
 
   // Mouse Parallax Motion Values (Framer Motion)
   const mouseX = useMotionValue(0);
@@ -43,6 +79,9 @@ export function HeroIllustration() {
 
   const card4X = useTransform(xSpring, [-400, 400], [-40, 40]);
   const card4Y = useTransform(ySpring, [-400, 400], [-40, 40]);
+
+  const card5X = useTransform(xSpring, [-400, 400], [-35, 35]);
+  const card5Y = useTransform(ySpring, [-400, 400], [-35, 35]);
 
   // Ambient glows also shift slightly
   const glowX = useTransform(xSpring, [-400, 400], [-15, 15]);
@@ -234,13 +273,13 @@ export function HeroIllustration() {
         </motion.div>
       </motion.div>
 
-      {/* Floating Glassmorphic Cards (Organic Asymmetric Layout around Asset) */}
+      {/* Floating Glassmorphic Cards (3 Left of Cap, 2 Right of Cap) */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-35 overflow-visible">
         
-        {/* Card 1 (Top-Left): Profile Icon */}
+        {/* ── LEFT SIDE CARD 1 (Top-Left): Industry Mentorship (Seq 0) ─────────── */}
         <motion.div
           style={{ x: card1X, y: card1Y }}
-          className="absolute top-[12%] left-[0%] sm:left-[0%] md:left-[0%] lg:left-[0%] z-30 hidden sm:flex"
+          className="absolute top-[10%] left-[0%] sm:left-[0%] z-30 flex"
           initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.7, y: prefersReducedMotion ? 0 : 20 }}
           animate={isRevealed ? { opacity: 1, scale: 1, y: 0 } : undefined}
           transition={{
@@ -257,8 +296,11 @@ export function HeroIllustration() {
               ease: "easeInOut",
               delay: 0.5
             }}
-            className="group pointer-events-auto"
+            className="group pointer-events-auto relative"
             style={{ perspective: "600px" }}
+            onMouseEnter={() => setHoveredIndex(0)}
+            onMouseLeave={() => setHoveredIndex(null)}
+            onTouchStart={() => setHoveredIndex(0)}
             onMouseMove={(e) => {
               if (prefersReducedMotion) return;
               const el = e.currentTarget.querySelector(".card-inner") as HTMLElement;
@@ -273,76 +315,44 @@ export function HeroIllustration() {
               el.style.setProperty("--sx", `${sx}%`);
               el.style.setProperty("--sy", `${sy}%`);
             }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget.querySelector(".card-inner") as HTMLElement;
-              if (el) el.style.transform = "rotateX(0deg) rotateY(0deg)";
-            }}
           >
             <div
-              className="card-inner flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.02] backdrop-blur-xl border border-white/10 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_10px_30px_rgba(0,0,0,0.6)] group-hover:border-purple-400/40 group-hover:shadow-[0_0_25px_rgba(168,109,255,0.3)] transition-shadow duration-300 ease-out cursor-pointer relative overflow-hidden"
-              style={{ transition: "transform 0.15s ease-out", transformStyle: "preserve-3d" }}
+              className={`card-inner flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.03] backdrop-blur-xl border transition-all duration-300 ease-out cursor-pointer relative overflow-hidden ${
+                isCardActive(0)
+                  ? "border-purple-400/80 shadow-[0_0_28px_rgba(168,109,255,0.55)] scale-[1.08]"
+                  : "border-white/12 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_10px_30px_rgba(0,0,0,0.6)]"
+              }`}
+              style={{ transformStyle: "preserve-3d" }}
             >
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" style={{ background: "radial-gradient(circle at var(--sx, 50%) var(--sy, 50%), rgba(168,109,255,0.18) 0%, transparent 60%)" }} />
-              <User className="w-5 h-5 sm:w-6 sm:h-6 text-[#A86DFF] filter drop-shadow-[0_0_8px_rgba(168,109,255,0.6)] group-hover:scale-110 transition-transform duration-300 relative z-10" />
+              <div
+                className={`absolute inset-0 transition-opacity duration-300 pointer-events-none rounded-2xl ${
+                  isCardActive(0) ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                }`}
+                style={{ background: "radial-gradient(circle at var(--sx, 50%) var(--sy, 50%), rgba(168,109,255,0.25) 0%, transparent 60%)" }}
+              />
+              <User className={`w-5 h-5 sm:w-6 sm:h-6 text-[#A86DFF] filter drop-shadow-[0_0_8px_rgba(168,109,255,0.7)] transition-transform duration-300 relative z-10 ${isCardActive(0) ? "scale-110" : ""}`} />
+            </div>
+
+            {/* Contextual Value Label Tooltip */}
+            <div
+              className={`absolute left-full ml-3 top-1/2 -translate-y-1/2 transition-all ease-out pointer-events-none z-50 whitespace-nowrap ${
+                isCardActive(0)
+                  ? "opacity-100 translate-x-0 duration-300"
+                  : "opacity-0 -translate-x-1 duration-300"
+              }`}
+            >
+              <div className="px-3.5 py-1.5 rounded-xl bg-[#0c0f1d]/90 backdrop-blur-md border border-purple-400/40 text-white font-sans font-medium text-[13px] sm:text-[14px] shadow-[0_10px_25px_rgba(0,0,0,0.8),0_0_15px_rgba(168,109,255,0.3)] flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#A86DFF] shadow-[0_0_6px_#A86DFF]" />
+                <span>Industry Mentorship</span>
+              </div>
             </div>
           </motion.div>
         </motion.div>
 
-        {/* Card 2 (Top-Right): Analytics Icon */}
-        <motion.div
-          style={{ x: card2X, y: card2Y }}
-          className="absolute top-[16%] right-[4%] sm:right-[4%] md:right-[4%] lg:right-[4%] z-30 hidden sm:flex"
-          initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.7, y: prefersReducedMotion ? 0 : 20 }}
-          animate={isRevealed ? { opacity: 1, scale: 1, y: 0 } : undefined}
-          transition={{
-            duration: prefersReducedMotion ? 0.3 : 0.5,
-            delay: prefersReducedMotion ? 0 : 1.12,
-            ease: [0.34, 1.56, 0.64, 1]
-          }}
-        >
-          <motion.div
-            animate={isRevealed && !prefersReducedMotion ? { y: [0, -11, 0] } : {}}
-            transition={{
-              duration: 4.2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1.2
-            }}
-            className="group pointer-events-auto"
-            style={{ perspective: "600px" }}
-            onMouseMove={(e) => {
-              if (prefersReducedMotion) return;
-              const el = e.currentTarget.querySelector(".card-inner") as HTMLElement;
-              if (!el) return;
-              const r = el.getBoundingClientRect();
-              const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
-              const rx = -((e.clientY - cy) / (r.height / 2)) * 14;
-              const ry = ((e.clientX - cx) / (r.width / 2)) * 14;
-              const sx = ((e.clientX - r.left) / r.width) * 100;
-              const sy = ((e.clientY - r.top) / r.height) * 100;
-              el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
-              el.style.setProperty("--sx", `${sx}%`);
-              el.style.setProperty("--sy", `${sy}%`);
-            }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget.querySelector(".card-inner") as HTMLElement;
-              if (el) el.style.transform = "rotateX(0deg) rotateY(0deg)";
-            }}
-          >
-            <div
-              className="card-inner flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.02] backdrop-blur-xl border border-white/10 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_10px_30px_rgba(0,0,0,0.6)] group-hover:border-cyan-400/40 group-hover:shadow-[0_0_25px_rgba(83,231,255,0.3)] transition-shadow duration-300 ease-out cursor-pointer relative overflow-hidden"
-              style={{ transition: "transform 0.15s ease-out", transformStyle: "preserve-3d" }}
-            >
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" style={{ background: "radial-gradient(circle at var(--sx, 50%) var(--sy, 50%), rgba(83,231,255,0.18) 0%, transparent 60%)" }} />
-              <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-[#53E7FF] filter drop-shadow-[0_0_8px_rgba(83,231,255,0.6)] group-hover:scale-110 transition-transform duration-300 relative z-10" />
-            </div>
-          </motion.div>
-        </motion.div>
-
-        {/* Card 3 (Mid-Right): Briefcase Icon */}
+        {/* ── LEFT SIDE CARD 2 (Mid-Left): Internship (Seq 4) ──────────────── */}
         <motion.div
           style={{ x: card3X, y: card3Y }}
-          className="absolute top-[48%] right-[-1%] sm:right-[-1%] md:right-[-1%] lg:right-[-1%] z-30 hidden sm:flex"
+          className="absolute top-[46%] left-[-32%] sm:left-[-26%] lg:left-[-32%] z-30 flex"
           initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.7, y: prefersReducedMotion ? 0 : 20 }}
           animate={isRevealed ? { opacity: 1, scale: 1, y: 0 } : undefined}
           transition={{
@@ -359,8 +369,11 @@ export function HeroIllustration() {
               ease: "easeInOut",
               delay: 2.0
             }}
-            className="group pointer-events-auto"
+            className="group pointer-events-auto relative"
             style={{ perspective: "600px" }}
+            onMouseEnter={() => setHoveredIndex(4)}
+            onMouseLeave={() => setHoveredIndex(null)}
+            onTouchStart={() => setHoveredIndex(4)}
             onMouseMove={(e) => {
               if (prefersReducedMotion) return;
               const el = e.currentTarget.querySelector(".card-inner") as HTMLElement;
@@ -375,25 +388,44 @@ export function HeroIllustration() {
               el.style.setProperty("--sx", `${sx}%`);
               el.style.setProperty("--sy", `${sy}%`);
             }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget.querySelector(".card-inner") as HTMLElement;
-              if (el) el.style.transform = "rotateX(0deg) rotateY(0deg)";
-            }}
           >
             <div
-              className="card-inner flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.02] backdrop-blur-xl border border-white/10 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_10px_30px_rgba(0,0,0,0.6)] group-hover:border-purple-400/40 group-hover:shadow-[0_0_25px_rgba(168,109,255,0.3)] transition-shadow duration-300 ease-out cursor-pointer relative overflow-hidden"
-              style={{ transition: "transform 0.15s ease-out", transformStyle: "preserve-3d" }}
+              className={`card-inner flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.03] backdrop-blur-xl border transition-all duration-300 ease-out cursor-pointer relative overflow-hidden ${
+                isCardActive(4)
+                  ? "border-purple-400/80 shadow-[0_0_28px_rgba(168,109,255,0.55)] scale-[1.08]"
+                  : "border-white/12 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_10px_30px_rgba(0,0,0,0.6)]"
+              }`}
+              style={{ transformStyle: "preserve-3d" }}
             >
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" style={{ background: "radial-gradient(circle at var(--sx, 50%) var(--sy, 50%), rgba(168,109,255,0.18) 0%, transparent 60%)" }} />
-              <Briefcase className="w-5 h-5 sm:w-6 sm:h-6 text-[#A86DFF] filter drop-shadow-[0_0_8px_rgba(168,109,255,0.6)] group-hover:scale-110 transition-transform duration-300 relative z-10" />
+              <div
+                className={`absolute inset-0 transition-opacity duration-300 pointer-events-none rounded-2xl ${
+                  isCardActive(4) ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                }`}
+                style={{ background: "radial-gradient(circle at var(--sx, 50%) var(--sy, 50%), rgba(168,109,255,0.25) 0%, transparent 60%)" }}
+              />
+              <Briefcase className={`w-5 h-5 sm:w-6 sm:h-6 text-[#A86DFF] filter drop-shadow-[0_0_8px_rgba(168,109,255,0.7)] transition-transform duration-300 relative z-10 ${isCardActive(4) ? "scale-110" : ""}`} />
+            </div>
+
+            {/* Contextual Value Label Tooltip */}
+            <div
+              className={`absolute left-full ml-3 top-1/2 -translate-y-1/2 transition-all ease-out pointer-events-none z-50 whitespace-nowrap ${
+                isCardActive(4)
+                  ? "opacity-100 translate-x-0 duration-300"
+                  : "opacity-0 -translate-x-1 duration-300"
+              }`}
+            >
+              <div className="px-3.5 py-1.5 rounded-xl bg-[#0c0f1d]/90 backdrop-blur-md border border-purple-400/40 text-white font-sans font-medium text-[13px] sm:text-[14px] shadow-[0_10px_25px_rgba(0,0,0,0.8),0_0_15px_rgba(168,109,255,0.3)] flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#A86DFF] shadow-[0_0_6px_#A86DFF]" />
+                <span>Internship</span>
+              </div>
             </div>
           </motion.div>
         </motion.div>
 
-        {/* Card 4 (Bottom-Left): Chart Icon */}
+        {/* ── LEFT SIDE CARD 3 (Bottom-Left): Placement Support (Seq 3) ──────────── */}
         <motion.div
           style={{ x: card4X, y: card4Y }}
-          className="absolute bottom-[10%] left-[-2%] sm:left-[-2%] md:left-[-2%] lg:left-[-2%] z-30 hidden sm:flex"
+          className="absolute bottom-[10%] left-[0%] sm:left-[0%] z-30 flex"
           initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.7, y: prefersReducedMotion ? 0 : 20 }}
           animate={isRevealed ? { opacity: 1, scale: 1, y: 0 } : undefined}
           transition={{
@@ -410,8 +442,11 @@ export function HeroIllustration() {
               ease: "easeInOut",
               delay: 1.6
             }}
-            className="group pointer-events-auto"
+            className="group pointer-events-auto relative"
             style={{ perspective: "600px" }}
+            onMouseEnter={() => setHoveredIndex(3)}
+            onMouseLeave={() => setHoveredIndex(null)}
+            onTouchStart={() => setHoveredIndex(3)}
             onMouseMove={(e) => {
               if (prefersReducedMotion) return;
               const el = e.currentTarget.querySelector(".card-inner") as HTMLElement;
@@ -426,17 +461,182 @@ export function HeroIllustration() {
               el.style.setProperty("--sx", `${sx}%`);
               el.style.setProperty("--sy", `${sy}%`);
             }}
-            onMouseLeave={(e) => {
+          >
+            <div
+              className={`card-inner flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.03] backdrop-blur-xl border transition-all duration-300 ease-out cursor-pointer relative overflow-hidden ${
+                isCardActive(3)
+                  ? "border-emerald-400/80 shadow-[0_0_28px_rgba(20,241,149,0.55)] scale-[1.08]"
+                  : "border-white/12 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_10px_30px_rgba(0,0,0,0.6)]"
+              }`}
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              <div
+                className={`absolute inset-0 transition-opacity duration-300 pointer-events-none rounded-2xl ${
+                  isCardActive(3) ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                }`}
+                style={{ background: "radial-gradient(circle at var(--sx, 50%) var(--sy, 50%), rgba(20,241,149,0.25) 0%, transparent 60%)" }}
+              />
+              <TrendingUp className={`w-5 h-5 sm:w-6 sm:h-6 text-[#14F195] filter drop-shadow-[0_0_8px_rgba(20,241,149,0.7)] transition-transform duration-300 relative z-10 ${isCardActive(3) ? "scale-110" : ""}`} />
+            </div>
+
+            {/* Contextual Value Label Tooltip */}
+            <div
+              className={`absolute left-full ml-3 top-1/2 -translate-y-1/2 transition-all ease-out pointer-events-none z-50 whitespace-nowrap ${
+                isCardActive(3)
+                  ? "opacity-100 translate-x-0 duration-300"
+                  : "opacity-0 -translate-x-1 duration-300"
+              }`}
+            >
+              <div className="px-3.5 py-1.5 rounded-xl bg-[#0c0f1d]/90 backdrop-blur-md border border-emerald-400/40 text-white font-sans font-medium text-[13px] sm:text-[14px] shadow-[0_10px_25px_rgba(0,0,0,0.8),0_0_15px_rgba(20,241,149,0.3)] flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#14F195] shadow-[0_0_6px_#14F195]" />
+                <span>Placement Support</span>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* ── RIGHT SIDE CARD 1 (Top-Right): AI + Industry Tools (Seq 1) ───────────── */}
+        <motion.div
+          style={{ x: card2X, y: card2Y }}
+          className="absolute top-[16%] right-[2%] sm:right-[4%] z-30 flex"
+          initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.7, y: prefersReducedMotion ? 0 : 20 }}
+          animate={isRevealed ? { opacity: 1, scale: 1, y: 0 } : undefined}
+          transition={{
+            duration: prefersReducedMotion ? 0.3 : 0.5,
+            delay: prefersReducedMotion ? 0 : 1.12,
+            ease: [0.34, 1.56, 0.64, 1]
+          }}
+        >
+          <motion.div
+            animate={isRevealed && !prefersReducedMotion ? { y: [0, -11, 0] } : {}}
+            transition={{
+              duration: 4.2,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1.2
+            }}
+            className="group pointer-events-auto relative"
+            style={{ perspective: "600px" }}
+            onMouseEnter={() => setHoveredIndex(1)}
+            onMouseLeave={() => setHoveredIndex(null)}
+            onTouchStart={() => setHoveredIndex(1)}
+            onMouseMove={(e) => {
+              if (prefersReducedMotion) return;
               const el = e.currentTarget.querySelector(".card-inner") as HTMLElement;
-              if (el) el.style.transform = "rotateX(0deg) rotateY(0deg)";
+              if (!el) return;
+              const r = el.getBoundingClientRect();
+              const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+              const rx = -((e.clientY - cy) / (r.height / 2)) * 14;
+              const ry = ((e.clientX - cx) / (r.width / 2)) * 14;
+              const sx = ((e.clientX - r.left) / r.width) * 100;
+              const sy = ((e.clientY - r.top) / r.height) * 100;
+              el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+              el.style.setProperty("--sx", `${sx}%`);
+              el.style.setProperty("--sy", `${sy}%`);
             }}
           >
             <div
-              className="card-inner flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.02] backdrop-blur-xl border border-white/10 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_10px_30px_rgba(0,0,0,0.6)] group-hover:border-cyan-400/40 group-hover:shadow-[0_0_25px_rgba(83,231,255,0.3)] transition-shadow duration-300 ease-out cursor-pointer relative overflow-hidden"
-              style={{ transition: "transform 0.15s ease-out", transformStyle: "preserve-3d" }}
+              className={`card-inner flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.03] backdrop-blur-xl border transition-all duration-300 ease-out cursor-pointer relative overflow-hidden ${
+                isCardActive(1)
+                  ? "border-cyan-400/80 shadow-[0_0_28px_rgba(83,231,255,0.55)] scale-[1.08]"
+                  : "border-white/12 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_10px_30px_rgba(0,0,0,0.6)]"
+              }`}
+              style={{ transformStyle: "preserve-3d" }}
             >
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" style={{ background: "radial-gradient(circle at var(--sx, 50%) var(--sy, 50%), rgba(83,231,255,0.18) 0%, transparent 60%)" }} />
-              <BarChart3 className="w-5 h-5 sm:w-6 sm:h-6 text-[#53E7FF] filter drop-shadow-[0_0_8px_rgba(83,231,255,0.6)] group-hover:scale-110 transition-transform duration-300 relative z-10" />
+              <div
+                className={`absolute inset-0 transition-opacity duration-300 pointer-events-none rounded-2xl ${
+                  isCardActive(1) ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                }`}
+                style={{ background: "radial-gradient(circle at var(--sx, 50%) var(--sy, 50%), rgba(83,231,255,0.25) 0%, transparent 60%)" }}
+              />
+              <Cpu className={`w-5 h-5 sm:w-6 sm:h-6 text-[#53E7FF] filter drop-shadow-[0_0_8px_rgba(83,231,255,0.7)] transition-transform duration-300 relative z-10 ${isCardActive(1) ? "scale-110" : ""}`} />
+            </div>
+
+            {/* Contextual Value Label Tooltip */}
+            <div
+              className={`absolute right-full mr-3 top-1/2 -translate-y-1/2 transition-all ease-out pointer-events-none z-50 whitespace-nowrap ${
+                isCardActive(1)
+                  ? "opacity-100 translate-x-0 duration-300"
+                  : "opacity-0 translate-x-1 duration-300"
+              }`}
+            >
+              <div className="px-3.5 py-1.5 rounded-xl bg-[#0c0f1d]/90 backdrop-blur-md border border-cyan-400/40 text-white font-sans font-medium text-[13px] sm:text-[14px] shadow-[0_10px_25px_rgba(0,0,0,0.8),0_0_15px_rgba(83,231,255,0.3)] flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#53E7FF] shadow-[0_0_6px_#53E7FF]" />
+                <span>AI + Industry Tools</span>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* ── RIGHT SIDE CARD 2 (Bottom-Right): Certification (Seq 2) ──────────────── */}
+        <motion.div
+          style={{ x: card5X, y: card5Y }}
+          className="absolute bottom-[14%] right-[3%] sm:right-[4%] z-30 flex"
+          initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.7, y: prefersReducedMotion ? 0 : 20 }}
+          animate={isRevealed ? { opacity: 1, scale: 1, y: 0 } : undefined}
+          transition={{
+            duration: prefersReducedMotion ? 0.3 : 0.5,
+            delay: prefersReducedMotion ? 0 : 1.45,
+            ease: [0.34, 1.56, 0.64, 1]
+          }}
+        >
+          <motion.div
+            animate={isRevealed && !prefersReducedMotion ? { y: [0, -8, 0] } : {}}
+            transition={{
+              duration: 3.8,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1.8
+            }}
+            className="group pointer-events-auto relative"
+            style={{ perspective: "600px" }}
+            onMouseEnter={() => setHoveredIndex(2)}
+            onMouseLeave={() => setHoveredIndex(null)}
+            onTouchStart={() => setHoveredIndex(2)}
+            onMouseMove={(e) => {
+              if (prefersReducedMotion) return;
+              const el = e.currentTarget.querySelector(".card-inner") as HTMLElement;
+              if (!el) return;
+              const r = el.getBoundingClientRect();
+              const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+              const rx = -((e.clientY - cy) / (r.height / 2)) * 14;
+              const ry = ((e.clientX - cx) / (r.width / 2)) * 14;
+              const sx = ((e.clientX - r.left) / r.width) * 100;
+              const sy = ((e.clientY - r.top) / r.height) * 100;
+              el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+              el.style.setProperty("--sx", `${sx}%`);
+              el.style.setProperty("--sy", `${sy}%`);
+            }}
+          >
+            <div
+              className={`card-inner flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.03] backdrop-blur-xl border transition-all duration-300 ease-out cursor-pointer relative overflow-hidden ${
+                isCardActive(2)
+                  ? "border-cyan-400/80 shadow-[0_0_28px_rgba(83,231,255,0.55)] scale-[1.08]"
+                  : "border-white/12 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_10px_30px_rgba(0,0,0,0.6)]"
+              }`}
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              <div
+                className={`absolute inset-0 transition-opacity duration-300 pointer-events-none rounded-2xl ${
+                  isCardActive(2) ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                }`}
+                style={{ background: "radial-gradient(circle at var(--sx, 50%) var(--sy, 50%), rgba(83,231,255,0.25) 0%, transparent 60%)" }}
+              />
+              <Award className={`w-5 h-5 sm:w-6 sm:h-6 text-[#53E7FF] filter drop-shadow-[0_0_8px_rgba(83,231,255,0.7)] transition-transform duration-300 relative z-10 ${isCardActive(2) ? "scale-110" : ""}`} />
+            </div>
+
+            {/* Contextual Value Label Tooltip */}
+            <div
+              className={`absolute right-full mr-3 top-1/2 -translate-y-1/2 transition-all ease-out pointer-events-none z-50 whitespace-nowrap ${
+                isCardActive(2)
+                  ? "opacity-100 translate-x-0 duration-300"
+                  : "opacity-0 translate-x-1 duration-300"
+              }`}
+            >
+              <div className="px-3.5 py-1.5 rounded-xl bg-[#0c0f1d]/90 backdrop-blur-md border border-cyan-400/40 text-white font-sans font-medium text-[13px] sm:text-[14px] shadow-[0_10px_25px_rgba(0,0,0,0.8),0_0_15px_rgba(83,231,255,0.3)] flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#53E7FF] shadow-[0_0_6px_#53E7FF]" />
+                <span>Certification</span>
+              </div>
             </div>
           </motion.div>
         </motion.div>

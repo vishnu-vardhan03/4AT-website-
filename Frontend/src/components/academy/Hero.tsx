@@ -327,48 +327,8 @@ export function Hero({ children }: { children?: React.ReactNode }) {
             {children}
           </div>
 
-          {/* Right Column: HeroIllustration + Floating Cohort Badge */}
+          {/* Right Column: HeroIllustration */}
           <div className="relative w-full flex items-center justify-center z-10 overflow-visible">
-
-            {/* Floating Cohort Badge */}
-            <motion.a
-              href="/academy/register"
-              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : -8, scale: prefersReducedMotion ? 1 : 0.92 }}
-              animate={isRevealed ? {
-                opacity: 1,
-                y: prefersReducedMotion ? 0 : [0, -6, 0],
-                scale: 1,
-              } : undefined}
-              transition={{
-                opacity: { duration: 0.5, delay: 1.9, ease: [0.25, 1, 0.5, 1] },
-                scale: { duration: 0.5, delay: 1.9, ease: [0.34, 1.56, 0.64, 1] },
-                y: prefersReducedMotion ? { duration: 0 } : {
-                  delay: 2.4,
-                  duration: 3.2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                },
-              }}
-              className="hidden lg:inline-flex absolute top-8 right-0 z-20 items-center gap-2 px-4 py-2 rounded-full
-                text-[11px] font-bold tracking-[0.14em] uppercase
-                bg-emerald-500/10 backdrop-blur-xl
-                border border-emerald-400/35
-                text-emerald-300
-                shadow-[0_0_18px_rgba(16,185,129,0.18)]
-                hover:bg-emerald-500/20 hover:border-emerald-400/60
-                hover:shadow-[0_0_28px_rgba(16,185,129,0.35)]
-                transition-all duration-300 select-none cursor-pointer"
-            >
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
-              </span>
-              Next cohort
-              <span className="text-white/30">·</span>
-              Enrolment open
-              <span className="text-emerald-400 ml-0.5">→</span>
-            </motion.a>
-
             <HeroIllustration />
           </div>
 
