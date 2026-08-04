@@ -23,7 +23,7 @@ const outcomes = [
     glowColor: "rgba(16, 201, 129, 0.06)",
     innerShadow: "inset 0 0 10px rgba(16, 201, 129, 0.05), 0 4px 16px rgba(0,0,0,0.5)",
     badgeColors: "text-emerald-400 border-emerald-500/20 bg-emerald-500/5",
-    numColor: "text-emerald-400/[0.06] group-hover:text-emerald-400/[0.12]",
+    numColor: "text-white/[0.14] group-hover:text-white/[0.22]",
     iconBox: "text-emerald-400 border-emerald-500/30 bg-emerald-500/10 shadow-sm",
     dotClass: "bg-emerald-400",
   },
@@ -37,7 +37,7 @@ const outcomes = [
     glowColor: "rgba(6, 182, 212, 0.06)",
     innerShadow: "inset 0 0 10px rgba(6, 182, 212, 0.05), 0 4px 16px rgba(0,0,0,0.5)",
     badgeColors: "text-cyan-400 border-cyan-500/20 bg-cyan-500/5",
-    numColor: "text-cyan-400/[0.06] group-hover:text-cyan-400/[0.12]",
+    numColor: "text-white/[0.14] group-hover:text-white/[0.22]",
     iconBox: "text-cyan-400 border-cyan-500/30 bg-cyan-500/10 shadow-sm",
     dotClass: "bg-cyan-400",
   },
@@ -51,7 +51,7 @@ const outcomes = [
     glowColor: "rgba(168, 85, 247, 0.06)",
     innerShadow: "inset 0 0 10px rgba(168, 85, 247, 0.05), 0 4px 16px rgba(0,0,0,0.5)",
     badgeColors: "text-purple-400 border-purple-500/20 bg-purple-500/5",
-    numColor: "text-purple-400/[0.06] group-hover:text-purple-400/[0.12]",
+    numColor: "text-white/[0.14] group-hover:text-white/[0.22]",
     iconBox: "text-purple-400 border-purple-500/30 bg-purple-500/10 shadow-sm",
     dotClass: "bg-purple-400",
   },
@@ -150,8 +150,8 @@ export function Outcomes() {
                 onMouseMove={handleMouseMove}
                 className="group relative flex flex-col justify-between overflow-hidden rounded-2xl p-7 sm:p-8 h-full transition-all duration-300 hover:-translate-y-1.5 cursor-default"
                 style={{
-                  background: "#090B0F",
-                  border: `1px solid ${card.borderColor}`,
+                  background: "linear-gradient(to bottom, #101726, #0b0f19 50%, #080b12)",
+                  border: "1px solid rgba(59, 130, 246, 0.25)",
                   boxShadow: card.innerShadow,
                 }}
               >

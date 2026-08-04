@@ -17,8 +17,6 @@ export function Courses({ sectionId = "courses" }: { sectionId?: string }) {
   const sectionRef = useRef<HTMLElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
 
@@ -63,15 +61,12 @@ export function Courses({ sectionId = "courses" }: { sectionId?: string }) {
   // GSAP Interaction for Card Hover Dimming/Lifting
   const handleMouseEnter = (index: number) => {
     if (isMobile) return;
-    setHoveredIndex(index);
 
     const cards = cardRefs.current.filter(Boolean);
     cards.forEach((card, idx) => {
       if (idx === index) {
         gsap.to(card, {
           y: -6,
-          borderColor: "rgba(167, 139, 250, 0.25)",
-          boxShadow: "0 10px 40px rgba(139, 92, 246, 0.10)",
           opacity: 1,
           duration: 0.28,
           ease: "power2.out",
@@ -90,14 +85,11 @@ export function Courses({ sectionId = "courses" }: { sectionId?: string }) {
 
   const handleMouseLeave = () => {
     if (isMobile) return;
-    setHoveredIndex(null);
 
     const cards = cardRefs.current.filter(Boolean);
     cards.forEach((card) => {
       gsap.to(card, {
         y: 0,
-        borderColor: "rgba(255, 255, 255, 0.07)",
-        boxShadow: "none",
         opacity: 1,
         duration: 0.28,
         ease: "power2.out",
@@ -255,13 +247,11 @@ export function Courses({ sectionId = "courses" }: { sectionId?: string }) {
                     const slug = course.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
                     router.push(`/academy/courses/${slug}`);
                   }}
-                  className={`snap-start shrink-0 w-[280px] sm:w-[310px] md:w-[335px] group relative flex flex-col justify-between p-4.5 sm:p-5 rounded-[22px] border border-white/10 bg-[#090B12] cursor-pointer transition-all duration-300 min-h-[340px] ${
+                  className={`snap-start shrink-0 w-[280px] sm:w-[310px] md:w-[335px] group relative flex flex-col justify-between p-4.5 sm:p-5 rounded-[22px] border border-blue-500/20 bg-gradient-to-b from-[#101726] via-[#0b0f19] to-[#080b12] shadow-[0_8px_24px_rgba(0,0,0,0.5)] hover:border-blue-400/50 hover:shadow-[0_10px_30px_rgba(37,99,235,0.12)] cursor-pointer transition-all duration-300 min-h-[340px] ${
                     isMobile ? "active:scale-[0.98] transition-transform duration-200" : ""
                   }`}
                   style={{
                     willChange: "transform",
-                    borderColor: hoveredIndex === idx ? "rgba(167, 139, 250, 0.35)" : "rgba(255, 255, 255, 0.09)",
-                    boxShadow: hoveredIndex === idx ? "0 12px 40px rgba(139, 92, 246, 0.15)" : "none"
                   }}
                 >
                   {/* Thumbnail Image Container (Preserving existing image) */}

@@ -12,13 +12,13 @@ const aboutCards = [
     body: "Hands-on training on live ERP systems, core accounting standards, AI automation tools, and real-world client workflows.",
     icon: GraduationCap,
     features: ["LIVE ERP SYSTEMS", "REAL WORKFLOWS", "AI TOOLS"],
-    borderColor: "rgba(16, 201, 129, 0.35)",
-    glowColor: "rgba(16, 201, 129, 0.14)",
-    innerShadow: "inset 0 0 20px rgba(16, 201, 129, 0.18), inset 0 0 60px rgba(16, 201, 129, 0.07), 0 8px 32px rgba(0,0,0,0.7)",
+    borderColor: "rgba(16, 201, 129, 0.2)",
+    glowColor: "rgba(16, 201, 129, 0.04)",
+    innerShadow: "0 4px 16px rgba(0,0,0,0.5)",
     badgeColors: "text-emerald-400 border-emerald-500/20 bg-emerald-500/5",
-    numColor: "text-emerald-400/[0.06] group-hover:text-emerald-400/[0.12]",
-    iconBox: "text-emerald-400 border-emerald-500/30 bg-emerald-500/10 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_0_15px_rgba(16,201,129,0.3)]",
-    dotClass: "bg-emerald-400 shadow-[0_0_6px_#10B981]",
+    numColor: "text-white/[0.14] group-hover:text-white/[0.22]",
+    iconBox: "text-emerald-400 border-emerald-500/30 bg-emerald-500/10 shadow-sm",
+    dotClass: "bg-emerald-400",
   },
   {
     id: "02",
@@ -27,13 +27,13 @@ const aboutCards = [
     body: "Rigorous role-based capability evaluation, interview readiness, and direct employer matching for placement.",
     icon: BadgeCheck,
     features: ["INTERVIEW READY", "ROLE READY", "PORTFOLIO READY"],
-    borderColor: "rgba(6, 182, 212, 0.35)",
-    glowColor: "rgba(6, 182, 212, 0.14)",
-    innerShadow: "inset 0 0 20px rgba(6, 182, 212, 0.18), inset 0 0 60px rgba(6, 182, 212, 0.07), 0 8px 32px rgba(0,0,0,0.7)",
+    borderColor: "rgba(6, 182, 212, 0.2)",
+    glowColor: "rgba(6, 182, 212, 0.04)",
+    innerShadow: "0 4px 16px rgba(0,0,0,0.5)",
     badgeColors: "text-cyan-400 border-cyan-500/20 bg-cyan-500/5",
-    numColor: "text-cyan-400/[0.06] group-hover:text-cyan-400/[0.12]",
-    iconBox: "text-cyan-400 border-cyan-500/30 bg-cyan-500/10 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_0_15px_rgba(6,182,212,0.3)]",
-    dotClass: "bg-cyan-400 shadow-[0_0_6px_#06B6D4]",
+    numColor: "text-white/[0.14] group-hover:text-white/[0.22]",
+    iconBox: "text-cyan-400 border-cyan-500/30 bg-cyan-500/10 shadow-sm",
+    dotClass: "bg-cyan-400",
   },
   {
     id: "03",
@@ -42,13 +42,13 @@ const aboutCards = [
     body: "Seamless integration into active finance & accounting teams with 2–3 years of capability & leader mentorship.",
     icon: Briefcase,
     features: ["CAREER READY", "GLOBAL STANDARDS", "LEADER MENTORED"],
-    borderColor: "rgba(168, 85, 247, 0.35)",
-    glowColor: "rgba(168, 85, 247, 0.14)",
-    innerShadow: "inset 0 0 20px rgba(168, 85, 247, 0.18), inset 0 0 60px rgba(168, 85, 247, 0.07), 0 8px 32px rgba(0,0,0,0.7)",
+    borderColor: "rgba(168, 85, 247, 0.2)",
+    glowColor: "rgba(168, 85, 247, 0.04)",
+    innerShadow: "0 4px 16px rgba(0,0,0,0.5)",
     badgeColors: "text-purple-400 border-purple-500/20 bg-purple-500/5",
-    numColor: "text-purple-400/[0.06] group-hover:text-purple-400/[0.12]",
-    iconBox: "text-purple-400 border-purple-500/30 bg-purple-500/10 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_0_15px_rgba(168,85,247,0.3)]",
-    dotClass: "bg-purple-400 shadow-[0_0_6px_#A855F7]",
+    numColor: "text-white/[0.14] group-hover:text-white/[0.22]",
+    iconBox: "text-purple-400 border-purple-500/30 bg-purple-500/10 shadow-sm",
+    dotClass: "bg-purple-400",
   },
 ];
 
@@ -95,8 +95,8 @@ export function About() {
                 onMouseMove={handleMouseMove}
                 className="group relative flex flex-col justify-between overflow-hidden rounded-2xl p-7 sm:p-8 h-full transition-all duration-300 hover:-translate-y-1.5 cursor-pointer"
                 style={{
-                  background: "#090B0F",
-                  border: `1px solid ${card.borderColor}`,
+                  background: "linear-gradient(to bottom, #101726, #0b0f19 50%, #080b12)",
+                  border: "1px solid rgba(59, 130, 246, 0.25)",
                   boxShadow: card.innerShadow,
                 }}
               >
@@ -110,7 +110,7 @@ export function About() {
 
                 {/* Corner Ambient Radial Glow */}
                 <div
-                  className="pointer-events-none absolute -inset-px opacity-60 transition duration-500 group-hover:opacity-90 z-0"
+                  className="pointer-events-none absolute -inset-px opacity-20 transition duration-500 group-hover:opacity-40 z-0"
                   style={{
                     background: `radial-gradient(300px circle at 100% 0%, ${card.glowColor}, transparent 70%)`,
                   }}
