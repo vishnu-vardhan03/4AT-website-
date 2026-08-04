@@ -100,7 +100,7 @@ export function CourseRecommender({ sectionId = "course-recommender" }: CourseRe
       />
 
       <div className="site-shell relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[42%_58%] gap-10 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
           {/* Left: header + conversational quiz — recommender's top lines up with the pill above */}
           <div className="flex flex-col gap-9">
             <div className="flex flex-col items-start text-left">
@@ -181,7 +181,7 @@ export function CourseRecommender({ sectionId = "course-recommender" }: CourseRe
 
           {/* Right: recommendation — always visible, content re-flows as answers refine it.
               Same grid row as the left column, so its top lines up with the FIND YOUR PROGRAM pill. */}
-          <div className="relative lg:sticky lg:top-28 w-full">
+          <div className="relative lg:sticky lg:top-28 w-full flex flex-col items-start">
             <div className="flex items-center gap-2 mb-4">
               <Sparkles className="w-3.5 h-3.5 text-[#5EEAD4]" />
               <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#5EEAD4]">
@@ -191,7 +191,7 @@ export function CourseRecommender({ sectionId = "course-recommender" }: CourseRe
 
             <motion.div
               layout
-              className="relative rounded-[26px] border border-[rgba(167,139,250,0.3)] bg-[#090B12] shadow-[0_0_60px_rgba(139,92,246,0.15)] overflow-hidden transition-shadow duration-300 hover:shadow-[0_20px_60px_rgba(139,92,246,0.25)] flex flex-col box-border"
+              className="relative rounded-[26px] border border-[rgba(167,139,250,0.3)] bg-[#090B12] shadow-[0_0_60px_rgba(139,92,246,0.15)] overflow-hidden transition-shadow duration-300 hover:shadow-[0_20px_60px_rgba(139,92,246,0.25)] flex flex-col box-border w-full max-w-[520px]"
             >
               <div className="absolute -top-24 -right-24 w-[300px] h-[300px] rounded-full bg-[#8B5CF6]/10 blur-[100px] pointer-events-none z-0" />
 
