@@ -7,6 +7,7 @@ import { DeferredSection } from "@/components/academy/DeferredSection";
 const SectionLoader = () => <div className="h-[50vh] w-full animate-pulse bg-surface/50" />;
 
 const About = dynamic(() => import("@/components/academy/About").then(mod => mod.About), { loading: () => <SectionLoader /> });
+const Why4AT = dynamic(() => import("@/components/academy/Why4AT").then(mod => mod.Why4AT), { loading: () => <SectionLoader /> });
 const OurProgram = dynamic(() => import("@/components/academy/OurProgram").then(mod => mod.OurProgram), { loading: () => <SectionLoader /> });
 const Outcomes = dynamic(() => import("@/components/academy/Outcomes").then(mod => mod.Outcomes), { loading: () => <SectionLoader /> });
 const Faculty = dynamic(() => import("@/components/academy/Faculty").then(mod => mod.Faculty), { loading: () => <SectionLoader /> });
@@ -20,6 +21,7 @@ export function PageShell({ ctaRoute }: { ctaRoute: string }) {
   return (
     <>
       <About />
+      <Why4AT />
       <OurProgram />
       <Outcomes />
       <ProductCurtain>

@@ -114,7 +114,7 @@ export const Button = React.forwardRef<
     }, []);
 
     const buttonClass = cn(
-      "relative group inline-flex items-center justify-center font-sans font-bold capitalize tracking-[0.05em] transition-[transform,opacity,background-color,border-color,color,box-shadow,backdrop-filter] duration-300 ease-out select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 rounded-full",
+      "relative group inline-flex items-center justify-center font-sans font-bold capitalize tracking-[0.05em] transition-[transform,opacity,background-color,border-color,color,box-shadow,backdrop-filter] duration-200 ease-out select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black active:scale-[0.98] active:duration-100 disabled:pointer-events-none disabled:opacity-50 rounded-full",
       (variant === "primary" || variant === "secondary") && "text-sm px-7 py-3.5 rounded-full",
       variant === "primary" && "fx-primary-btn text-white",
       variant === "secondary" && "fx-ghost-btn text-white",
