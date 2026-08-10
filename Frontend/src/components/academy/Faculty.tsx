@@ -258,15 +258,18 @@ export function Faculty({ sectionId = "faculty" }: { sectionId?: string }) {
           <div className="max-w-[620px] flex flex-col items-start">
             {/* Section Eyebrow Pill */}
             <SectionPill className="mb-6">
-              EXECUTIVE MENTORS
+              EXECUTIVE MENTORSHIP
             </SectionPill>
 
             <h2 className="section-title">
-              Finance leaders behind the training <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400">standard.</span>
+              Learn from people who{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">
+                do the job.
+              </span>
             </h2>
 
             <p className="section-desc">
-              Learn from seasoned finance executives who bring real-world expertise into every module.
+              Mentored by finance leaders and practitioners from 4AT&apos;s consulting practice.
             </p>
           </div>
 

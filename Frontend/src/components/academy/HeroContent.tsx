@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, PhoneCall } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/academy/Button";
 
@@ -16,24 +16,6 @@ export function HeroContent() {
     mediaQuery.addEventListener("change", listener);
     return () => mediaQuery.removeEventListener("change", listener);
   }, []);
-
-  const headlineWords = [
-    { text: "Building", delay: 0.5, highlight: false },
-    { text: "Future-Ready", delay: 0.522, highlight: false },
-    { text: "Finance,", delay: 0.624, highlight: "careers" },
-    { text: "Accounting", delay: 0.646, highlight: false },
-    { text: "&", delay: 0.668, highlight: false },
-    { text: "Audit", delay: 0.69, highlight: false },
-    { text: "Professionals", delay: 0.792, highlight: "certificates" }
-  ];
-
-  const trustChips = [
-    "Practical, hands-on training",
-    "AI + industry tools",
-    "Certification",
-    "Internship",
-    "Placement — 4AT & partners",
-  ];
 
   return (
     <div className="flex flex-col items-start text-left max-w-full">
@@ -60,8 +42,9 @@ export function HeroContent() {
         }
       `}} />
 
-      {/* Eyebrow Pill */}
-      <motion.div
+      {/* Top Announcement Pill */}
+      <motion.a
+        href="/academy/register"
         initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 12, scale: prefersReducedMotion ? 1 : 0.96 }}
         animate={isRevealed ? { opacity: 1, y: 0, scale: 1 } : undefined}
         transition={{
@@ -69,70 +52,79 @@ export function HeroContent() {
           delay: prefersReducedMotion ? 0 : 0.3,
           ease: [0.34, 1.56, 0.64, 1]
         }}
-        className="relative inline-flex items-center gap-2.5 px-4.5 py-1.5 rounded-full bg-gradient-to-r from-emerald-500/15 via-teal-500/10 to-emerald-500/15 backdrop-blur-xl border border-emerald-400/35 shadow-[0_0_24px_rgba(16,185,129,0.28),inset_0_1px_rgba(255,255,255,0.25)] mb-6 select-none"
+        className="relative inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-emerald-500/15 via-teal-500/10 to-emerald-500/15 backdrop-blur-xl border border-emerald-400/35 shadow-[0_0_24px_rgba(16,185,129,0.28),inset_0_1px_rgba(255,255,255,0.25)] mb-6 text-xs font-semibold tracking-wide text-emerald-300 font-sans hover:bg-emerald-500/20 hover:border-emerald-400/60 transition-all duration-300 select-none cursor-pointer group"
       >
         <span className="relative flex h-2 w-2">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span>
           <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10B981] shadow-[0_0_8px_#10B981]"></span>
         </span>
-        <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-emerald-300 font-sans drop-shadow-[0_0_12px_rgba(16,185,129,0.4)]">
-          4AT Academy
-        </span>
-      </motion.div>
+        <span>Next cohort</span>
+        <span className="text-white/30">·</span>
+        <span>Enrolment open</span>
+        <span className="text-emerald-400 ml-0.5 group-hover:translate-x-0.5 transition-transform">→</span>
+      </motion.a>
 
       {/* Main Heading */}
-      <h1 className="font-bricolage font-extrabold text-[2.5rem] sm:text-[3.25rem] md:text-[3.75rem] lg:text-[4rem] xl:text-[4.25rem] tracking-tight leading-[1.08] text-white max-w-[850px] w-full flex flex-wrap">
-        {headlineWords.map((word, i) => {
-          if (word.highlight === "careers") {
-            return (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, y: prefersReducedMotion ? 0 : "0.4em", filter: prefersReducedMotion ? "none" : "blur(6px)" }}
-                animate={isRevealed ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
-                transition={{
-                  duration: prefersReducedMotion ? 0.3 : 0.6,
-                  delay: prefersReducedMotion ? 0 : word.delay,
-                  ease: [0.16, 1, 0.3, 1]
-                }}
-                className="inline-block mr-[0.25em] hero-gradient-word font-sans"
-              >
-                {word.text}
-              </motion.span>
-            );
-          }
-          if (word.highlight === "certificates") {
-            return (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, y: prefersReducedMotion ? 0 : "0.4em", filter: prefersReducedMotion ? "none" : "blur(6px)" }}
-                animate={isRevealed ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
-                transition={{
-                  duration: prefersReducedMotion ? 0.3 : 0.6,
-                  delay: prefersReducedMotion ? 0 : word.delay,
-                  ease: [0.16, 1, 0.3, 1]
-                }}
-                className="inline-block mr-[0.25em] hero-gradient-word-2 font-sans"
-              >
-                {word.text}
-              </motion.span>
-            );
-          }
-          return (
-            <motion.span
-              key={i}
-              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : "0.4em", filter: prefersReducedMotion ? "none" : "blur(6px)" }}
-              animate={isRevealed ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
-              transition={{
-                duration: prefersReducedMotion ? 0.3 : 0.6,
-                delay: prefersReducedMotion ? 0 : word.delay,
-                ease: [0.16, 1, 0.3, 1]
-              }}
-              className="inline-block mr-[0.25em]"
-            >
-              {word.text}
-            </motion.span>
-          );
-        })}
+      <h1 className="font-bricolage font-extrabold text-[2.5rem] sm:text-[3.25rem] md:text-[3.75rem] lg:text-[4rem] xl:text-[4.25rem] tracking-tight leading-[1.08] text-white max-w-[850px] w-full flex flex-col items-start">
+        {/* Line 1: Built for careers, */}
+        <span className="block">
+          <motion.span
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : "0.4em", filter: prefersReducedMotion ? "none" : "blur(6px)" }}
+            animate={isRevealed ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
+            transition={{ duration: prefersReducedMotion ? 0.3 : 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-block mr-[0.25em]"
+          >
+            Built
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : "0.4em", filter: prefersReducedMotion ? "none" : "blur(6px)" }}
+            animate={isRevealed ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
+            transition={{ duration: prefersReducedMotion ? 0.3 : 0.6, delay: 0.52, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-block mr-[0.25em]"
+          >
+            for
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : "0.4em", filter: prefersReducedMotion ? "none" : "blur(6px)" }}
+            animate={isRevealed ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
+            transition={{ duration: prefersReducedMotion ? 0.3 : 0.6, delay: 0.62, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-block hero-gradient-word font-sans"
+          >
+            careers,
+          </motion.span>
+        </span>
+
+        {/* Line 2: not just */}
+        <span className="block">
+          <motion.span
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : "0.4em", filter: prefersReducedMotion ? "none" : "blur(6px)" }}
+            animate={isRevealed ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
+            transition={{ duration: prefersReducedMotion ? 0.3 : 0.6, delay: 0.65, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-block mr-[0.25em]"
+          >
+            not
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : "0.4em", filter: prefersReducedMotion ? "none" : "blur(6px)" }}
+            animate={isRevealed ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
+            transition={{ duration: prefersReducedMotion ? 0.3 : 0.6, delay: 0.67, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-block"
+          >
+            just
+          </motion.span>
+        </span>
+
+        {/* Line 3: certificates. */}
+        <span className="block">
+          <motion.span
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : "0.4em", filter: prefersReducedMotion ? "none" : "blur(6px)" }}
+            animate={isRevealed ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
+            transition={{ duration: prefersReducedMotion ? 0.3 : 0.6, delay: 0.79, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-block hero-gradient-word-2 font-sans"
+          >
+            certificates.
+          </motion.span>
+        </span>
       </h1>
 
       {/* Description Paragraph */}
@@ -149,28 +141,6 @@ export function HeroContent() {
         A <span className="text-white font-semibold">4AT Initiative</span> — built by a firm that delivers finance, accounting and audit services to global clients. We take commerce graduates from training to placement through our <span className="text-[#47D8FF] font-semibold">Train–Hire–Deploy (THD)</span> model.
       </motion.p>
 
-      {/* Trust Chips */}
-      <motion.div
-        initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
-        animate={isRevealed ? { opacity: 1, y: 0 } : undefined}
-        transition={{
-          duration: prefersReducedMotion ? 0.3 : 0.5,
-          delay: prefersReducedMotion ? 0 : 1.55,
-          ease: [0.25, 1, 0.5, 1]
-        }}
-        className="flex flex-wrap lg:flex-nowrap items-center gap-3 mt-8 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {trustChips.map((chip) => (
-          <span
-            key={chip}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold tracking-wide text-[#A7A9C4] bg-white/[0.06] border border-white/10 font-sans"
-          >
-            <CheckCircle2 className="w-3 h-3 text-emerald-400 shrink-0" />
-            {chip}
-          </span>
-        ))}
-      </motion.div>
-
       {/* Action Buttons */}
       <div className="flex flex-wrap items-center justify-start gap-4 mt-8 w-full">
         <motion.div
@@ -182,8 +152,8 @@ export function HeroContent() {
             ease: [0.34, 1.56, 0.64, 1]
           }}
         >
-          <Button href="/academy/register" variant="primary">
-            Check your eligibility
+          <Button href="#courses" variant="primary">
+            Explore programs
             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Button>
         </motion.div>
@@ -197,9 +167,9 @@ export function HeroContent() {
             ease: [0.34, 1.56, 0.64, 1]
           }}
         >
-          <Button href="/academy/courses" variant="secondary">
-            Explore programs
-            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+          <Button href="/contact" variant="secondary">
+            Contact us
+            <PhoneCall className="w-4 h-4 transition-transform duration-300 group-hover:scale-110 shrink-0" />
           </Button>
         </motion.div>
       </div>

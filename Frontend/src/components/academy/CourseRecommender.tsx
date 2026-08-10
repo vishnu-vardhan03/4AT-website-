@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { Check, Clock, Monitor, Sparkles } from "lucide-react";
 import { SectionPill } from "@/components/academy/SectionPill";
 import { Button } from "@/components/academy/Button";
@@ -59,17 +58,12 @@ const recommendationMap: Record<Background, Record<Interest, string>> = {
   },
 };
 
-function slugify(title: string) {
-  return title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-}
-
 type CourseRecommenderProps = {
   sectionId?: string;
   href?: string;
 };
 
-export function CourseRecommender({ sectionId = "course-recommender", href = "/academy/register" }: CourseRecommenderProps) {
-  const router = useRouter();
+export function CourseRecommender({ sectionId = "course-recommender" }: CourseRecommenderProps) {
   const [background, setBackground] = useState<Background | null>(null);
   const [interest, setInterest] = useState<Interest | null>(null);
 
@@ -80,14 +74,14 @@ export function CourseRecommender({ sectionId = "course-recommender", href = "/a
       ? lmsCourses.find((course) => course.title === recommendationMap[background][interest])
       : null;
 
-  const displayCourse = recommendation ?? lmsCourses.find((course) => course.title === FLAGSHIP_COURSE_TITLE)!;
-
-  const fitReasons = [
-    background ? `Matches your ${background.toLowerCase()} profile` : "Matches your experience level",
-    interest ? `Focuses on ${interest}` : "Tailored to your interests",
-    "Includes AI-powered tools",
-    "Includes placement support",
-  ];
+  const fitReasons = recommendation
+    ? [
+        background ? `Matches your ${background.toLowerCase()} profile` : "Matches your experience level",
+        interest ? `Focuses on ${interest}` : "Tailored to your interests",
+        "Includes AI-powered tools",
+        "Includes placement support",
+      ]
+    : [];
 
   return (
     <section
@@ -105,21 +99,21 @@ export function CourseRecommender({ sectionId = "course-recommender", href = "/a
       />
 
       <div className="site-shell relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[42%_58%] gap-10 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
           {/* Left: header + conversational quiz — recommender's top lines up with the pill above */}
           <div className="flex flex-col gap-9">
             <div className="flex flex-col items-start text-left">
-              <SectionPill className="mb-7">FIND YOUR PROGRAM</SectionPill>
+              <SectionPill className="mb-7">READY TO START?</SectionPill>
 
               <h2 className="section-title">
-                Not sure where to{" "}
+                Find your program, then take the{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">
-                  start?
+                  free pre-assessment.
                 </span>
               </h2>
 
               <p className="section-desc">
-                Answer two quick questions and we&apos;ll recommend the best learning path based on your background and interests.
+                Tell us where you&apos;re headed — we&apos;ll recommend your track.
               </p>
             </div>
 
@@ -134,27 +128,22 @@ export function CourseRecommender({ sectionId = "course-recommender", href = "/a
 
             <div className="flex flex-col items-start gap-4">
               <p className="section-copy-label">Where are you currently?</p>
-              <div className="relative inline-flex p-1 rounded-full border border-white/10 bg-white/[0.02] flex-wrap">
+              <div className="flex flex-wrap gap-3">
                 {backgrounds.map((option) => {
                   const isSelected = background === option;
                   return (
                     <button
                       key={option}
                       onClick={() => setBackground(option)}
-                      className={`relative px-5 sm:px-7 py-3 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-colors duration-300 cursor-pointer ${
-                        isSelected ? "text-black" : "text-slate-300 hover:text-white"
+                      className={`relative px-5 sm:px-6 py-3 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                        isSelected
+                          ? "fx-primary-btn text-white shadow-[0_0_18px_rgba(45,212,191,0.25)]"
+                          : "fx-ghost-btn text-slate-300 hover:text-white"
                       }`}
                     >
-                      {isSelected && (
-                        <motion.span
-                          layoutId="recommender-segment-bg"
-                          className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 -z-10"
-                          transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                        />
-                      )}
                       <span className="relative z-10 inline-flex items-center gap-1.5">
                         {option}
-                        {isSelected && <Check className="w-3 h-3" strokeWidth={3} />}
+                        {isSelected && <Check className="w-3.5 h-3.5 text-teal-400" strokeWidth={3} />}
                       </span>
                     </button>
                   );
@@ -173,17 +162,15 @@ export function CourseRecommender({ sectionId = "course-recommender", href = "/a
                     <motion.button
                       key={chip}
                       onClick={() => setInterest(chip)}
-                      whileTap={{ scale: 0.94 }}
-                      animate={{ scale: isSelected ? 1.06 : 1 }}
-                      transition={{ duration: 0.25, ease: "easeOut" }}
-                      className={`inline-flex items-center gap-1.5 px-4.5 py-2.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider border cursor-pointer transition-[background,border-color,box-shadow,color] duration-300 ${
+                      whileTap={{ scale: 0.95 }}
+                      className={`inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider cursor-pointer transition-all duration-300 ${
                         isSelected
-                          ? "text-black border-transparent bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 shadow-[0_0_20px_rgba(167,139,250,0.35)]"
-                          : "text-slate-300 border-[rgba(94,234,212,0.18)] bg-white/[0.02] hover:border-[#5EEAD4] hover:shadow-[0_0_12px_rgba(94,234,212,0.12)] hover:text-white"
+                          ? "fx-primary-btn text-white shadow-[0_0_18px_rgba(45,212,191,0.25)]"
+                          : "fx-ghost-btn text-slate-300 hover:text-white"
                       }`}
                     >
                       {chip}
-                      {isSelected && <Check className="w-3 h-3" strokeWidth={3} />}
+                      {isSelected && <Check className="w-3.5 h-3.5 text-teal-400" strokeWidth={3} />}
                     </motion.button>
                   );
                 })}
@@ -191,9 +178,8 @@ export function CourseRecommender({ sectionId = "course-recommender", href = "/a
             </div>
           </div>
 
-          {/* Right: recommendation — always visible, content re-flows as answers refine it.
-              Same grid row as the left column, so its top lines up with the FIND YOUR PROGRAM pill. */}
-          <div className="relative lg:sticky lg:top-28 w-full">
+          {/* Right: recommendation — appears only when options are selected */}
+          <div className="relative lg:sticky lg:top-28 w-full flex flex-col items-start min-h-[460px]">
             <div className="flex items-center gap-2 mb-4">
               <Sparkles className="w-3.5 h-3.5 text-[#5EEAD4]" />
               <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#5EEAD4]">
@@ -201,93 +187,122 @@ export function CourseRecommender({ sectionId = "course-recommender", href = "/a
               </span>
             </div>
 
-            <motion.div
-              layout
-              className="relative rounded-[26px] border border-[rgba(167,139,250,0.3)] bg-[#090B12] shadow-[0_0_60px_rgba(139,92,246,0.15)] overflow-hidden transition-shadow duration-300 hover:shadow-[0_20px_60px_rgba(139,92,246,0.25)] flex flex-col box-border"
-            >
-              <div className="absolute -top-24 -right-24 w-[300px] h-[300px] rounded-full bg-[#8B5CF6]/10 blur-[100px] pointer-events-none z-0" />
+            <AnimatePresence mode="wait">
+              {recommendation ? (
+                <motion.div
+                  key={recommendation.title}
+                  initial={{ opacity: 0, y: 20, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -10, scale: 0.98 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="relative rounded-[26px] border border-blue-500/20 bg-gradient-to-b from-[#101726] via-[#0b0f19] to-[#080b12] shadow-[0_8px_24px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-300 hover:border-blue-400/50 hover:shadow-[0_10px_30px_rgba(37,99,235,0.12)] flex flex-col box-border w-full max-w-[520px]"
+                >
+                  <div className="absolute -top-24 -right-24 w-[300px] h-[300px] rounded-full bg-[#8B5CF6]/10 blur-[100px] pointer-events-none z-0" />
 
-              {/* Image — flush to the top, inherits the card's top corners */}
-              <div className="relative w-full shrink-0 bg-[#04060f]" style={{ height: 180 }}>
-                <Image
-                  src={displayCourse.image}
-                  alt={displayCourse.title}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover"
-                />
-                <span className="absolute top-3 right-3 flex items-center gap-1 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-sm border border-white/15 text-[10px] font-bold uppercase tracking-wider text-white">
-                  ★ Best Match
-                </span>
-              </div>
+                  {/* Image — flush to the top, inherits the card's top corners */}
+                  <div className="relative w-full shrink-0 bg-[#04060f]" style={{ height: 180 }}>
+                    <Image
+                      src={recommendation.image}
+                      alt={recommendation.title}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 40vw"
+                      className="object-cover"
+                    />
+                    <span className="absolute top-3 right-3 flex items-center gap-1 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-sm border border-white/15 text-[10px] font-bold uppercase tracking-wider text-white">
+                      ★ Best Match
+                    </span>
+                  </div>
 
-              <div className="relative z-10 flex flex-col px-6 sm:px-7 pt-[18px] pb-6 sm:pb-7">
-                <h3 className="font-bold text-xl text-white font-sans">
-                  {displayCourse.title}
-                </h3>
-                {displayCourse.subtitle && (
-                  <p className="text-[13px] font-semibold text-[#818CF8] mt-1">
-                    {displayCourse.subtitle}
-                  </p>
-                )}
-                <p className="mt-2 text-[13px] leading-relaxed text-slate-300/80 opacity-80">
-                  {displayCourse.description}
-                </p>
+                  <div className="relative z-10 flex flex-col px-6 sm:px-7 pt-[18px] pb-6 sm:pb-7">
+                    <h3 className="font-bold text-xl text-white font-sans">
+                      {recommendation.title}
+                    </h3>
+                    {recommendation.subtitle && (
+                      <p className="text-[13px] font-semibold text-[#818CF8] mt-1">
+                        {recommendation.subtitle}
+                      </p>
+                    )}
+                    <p className="mt-2 text-[13px] leading-relaxed text-slate-300/80 opacity-80">
+                      {recommendation.description}
+                    </p>
 
-                <div className="grid grid-cols-3 gap-2 mt-[18px]">
-                  {displayCourse.duration && (
-                    <div className="flex items-center gap-2 px-2.5 py-2 rounded-lg bg-[#0F131C] border border-white/10">
-                      <Clock className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                      <div className="min-w-0">
-                        <p className="text-[11px] font-semibold text-slate-200 truncate">{displayCourse.duration}</p>
-                        <p className="text-[9.5px] text-slate-500 uppercase tracking-wide">Duration</p>
+                    <div className="grid grid-cols-3 gap-2 mt-[18px]">
+                      {recommendation.duration && (
+                        <div className="flex items-center gap-2 px-2.5 py-2 rounded-lg bg-[#0F131C] border border-white/10">
+                          <Clock className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                          <div className="min-w-0">
+                            <p className="text-[11px] font-semibold text-slate-200 truncate">{recommendation.duration}</p>
+                            <p className="text-[9.5px] text-slate-500 uppercase tracking-wide">Duration</p>
+                          </div>
+                        </div>
+                      )}
+                      {recommendation.mode && (
+                        <div className="flex items-center gap-2 px-2.5 py-2 rounded-lg bg-[#0F131C] border border-white/10">
+                          <Monitor className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                          <div className="min-w-0">
+                            <p className="text-[11px] font-semibold text-slate-200 truncate">{recommendation.mode}</p>
+                            <p className="text-[9.5px] text-slate-500 uppercase tracking-wide">Mode</p>
+                          </div>
+                        </div>
+                      )}
+                      <div className="flex items-center gap-2 px-2.5 py-2 rounded-lg bg-[#0F131C] border border-white/10">
+                        <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                        <div className="min-w-0">
+                          <p className="text-[11px] font-semibold text-slate-200 truncate">Placement Support</p>
+                          <p className="text-[9.5px] text-slate-500 uppercase tracking-wide">Outcome</p>
+                        </div>
                       </div>
                     </div>
-                  )}
-                  {displayCourse.mode && (
-                    <div className="flex items-center gap-2 px-2.5 py-2 rounded-lg bg-[#0F131C] border border-white/10">
-                      <Monitor className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                      <div className="min-w-0">
-                        <p className="text-[11px] font-semibold text-slate-200 truncate">{displayCourse.mode}</p>
-                        <p className="text-[9.5px] text-slate-500 uppercase tracking-wide">Mode</p>
-                      </div>
+
+                    <p className="mt-6 text-[11px] font-bold uppercase tracking-[0.15em] text-[#5EEAD4]">
+                      Why this fits you
+                    </p>
+                    <div className="grid grid-cols-2 gap-x-3 gap-y-2 mt-2.5">
+                      {fitReasons.map((reason) => (
+                        <div key={reason} className="flex items-center gap-1.5 text-[12px] text-slate-300">
+                          <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" strokeWidth={3} />
+                          <span>{reason}</span>
+                        </div>
+                      ))}
                     </div>
-                  )}
-                  <div className="flex items-center gap-2 px-2.5 py-2 rounded-lg bg-[#0F131C] border border-white/10">
-                    <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <div className="min-w-0">
-                      <p className="text-[11px] font-semibold text-slate-200 truncate">Placement Support</p>
-                      <p className="text-[9.5px] text-slate-500 uppercase tracking-wide">Outcome</p>
+
+                    <div className="mt-5 pt-4 border-t border-white/5">
+                      <p className="text-[11px] text-slate-400 font-mono leading-relaxed mb-4">
+                        Fee: <span className="text-white font-semibold">₹999 + GST</span> to confirm seat. Flow: <span className="text-emerald-400 font-semibold">Free pre-assessment → ₹999 → train → certify → intern → placed</span>
+                      </p>
+                      <div className="flex flex-wrap gap-3 w-full">
+                        <Button
+                          variant="primary"
+                          className="w-full"
+                          href="/academy/register"
+                        >
+                          Take the free pre-assessment
+                        </Button>
+                      </div>
                     </div>
                   </div>
-                </div>
-
-                <p className="mt-6 text-[11px] font-bold uppercase tracking-[0.15em] text-[#5EEAD4]">
-                  Why this fits you
-                </p>
-                <div className="grid grid-cols-2 gap-x-3 gap-y-2 mt-2.5">
-                  {fitReasons.map((reason) => (
-                    <div key={reason} className="flex items-center gap-1.5 text-[12px] text-slate-300">
-                      <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" strokeWidth={3} />
-                      <span>{reason}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="flex flex-wrap gap-3 w-full mt-6">
-                  <Button
-                    variant="primary"
-                    className="flex-1"
-                    onClick={() => router.push(`/academy/courses/${slugify(displayCourse.title)}`)}
-                  >
-                    View Program
-                  </Button>
-                  <Button variant="secondary" href={href} className="flex-1">
-                    Enroll Now
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="empty-placeholder"
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.3 }}
+                  className="relative rounded-[26px] border border-dashed border-white/15 bg-[#090B12]/40 p-8 sm:p-12 flex flex-col items-center justify-center text-center w-full max-w-[520px] min-h-[380px] backdrop-blur-sm"
+                >
+                  <div className="w-14 h-14 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(45,212,191,0.15)] animate-pulse">
+                    <Sparkles className="w-6 h-6" />
+                  </div>
+                  <h4 className="text-lg font-bold text-white mb-2 font-sans">
+                    Select Your Preferences
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-400 max-w-xs leading-relaxed font-sans">
+                    Choose your current stage and area of interest on the left to reveal your recommended program.
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </div>

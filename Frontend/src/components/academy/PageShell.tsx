@@ -7,13 +7,13 @@ import { DeferredSection } from "@/components/academy/DeferredSection";
 const SectionLoader = () => <div className="h-[50vh] w-full animate-pulse bg-surface/50" />;
 
 const About = dynamic(() => import("@/components/academy/About").then(mod => mod.About), { loading: () => <SectionLoader /> });
-const CoreFeatures = dynamic(() => import("@/components/academy/CoreFeatures").then(mod => mod.CoreFeatures), { loading: () => <SectionLoader /> });
+const Why4AT = dynamic(() => import("@/components/academy/Why4AT").then(mod => mod.Why4AT), { loading: () => <SectionLoader /> });
 const OurProgram = dynamic(() => import("@/components/academy/OurProgram").then(mod => mod.OurProgram), { loading: () => <SectionLoader /> });
 const Outcomes = dynamic(() => import("@/components/academy/Outcomes").then(mod => mod.Outcomes), { loading: () => <SectionLoader /> });
 const Faculty = dynamic(() => import("@/components/academy/Faculty").then(mod => mod.Faculty), { loading: () => <SectionLoader /> });
-const TestimonialsSocialProof = dynamic(() => import("@/components/academy/TestimonialsSocialProof").then(mod => mod.TestimonialsSocialProof), { loading: () => <SectionLoader /> });
-const AcademyFaq = dynamic(() => import("@/components/academy/AcademyFaq").then(mod => mod.AcademyFaq), { loading: () => <SectionLoader /> });
-const FinalCTA = dynamic(() => import("@/components/academy/FinalCTA").then(mod => mod.FinalCTA), { loading: () => <SectionLoader /> });
+const Testimonials = dynamic(() => import("@/components/academy/Testimonials").then(mod => mod.Testimonials), { loading: () => <SectionLoader /> });
+const FAQ = dynamic(() => import("@/components/academy/FAQ").then(mod => mod.FAQ), { loading: () => <SectionLoader /> });
+const CTA = dynamic(() => import("@/components/academy/CTA").then(mod => mod.CTA), { loading: () => <SectionLoader /> });
 
 
 
@@ -21,16 +21,16 @@ export function PageShell({ ctaRoute }: { ctaRoute: string }) {
   return (
     <>
       <About />
-      <CoreFeatures />
+      <Why4AT />
       <OurProgram />
       <Outcomes />
       <ProductCurtain>
-        <DeferredSection section="lms-courses" sectionId="courses" />
+        <DeferredSection section="courses" sectionId="courses" />
         <DeferredSection section="course-recommender" sectionId="course-recommender" href={ctaRoute} />
         <Faculty />
-        <TestimonialsSocialProof />
-        <AcademyFaq />
-        <FinalCTA />
+        <Testimonials />
+        <FAQ />
+        <CTA />
       </ProductCurtain>
     </>
   );

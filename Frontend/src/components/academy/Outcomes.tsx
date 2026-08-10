@@ -19,13 +19,13 @@ const outcomes = [
     eyebrow: "INTERN",
     title: "Intern at 4AT",
     body: "Selected candidates who clear the assessment join a live client account and apply the program on real work.",
-    borderColor: "rgba(16, 201, 129, 0.35)",
-    glowColor: "rgba(16, 201, 129, 0.14)",
-    innerShadow: "inset 0 0 20px rgba(16, 201, 129, 0.18), inset 0 0 60px rgba(16, 201, 129, 0.07), 0 8px 32px rgba(0,0,0,0.7)",
+    borderColor: "rgba(16, 201, 129, 0.25)",
+    glowColor: "rgba(16, 201, 129, 0.06)",
+    innerShadow: "inset 0 0 10px rgba(16, 201, 129, 0.05), 0 4px 16px rgba(0,0,0,0.5)",
     badgeColors: "text-emerald-400 border-emerald-500/20 bg-emerald-500/5",
-    numColor: "text-emerald-400/[0.06] group-hover:text-emerald-400/[0.12]",
-    iconBox: "text-emerald-400 border-emerald-500/30 bg-emerald-500/10 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_0_15px_rgba(16,201,129,0.3)]",
-    dotClass: "bg-emerald-400 shadow-[0_0_6px_#10B981]",
+    numColor: "text-white/[0.14] group-hover:text-white/[0.22]",
+    iconBox: "text-emerald-400 border-emerald-500/30 bg-emerald-500/10 shadow-sm",
+    dotClass: "bg-emerald-400",
   },
   {
     id: "02",
@@ -33,13 +33,13 @@ const outcomes = [
     eyebrow: "PERMANENT ROLE",
     title: "Placed at 4AT",
     body: "Top performers are absorbed into permanent finance, accounting and audit roles — our own talent pipeline.",
-    borderColor: "rgba(6, 182, 212, 0.35)",
-    glowColor: "rgba(6, 182, 212, 0.14)",
-    innerShadow: "inset 0 0 20px rgba(6, 182, 212, 0.18), inset 0 0 60px rgba(6, 182, 212, 0.07), 0 8px 32px rgba(0,0,0,0.7)",
+    borderColor: "rgba(6, 182, 212, 0.25)",
+    glowColor: "rgba(6, 182, 212, 0.06)",
+    innerShadow: "inset 0 0 10px rgba(6, 182, 212, 0.05), 0 4px 16px rgba(0,0,0,0.5)",
     badgeColors: "text-cyan-400 border-cyan-500/20 bg-cyan-500/5",
-    numColor: "text-cyan-400/[0.06] group-hover:text-cyan-400/[0.12]",
-    iconBox: "text-cyan-400 border-cyan-500/30 bg-cyan-500/10 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_0_15px_rgba(6,182,212,0.3)]",
-    dotClass: "bg-cyan-400 shadow-[0_0_6px_#06B6D4]",
+    numColor: "text-white/[0.14] group-hover:text-white/[0.22]",
+    iconBox: "text-cyan-400 border-cyan-500/30 bg-cyan-500/10 shadow-sm",
+    dotClass: "bg-cyan-400",
   },
   {
     id: "03",
@@ -47,29 +47,29 @@ const outcomes = [
     eyebrow: "PARTNER NETWORK",
     title: "Placed with partners",
     body: "Certified graduates are also placed with partner organisations that have open positions.",
-    borderColor: "rgba(168, 85, 247, 0.35)",
-    glowColor: "rgba(168, 85, 247, 0.14)",
-    innerShadow: "inset 0 0 20px rgba(168, 85, 247, 0.18), inset 0 0 60px rgba(168, 85, 247, 0.07), 0 8px 32px rgba(0,0,0,0.7)",
+    borderColor: "rgba(168, 85, 247, 0.25)",
+    glowColor: "rgba(168, 85, 247, 0.06)",
+    innerShadow: "inset 0 0 10px rgba(168, 85, 247, 0.05), 0 4px 16px rgba(0,0,0,0.5)",
     badgeColors: "text-purple-400 border-purple-500/20 bg-purple-500/5",
-    numColor: "text-purple-400/[0.06] group-hover:text-purple-400/[0.12]",
-    iconBox: "text-purple-400 border-purple-500/30 bg-purple-500/10 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_0_15px_rgba(168,85,247,0.3)]",
-    dotClass: "bg-purple-400 shadow-[0_0_6px_#A855F7]",
+    numColor: "text-white/[0.14] group-hover:text-white/[0.22]",
+    iconBox: "text-purple-400 border-purple-500/30 bg-purple-500/10 shadow-sm",
+    dotClass: "bg-purple-400",
   },
 ];
 
 const colorMap = {
   emerald: {
-    icon: "w-12 h-12 rounded-full border border-emerald-500/30 bg-emerald-500/10 flex items-center justify-center text-emerald-400 shrink-0 shadow-[0_0_15px_rgba(16,201,129,0.2)]",
+    icon: "w-12 h-12 rounded-full border border-emerald-500/30 bg-emerald-500/10 flex items-center justify-center text-emerald-400 shrink-0 shadow-sm",
     value: "text-white",
     dot: "bg-emerald-400",
   },
   cyan: {
-    icon: "w-12 h-12 rounded-full border border-cyan-500/30 bg-cyan-500/10 flex items-center justify-center text-cyan-400 shrink-0 shadow-[0_0_15px_rgba(6,182,212,0.2)]",
+    icon: "w-12 h-12 rounded-full border border-cyan-500/30 bg-cyan-500/10 flex items-center justify-center text-cyan-400 shrink-0 shadow-sm",
     value: "text-white",
     dot: "bg-cyan-400",
   },
   purple: {
-    icon: "w-12 h-12 rounded-full border border-purple-500/30 bg-purple-500/10 flex items-center justify-center text-purple-400 shrink-0 shadow-[0_0_15px_rgba(168,85,247,0.2)]",
+    icon: "w-12 h-12 rounded-full border border-purple-500/30 bg-purple-500/10 flex items-center justify-center text-purple-400 shrink-0 shadow-sm",
     value: "text-white",
     dot: "bg-purple-400",
   },
@@ -150,8 +150,8 @@ export function Outcomes() {
                 onMouseMove={handleMouseMove}
                 className="group relative flex flex-col justify-between overflow-hidden rounded-2xl p-7 sm:p-8 h-full transition-all duration-300 hover:-translate-y-1.5 cursor-default"
                 style={{
-                  background: "#090B0F",
-                  border: `1px solid ${card.borderColor}`,
+                  background: "linear-gradient(to bottom, #101726, #0b0f19 50%, #080b12)",
+                  border: "1px solid rgba(59, 130, 246, 0.25)",
                   boxShadow: card.innerShadow,
                 }}
               >
@@ -209,7 +209,7 @@ export function Outcomes() {
           <p className="text-sm sm:text-base text-white/70 font-sans leading-relaxed">
             Every graduate earns the{" "}
             <span className="text-white font-semibold">4AT Academy — FinTech Engineering</span>{" "}
-            certification, recognised across our hiring-partner network.
+            certification.
           </p>
         </div>
 

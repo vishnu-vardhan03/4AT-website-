@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Star, Search, Filter, BookOpen, Clock, Award, Lock, ArrowLeft, ChevronRight } from "lucide-react";
+import { Star, Search, Filter, BookOpen, Clock, Award, Lock, ArrowLeft, ChevronRight, ChevronDown, X, ArrowRight, Monitor } from "lucide-react";
 import { lmsCourses } from "@/components/academy/data";
 import Image from "next/image";
 import { Nav } from "@/components/layout/MainNav";
@@ -13,6 +14,7 @@ const getCourseSlug = (title: string) => {
 };
 
 export default function CoursesPage() {
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
@@ -33,29 +35,31 @@ export default function CoursesPage() {
     });
   }, [searchQuery, selectedCategory]);
 
+  const hasActiveFilters = selectedCategory !== "All" || searchQuery.trim().length > 0;
+
   return (
     <>
       <Nav />
-      <div className="min-h-screen bg-[#0a0a0a] text-white flex flex-col pt-0">
+      <div className="min-h-screen bg-[#07090D] text-white flex flex-col pt-0 font-sans">
 
       {/* Hero Banner Section */}
-      <section className="relative pt-[120px] pb-16 sm:pt-[132px] sm:pb-20 border-b border-white/5 bg-[#0a0a0a]">
-        <div className="absolute top-1/2 left-1/4 w-[350px] h-[350px] bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
+      <section className="relative pt-[120px] pb-12 sm:pt-[132px] sm:pb-14 border-b border-white/5 bg-[#07090D] overflow-hidden">
+        <div className="absolute top-1/2 left-1/4 w-[350px] h-[350px] bg-[#5EEAD4]/5 rounded-full blur-[100px] pointer-events-none" />
         <div className="site-shell relative z-10 text-left">
-          <div className="mb-8 flex flex-wrap items-center gap-x-5 gap-y-3">
+          <div className="mb-6 flex flex-wrap items-center gap-x-5 gap-y-3">
             <Link
               href="/academy#courses"
-              className="inline-flex h-10 items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-4 text-xs font-semibold text-slate-300 transition-all hover-fine:border-accent/40 hover-fine:text-accent active:scale-95"
+              className="inline-flex h-10 items-center gap-2 rounded-full fx-ghost-btn px-4 text-xs font-semibold text-slate-300 transition-all hover:text-white active:scale-95"
               aria-label="Back to courses section"
             >
               <ArrowLeft className="size-4" />
               Back
             </Link>
 
-            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-slate-500">
+            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-slate-500 font-mono">
               <Link
                 href="/academy"
-                className="transition-colors hover-fine:text-accent"
+                className="transition-colors hover:text-white"
               >
                 Home
               </Link>
@@ -65,7 +69,7 @@ export default function CoursesPage() {
           </div>
 
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4 font-sans max-w-3xl">
-            Courses
+            Courses Directory
           </h1>
           <p className="text-base sm:text-lg text-slate-400 max-w-2xl leading-relaxed">
             All pathways are designed backwards from specific job role outcomes and Big 4 requirements, equipping you with decision-grade execution.
@@ -74,197 +78,222 @@ export default function CoursesPage() {
       </section>
 
       {/* Main Catalog Directory Section */}
-      <section className="py-12 sm:py-16 flex-grow">
-        <div className="site-shell flex flex-col lg:flex-row gap-10">
+      <section className="py-8 sm:py-12 flex-grow">
+        <div className="site-shell flex flex-col gap-6">
           
-          {/* Sidebar Filters (Desktop) */}
-          <aside className="w-full lg:w-64 shrink-0 flex flex-col gap-6">
-            <div className="bg-[#0b0e1a]/80 border border-white/10 rounded-2xl p-6 backdrop-blur-md">
-              <div className="flex items-center gap-2 mb-6 border-b border-white/5 pb-3">
-                <Filter className="size-4 text-accent" />
-                <h3 className="font-semibold text-sm uppercase tracking-wider font-mono">Filters</h3>
-              </div>
+          {/* Top Control Bar: Showing Courses counter, Search Bar, and Filters Category Dropdown */}
+          <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-white/10 pb-4 mb-2">
+            
+            {/* Left: SHOWING N COURSES */}
+            <div className="flex items-center gap-3 shrink-0">
+              <span className="text-xs font-mono font-bold tracking-wider text-slate-300 uppercase">
+                SHOWING {filteredCourses.length} COURSE{filteredCourses.length !== 1 ? "S" : ""}
+              </span>
+            </div>
 
+            {/* Right: Search Bar & Filters Category Dropdown */}
+            <div className="flex flex-wrap items-center gap-3 flex-1 justify-end w-full sm:w-auto">
+              
               {/* Search Field */}
-              <div className="relative mb-6">
+              <div className="relative flex-1 min-w-[200px] max-w-sm">
                 <input
                   type="text"
                   placeholder="Search courses..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-[#090d19] border border-white/10 focus:border-accent/40 rounded-xl px-4 py-3 pl-10 text-xs text-white placeholder-slate-500 outline-none transition-colors"
+                  className="w-full bg-[#090d19] border border-white/12 focus:border-[#5EEAD4]/50 rounded-full px-4 py-2 pl-9 pr-8 text-xs text-white placeholder-slate-500 outline-none transition-colors"
                 />
-                <Search className="absolute left-3.5 top-3.5 size-4 text-slate-500" />
+                <Search className="absolute left-3 top-2.5 size-3.5 text-slate-500" />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-2.5 top-2.5 text-slate-400 hover:text-white cursor-pointer"
+                    aria-label="Clear search"
+                  >
+                    <X className="size-3.5" />
+                  </button>
+                )}
               </div>
 
-              {/* Category Filters */}
-              <div>
-                <h4 className="text-[11px] font-bold tracking-widest text-slate-400 uppercase mb-3 font-mono">
-                  Categories
-                </h4>
-                <div className="flex flex-col gap-1.5">
-                  {categories.map((category) => {
-                    const isSelected = selectedCategory === category;
-                    return (
-                      <button
-                        key={category}
-                        onClick={() => setSelectedCategory(category)}
-                        className={`text-left px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
-                          isSelected
-                            ? "bg-accent/10 text-accent border border-accent/20"
-                            : "text-slate-400 hover-fine:bg-white/[0.03] hover-fine:text-white"
-                        }`}
-                      >
-                        {category}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </aside>
-
-          {/* Courses Content Area */}
-          <div className="flex-1 flex flex-col gap-6">
-            <div className="flex justify-between items-center text-xs text-slate-400 font-mono border-b border-white/5 pb-4">
-              <span>SHOWING {filteredCourses.length} COURSE{filteredCourses.length !== 1 ? "S" : ""}</span>
-              {selectedCategory !== "All" && (
-                <button
-                  onClick={() => setSelectedCategory("All")}
-                  className="text-accent hover-fine:underline"
+              {/* Filters Category Dropdown Select */}
+              <div className="relative inline-flex items-center">
+                <Filter className="absolute left-3.5 top-2.5 size-3.5 text-teal-400 pointer-events-none z-10" />
+                <select
+                  value={selectedCategory}
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                  className="appearance-none bg-[#090d19] border border-white/12 focus:border-[#5EEAD4]/50 rounded-full pl-9 pr-9 py-2 text-xs font-bold text-white uppercase tracking-wider outline-none cursor-pointer hover:border-white/25 transition-all shadow-inner"
                 >
-                  Clear Category Filter
+                  {categories.map((cat) => (
+                    <option key={cat} value={cat} className="bg-[#090d19] text-white py-1">
+                      {cat === "All" ? "All Categories" : cat}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-3 top-2.5 size-3.5 text-slate-400 pointer-events-none z-10" />
+              </div>
+
+              {hasActiveFilters && (
+                <button
+                  onClick={() => {
+                    setSelectedCategory("All");
+                    setSearchQuery("");
+                  }}
+                  className="text-xs text-slate-400 hover:text-teal-300 font-mono underline underline-offset-4 cursor-pointer whitespace-nowrap ml-1"
+                >
+                  Reset
                 </button>
               )}
             </div>
+          </div>
 
-            {filteredCourses.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                {filteredCourses.map((course) => {
-                  const slug = getCourseSlug(course.title);
-                  return (
-                    <Link
-                      key={course.title}
-                      href={`/academy/courses/${slug}`}
-                      className="group flex flex-col justify-between border border-white/8 bg-[#0b0e1a]/40 hover-fine:border-accent/30 rounded-xl p-3 transition-[border-color,box-shadow,transform] duration-300 hover-fine:shadow-[0_12px_28px_rgba(0,0,0,0.15)] hover-fine:-translate-y-0.5 relative"
-                    >
-                      {/* Thumbnail */}
-                      <div className="relative w-full h-36 rounded-lg overflow-hidden bg-brand-soft/5 mb-3">
-                        <Image
-                          src={course.image}
-                          alt={course.title}
-                          fill
-                          sizes="(max-width: 768px) 100vw, 25vw"
-                          className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                        />
-                        {/* Lock Overlay for locked courses */}
-                        {course.locked && (
-                          <div className="absolute inset-0 bg-[#0b0e1a]/60 backdrop-blur-[2px] flex items-center justify-center">
-                            <div className="bg-[#0b0e1a]/95 text-white rounded-full p-2.5 shadow-md border border-white/10">
-                              <Lock className="size-4" />
-                            </div>
-                          </div>
-                        )}
+          {/* Courses Content Grid */}
+          {filteredCourses.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredCourses.map((course) => {
+                const slug = getCourseSlug(course.title);
+                return (
+                  <div
+                    key={course.title}
+                    onClick={() => {
+                      router.push(`/academy/courses/${slug}`);
+                    }}
+                    className="group relative flex flex-col justify-between p-4.5 sm:p-5 rounded-[22px] border border-white/10 bg-[#090B12] cursor-pointer transition-all duration-300 hover:border-[#A78BFA]/35 hover:shadow-[0_12px_40px_rgba(139,92,246,0.15)] hover:-translate-y-1"
+                  >
+                    {/* Thumbnail Image Container */}
+                    <div className="relative h-32 sm:h-36 w-full rounded-xl overflow-hidden bg-[#04060f] mb-3 shrink-0">
+                      <Image
+                        src={course.image}
+                        alt={course.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      />
+
+                      {/* Overlaid Badge Top-Right */}
+                      <div className="absolute top-2.5 right-2.5 z-30 px-3 py-1 rounded-full bg-[rgba(91,33,182,0.55)] border border-[rgba(167,139,250,0.40)] backdrop-blur-md shadow-lg">
+                        <span className="text-[10px] font-extrabold uppercase text-[#D8B4FE] tracking-wider font-sans whitespace-nowrap">
+                          {course.badge || "FLAGSHIP • FRESHERS"}
+                        </span>
                       </div>
 
-                      {/* Badge Ribbon */}
-                      {course.badgeType && (
-                        <span className={`absolute top-4 right-4 text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${
-                          course.badgeType === "bestseller" ? "bg-amber-500/10 text-amber-400 border border-amber-500/20" :
-                          course.badgeType === "new" ? "bg-accent/10 text-accent border border-accent/20" :
-                          "bg-rose-500/10 text-rose-400 border border-rose-500/20"
-                        } z-20`}>
-                          {course.badgeType}
-                        </span>
+                      {/* Lock Overlay for locked courses */}
+                      {course.locked && (
+                        <div className="absolute inset-0 bg-[#04060f]/60 backdrop-blur-[2px] flex items-center justify-center z-20">
+                          <div className="bg-[#0b0e1a]/95 text-white rounded-full p-2 shadow-md border border-white/10">
+                            <Lock className="size-3.5" />
+                          </div>
+                        </div>
                       )}
+                    </div>
 
+                    {/* Card Main Body */}
+                    <div className="flex flex-col flex-grow justify-between">
                       <div>
-                        {/* Course Category */}
-                        <span className="text-[10px] font-bold font-mono tracking-widest text-accent uppercase">
-                          {course.category}
+                        {/* Metadata Row (Below Image) - with additional Certificate badge */}
+                        <div className="flex flex-wrap items-center gap-1.5 mb-2.5 min-h-[26px]">
+                          {course.duration && (
+                            <div className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[#0F131C] border border-white/10 text-slate-200 font-medium text-[11px] whitespace-nowrap">
+                              <Clock className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                              <span>{course.duration}</span>
+                            </div>
+                          )}
+                          {course.mode && (
+                            <div className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[#0F131C] border border-white/10 text-slate-200 font-medium text-[11px] whitespace-nowrap">
+                              <Monitor className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                              <span>{course.mode}</span>
+                            </div>
+                          )}
+                          <div className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[#0F131C] border border-white/10 text-slate-200 font-medium text-[11px] whitespace-nowrap">
+                            <Award className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                            <span>Certificate</span>
+                          </div>
+                        </div>
+
+                        {/* Category Label */}
+                        <span className="text-[10px] font-medium tracking-wider uppercase text-slate-400 font-mono block mt-1">
+                          {course.category === "Accounting & ERP" ? "F&A" : course.category === "Audit & Risk" ? "D&A" : course.category === "Global Taxation" ? "T&I" : course.category === "FP&A & Modeling" ? "B&M" : course.category}
                         </span>
 
                         {/* Title */}
-                        <h3 className="mt-1.5 text-base font-bold tracking-tight text-white group-hover-fine:text-accent transition-colors duration-200 font-sans">
+                        <h3 className="font-bold text-lg sm:text-[1.2rem] tracking-tight text-white transition-colors duration-300 group-hover:text-[#A78BFA] font-sans mt-0.5 leading-snug line-clamp-1">
                           {course.title}
                         </h3>
 
                         {/* Subtitle */}
-                        <p className="mt-1 text-[11px] font-semibold text-slate-400">
-                          {course.subtitle}
-                        </p>
+                        {course.subtitle && (
+                          <p className="text-[12.5px] font-semibold text-[#818CF8] mt-0.5 line-clamp-1">
+                            {course.subtitle}
+                          </p>
+                        )}
 
                         {/* Description */}
-                        <p className="mt-2 text-[11px] text-slate-400 leading-relaxed line-clamp-2">
+                        <p className="mt-2 text-[12px] font-normal leading-relaxed text-slate-300/80 font-sans line-clamp-3">
                           {course.description}
                         </p>
 
-                        {/* Stars */}
-                        <div className="mt-3 flex items-center gap-1.5">
-                          <span className="text-xs font-bold text-[#fbbf24]">{course.rating.toFixed(1)}</span>
-                          <div className="flex gap-0.5">
-                            {Array.from({ length: 5 }).map((_, i) => (
-                              <Star
-                                key={i}
-                                className={`size-3 ${
-                                  i < Math.floor(course.rating)
-                                    ? "fill-[#fbbf24] text-[#fbbf24]"
-                                    : "text-white/10"
-                                }`}
-                              />
-                            ))}
-                          </div>
-                          <span className="text-[10px] text-slate-500 font-sans">
-                            ({course.reviewsCount} reviews)
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Course Meta Info Strip */}
-                      <div className="mt-3 pt-3 border-t border-white/5 flex items-center justify-between">
-                        <div className="flex items-center gap-4 text-[10px] text-slate-500 font-mono uppercase">
-                          <div className="flex items-center gap-1">
-                            <Clock className="size-3 text-accent" />
-                            <span>12 WEEKS</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Award className="size-3 text-accent" />
-                            <span>CERTIFICATE</span>
-                          </div>
-                        </div>
-                        <div className="flex items-baseline">
-                          <span className="text-sm font-extrabold text-white">{course.price}</span>
-                          {course.originalPrice && (
-                            <span className="text-[10px] font-medium line-through text-slate-500 ml-1.5">
-                              {course.originalPrice}
+                        {/* Covers / Key Topics */}
+                        {course.bullets && course.bullets.length > 0 && (
+                          <div className="mt-3 pt-2.5 border-t border-white/5">
+                            <span className="text-[10px] font-bold tracking-wider uppercase text-slate-400 font-mono block mb-1.5">
+                              Covers:
                             </span>
-                          )}
-                        </div>
+                            <ul className="space-y-1">
+                              {course.bullets.map((bullet, i) => (
+                                <li key={i} className="flex items-start gap-2 text-[11.5px] text-slate-200/90 font-sans leading-snug">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1 shrink-0 shadow-[0_0_6px_#10B981]" />
+                                  <span>{bullet}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
                       </div>
-                    </Link>
-                  );
-                })}
-              </div>
-            ) : (
-              <div className="bg-[#0b0e1a]/40 border border-white/10 rounded-2xl p-12 text-center flex flex-col items-center justify-center">
-                <BookOpen className="size-10 text-slate-600 mb-4" />
-                <h3 className="text-lg font-bold text-white mb-2">No Courses Found</h3>
-                <p className="text-xs text-slate-400 max-w-sm">
-                  We couldn&apos;t find any courses matching search phrase &quot;{searchQuery}&quot;. Please check spelling or select another filter.
-                </p>
-                <button
-                  onClick={() => {
-                    setSearchQuery("");
-                    setSelectedCategory("All");
-                  }}
-                  className="mt-6 text-xs text-accent border border-accent/20 bg-accent/5 px-4 py-2 rounded-xl font-semibold tracking-wider hover-fine:bg-accent/10 transition-colors"
-                >
-                  Reset All Filters
-                </button>
-              </div>
-            )}
-          </div>
+                    </div>
 
+                    {/* CTA Buttons */}
+                    <div className="mt-4 pt-2.5 border-t border-white/5 z-10 shrink-0 flex gap-2">
+                      <button
+                        className="flex-1 py-2.5 px-4 rounded-full text-[11px] tracking-[0.1em] uppercase font-bold text-white fx-primary-btn flex items-center justify-center gap-1.5 transition-all duration-300 cursor-pointer"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          router.push(`/academy/courses/${slug}`);
+                        }}
+                      >
+                        <span>{course.ctaText || "VIEW CURRICULUM"}</span>
+                        <ArrowRight className="w-3.5 h-3.5 text-white transition-transform duration-300 group-hover:translate-x-0.5" />
+                      </button>
+                      <button
+                        className="shrink-0 px-4 py-2.5 rounded-full text-[11px] tracking-[0.1em] uppercase font-bold text-white fx-ghost-btn transition-all duration-300 cursor-pointer whitespace-nowrap"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          router.push("/academy/register");
+                        }}
+                      >
+                        Check fit
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="bg-[#0b0e1a]/40 border border-white/10 rounded-2xl p-12 text-center flex flex-col items-center justify-center">
+              <BookOpen className="size-10 text-slate-600 mb-4" />
+              <h3 className="text-lg font-bold text-white mb-2">No Courses Found</h3>
+              <p className="text-xs text-slate-400 max-w-sm">
+                We couldn&apos;t find any courses matching search phrase &quot;{searchQuery}&quot;. Please check spelling or select another filter.
+              </p>
+              <button
+                onClick={() => {
+                  setSearchQuery("");
+                  setSelectedCategory("All");
+                }}
+                className="mt-6 text-xs text-white fx-primary-btn px-5 py-2.5 rounded-full font-bold uppercase tracking-wider cursor-pointer"
+              >
+                Reset All Filters
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

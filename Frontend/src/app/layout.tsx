@@ -4,6 +4,8 @@ import { Suspense } from "react";
 import "./globals.css";
 import ConsentAnalytics from "@/components/ConsentAnalytics";
 import CookieConsent from "@/components/CookieConsent";
+import { SmoothScroll } from "@/components/academy/SmoothScroll";
+import { PageTransition } from "@/components/ui/PageTransition";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,9 +52,14 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">
-        {children}
+      <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        <SmoothScroll>
+          <PageTransition>
+            {children}
+          </PageTransition>
+        </SmoothScroll>
         <Suspense fallback={null}>
           <ConsentAnalytics />
         </Suspense>

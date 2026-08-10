@@ -193,12 +193,12 @@ export function Hero() {
               className="mt-8 text-[clamp(2.2rem,5.2vw,4.8rem)] font-black tracking-tight leading-[0.95] text-foreground max-w-5xl select-none"
             >
               <span className="block text-white opacity-95">
-                Built to your scope, not our catalog
+                Built to your scope,
               </span>
-              <span className="block py-2.5 px-1 bg-gradient-to-r from-sky-400 via-purple-500 to-sky-400 bg-clip-text text-transparent filter drop-shadow-[0_4px_20px_rgba(99,102,241,0.25)] animate-gradient-x">
-                One subscription
+              <span className="block text-white opacity-95">
+                Not our catalog.
               </span>
-              <span className="block text-zinc-700 text-[clamp(1.1rem,2.5vw,2.2rem)] font-black tracking-tight mt-2">
+              <span className="block py-2.5 px-1 bg-gradient-to-r from-sky-400 via-purple-500 to-sky-400 bg-clip-text text-transparent filter drop-shadow-[0_4px_20px_rgba(99,102,241,0.25)] animate-gradient-x text-[clamp(1.35rem,3.1vw,2.5rem)] mt-2 whitespace-nowrap">
                 AI and humans on every engagement
               </span>
             </motion.h1>
@@ -215,11 +215,25 @@ export function Hero() {
               </p>
             </motion.div>
 
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="mt-8 inline-flex flex-nowrap items-center rounded-lg border border-white/15 bg-[#0b1020]/85 p-1.5 text-[13px] font-medium tracking-wide text-white whitespace-nowrap overflow-x-auto max-w-full no-scrollbar"
+            >
+              <span className="px-4 py-2 border-r border-white/15 last:border-r-0">
+                AI-assisted reconciliation
+              </span>
+              <span className="px-4 py-2 last:border-r-0">
+                Senior CPAs on every engagement
+              </span>
+            </motion.div>
+
             {/* CTAs */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
               className="mt-8 flex flex-row items-center gap-4 pointer-events-auto whitespace-nowrap"
             >
               <a
@@ -235,20 +249,6 @@ export function Hero() {
               >
                 Talk to an experienced finance professional
               </a>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="mt-8 inline-flex flex-nowrap items-center rounded-lg border border-white/15 bg-[#0b1020]/85 p-1.5 text-[13px] font-medium tracking-wide text-white whitespace-nowrap overflow-x-auto max-w-full no-scrollbar"
-            >
-              <span className="px-4 py-2 border-r border-white/15 last:border-r-0">
-                AI-assisted reconciliation
-              </span>
-              <span className="px-4 py-2 last:border-r-0">
-                Senior CPAs on every engagement
-              </span>
             </motion.div>
           </div>
 
