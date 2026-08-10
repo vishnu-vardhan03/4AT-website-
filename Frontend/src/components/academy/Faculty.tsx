@@ -31,9 +31,9 @@ interface Mentor {
 
 const mentorsData: Mentor[] = [
   {
-    id: "vikas",
-    name: "Vikas Juneja",
-    role: "Head of FP&A",
+    id: "jose",
+    name: "Jose Abraham",
+    role: "FP&A & Financial Analysis",
     department: "FP&A Expert",
     bio: "Led FP&A for high-growth SaaS and fintech teams; Specialist in strategic forecasting, valuations, and corporate budgeting.",
     image: "/faculty/david.webp",
@@ -50,10 +50,10 @@ const mentorsData: Mentor[] = [
     ]
   },
   {
-    id: "neha-anand",
-    name: "Neha Anand",
-    role: "Corporate Finance Lead",
-    department: "Corporate Finance",
+    id: "rajesh",
+    name: "Rajesh Vennapureddy",
+    role: "F&A Operations",
+    department: "F&A Operations",
     bio: "Specialist in cross-border capital structure, treasury operations, and multinational fundraising strategies.",
     image: "/faculty/emily.webp",
     expertise: ["Capital Structure", "Treasury Ops", "Fundraising", "Corporate Finance"],
@@ -69,10 +69,10 @@ const mentorsData: Mentor[] = [
     ]
   },
   {
-    id: "neha-verma",
-    name: "Neha Verma",
-    role: "Head of Global Taxation",
-    department: "Global Taxation",
+    id: "surya",
+    name: "Surya Teja",
+    role: "ERP & Finance Systems",
+    department: "ERP & Finance Systems",
     bio: "US & Cross-border tax specialist with 8+ years advising MNCs on tax structuring, compliance and corporate filings.",
     image: "/faculty/emily.webp",
     expertise: ["International Tax", "GST", "Corporate Tax", "Tax Compliance", "Cross-border Structuring"],
@@ -88,9 +88,9 @@ const mentorsData: Mentor[] = [
     ]
   },
   {
-    id: "anand",
-    name: "Anand S. Patel",
-    role: "Director of Audit",
+    id: "aruna",
+    name: "Aruna Sharma",
+    role: "Audit",
     department: "Audit & Assurance",
     bio: "12+ years in corporate accounting and global ERP integrations; Former Controller at Fortune 500 tech firm.",
     image: "/faculty/robert.webp",
@@ -107,10 +107,10 @@ const mentorsData: Mentor[] = [
     ]
   },
   {
-    id: "sarah",
-    name: "Sarah Khan",
-    role: "Finance Automation Lead",
-    department: "Finance Automation",
+    id: "shashank",
+    name: "Shashank Bala",
+    role: "Global Risk & Compliance",
+    department: "Global Risk & Compliance",
     bio: "Expert in financial workflow automation, RPA implementation, and building dashboard systems using Power BI.",
     image: "/faculty/sarah.webp",
     expertise: ["RPA", "Power BI", "Process Automation", "Python for Finance"],
@@ -124,12 +124,31 @@ const mentorsData: Mentor[] = [
       { value: "450+", label: "Professionals Trained" },
       { value: "30+", label: "MNCs Advised" }
     ]
+  },
+  {
+    id: "bhagat",
+    name: "Bhagat Reddy",
+    role: "AI in F&A",
+    department: "AI in F&A",
+    bio: "Focused on applying AI and automation to finance and accounting workflows, from intelligent reporting to predictive analytics.",
+    image: "/faculty/robert.webp",
+    expertise: ["AI in Finance", "Predictive Analytics", "Process Intelligence", "Automation"],
+    tracks: [
+      { name: "AI in F&A", icon: Globe },
+      { name: "Predictive Analytics", icon: FileText },
+      { name: "Finance Automation", icon: Users }
+    ],
+    stats: [
+      { value: "8+", label: "Years in Finance & AI" },
+      { value: "350+", label: "Professionals Trained" },
+      { value: "20+", label: "MNCs Advised" }
+    ]
   }
 ];
 
 export function Faculty({ sectionId = "faculty" }: { sectionId?: string }) {
   const sectionRef = useRef<HTMLElement>(null);
-  const [activeId, setActiveId] = useState<string>("neha-verma");
+  const [activeId, setActiveId] = useState<string>("surya");
   const [fadeOpacity, setFadeOpacity] = useState<number>(1);
   const [isAnimated, setIsAnimated] = useState(false);
   const transitionTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -264,7 +283,7 @@ export function Faculty({ sectionId = "faculty" }: { sectionId?: string }) {
             <h2 className="section-title">
               Learn from people who{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">
-                do the job.
+                do the job
               </span>
             </h2>
 
