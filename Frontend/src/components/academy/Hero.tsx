@@ -1,20 +1,12 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import gsap from "gsap";
-import { partnerLogos } from "@/components/academy/data";
-import Image from "next/image";
 import { HeroIllustration } from "@/components/academy/HeroIllustration";
 import { motion } from "framer-motion";
 
 export function Hero({ children }: { children?: React.ReactNode }) {
   const containerRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const heroMarqueeRef = useRef<HTMLDivElement>(null);
-  const heroMarqueeTl = useRef<gsap.core.Tween | null>(null);
-  const heroMarqueeTargetScale = useRef(1);
-  const heroMarqueeCurrent = useRef(1);
-  const heroMarqueeRaf = useRef<number>(0);
 
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const isRevealed = true;
@@ -25,40 +17,6 @@ export function Hero({ children }: { children?: React.ReactNode }) {
     const listener = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
     mediaQuery.addEventListener("change", listener);
     return () => mediaQuery.removeEventListener("change", listener);
-  }, []);
-
-  // GSAP-driven hero marquee with velocity-linked timeScale
-  useEffect(() => {
-    const track = heroMarqueeRef.current;
-    if (!track) return;
-    const halfWidth = track.scrollWidth / 2;
-    heroMarqueeTl.current = gsap.to(track, {
-      x: `-=${halfWidth}`,
-      duration: 28,
-      ease: "none",
-      repeat: -1,
-      modifiers: {
-        x: gsap.utils.unitize((v: string | number) => parseFloat(String(v)) % halfWidth, "px"),
-      },
-    });
-    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-    const onVelocity = (e: Event) => {
-      const vel = Math.abs((e as CustomEvent<{ velocity: number }>).detail?.velocity ?? 0);
-      heroMarqueeTargetScale.current = 1 + Math.min(vel * 0.22, 3);
-    };
-    window.addEventListener("lenis-velocity", onVelocity);
-    const tick = () => {
-      heroMarqueeCurrent.current = lerp(heroMarqueeCurrent.current, heroMarqueeTargetScale.current, 0.07);
-      heroMarqueeTargetScale.current = lerp(heroMarqueeTargetScale.current, 1, 0.04);
-      heroMarqueeTl.current?.timeScale(heroMarqueeCurrent.current);
-      heroMarqueeRaf.current = requestAnimationFrame(tick);
-    };
-    heroMarqueeRaf.current = requestAnimationFrame(tick);
-    return () => {
-      window.removeEventListener("lenis-velocity", onVelocity);
-      cancelAnimationFrame(heroMarqueeRaf.current);
-      heroMarqueeTl.current?.kill();
-    };
   }, []);
 
   const [, setNavState] = useState({
@@ -319,7 +277,7 @@ export function Hero({ children }: { children?: React.ReactNode }) {
       </motion.div>
 
       {/* Hero Section Grid Area */}
-      <div className="site-shell relative z-10 flex-1 flex items-center justify-center pt-[110px] pb-[96px] lg:pt-[96px] lg:pb-[96px]">
+      <div className="site-shell relative z-10 flex-1 flex items-center justify-center pt-[110px] pb-[64px] lg:pt-[96px] lg:pb-[64px]">
         <div className="grid grid-cols-1 lg:grid-cols-[60%_30%] justify-between items-center gap-6 lg:gap-8 w-full">
           
           {/* Left Column: Children (HeroContent) */}
@@ -334,52 +292,6 @@ export function Hero({ children }: { children?: React.ReactNode }) {
 
         </div>
       </div>
-
-      {/* Glassmorphic Partner Logo Marquee */}
-      <motion.div
-        initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 16 }}
-        animate={isRevealed ? { opacity: 1, y: 0 } : undefined}
-        transition={{
-          duration: 0.6,
-          delay: 1.8,
-          ease: [0.25, 1, 0.5, 1] // ease-out-quart
-        }}
-        className="absolute bottom-0 left-0 right-0 z-10 overflow-hidden bg-white/[0.02] backdrop-blur-lg border-t border-white/10 w-full"
-      >
-        <div className="flex flex-col md:flex-row items-center">
-          
-
-
-          {/* Scrolling track */}
-          <div
-            className="overflow-hidden px-6 py-6 flex-1 w-full relative"
-            style={{ maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)", WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)" }}
-          >
-            <div
-              ref={heroMarqueeRef}
-              className="flex min-w-max items-center gap-12 pr-12 will-change-transform"
-              style={{ transform: "translateX(0px)" }}
-            >
-              {[...partnerLogos, ...partnerLogos].map((logo, index) => (
-                <div
-                  key={`${logo.name}-${index}`}
-                  className="relative h-7 w-20 shrink-0 opacity-100 grayscale invert brightness-200 transition-all duration-300 hover:scale-105 cursor-pointer"
-                >
-                  <Image
-                    src={logo.src}
-                    alt={logo.name}
-                    fill
-                    sizes="96px"
-                    className="object-contain"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-        </div>
-      </motion.div>
-
 
     </section>
   );

@@ -1,7 +1,6 @@
 "use client";
 
 import { DarkZoneWrapper } from "@/components/academy/DarkZoneWrapper";
-import { DeferredSection } from "@/components/academy/DeferredSection";
 
 export function ProductCurtain({
   children,
@@ -13,8 +12,6 @@ export function ProductCurtain({
       {/* Dark Zone */}
       <div className="relative z-30 zone-dark">
         <DarkZoneWrapper>
-          <DeferredSection section="audience-spectrum" sectionId="audience" />
-
           {children}
         </DarkZoneWrapper>
       </div>
