@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint src middleware.ts next.config.mjs",
+    "postbuild": "node scripts/prepare-standalone.mjs",
+    "start": "node .next/standalone/server.js",
+    "lint": "eslint src scripts middleware.ts next.config.mjs",
     "check": "npm run lint && npm run build"
   },
   "dependencies": {
@@ -38,7 +39,7 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "eslint": "^9.0.0",
-    "eslint-config-next": "15.5.6",
+    "eslint-config-next": "^16.3.0",
     "postcss": "^8.5.0",
     "tailwindcss": "^4.2.1",
     "typescript": "^5.8.3"

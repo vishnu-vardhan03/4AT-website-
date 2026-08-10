@@ -2,8 +2,6 @@
 
 import { useRef, useLayoutEffect } from "react";
 import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CountUpNumber } from "@/components/academy/CountUpNumber";
 import { Target, Briefcase, Bot, Globe, Users, Star, Shield, IndianRupee } from "lucide-react";
 
@@ -65,7 +63,6 @@ function BentoCard({
 
   let hoverAccentColor = "rgba(52, 211, 153, 0.25)"; // green/emerald
   let badgeColors = "text-emerald-400 border-emerald-500/20 bg-emerald-500/5 hover:shadow-[0_0_8px_rgba(45,212,191,0.25)]";
-  let numColor = "text-emerald-400/80";
   let radialGlowBg = "rgba(16, 201, 129, 0.25)";
   let cardBorderGrad = "linear-gradient(to bottom right, rgba(16, 201, 129, 0.24) 0%, rgba(45, 212, 191, 0.15) 50%, rgba(16, 201, 129, 0.24) 100%)";
   let cardGlowShadow = "0 8px 32px rgba(0,0,0,0.6), inset 0 0 15px rgba(16, 201, 129, 0.04)";
@@ -76,7 +73,6 @@ function BentoCard({
   if (glowColor.includes("168") || glowColor.includes("139") || glowColor.includes("purple") || glowColor.includes("indigo")) {
     hoverAccentColor = "rgba(168, 85, 247, 0.25)"; // purple
     badgeColors = "text-purple-400 border-purple-500/20 bg-purple-500/5 hover:shadow-[0_0_8px_rgba(168,85,247,0.25)]";
-    numColor = "text-purple-400/80";
     radialGlowBg = "rgba(168, 85, 247, 0.25)";
     cardBorderGrad = "linear-gradient(to bottom right, rgba(16, 85, 247, 0.24) 0%, rgba(139, 92, 246, 0.15) 50%, rgba(16, 85, 247, 0.24) 100%)";
     cardGlowShadow = "0 8px 32px rgba(0,0,0,0.6), inset 0 0 15px rgba(168, 85, 247, 0.04)";
@@ -86,7 +82,6 @@ function BentoCard({
   } else if (glowColor.includes("6,") || glowColor.includes("cyan")) {
     hoverAccentColor = "rgba(6, 182, 212, 0.25)"; // cyan
     badgeColors = "text-cyan-400 border-cyan-500/20 bg-cyan-500/5 hover:shadow-[0_0_8px_rgba(6,182,212,0.25)]";
-    numColor = "text-cyan-400/80";
     radialGlowBg = "rgba(6, 182, 212, 0.25)";
     cardBorderGrad = "linear-gradient(to bottom right, rgba(6, 182, 212, 0.24) 0%, rgba(56, 189, 248, 0.15) 50%, rgba(6, 182, 212, 0.24) 100%)";
     cardGlowShadow = "0 8px 32px rgba(0,0,0,0.6), inset 0 0 15px rgba(6, 182, 212, 0.04)";
@@ -112,6 +107,7 @@ function BentoCard({
   return (
     <div className={`bento-card-wrapper h-full ${spanClass}`}>
       <div
+        data-card-id={id}
         ref={cardRef}
         onMouseEnter={handleMouseEnter}
         onMouseMove={handleMouseMove}

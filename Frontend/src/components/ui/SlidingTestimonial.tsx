@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Sparkles, ShieldCheck } from "lucide-react";
 import { motion, useReducedMotion, useInView } from "framer-motion";
-import { NeonGlowOrb } from "@/components/academy/NeonGlowOrb";
 import { SectionPill } from "@/components/academy/SectionPill";
 
 export interface TestimonialItem {

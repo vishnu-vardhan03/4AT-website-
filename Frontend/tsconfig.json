@@ -7,7 +7,6 @@
       "esnext"
     ],
     "allowJs": true,
-    "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -26,7 +25,8 @@
       "@/*": [
         "./src/*"
       ]
-    }
+    },
+    "skipLibCheck": true
   },
   "include": [
     "**/*.ts",

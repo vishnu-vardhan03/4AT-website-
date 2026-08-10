@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
-import { badgeCopy, partnerLogos } from "@/components/academy/data";
+import { partnerLogos } from "@/components/academy/data";
 import Image from "next/image";
 import { HeroIllustration } from "@/components/academy/HeroIllustration";
 import { motion } from "framer-motion";
