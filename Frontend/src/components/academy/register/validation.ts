@@ -8,15 +8,23 @@ import { isValidPhoneNumber } from "libphonenumber-js";
 // ── Individual field validators ────────────────────────────────────────────────
 // Each returns an error string or null.
 
-const ALPHA_REGEX = /^[A-Za-z]+$/;
+// Real names contain spaces, hyphens, apostrophes and non-ASCII letters ("Mary Jane",
+// "O'Brien", "Jean-Luc", "José"). An ASCII-letters-only rule hard-blocked those applicants
+// at step 1 with no way to submit. Allow Unicode letters plus the usual name punctuation,
+// and require at least one letter so punctuation alone is still rejected.
+const NAME_ALLOWED_REGEX = /^[\p{L}\p{M}\s'’.-]+$/u;
+const NAME_HAS_LETTER_REGEX = /\p{L}/u;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function validateName(value: string, label: string): string | null {
   const trimmed = value.trim();
   if (!trimmed) return `${label} is required`;
   if (trimmed.length < 2) return `${label} must be at least 2 characters`;
-  if (trimmed.length > 50) return `${label} must be 50 characters or less`;
-  if (!ALPHA_REGEX.test(trimmed)) return `${label} may only contain letters (no spaces or special characters)`;
+  // Matches the varchar(100) column and the API route's max(100).
+  if (trimmed.length > 100) return `${label} must be 100 characters or less`;
+  if (!NAME_ALLOWED_REGEX.test(trimmed) || !NAME_HAS_LETTER_REGEX.test(trimmed)) {
+    return `${label} may only contain letters, spaces, hyphens and apostrophes`;
+  }
   return null;
 }
 

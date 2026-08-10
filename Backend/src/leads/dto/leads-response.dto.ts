@@ -3,8 +3,12 @@ import { LeadCategory } from './leads-query.dto';
 export interface LeadsSummaryResponse {
   academyLeads: number;
   academyRegistrations: number;
+  studentRegistrations: number;
+  professionalRegistrations: number;
   consultingLeads: number;
   aiLeads: number;
+  /** Sum of academyLeads + consultingLeads + aiLeads — i.e. the records `GET /leads`
+   *  can return. Registrations are counted separately, never folded in here. */
   totalLeads: number;
 }
 
