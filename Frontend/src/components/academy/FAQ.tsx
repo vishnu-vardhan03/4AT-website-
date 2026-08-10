@@ -17,9 +17,19 @@ const faqItems = [
       "The pre-assessment is free. You confirm your seat with ₹999 + GST.",
   },
   {
+    question: "What is the pre-assessment — what does it test?",
+    answer:
+      "A short screening test that checks your fundamentals and readiness for the track you're applying to — not prior job experience.",
+  },
+  {
     question: "Is placement guaranteed?",
     answer:
       "Candidates who clear the assessments and interview earn an internship and a placement pathway — at 4AT or a partner.",
+  },
+  {
+    question: "What happens if I don't clear the assessment?",
+    answer:
+      "You can retake it after brushing up, or we'll point you to the track that better fits your current level.",
   },
   {
     question: "How is this different from a normal course?",
@@ -54,7 +64,7 @@ export function FAQ({ sectionId = "faq" }: { sectionId?: string }) {
             </SectionPill>
           </div>
           <h2 className="section-title text-left w-full">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">Good to know</span> before you apply.
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">Good to know</span> before you apply
           </h2>
         </div>
 
@@ -103,6 +113,13 @@ export function FAQ({ sectionId = "faq" }: { sectionId?: string }) {
             );
           })}
         </div>
+
+        <p className="w-full lg:w-[65%] mt-6 text-sm sm:text-[14.5px] text-[#A7A9C4]">
+          More questions?{" "}
+          <a href="#contact-us" className="text-emerald-400 font-semibold hover:text-emerald-300 transition-colors">
+            Talk to us →
+          </a>
+        </p>
       </div>
     </section>
   );
