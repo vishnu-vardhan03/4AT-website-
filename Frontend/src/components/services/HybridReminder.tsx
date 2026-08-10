@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import TiltCard from "@/components/ui/TiltCard";
 
 export function HybridReminder() {
   return (
@@ -39,7 +38,7 @@ export function HybridReminder() {
         {/* Two-Column Reminder Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-16">
           {/* Column 1: AI (Science) */}
-          <TiltCard className="h-full">
+          <div className="h-full">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -80,10 +79,10 @@ export function HybridReminder() {
               </div>
 
             </motion.div>
-          </TiltCard>
+          </div>
 
           {/* Column 2: Humans (Art) */}
-          <TiltCard className="h-full">
+          <div className="h-full">
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -124,7 +123,7 @@ export function HybridReminder() {
               </div>
 
             </motion.div>
-          </TiltCard>
+          </div>
         </div>
 
         {/* Footer & CTA Block */}

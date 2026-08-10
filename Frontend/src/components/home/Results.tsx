@@ -1,7 +1,5 @@
 "use client";
 
-import TiltCard from "@/components/ui/TiltCard";
-
 const aiTasks = [
   "Document intake and extraction",
   "Workflow routing and task triggers",
@@ -88,24 +86,24 @@ export function Results() {
           </p>
         </div>
 
-        {/* Two cards — each wrapped in a TiltCard for 3D hover animation */}
+        {/* Two static task cards */}
         <div className="mt-12 grid gap-6 md:grid-cols-2">
-          <TiltCard className="flex h-full w-full">
+          <div className="flex h-full w-full">
             <TaskColumn
               title="AI handles the science"
               label="Automation layer"
               tasks={aiTasks}
               accent="#2dd4bf"
             />
-          </TiltCard>
-          <TiltCard className="flex h-full w-full">
+          </div>
+          <div className="flex h-full w-full">
             <TaskColumn
               title="Experienced finance professionals handle the art"
               label="Expert layer"
               tasks={expertTasks}
               accent="#a78bfa"
             />
-          </TiltCard>
+          </div>
         </div>
 
         <div className="mt-8 rounded-2xl border border-white/15 bg-white/[0.035] px-6 py-8 text-center md:px-10 md:py-10">
