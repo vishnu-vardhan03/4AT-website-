@@ -66,7 +66,7 @@ export function HeroContent() {
 
       {/* Main Heading */}
       <h1 className="font-bricolage font-extrabold text-[2.5rem] sm:text-[3.25rem] md:text-[3.75rem] lg:text-[4rem] xl:text-[4.25rem] tracking-tight leading-[1.08] text-white max-w-[850px] w-full flex flex-col items-start">
-        {/* Line 1: Built for careers, */}
+        {/* Line 1: Fast-forward your */}
         <span className="block">
           <motion.span
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : "0.4em", filter: prefersReducedMotion ? "none" : "blur(6px)" }}
@@ -74,55 +74,55 @@ export function HeroContent() {
             transition={{ duration: prefersReducedMotion ? 0.3 : 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="inline-block mr-[0.25em]"
           >
-            Built
+            Fast-forward
           </motion.span>
           <motion.span
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : "0.4em", filter: prefersReducedMotion ? "none" : "blur(6px)" }}
             animate={isRevealed ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
             transition={{ duration: prefersReducedMotion ? 0.3 : 0.6, delay: 0.52, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-block mr-[0.25em]"
+            className="inline-block"
           >
-            for
+            your
           </motion.span>
+        </span>
+
+        {/* Line 2: Finance & Accounting career */}
+        <span className="block">
           <motion.span
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : "0.4em", filter: prefersReducedMotion ? "none" : "blur(6px)" }}
             animate={isRevealed ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
             transition={{ duration: prefersReducedMotion ? 0.3 : 0.6, delay: 0.62, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-block hero-gradient-word font-sans"
+            className="inline-block hero-gradient-word font-sans mr-[0.25em]"
           >
-            careers,
+            Finance & Accounting
           </motion.span>
-        </span>
-
-        {/* Line 2: not just */}
-        <span className="block">
           <motion.span
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : "0.4em", filter: prefersReducedMotion ? "none" : "blur(6px)" }}
             animate={isRevealed ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
             transition={{ duration: prefersReducedMotion ? 0.3 : 0.6, delay: 0.65, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-block mr-[0.25em]"
+            className="inline-block"
           >
-            not
+            career
           </motion.span>
+        </span>
+
+        {/* Line 3: by 2–3 years. */}
+        <span className="block">
           <motion.span
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : "0.4em", filter: prefersReducedMotion ? "none" : "blur(6px)" }}
             animate={isRevealed ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
             transition={{ duration: prefersReducedMotion ? 0.3 : 0.6, delay: 0.67, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-block"
+            className="inline-block mr-[0.25em]"
           >
-            just
+            by
           </motion.span>
-        </span>
-
-        {/* Line 3: certificates. */}
-        <span className="block">
           <motion.span
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : "0.4em", filter: prefersReducedMotion ? "none" : "blur(6px)" }}
             animate={isRevealed ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
             transition={{ duration: prefersReducedMotion ? 0.3 : 0.6, delay: 0.79, ease: [0.16, 1, 0.3, 1] }}
             className="inline-block hero-gradient-word-2 font-sans"
           >
-            certificates.
+            2–3 years.
           </motion.span>
         </span>
       </h1>
@@ -138,7 +138,7 @@ export function HeroContent() {
         }}
         className="font-sans font-light text-[#A7A9C4] text-base md:text-[1.125rem] leading-[1.6] max-w-[720px] mt-8"
       >
-        A <span className="text-white font-semibold">4AT Initiative</span> — built by a firm that delivers finance, accounting and audit services to global clients. We take commerce graduates from training to placement through our <span className="text-[#47D8FF] font-semibold">Train–Hire–Deploy (THD)</span> model.
+        A <span className="text-white font-semibold">4AT Initiative</span> — built by a firm that delivers finance, accounting and audit services to global clients. Commerce graduates and final-year students go from training to placement through our <span className="text-[#47D8FF] font-semibold">Train–Hire–Deploy (THD)</span> model.
       </motion.p>
 
       {/* Action Buttons */}

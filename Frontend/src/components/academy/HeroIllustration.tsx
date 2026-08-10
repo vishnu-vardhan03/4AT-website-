@@ -279,7 +279,7 @@ export function HeroIllustration() {
         {/* ── LEFT SIDE CARD 1 (Top-Left): Industry Mentorship (Seq 0) ─────────── */}
         <motion.div
           style={{ x: card1X, y: card1Y }}
-          className="absolute top-[10%] left-[0%] sm:left-[0%] z-30 flex"
+          className="absolute top-[50%] left-[50%] ml-[-151px] mt-[-64px] min-[375px]:ml-[-177px] min-[375px]:mt-[-72px] sm:top-[10%] sm:left-[2%] sm:ml-0 sm:mt-0 lg:left-[0%] z-30 flex"
           initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.7, y: prefersReducedMotion ? 0 : 20 }}
           animate={isRevealed ? { opacity: 1, scale: 1, y: 0 } : undefined}
           transition={{
@@ -352,7 +352,7 @@ export function HeroIllustration() {
         {/* ── LEFT SIDE CARD 2 (Mid-Left): Internship (Seq 4) ──────────────── */}
         <motion.div
           style={{ x: card3X, y: card3Y }}
-          className="absolute top-[46%] left-[-32%] sm:left-[-26%] lg:left-[-32%] z-30 flex"
+          className="absolute top-[50%] left-[50%] ml-[-22px] mt-[-150px] sm:top-[46%] sm:left-[-18%] sm:ml-0 sm:mt-0 lg:left-[-32%] z-30 flex"
           initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.7, y: prefersReducedMotion ? 0 : 20 }}
           animate={isRevealed ? { opacity: 1, scale: 1, y: 0 } : undefined}
           transition={{
@@ -425,7 +425,7 @@ export function HeroIllustration() {
         {/* ── LEFT SIDE CARD 3 (Bottom-Left): Placement Support (Seq 3) ──────────── */}
         <motion.div
           style={{ x: card4X, y: card4Y }}
-          className="absolute bottom-[10%] left-[0%] sm:left-[0%] z-30 flex"
+          className="absolute top-[50%] left-[50%] ml-[-116px] mt-[107px] sm:top-auto sm:bottom-[10%] sm:left-[2%] sm:ml-0 sm:mt-0 lg:left-[0%] z-30 flex"
           initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.7, y: prefersReducedMotion ? 0 : 20 }}
           animate={isRevealed ? { opacity: 1, scale: 1, y: 0 } : undefined}
           transition={{
@@ -498,7 +498,7 @@ export function HeroIllustration() {
         {/* ── RIGHT SIDE CARD 1 (Top-Right): AI + Industry Tools (Seq 1) ───────────── */}
         <motion.div
           style={{ x: card2X, y: card2Y }}
-          className="absolute top-[16%] right-[2%] sm:right-[4%] z-30 flex"
+          className="absolute top-[50%] left-[50%] ml-[107px] mt-[-64px] min-[375px]:ml-[133px] min-[375px]:mt-[-72px] sm:top-[16%] sm:left-auto sm:right-[4%] sm:ml-0 sm:mt-0 z-30 flex"
           initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.7, y: prefersReducedMotion ? 0 : 20 }}
           animate={isRevealed ? { opacity: 1, scale: 1, y: 0 } : undefined}
           transition={{
@@ -571,7 +571,7 @@ export function HeroIllustration() {
         {/* ── RIGHT SIDE CARD 2 (Bottom-Right): Certification (Seq 2) ──────────────── */}
         <motion.div
           style={{ x: card5X, y: card5Y }}
-          className="absolute bottom-[14%] right-[3%] sm:right-[4%] z-30 flex"
+          className="absolute top-[50%] left-[50%] ml-[46px] mt-[71px] sm:top-auto sm:bottom-[14%] sm:left-auto sm:right-[4%] sm:ml-0 sm:mt-0 z-30 flex"
           initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.7, y: prefersReducedMotion ? 0 : 20 }}
           animate={isRevealed ? { opacity: 1, scale: 1, y: 0 } : undefined}
           transition={{

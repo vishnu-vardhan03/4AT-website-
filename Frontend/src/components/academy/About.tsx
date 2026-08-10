@@ -75,8 +75,7 @@ export function About() {
             </SectionPill>
           </div>
           <h2 className="section-title w-full">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 font-sans">A 4AT Initiative</span>, trained by the firm that runs <br className="hidden md:inline" />
-            finance & accounting for <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">global clients</span>.
+            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 font-sans">Model</span>
           </h2>
           <p className="section-desc max-w-[850px] mt-2">
             We don&apos;t just teach accounting; we build finance talent and put it to work. <br className="hidden sm:inline" />

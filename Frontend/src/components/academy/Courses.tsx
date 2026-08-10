@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { lmsCourses } from "@/components/academy/data";
-import { Lock, ArrowLeft, ArrowRight, Clock, Monitor } from "lucide-react";
+import { Lock, ArrowLeft, ArrowRight, Clock, Monitor, SlidersHorizontal } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,6 +17,8 @@ export function Courses({ sectionId = "courses" }: { sectionId?: string }) {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [isMobile, setIsMobile] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const filterMenuRef = useRef<HTMLDivElement>(null);
 
   const categories = ["All", "Accounting & ERP", "Audit & Risk", "Global Taxation", "FP&A & Modeling"];
 
@@ -55,6 +57,24 @@ export function Courses({ sectionId = "courses" }: { sectionId?: string }) {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
   }, [isMobile]);
+
+  useEffect(() => {
+    if (!isFilterOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (filterMenuRef.current && !filterMenuRef.current.contains(e.target as Node)) {
+        setIsFilterOpen(false);
+      }
+    };
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsFilterOpen(false);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [isFilterOpen]);
 
   // GSAP Interaction for Card Hover Dimming/Lifting
   const handleMouseEnter = (index: number) => {
@@ -172,36 +192,68 @@ export function Courses({ sectionId = "courses" }: { sectionId?: string }) {
         </div>
 
 
-        {/* Category Pills & Navigation Controls */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-6 border-b border-white/5 pb-6">
-          <div className="flex flex-wrap gap-2.5">
-            {categories.map((cat) => {
-              const isSelected = selectedCategory === cat;
-              return (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all border cursor-pointer ${
-                    isSelected
-                      ? "bg-[#5EEAD4] text-black border-[#5EEAD4] shadow-[0_0_15px_rgba(94,234,212,0.25)]"
-                      : "bg-white/[0.02] text-slate-400 border-[rgba(94,234,212,0.18)] hover:border-[#5EEAD4] hover:shadow-[0_0_12px_rgba(94,234,212,0.12)] hover:text-white"
-                  }`}
-                >
-                  {cat === "All" ? "ALL" : cat}
-                </button>
-              );
-            })}
+        {/* Filters & Navigation Controls */}
+        <div className="flex flex-wrap items-center justify-end gap-3 mb-8 border-b border-white/5 pb-6">
+          {/* Filters control — reveals the category pills in a popover instead of a permanent row */}
+          <div className="relative" ref={filterMenuRef}>
+            <button
+              onClick={() => setIsFilterOpen((open) => !open)}
+              aria-haspopup="listbox"
+              aria-expanded={isFilterOpen}
+              aria-label="Filters"
+              className={`relative w-11 h-11 rounded-full fx-ghost-btn text-white flex items-center justify-center transition-all cursor-pointer ${
+                selectedCategory !== "All" ? "!border-[rgba(94,234,212,0.6)] !text-[#5EEAD4]" : ""
+              }`}
+            >
+              <SlidersHorizontal className="w-4 h-4" />
+              {selectedCategory !== "All" && (
+                <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#5EEAD4] shadow-[0_0_6px_#5EEAD4] border border-[#0b0e1a]" />
+              )}
+            </button>
+
+            {/* Category popover — same pill markup/state as before, just no longer permanently visible */}
+            <div
+              role="listbox"
+              className={`absolute left-0 top-[calc(100%+10px)] z-50 w-[220px] max-w-[calc(100vw-3rem)] rounded-2xl border border-white/10 bg-[#0b0e1a]/95 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.5)] p-2.5 flex flex-col gap-1.5 origin-top transition-all duration-200 ease-out ${
+                isFilterOpen
+                  ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
+                  : "opacity-0 scale-95 -translate-y-1 pointer-events-none"
+              }`}
+            >
+              {categories.map((cat) => {
+                const isSelected = selectedCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    role="option"
+                    aria-selected={isSelected}
+                    onClick={() => {
+                      setSelectedCategory(cat);
+                      setIsFilterOpen(false);
+                    }}
+                    className={`px-4 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all border cursor-pointer text-left ${
+                      isSelected
+                        ? "bg-[#5EEAD4] text-black border-[#5EEAD4] shadow-[0_0_15px_rgba(94,234,212,0.25)]"
+                        : "bg-white/[0.02] text-slate-400 border-[rgba(94,234,212,0.18)] hover:border-[#5EEAD4] hover:shadow-[0_0_12px_rgba(94,234,212,0.12)] hover:text-white"
+                    }`}
+                  >
+                    {cat === "All" ? "ALL" : cat}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
+          <Link
+            href="/academy/courses"
+            className="h-11 px-5 rounded-full fx-primary-btn text-white flex items-center justify-center text-[10px] font-bold uppercase tracking-[0.14em] transition-all"
+            aria-label="View all courses"
+          >
+            View all courses
+          </Link>
+
           {/* Navigation Arrows (Secondary Button style) */}
-          <div className="flex items-center gap-3 shrink-0 justify-end">
-            <Link
-              href="/academy/courses"
-              className="h-11 px-5 rounded-full fx-primary-btn text-white flex items-center justify-center text-[10px] font-bold uppercase tracking-[0.14em] transition-all"
-              aria-label="View all courses"
-            >
-              View all courses
-            </Link>
+          <div className="flex items-center gap-3 shrink-0">
             <button
               onClick={scrollLeft}
               className="w-11 h-11 rounded-full fx-ghost-btn text-white flex items-center justify-center transition-all cursor-pointer"
