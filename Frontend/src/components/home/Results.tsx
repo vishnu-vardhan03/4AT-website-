@@ -31,7 +31,7 @@ function TaskColumn({
 }) {
   return (
     <article
-      className="relative overflow-hidden rounded-2xl border border-white/15 bg-[#0b1020]/85 p-6 md:p-8"
+      className="relative h-full w-full overflow-hidden rounded-2xl border border-white/15 bg-[#0b1020]/85 p-6 md:p-8"
       style={{ boxShadow: `inset 0 1px 0 ${accent}22` }}
     >
       <div
@@ -45,7 +45,7 @@ function TaskColumn({
         >
           {label}
         </span>
-        <h3 className="mt-3 text-2xl font-black leading-tight md:text-3xl">{title}</h3>
+        <h3 className="mt-3 text-2xl font-black leading-tight md:min-h-[4.5rem] md:text-3xl">{title}</h3>
         <ul className="mt-7 space-y-0 border-t border-white/10">
           {tasks.map((task, index) => (
             <li
@@ -90,7 +90,7 @@ export function Results() {
 
         {/* Two cards — each wrapped in a TiltCard for 3D hover animation */}
         <div className="mt-12 grid gap-6 md:grid-cols-2">
-          <TiltCard>
+          <TiltCard className="flex h-full w-full">
             <TaskColumn
               title="AI handles the science"
               label="Automation layer"
@@ -98,7 +98,7 @@ export function Results() {
               accent="#2dd4bf"
             />
           </TiltCard>
-          <TiltCard>
+          <TiltCard className="flex h-full w-full">
             <TaskColumn
               title="Experienced finance professionals handle the art"
               label="Expert layer"
