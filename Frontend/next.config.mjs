@@ -21,9 +21,16 @@ const nextConfig = {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
     BACKEND_URL: process.env.BACKEND_URL,
   },
-  // Keep the development compiler separate from production `.next` builds.
-  // This prevents a concurrent `next build` from invalidating dev assets.
-  distDir: process.env.NODE_ENV === "development" ? "node_modules/.cache/4at-next-dev" : ".next",
+
+  // Allow Next.js dev assets when accessed through ngrok
+  allowedDevOrigins: [
+    "dwindling-unshipped-bamboo.ngrok-free.dev",
+  ],
+
+  distDir:
+    process.env.NODE_ENV === "development"
+      ? "node_modules/.cache/4at-next-dev"
+      : ".next",
 
   images: {
     remotePatterns: [
