@@ -20,9 +20,11 @@ interface DashboardContainerProps {
 export function DashboardContainer({ stats, leads, registrations }: DashboardContainerProps) {
   const [activeView, setActiveView] = useState<"analytics" | "registrations">("analytics");
 
-  const totalRegs = registrations?.data.length ?? 0;
-  const studentRegs = registrations?.data.filter((r) => r.applicantType === "student").length ?? 0;
-  const proRegs = registrations?.data.filter((r) => r.applicantType === "professional").length ?? 0;
+  // Counts come from the summary endpoint, never from the loaded page: the registrations
+  // request returns at most `limit` rows, so `data.length` is a page size, not a total.
+  const totalRegs = stats?.academyRegistrations ?? registrations?.meta.total ?? 0;
+  const studentRegs = stats?.studentRegistrations ?? 0;
+  const proRegs = stats?.professionalRegistrations ?? 0;
 
   return (
     <div className="relative mx-auto max-w-[1400px] px-5 py-8 sm:px-8 lg:px-12 lg:py-12">
@@ -85,11 +87,14 @@ export function DashboardContainer({ stats, leads, registrations }: DashboardCon
               <h2 id="overview-heading" className="sr-only">
                 Lead overview
               </h2>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {/* Total Leads is exactly Academy + Consulting + AI. Academy registrations are a
+                  separate table and get their own card rather than being folded into the total. */}
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
                 <KpiCard label="Total Leads" value={stats.totalLeads} icon={UsersRound} accent="brand" />
                 <KpiCard label="Academy Leads" value={stats.academyLeads} icon={GraduationCap} accent="sky" />
                 <KpiCard label="Consulting Leads" value={stats.consultingLeads} icon={BriefcaseBusiness} accent="violet" />
                 <KpiCard label="AI Leads" value={stats.aiLeads} icon={Bot} accent="emerald" />
+                <KpiCard label="Academy Registrations" value={stats.academyRegistrations} icon={UserCheck} accent="cyan" />
               </div>
             </section>
             <LeadsChart stats={stats} />

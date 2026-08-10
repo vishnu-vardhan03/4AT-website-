@@ -22,13 +22,11 @@ function TaskColumn({
   title,
   label,
   tasks,
-  footer,
   accent,
 }: {
   title: string;
   label: string;
   tasks: string[];
-  footer: string;
   accent: string;
 }) {
   return (
@@ -61,9 +59,6 @@ function TaskColumn({
             </li>
           ))}
         </ul>
-        <p className="mt-6 text-sm font-semibold" style={{ color: accent }}>
-          {footer}
-        </p>
       </div>
     </article>
   );
@@ -100,7 +95,6 @@ export function Results() {
               title="AI handles the science"
               label="Automation layer"
               tasks={aiTasks}
-              footer="Powered by Iris, Atlas, Connector"
               accent="#2dd4bf"
             />
           </TiltCard>
@@ -109,7 +103,6 @@ export function Results() {
               title="Experienced finance professionals handle the art"
               label="Expert layer"
               tasks={expertTasks}
-              footer="Led by senior CPAs, controllers, and tax leads"
               accent="#a78bfa"
             />
           </TiltCard>

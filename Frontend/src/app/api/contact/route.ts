@@ -10,7 +10,11 @@ const contactSchema = z.object({
   service: z.string().trim().max(120).optional().default("Other"),
   companySize: z.string().trim().max(120).optional(),
   budget: z.string().trim().max(120).optional(),
-  description: z.string().trim().max(5000).optional().default(""),
+  // The composed `message` sent downstream is this description plus the Service /
+  // Company size / Budget prefix lines. The backend DTOs cap `message` at 5000, so the
+  // description cap must leave headroom for that prefix (bounded at ~400 chars by the
+  // 120-char caps above) — otherwise a long-but-valid description 400s with a generic error.
+  description: z.string().trim().max(4000).optional().default(""),
   website: z.string().optional(),
 });
 

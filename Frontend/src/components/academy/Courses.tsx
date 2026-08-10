@@ -10,8 +10,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { SectionPill } from "@/components/academy/SectionPill";
 
-
-
 export function Courses({ sectionId = "courses" }: { sectionId?: string }) {
   const router = useRouter();
   const sectionRef = useRef<HTMLElement>(null);
@@ -233,7 +231,6 @@ export function Courses({ sectionId = "courses" }: { sectionId?: string }) {
           >
             {filteredCourses.map((course, idx) => {
               const isLocked = course.locked;
-
               return (
                 <div
                   key={course.title}

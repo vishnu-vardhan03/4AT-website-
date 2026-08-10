@@ -62,7 +62,7 @@ export function HybridReminder() {
                 AI handles the science
               </h3>
 
-              <div className="divide-y divide-white/5 border-t border-b border-white/5 mb-8">
+              <div className="divide-y divide-white/5 border-t border-b border-white/5">
                 {[
                   "Document intake and extraction",
                   "Workflow routing and task triggers",
@@ -79,9 +79,6 @@ export function HybridReminder() {
                 ))}
               </div>
 
-              <div className="text-xs font-semibold uppercase tracking-wider text-sky-400">
-                Powered by Iris, Atlas, Guardian, Connector
-              </div>
             </motion.div>
           </TiltCard>
 
@@ -109,7 +106,7 @@ export function HybridReminder() {
                 Experienced finance professionals handle the art
               </h3>
 
-              <div className="divide-y divide-white/5 border-t border-b border-white/5 mb-8">
+              <div className="divide-y divide-white/5 border-t border-b border-white/5">
                 {[
                   "Technical accounting judgment",
                   "Review, sign-off, and final accountability",
@@ -126,9 +123,6 @@ export function HybridReminder() {
                 ))}
               </div>
 
-              <div className="text-xs font-semibold uppercase tracking-wider text-purple-400">
-                Led by senior CPAs, controllers, and tax leads
-              </div>
             </motion.div>
           </TiltCard>
         </div>

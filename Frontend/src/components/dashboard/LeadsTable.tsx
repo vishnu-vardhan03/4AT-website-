@@ -8,7 +8,6 @@ const categoryStyles = {
   academy: "bg-sky-400/10 text-sky-200",
   consulting: "bg-violet-400/10 text-violet-200",
   ai: "bg-emerald-400/10 text-emerald-200",
-  academy_registration: "bg-amber-400/10 text-amber-200",
 } as const;
 
 export function LeadsTable({ leads }: { leads: LeadsPage | null }) {

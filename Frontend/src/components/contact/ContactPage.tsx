@@ -1,15 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Clock3, LoaderCircle } from "lucide-react";
 import { isValidPhoneNumber } from "libphonenumber-js";
+import { Check, Clock3, LoaderCircle } from "lucide-react";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 import { Nav } from "@/components/layout/MainNav";
 import { Footer } from "@/components/layout/Footer";
 import { TextareaField, TextField } from "@/components/lead-collection/FormFields";
+import { trackFormSubmit } from "@/lib/analytics";
 
 const services = ["4AT Consulting", "4AT Academy", "4AT.AI", "Hybrid Services", "Other"];
+const MAX_MESSAGE_CHARS = 4000;
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
@@ -55,6 +57,8 @@ export default function ContactPage() {
         const result = await response.json().catch(() => null);
         throw new Error(result?.message ?? result?.error ?? "Unable to send message");
       }
+      // Track only accepted submissions so validation or API failures do not inflate conversions.
+      trackFormSubmit("contact_form", { service: selectedService || "Other" });
       setFormState("success");
     } catch (error) {
       console.error("Contact submission failed", error);
@@ -258,14 +262,15 @@ export default function ContactPage() {
 
                   {/* Message */}
                   <TextareaField
-                      id="contact-message"
-                      name="message"
-                      rows={5}
-                      label="Message"
-                      value={form.message}
-                      onChange={handleChange}
-                      placeholder="Tell us about your current finance challenges and what you're looking to achieve…"
-                    />
+                    id="contact-message"
+                    name="message"
+                    label="Message"
+                    rows={5}
+                    maxLength={MAX_MESSAGE_CHARS}
+                    value={form.message}
+                    onChange={handleChange}
+                    placeholder="Tell us about your current finance challenges and what you're looking to achieve…"
+                  />
 
                   {/* Submit */}
                   <button

@@ -2,14 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-
-const CONSENT_KEY = '4at_cookie_consent';
-
-type ConsentState = {
-  necessary: true;
-  analytics: boolean;
-  marketing: boolean;
-};
+import {
+  COOKIE_CONSENT_EVENT,
+  COOKIE_CONSENT_KEY,
+  readCookieConsent,
+  type ConsentState,
+} from '@/lib/analytics';
 
 const DEFAULT_CONSENT: ConsentState = {
   necessary: true,
@@ -18,9 +16,10 @@ const DEFAULT_CONSENT: ConsentState = {
 };
 
 function saveConsent(consent: ConsentState) {
-  localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
-  document.cookie = `cookie_consent=${JSON.stringify(consent)}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
-  window.dispatchEvent(new CustomEvent('cookie-consent-updated', { detail: consent }));
+  const serializedConsent = JSON.stringify(consent);
+  localStorage.setItem(COOKIE_CONSENT_KEY, serializedConsent);
+  document.cookie = `cookie_consent=${encodeURIComponent(serializedConsent)}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax; Secure`;
+  window.dispatchEvent(new CustomEvent<ConsentState>(COOKIE_CONSENT_EVENT, { detail: consent }));
 }
 
 export default function CookieConsent() {
@@ -29,8 +28,12 @@ export default function CookieConsent() {
   const [prefs, setPrefs] = useState<ConsentState>(DEFAULT_CONSENT);
 
   useEffect(() => {
-    const stored = localStorage.getItem(CONSENT_KEY);
-    if (!stored) setVisible(true);
+    const stored = readCookieConsent();
+    if (stored) {
+      setPrefs(stored);
+    } else {
+      setVisible(true);
+    }
   }, []);
 
   const acceptAll = () => {

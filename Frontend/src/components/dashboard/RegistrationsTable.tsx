@@ -94,7 +94,11 @@ export function RegistrationsTable({ registrations }: { registrations: Registrat
           <div>
             <h2 id="registrations-heading" className="font-semibold text-white">Academy Registrations Directory</h2>
             <p className="mt-1 text-xs text-white/40">
-              Showing {filtered.length} of {registrations?.data.length ?? 0} total submissions.
+              Showing {filtered.length} of {registrations?.data.length ?? 0} loaded
+              {registrations && registrations.meta.total > registrations.data.length
+                ? ` (${registrations.meta.total} total submissions)`
+                : " total submissions"}
+              .
             </p>
           </div>
           <div className="flex flex-col gap-2 sm:flex-row">
@@ -130,6 +134,11 @@ export function RegistrationsTable({ registrations }: { registrations: Registrat
               type="button"
               onClick={exportToExcel}
               disabled={filtered.length === 0}
+              title={
+                registrations && registrations.meta.total > registrations.data.length
+                  ? `Exports the ${filtered.length} rows loaded here, not all ${registrations.meta.total} submissions`
+                  : `Exports ${filtered.length} rows`
+              }
               className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-teal-400/20 bg-teal-400/[0.08] px-4 text-xs font-semibold text-teal-200 transition hover:bg-teal-400/[0.14] disabled:cursor-not-allowed disabled:opacity-40"
             >
               <Download aria-hidden="true" className="h-4 w-4" />
