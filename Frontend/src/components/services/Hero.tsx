@@ -121,7 +121,7 @@ export function Hero() {
     <section
       id="top"
       ref={ref}
-      className="dark relative min-h-screen w-full overflow-hidden bg-transparent text-white flex flex-col justify-between"
+      className="dark relative min-h-fit lg:min-h-screen w-full overflow-hidden bg-transparent text-white flex flex-col justify-between"
     >
       {/* Background Decorators & Perspective Grid (matching product page aesthetics) */}
       <div className="absolute inset-0 z-[-10] pointer-events-none overflow-hidden bg-transparent">
@@ -154,13 +154,13 @@ export function Hero() {
 
       <motion.div
         style={{ y: contentY, opacity: contentOpacity }}
-        className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-36 pb-12 flex-1 flex flex-col justify-between pointer-events-none"
+        className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-24 lg:pt-36 pb-0 lg:pb-12 flex-1 flex flex-col justify-center lg:justify-between pointer-events-none"
       >
         {/* Top Spacer / Nav height balance */}
-        <div />
+        <div className="hidden lg:block" />
 
         {/* Main Hero Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mt-auto mb-16 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mt-6 lg:mt-auto mb-0 lg:mb-16 w-full">
           {/* Left Text & CTA Column - Sized to lg:col-span-7 for optimal home page hero alignment */}
           <div className="lg:col-span-7 flex flex-col items-start w-full relative z-10">
             {/* Logo Badge */}
@@ -190,7 +190,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 36 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-8 text-[clamp(2.2rem,5.2vw,4.8rem)] font-black tracking-tight leading-[0.95] text-foreground max-w-5xl select-none"
+              className="mt-4 lg:mt-8 text-[clamp(2.2rem,5.2vw,4.8rem)] font-black tracking-tight leading-[0.95] text-foreground max-w-5xl select-none"
             >
               <span className="block text-white opacity-95">
                 Built to your scope,
@@ -198,7 +198,7 @@ export function Hero() {
               <span className="block text-white opacity-95">
                 Not our catalog.
               </span>
-              <span className="block py-2.5 px-1 bg-gradient-to-r from-sky-400 via-purple-500 to-sky-400 bg-clip-text text-transparent filter drop-shadow-[0_4px_20px_rgba(99,102,241,0.25)] animate-gradient-x text-[clamp(1.35rem,3.1vw,2.5rem)] mt-2 whitespace-nowrap">
+              <span className="block py-2.5 px-1 bg-gradient-to-r from-sky-400 via-purple-500 to-sky-400 bg-clip-text text-transparent filter drop-shadow-[0_4px_20px_rgba(99,102,241,0.25)] animate-gradient-x text-[clamp(1.35rem,3.1vw,2.5rem)] mt-2">
                 AI and humans on every engagement
               </span>
             </motion.h1>
@@ -208,7 +208,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 36 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.85, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-6 max-w-2xl"
+              className="mt-4 lg:mt-6 max-w-2xl"
             >
               <p className="text-base md:text-lg text-white leading-relaxed font-light">
                 Whether you need your books closed, controls remediated, an audit prepared, or a CFO role filled, you get the same hybrid model: AI agents handle the science, and experienced finance professionals handle the art. You get one bill.
@@ -219,12 +219,12 @@ export function Hero() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="mt-8 inline-flex flex-nowrap items-center rounded-lg border border-white/15 bg-[#0b1020]/85 p-1.5 text-[13px] font-medium tracking-wide text-white whitespace-nowrap overflow-x-auto max-w-full no-scrollbar"
+              className="mt-6 lg:mt-8 inline-flex flex-col sm:flex-row items-stretch sm:items-center rounded-lg border border-white/15 bg-[#0b1020]/85 p-1.5 text-[13px] font-medium tracking-wide text-white w-full sm:w-auto"
             >
-              <span className="px-4 py-2 border-r border-white/15 last:border-r-0">
+              <span className="px-4 py-2 border-b sm:border-b-0 sm:border-r border-white/15 last:border-r-0 last:border-b-0 text-center sm:text-left">
                 AI-assisted reconciliation
               </span>
-              <span className="px-4 py-2 last:border-r-0">
+              <span className="px-4 py-2 last:border-r-0 last:border-b-0 text-center sm:text-left">
                 Senior CPAs on every engagement
               </span>
             </motion.div>
@@ -234,18 +234,18 @@ export function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="mt-8 flex flex-row items-center gap-4 pointer-events-auto whitespace-nowrap"
+              className="mt-6 lg:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pointer-events-auto w-full sm:w-auto"
             >
               <a
                 href="/contact"
-                className="group inline-flex items-center gap-2 rounded-full bg-white text-black px-6 py-3 text-sm font-semibold hover:bg-sky-400 hover:text-black transition-all duration-300 shadow-lg shadow-white/5 hover:shadow-sky-400/20 active:scale-95"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-white text-black px-6 py-3 text-sm font-semibold hover:bg-sky-400 hover:text-black transition-all duration-300 shadow-lg shadow-white/5 hover:shadow-sky-400/20 active:scale-95 text-center whitespace-nowrap"
               >
                 Start your subscription
                 <span className="transition-transform group-hover:translate-x-1">→</span>
               </a>
               <a
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-md px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 hover:border-white transition-all duration-300 active:scale-95"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-md px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 hover:border-white transition-all duration-300 active:scale-95 text-center"
               >
                 Talk to an experienced finance professional
               </a>
@@ -253,7 +253,7 @@ export function Hero() {
           </div>
 
           {/* Right Holographic Interactive Sphere Column */}
-          <div className="lg:col-span-5 flex items-center justify-center w-full relative z-10">
+          <div className="lg:col-span-5 flex items-center justify-center w-full relative z-10 mt-4 lg:mt-0">
             <InteractiveSphere categoryIndex={index} onClick={handleNextSlide} />
           </div>
         </div>
