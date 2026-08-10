@@ -26,19 +26,19 @@ export function Clients() {
   return (
     <section className="bg-transparent site-section text-white">
       <div className="mx-auto max-w-[1500px]">
-        <div className="relative overflow-hidden rounded-[2rem] border border-white/20">
+        <div className="relative min-h-[360px] overflow-hidden rounded-2xl border border-white/20 sm:min-h-0 md:rounded-[2rem]">
           <Image
             src={teamPhoto}
             alt="4AT team"
-            className="h-auto w-full object-contain"
+            className="absolute inset-0 h-full w-full object-cover object-center sm:relative sm:h-auto sm:object-contain"
             priority={false}
           />
-          <div className="absolute inset-x-0 top-0 bg-gradient-to-b from-black/85 via-black/35 to-transparent p-8 md:p-12">
+          <div className="absolute inset-0 flex flex-col justify-start bg-gradient-to-b from-black/90 via-black/35 to-black/20 p-5 sm:block sm:bg-gradient-to-b sm:from-black/85 sm:via-black/35 sm:to-transparent sm:p-8 md:p-12">
             <p className="section-badge">
               Trusted worldwide
             </p>
-            <h2 className="mt-4 max-w-full text-center text-[clamp(1.55rem,6.8vw,8.8rem)] font-black uppercase leading-[.86] tracking-tight sm:text-[clamp(2.5rem,6.8vw,8.8rem)]">
-              <span className="block whitespace-nowrap">
+            <h2 className="mt-auto max-w-full pb-3 text-left text-4xl font-black uppercase leading-[.9] tracking-tight sm:mt-4 sm:pb-0 sm:text-center sm:text-[clamp(2.5rem,6.8vw,8.8rem)]">
+              <span className="block sm:whitespace-nowrap">
                 Helping{" "}
                 <span className="inline-block text-brand-gradient-flow drop-shadow-[0_0_28px_rgba(125,211,252,0.38)]">
                   120+ clients

@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { STEPS_INFO } from "./constants";
 
 interface StepperSidebarProps {

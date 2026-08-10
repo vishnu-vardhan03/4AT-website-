@@ -22,6 +22,8 @@ services:
       postgres:
         condition: service_healthy
     expose: ["5000"]
+    volumes:
+      - backend-uploads:/app/uploads
 
   frontend:
     build: ./Frontend
@@ -41,3 +43,4 @@ services:
 
 volumes:
   postgres-data:
+  backend-uploads:

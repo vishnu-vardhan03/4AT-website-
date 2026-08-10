@@ -33,11 +33,11 @@ function ScrollCard({
      */
     <div
       data-scroll-card
-      className="sticky top-24 flex h-[430px] items-start px-4 pt-4 md:top-[17rem] md:px-8"
+      className="relative flex h-auto items-start px-5 pb-5 md:sticky md:top-[17rem] md:h-[430px] md:px-8 md:pb-0 md:pt-4"
       style={{ zIndex: index + 1 }}
     >
       <article
-        className="relative mx-auto w-full max-w-[1150px] overflow-hidden rounded-3xl border border-white/15 bg-[#091120] p-5 shadow-[0_35px_100px_rgba(0,0,0,.55)] md:p-7"
+        className="relative mx-auto w-full max-w-[1150px] overflow-hidden rounded-2xl border border-white/15 bg-[#091120] p-5 shadow-[0_24px_70px_rgba(0,0,0,.42)] md:rounded-3xl md:p-7 md:shadow-[0_35px_100px_rgba(0,0,0,.55)]"
       >
         {/* Accent glow */}
         <div
@@ -46,21 +46,21 @@ function ScrollCard({
         />
 
         {/* items-start: aligns left title top-edge with the top of the right boxes */}
-        <div className="relative grid gap-8 lg:grid-cols-[.9fr_1.5fr] lg:items-start">
+        <div className="relative grid gap-6 md:gap-8 lg:grid-cols-[.9fr_1.5fr] lg:items-start">
           {/* Left: counter + title — top-aligned, no extra height */}
           <div>
             <span className="text-sm font-bold" style={{ color: item.color }}>
               0{index + 1}{" "}
               <span className="ml-2 text-white/35">/ 0{total}</span>
             </span>
-            <h3 className="mt-5 text-3xl font-black leading-[1.04] md:text-5xl">
+            <h3 className="mt-3 text-2xl font-black leading-[1.08] sm:text-3xl md:mt-5 md:text-5xl">
               {item.title}
             </h3>
           </div>
 
           {/* Right: three info boxes — items-stretch keeps the 3 boxes equal height */}
-          <div className="grid gap-4 md:grid-cols-3 md:items-stretch">
-            <div className="flex flex-col rounded-2xl border border-white/10 bg-black/20 p-5">
+          <div className="grid gap-3 md:grid-cols-3 md:items-stretch md:gap-4">
+            <div className="flex flex-col rounded-xl border border-white/10 bg-black/20 p-4 md:rounded-2xl md:p-5">
               <span className="text-xs font-bold text-white/35">01</span>
               <h4 className="mt-2 text-base font-black text-white">
                 {item.painLabel ?? "The pain"}
@@ -70,7 +70,7 @@ function ScrollCard({
               </p>
             </div>
             <div
-              className="flex flex-col rounded-2xl border p-5"
+                className="flex flex-col rounded-xl border p-4 md:rounded-2xl md:p-5"
               style={{
                 borderColor: `${item.color}55`,
                 backgroundColor: `${item.color}0d`,
@@ -87,7 +87,7 @@ function ScrollCard({
               </p>
             </div>
             <div
-              className="flex flex-col rounded-2xl border p-5"
+                className="flex flex-col rounded-xl border p-4 md:rounded-2xl md:p-5"
               style={{
                 borderColor: `${item.color}80`,
                 backgroundColor: `${item.color}14`,

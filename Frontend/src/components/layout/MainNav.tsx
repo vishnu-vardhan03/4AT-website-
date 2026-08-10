@@ -333,6 +333,15 @@ export function Nav({ contactHref = "/contact" }: { contactHref?: string }) {
         </nav>
         <div className="flex items-center justify-self-end gap-2">
           <Link
+            href="/essl"
+            className={`hidden min-h-10 items-center rounded-full border px-4 py-2 text-[14px] font-bold leading-6 transition-all duration-300 md:inline-flex ${isDarkBg
+                ? "border-sky-300/30 bg-sky-300/10 text-sky-200 hover:border-sky-300/60 hover:bg-sky-300/15"
+                : "border-sky-700/20 bg-sky-50 text-sky-800 hover:border-sky-700/40 hover:bg-sky-100"
+              }`}
+          >
+            ESSL
+          </Link>
+          <Link
             href={contactHref}
             className={`hidden min-h-10 items-center rounded-full px-5 py-2 text-[16px] font-medium leading-7 transition-all duration-300 md:inline-flex ${isDarkBg
                 ? "bg-white text-black hover:shadow-[0_0_24px_rgba(255,255,255,0.4)]"
@@ -406,6 +415,14 @@ export function Nav({ contactHref = "/contact" }: { contactHref?: string }) {
               </div>
             );
           })}
+
+          <Link
+            href="/essl"
+            onClick={closeMobileMenu}
+            className="mt-2 flex min-h-12 items-center justify-center rounded-xl border border-sky-300/25 bg-sky-300/10 px-4 text-sm font-bold text-sky-200"
+          >
+            Open ESSL
+          </Link>
 
           <Link
             href={contactHref}

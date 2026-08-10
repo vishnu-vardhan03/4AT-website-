@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { SectionPill } from "./SectionPill";
 import { HowItWorks } from "./HowItWorks";
 import { BookOpen, Target } from "lucide-react";

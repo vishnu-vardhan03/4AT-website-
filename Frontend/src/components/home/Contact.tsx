@@ -26,15 +26,15 @@ export function Contact() {
 
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {paths.map((path, index) => (
-            <article key={path.title} className="relative flex min-h-[390px] flex-col overflow-hidden rounded-2xl border border-white/15 bg-[#0b1020]/85 p-7 md:p-8">
+            <article key={path.title} className="relative flex flex-col overflow-hidden rounded-2xl border border-white/15 bg-[#0b1020]/85 p-6 md:min-h-[390px] md:p-8">
               <div className="absolute -right-10 -top-10 size-44 rounded-full opacity-30 blur-3xl" style={{ backgroundColor: path.color }} />
               <div className="relative">
                 <span className="text-sm font-bold" style={{ color: path.color }}>0{index + 1}</span>
-                <h3 className="mt-6 text-3xl font-black leading-tight">{path.title}</h3>
+                <h3 className="mt-4 text-2xl font-black leading-tight md:mt-6 md:text-3xl">{path.title}</h3>
                 <p className="mt-5 text-sm font-semibold leading-relaxed" style={{ color: path.color }}>{path.audience}</p>
                 <p className="mt-5 text-sm leading-relaxed text-white/75 md:text-base">{path.body}</p>
               </div>
-              <Link href={path.href} className="relative mt-auto inline-flex w-fit items-center gap-2 pt-8 text-sm font-bold" style={{ color: path.color }}>
+              <Link href={path.href} className="relative mt-7 inline-flex min-h-11 w-fit items-center gap-2 text-sm font-bold md:mt-auto md:pt-8" style={{ color: path.color }}>
                 {path.action} <span aria-hidden="true">→</span>
               </Link>
             </article>

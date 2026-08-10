@@ -6,6 +6,16 @@ import { AiLead } from '../ai/ai-lead.entity';
 import { ConsultingLead } from '../consulting/consulting-lead.entity';
 import { InitialLeadTables1721640000000 } from './migrations/1721640000000-initial-lead-tables';
 import { AcademyRegistrations1721640000001 } from './migrations/1721640000001-academy-registrations';
+import { EsslTickets1721640000002 } from './migrations/1721640000002-essl-tickets';
+import { EsslTicket } from '../essl/essl-ticket.entity';
+import { EsslTicketAttachment } from '../essl/essl-ticket-attachment.entity';
+import { EsslTicketAttachments1721640000003 } from './migrations/1721640000003-essl-ticket-attachments';
+import { EsslTicketRequester1721640000004 } from './migrations/1721640000004-essl-ticket-requester';
+import { EsslNotification } from '../essl/essl-notification.entity';
+import { EsslNotifications1721640000005 } from './migrations/1721640000005-essl-notifications';
+import { EsslEmailLog } from '../essl/essl-email-log.entity';
+import { EsslStatusEmail1721640000006 } from './migrations/1721640000006-essl-status-email';
+import { EsslCreatedEmailLog1721640000007 } from './migrations/1721640000007-essl-created-email-log';
 
 const useUrl = Boolean(process.env.DATABASE_URL);
 
@@ -22,6 +32,6 @@ export default new DataSource({
       }),
   ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
   synchronize: false,
-  entities: [AcademyLead, AcademyRegistration, ConsultingLead, AiLead],
-  migrations: [InitialLeadTables1721640000000, AcademyRegistrations1721640000001],
+  entities: [AcademyLead, AcademyRegistration, ConsultingLead, AiLead, EsslTicket, EsslTicketAttachment, EsslNotification, EsslEmailLog],
+  migrations: [InitialLeadTables1721640000000, AcademyRegistrations1721640000001, EsslTickets1721640000002, EsslTicketAttachments1721640000003, EsslTicketRequester1721640000004, EsslNotifications1721640000005, EsslStatusEmail1721640000006, EsslCreatedEmailLog1721640000007],
 });

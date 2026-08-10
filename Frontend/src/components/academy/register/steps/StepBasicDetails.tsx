@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import type { StepProps } from "../types";
 import { FormField } from "../FormField";
 import { PhoneField } from "../PhoneField";

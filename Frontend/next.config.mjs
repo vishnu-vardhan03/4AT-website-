@@ -14,6 +14,15 @@ if (!process.env.BACKEND_URL) {
   process.env.BACKEND_URL = "http://localhost:5000";
 }
 
+if (process.env.NODE_ENV === "production") {
+  const legacyAuth = (process.env.ESSL_AUTH_MODE ?? "legacy") !== "entra";
+  const required = ["NEXTAUTH_SECRET", "ESSL_ADMIN_EMAIL", "ESSL_INTERNAL_API_KEY", ...(legacyAuth ? ["ESSL_ADMIN_PASSWORD"] : ["AZURE_AD_CLIENT_ID", "AZURE_AD_CLIENT_SECRET", "AZURE_AD_TENANT_ID"])];
+  const missing = required.filter((key) => !process.env[key]?.trim());
+  if (missing.length) throw new Error(`Missing required production environment variables: ${missing.join(", ")}`);
+  if (process.env.NEXTAUTH_SECRET.length < 32) throw new Error("NEXTAUTH_SECRET must contain at least 32 characters in production");
+  if (process.env.ESSL_INTERNAL_API_KEY.length < 32) throw new Error("ESSL_INTERNAL_API_KEY must contain at least 32 characters in production");
+}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "standalone",

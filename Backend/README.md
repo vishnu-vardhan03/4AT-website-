@@ -37,7 +37,17 @@ npm run start:prod
 
 Run `npm run check` before deployment. In production, `DATABASE_URL`, `JWT_SECRET`, `ADMIN_USERNAME`, `ADMIN_PASSWORD_HASH`, and `FRONTEND_URL` are required; `JWT_SECRET` must contain at least 32 characters.
 
-Swagger is available at `/api/docs` only when `ENABLE_SWAGGER=true`. The database health check is available at `/health`. Set `TRUST_PROXY=true` only when the API runs behind one trusted reverse proxy so rate limiting sees the originating client address.
+The database health check is available at `/health`. API documentation is intentionally not bundled into the production service. Set `TRUST_PROXY=true` only when the API runs behind one trusted reverse proxy so rate limiting sees the originating client address.
+
+## ESSL status email notifications
+
+Set `EMAIL_ENABLED=true` and configure `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USERNAME`, `SMTP_PASSWORD`, `SMTP_FROM`, optional `SMTP_REPLY_TO`, `IT_SUPPORT_EMAIL`, and `ESSL_TICKET_BASE_URL`. A newly created ticket emails IT support. A status email is sent to the requester only after a ticket moves to a different status. Delivery success/failure is written to application logs and the `essl_email_logs` table; SMTP failure does not roll back ticket creation or a saved status.
+
+Apply the database change before enabling email:
+
+```text
+npm run migration:run
+```
 
 ## Endpoints
 

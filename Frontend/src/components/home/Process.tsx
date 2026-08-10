@@ -63,7 +63,7 @@ export function Process() {
               key={pillar.eyebrow}
               onMouseEnter={() => setActive(index)}
               onFocus={() => setActive(index)}
-              className={`group relative min-h-[430px] overflow-hidden rounded-2xl border p-7 transition duration-500 md:p-8 ${
+              className={`group relative overflow-hidden rounded-2xl border p-6 transition duration-500 md:min-h-[430px] md:p-8 ${
                 active === index
                   ? "border-white/35 bg-white/[0.07]"
                   : "border-white/15 bg-[#0b1020]/75"
@@ -97,9 +97,9 @@ export function Process() {
               )}
 
               <div className="relative flex h-full flex-col">
-                <span className="relative block size-28" aria-hidden="true">
+                <span className="relative block size-20 md:size-28" aria-hidden="true">
                   <span
-                    className="absolute left-4 top-4 size-20 rounded-full transition-transform duration-500"
+                    className="absolute left-3 top-3 size-14 rounded-full transition-transform duration-500 md:left-4 md:top-4 md:size-20"
                     style={{
                       backgroundColor: pillar.color,
                       boxShadow: `0 0 55px ${pillar.color}80`,
@@ -119,7 +119,7 @@ export function Process() {
                   />
                 </span>
                 <p
-                  className="mt-10 text-xs font-bold uppercase tracking-[.2em]"
+                  className="mt-7 text-xs font-bold uppercase tracking-[.2em] md:mt-10"
                   style={{ color: pillar.color }}
                 >
                   {pillar.eyebrow}

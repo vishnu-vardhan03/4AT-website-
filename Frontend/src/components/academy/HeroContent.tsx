@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { ArrowRight, PhoneCall } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/academy/Button";

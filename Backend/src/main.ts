@@ -1,21 +1,22 @@
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import helmet from 'helmet';
-import type { Express } from 'express';
+import { join } from 'path';
 import { AppModule } from './app.module';
 import { GlobalExceptionFilter } from './common/filters/http-exception.filter';
 
 async function bootstrap() {
   const logger = new Logger('Bootstrap');
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   const config = app.get(ConfigService);
   if (config.get<string>('TRUST_PROXY') === 'true') {
-    const express = app.getHttpAdapter().getInstance() as Express;
+    const express = app.getHttpAdapter().getInstance();
     express.set('trust proxy', 1);
   }
   app.use(helmet());
+  app.useStaticAssets(join(process.cwd(), 'uploads'), { prefix: '/uploads/' });
   // Union of both variables, not one-as-the-default-of-the-other: FRONTEND_URL is
   // mandatory in production, which previously made ALLOWED_ORIGINS dead configuration.
   const configured = [config.get<string>('FRONTEND_URL'), config.get<string>('ALLOWED_ORIGINS')]
@@ -27,15 +28,6 @@ async function bootstrap() {
   app.enableCors({ origin: origins, credentials: true, methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'] });
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true, transform: true }));
   app.useGlobalFilters(new GlobalExceptionFilter());
-  const swaggerConfig = new DocumentBuilder()
-    .setTitle('4AT Consulting API')
-    .setDescription('Lead collection and dashboard API')
-    .setVersion('1.0')
-    .addBearerAuth()
-    .build();
-  if (config.get<string>('ENABLE_SWAGGER', 'false') === 'true') {
-    SwaggerModule.setup('api/docs', app, SwaggerModule.createDocument(app, swaggerConfig));
-  }
   const port = Number(process.env.PORT) || 5000;
   await app.listen(port);
   logger.log(`Backend running on port ${port}`);

@@ -44,7 +44,32 @@ jobs:
         env:
           NEXT_PUBLIC_API_URL: http://localhost:5000
           BACKEND_URL: http://localhost:5000
-          NEXTAUTH_SECRET: ci-only-secret-value
+          NEXTAUTH_SECRET: ci-only-nextauth-secret-value-32chars
+          AZURE_AD_CLIENT_ID: ci-client-id
+          AZURE_AD_CLIENT_SECRET: ci-client-secret
+          AZURE_AD_TENANT_ID: ci-tenant-id
+          ESSL_ADMIN_EMAIL: itsupport@consult-4at.com
+          ESSL_AUTH_MODE: legacy
+          ESSL_ADMIN_PASSWORD: ci-only-temporary-password
+          ESSL_INTERNAL_API_KEY: ci-only-internal-api-key-value-32
+      - name: Selenium production smoke audit
+        run: |
+          PORT=3100 npm start > selenium-server.log 2>&1 &
+          for attempt in {1..30}; do curl --fail --silent http://localhost:3100/ > /dev/null && break; sleep 1; done
+          npm run test:selenium
+        env:
+          SELENIUM_BASE_URL: http://localhost:3100
+          NEXTAUTH_URL: http://localhost:3100
+          NEXT_PUBLIC_API_URL: http://localhost:5000
+          BACKEND_URL: http://localhost:5000
+          NEXTAUTH_SECRET: ci-only-nextauth-secret-value-32chars
+          AZURE_AD_CLIENT_ID: ci-client-id
+          AZURE_AD_CLIENT_SECRET: ci-client-secret
+          AZURE_AD_TENANT_ID: ci-tenant-id
+          ESSL_ADMIN_EMAIL: itsupport@consult-4at.com
+          ESSL_AUTH_MODE: legacy
+          ESSL_ADMIN_PASSWORD: ci-only-temporary-password
+          ESSL_INTERNAL_API_KEY: ci-only-internal-api-key-value-32
       - uses: actions/upload-artifact@v4
         with:
           name: frontend-standalone

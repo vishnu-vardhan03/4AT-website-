@@ -11,12 +11,13 @@ import { HealthModule } from './health/health.module';
 import { LeadsModule } from './leads/leads.module';
 import { AuthModule } from './auth/auth.module';
 import { validateEnvironment } from './config/validate-env';
+import { EsslTicketModule } from './essl/essl-ticket.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, envFilePath: ['.env.local', '.env'], validate: validateEnvironment }),
     ThrottlerModule.forRoot([{ name: 'default', ttl: 60_000, limit: 100 }]),
-    DatabaseModule, CommonModule, AuthModule, AcademyModule, ConsultingModule, AiModule, LeadsModule, HealthModule,
+    DatabaseModule, CommonModule, AuthModule, AcademyModule, ConsultingModule, AiModule, LeadsModule, EsslTicketModule, HealthModule,
   ],
   providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }],
 })
