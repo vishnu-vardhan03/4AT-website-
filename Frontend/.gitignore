@@ -49,3 +49,6 @@ yarn-error.log*
 # certificates
 *.pem
 .vercel
+
+# local tooling state
+.impeccable/

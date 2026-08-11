@@ -293,11 +293,14 @@ export function Courses({ sectionId = "courses" }: { sectionId?: string }) {
                   onMouseEnter={() => handleMouseEnter(idx)}
                   onMouseLeave={handleMouseLeave}
                   onClick={() => {
+                    if (isLocked) return;
                     const slug = course.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
                     router.push(`/academy/courses/${slug}`);
                   }}
-                  className={`snap-start shrink-0 w-[280px] sm:w-[310px] md:w-[335px] group relative flex flex-col justify-between p-4.5 sm:p-5 rounded-[22px] border border-blue-500/20 bg-gradient-to-b from-[#101726] via-[#0b0f19] to-[#080b12] shadow-[0_8px_24px_rgba(0,0,0,0.5)] hover:border-blue-400/50 hover:shadow-[0_10px_30px_rgba(37,99,235,0.12)] cursor-pointer transition-all duration-300 min-h-[340px] ${
-                    isMobile ? "active:scale-[0.98] transition-transform duration-200" : ""
+                  className={`snap-start shrink-0 w-[280px] sm:w-[310px] md:w-[335px] group relative flex flex-col justify-between p-4.5 sm:p-5 rounded-[22px] border border-blue-500/20 bg-gradient-to-b from-[#101726] via-[#0b0f19] to-[#080b12] shadow-[0_8px_24px_rgba(0,0,0,0.5)] transition-all duration-300 min-h-[340px] ${
+                    isLocked ? "cursor-not-allowed opacity-80" : "hover:border-blue-400/50 hover:shadow-[0_10px_30px_rgba(37,99,235,0.12)] cursor-pointer"
+                  } ${
+                    isMobile && !isLocked ? "active:scale-[0.98] transition-transform duration-200" : ""
                   }`}
                   style={{
                     willChange: "transform",
@@ -392,26 +395,38 @@ export function Courses({ sectionId = "courses" }: { sectionId?: string }) {
 
                   {/* CTA Buttons */}
                   <div className="mt-4 pt-2.5 border-t border-white/5 z-10 shrink-0 flex gap-2">
-                    <button
-                      className="flex-1 py-2.5 px-4 rounded-full text-[11px] tracking-[0.1em] uppercase font-bold text-white fx-primary-btn flex items-center justify-center gap-1.5 transition-all duration-300 cursor-pointer"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        const slug = course.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-                        router.push(`/academy/courses/${slug}`);
-                      }}
-                    >
-                      <span>{course.ctaText || "VIEW CURRICULUM"}</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-white transition-transform duration-300 group-hover:translate-x-0.5" />
-                    </button>
-                    <button
-                      className="shrink-0 px-4 py-2.5 rounded-full text-[11px] tracking-[0.1em] uppercase font-bold text-white fx-ghost-btn transition-all duration-300 cursor-pointer whitespace-nowrap"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        router.push("/academy/register");
-                      }}
-                    >
-                      Check fit
-                    </button>
+                    {isLocked ? (
+                      <button
+                        disabled
+                        className="flex-1 py-2.5 px-4 rounded-full text-[11px] tracking-[0.1em] uppercase font-bold text-slate-500 bg-white/5 border border-white/10 flex items-center justify-center gap-1.5 cursor-not-allowed"
+                      >
+                        <Lock className="w-3.5 h-3.5" />
+                        <span>Locked</span>
+                      </button>
+                    ) : (
+                      <>
+                        <button
+                          className="flex-1 py-2.5 px-4 rounded-full text-[11px] tracking-[0.1em] uppercase font-bold text-white fx-primary-btn flex items-center justify-center gap-1.5 transition-all duration-300 cursor-pointer"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            const slug = course.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+                            router.push(`/academy/courses/${slug}`);
+                          }}
+                        >
+                          <span>{course.ctaText || "VIEW CURRICULUM"}</span>
+                          <ArrowRight className="w-3.5 h-3.5 text-white transition-transform duration-300 group-hover:translate-x-0.5" />
+                        </button>
+                        <button
+                          className="shrink-0 px-4 py-2.5 rounded-full text-[11px] tracking-[0.1em] uppercase font-bold text-white fx-ghost-btn transition-all duration-300 cursor-pointer whitespace-nowrap"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            router.push("/academy/register");
+                          }}
+                        >
+                          Check fit
+                        </button>
+                      </>
+                    )}
                   </div>
                 </div>
               );

@@ -249,7 +249,7 @@ export const lmsCourses: LmsCourse[] = [
     title: "FinTech Engineering — Acc L1",
     subtitle: "Freshers · Accounting · Flagship",
     badge: "FLAGSHIP · FRESHERS",
-    duration: "2 months",
+    duration: "8 weeks",
     mode: "Hybrid",
     rating: 4.8,
     reviewsCount: 141,
@@ -294,7 +294,7 @@ export const lmsCourses: LmsCourse[] = [
       "Risk & fraud testing",
       "Compliance strategy"
     ],
-    locked: false,
+    locked: true,
     category: "Audit & Risk",
     instructor: "Big 4 Audit Experts",
     image: "/ia_l1_thumb.webp",
@@ -322,7 +322,7 @@ export const lmsCourses: LmsCourse[] = [
       "Risk & governance frameworks",
       "Continuous compliance AI"
     ],
-    locked: false,
+    locked: true,
     category: "Global Taxation",
     instructor: "Global Tax Counsel",
     image: "/soc2_thumb.webp",
@@ -351,7 +351,7 @@ export const lmsCourses: LmsCourse[] = [
       "AI & accounting automation",
       "Executive case simulations"
     ],
-    locked: false,
+    locked: true,
     category: "Accounting & ERP",
     instructor: "Chartered Accountants Core",
     image: "/acc_l2_thumb.webp",
@@ -379,7 +379,7 @@ export const lmsCourses: LmsCourse[] = [
       "Corporate BI & dashboards",
       "Executive business partnering"
     ],
-    locked: false,
+    locked: true,
     category: "FP&A & Modeling",
     instructor: "Corporate FP&A Directors",
     image: "/fpna_thumb.webp",
