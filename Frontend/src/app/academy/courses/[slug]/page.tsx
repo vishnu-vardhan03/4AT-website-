@@ -116,7 +116,7 @@ const courseCurriculums: Record<string, {
       rating: "4.8★",
       reviews: "1,240",
       students: "8,500+",
-      bio: "Composed of active corporate accounting trainers, SAP certifiers, and placement mentors, our core team guides learners through industry-grade general ledger practices."
+      bio: "An active practitioner in FP&A and financial analysis, Jose guides learners through industry-grade general ledger, close, and reporting practices, grounded in real corporate finance workflows."
     }
   },
   "fintech-engineering-acc-l2": {
@@ -617,13 +617,8 @@ export default function CourseDetailsPage({
               </h2>
               <div className="flex flex-col sm:flex-row gap-6">
                 <div className="flex flex-col items-center shrink-0">
-                  <div className="size-20 rounded-full bg-accent-gradient flex items-center justify-center text-[#04060f] font-bold text-xl shadow-[0_0_20px_rgba(45,212,191,0.2)] mb-3 overflow-hidden">
+                  <div className="size-20 rounded-full bg-accent-gradient flex items-center justify-center text-[#04060f] font-bold text-xl shadow-[0_0_20px_rgba(45,212,191,0.2)] overflow-hidden">
                     <UserCheck className="size-8" />
-                  </div>
-                  <div className="flex flex-col gap-1 text-[11px] font-mono text-slate-500 uppercase text-center sm:text-left">
-                    <span>{curriculum.instructorBio.rating} Instructor Rating</span>
-                    <span>{curriculum.instructorBio.reviews} Reviews</span>
-                    <span>{curriculum.instructorBio.students} Students</span>
                   </div>
                 </div>
                 <div className="flex-grow">
