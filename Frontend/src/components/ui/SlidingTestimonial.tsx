@@ -98,12 +98,12 @@ const FUITestimonialWithSlide: React.FC<SlidingTestimonialProps> = ({
         <div className="w-full lg:w-[48%] flex flex-col items-center lg:items-start text-center lg:text-left relative">
           <SectionPill className="relative z-10">ALUMNI TESTIMONIALS</SectionPill>
           <h2 className="section-title max-w-[620px] relative z-10 mt-4">
-            Career transformations from learners who moved into finance{" "}
-            <span className="font-serif italic text-accent">roles</span>.
+            Real Stories.{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">Real Career Transformations.</span>
           </h2>
           <p className="section-desc relative z-10 mt-7 max-w-[540px] leading-relaxed text-sm sm:text-base">
-            Structured mentorship, real case work, and placement support are
-            helping our first cohorts move from theory into finance roles.
+            Practice-led training, structured mentorship — and the roles that
+            followed. From our FEP Certified Professionals, in their own words.
           </p>
         </div>
 

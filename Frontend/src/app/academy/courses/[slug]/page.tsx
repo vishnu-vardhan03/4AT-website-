@@ -34,65 +34,89 @@ const courseCurriculums: Record<string, {
 }> = {
   "fintech-engineering-acc-l1": {
     whatYouWillLearn: [
-      "Master core Accounts Receivable/Payable and General Ledger workflows in corporate settings.",
-      "Navigate SAP ERP software and perform real transaction simulations.",
-      "Understand Big 4 general bookkeeping standards and compliance requirements.",
-      "Perform automated cash and bank statement reconciliations inside actual simulations.",
-      "Establish business presentation and professional interview readiness skills."
+      "Read a company's annual report (10-K / 10-Q) and structure a chart of accounts from the ground up.",
+      "Run the core transaction cycles: bank & credit card processing, AP, AR, expenses/prepaids/accruals, and payroll.",
+      "Execute a full month-end close — reconciliations, financial statement prep, and flux analysis.",
+      "Use ERP and AI tools to execute and automate real finance tasks.",
+      "Build audit literacy and hands-on SOX skills through the Audit & SOX Essentials track.",
+      "Apply everything in a capstone: an end-to-end, real-world simulation on live systems."
     ],
     requirements: [
-      "No advanced finance experience required; designed as an outcome-first training pathway.",
+      "No advanced finance experience required; designed as an outcome-first training pathway for freshers.",
       "A baseline degree or ongoing studies in Commerce, Accounting, Business, or Finance."
     ],
     modules: [
       {
-        title: "Module 1: General Ledger & Cash Reconciliation",
-        duration: "15 Hours · 6 Lectures",
+        title: "1 · Foundations",
+        duration: "Common Core · 3 Modules",
         lectures: [
-          "Understanding standard corporate accounting cycles & posting structures",
-          "Closing schedules: Sub-ledger vs General Ledger reconciliations",
-          "Automating Bank Statement Reconciliation in modern enterprise platforms",
-          "Hands-on case study: Resolving balance discrepancies under pressure"
+          "M1 — The Business Behind the Numbers, incl. reading a company's annual report (10-K / 10-Q)",
+          "M2 — Building the Chart of Accounts",
+          "M3 — Reading the Financial Statements"
         ]
       },
       {
-        title: "Module 2: ERP Systems & SAP Practical Operations",
-        duration: "20 Hours · 8 Lectures",
+        title: "2 · Core Transaction Cycles",
+        duration: "Common Core · 5 Modules",
         lectures: [
-          "Navigating SAP GUI: Organization units and general accounting transactions",
-          "Entering vendor invoices, processing client payments, and balancing books",
-          "Dynamic journal postings and generating financial report extracts in SAP",
-          "Managing Accounts Receivable and Accounts Payable close procedures"
+          "M4 — Bank & Credit Card Processing",
+          "M5 — Accounts Payable (AP)",
+          "M6 — Accounts Receivable (AR)",
+          "M7 — Expense, Prepaid & Accruals",
+          "M8 — Payroll Accounting"
         ]
       },
       {
-        title: "Module 3: Accounting Tooling, Power BI & Excel Basics",
-        duration: "18 Hours · 7 Lectures",
+        title: "3 · Close & Reporting",
+        duration: "Common Core · 4 Modules",
         lectures: [
-          "Advanced Excel formulas for corporate finance: VLOOKUP, INDEX/MATCH, Pivot Tables",
-          "Mapping transaction databases using basic Power BI data extraction",
-          "Building automated finance dashboard tracking templates",
-          "Using AI tools to extract transaction metadata from digital receipts"
+          "M9 — Bank & Sub-Ledger Reconciliations",
+          "M10 — Month-End Close Simulation",
+          "M11 — Financial Statement Preparation",
+          "M12 — Flux Analysis & Management Insights"
         ]
       },
       {
-        title: "Module 4: Career Readiness & Mock Interviews",
-        duration: "12 Hours · 5 Lectures",
+        title: "4 · AI, Tools & Scenarios",
+        duration: "Common Core · 2 Modules",
         lectures: [
-          "Polishing your finance resume: Aligning keywords with Big 4 standards",
-          "Handling technical interview questionnaires on corporate finance rules",
-          "Soft skills: Business communication and handling corporate meetings",
-          "Final placement assessment calibration"
+          "M13 — Foundations of IT & AI for Accountants",
+          "M14 — Tools for Scenario-Based Accounting"
+        ]
+      },
+      {
+        title: "5 · Professional Readiness & Advanced",
+        duration: "Common Core · 2 Modules",
+        lectures: [
+          "M15 — Professional Effectiveness & Client Engagement",
+          "M16 — Advanced Finance Topics"
+        ]
+      },
+      {
+        title: "Capstone Project — Full Simulation",
+        duration: "End-to-end simulation",
+        lectures: [
+          "An end-to-end, real-world simulation on live systems — your proof of deployment-readiness and the basis for certification."
+        ]
+      },
+      {
+        title: "6 · Audit & SOX Essentials",
+        duration: "Audit & SOX Essentials · 4 Modules",
+        lectures: [
+          "M17 — How an Audit Works",
+          "M18 — The Audit Engagement, Big 4 Basics",
+          "M19 — SOX Fundamentals",
+          "M20 — Performing & Facilitating a SOX Audit"
         ]
       }
     ],
     instructorBio: {
-      name: "4AT Academy Core Faculty",
-      title: "Finance & ERP Advisory Team",
+      name: "Jose Abraham",
+      title: "FP&A & Financial Analysis",
       rating: "4.8★",
       reviews: "1,240",
       students: "8,500+",
-      bio: "Composed of active corporate accounting trainers, SAP certifiers, and placement mentors, our core team guides learners through industry-grade general ledger practices."
+      bio: "An active practitioner in FP&A and financial analysis, Jose guides learners through industry-grade general ledger, close, and reporting practices, grounded in real corporate finance workflows."
     }
   },
   "fintech-engineering-acc-l2": {
@@ -503,7 +527,7 @@ export default function CourseDetailsPage({
                 Course content
               </h2>
               <p className="text-xs text-slate-400 font-mono uppercase mb-6">
-                {curriculum.modules.length} MODULES · 12 WEEKS TOTAL PROGRAM
+                {curriculum.modules.length} MODULES · {course.duration?.toUpperCase() ?? "12 WEEKS"} TOTAL PROGRAM
               </p>
 
               {/* Accordion container */}
@@ -593,13 +617,8 @@ export default function CourseDetailsPage({
               </h2>
               <div className="flex flex-col sm:flex-row gap-6">
                 <div className="flex flex-col items-center shrink-0">
-                  <div className="size-20 rounded-full bg-accent-gradient flex items-center justify-center text-[#04060f] font-bold text-xl shadow-[0_0_20px_rgba(45,212,191,0.2)] mb-3 overflow-hidden">
+                  <div className="size-20 rounded-full bg-accent-gradient flex items-center justify-center text-[#04060f] font-bold text-xl shadow-[0_0_20px_rgba(45,212,191,0.2)] overflow-hidden">
                     <UserCheck className="size-8" />
-                  </div>
-                  <div className="flex flex-col gap-1 text-[11px] font-mono text-slate-500 uppercase text-center sm:text-left">
-                    <span>{curriculum.instructorBio.rating} Instructor Rating</span>
-                    <span>{curriculum.instructorBio.reviews} Reviews</span>
-                    <span>{curriculum.instructorBio.students} Students</span>
                   </div>
                 </div>
                 <div className="flex-grow">
@@ -654,14 +673,21 @@ export default function CourseDetailsPage({
                 </div>
 
                 {/* Main CTAs */}
-                <div className="flex flex-col gap-3">
-                  <Button href={ctaRoute} variant="primary" className="w-full">
-                    Enroll Now
-                  </Button>
-                  <Button href="/#contact-us" variant="secondary" className="w-full">
-                    Book A Counseling Call
-                  </Button>
-                </div>
+                {course.locked ? (
+                  <div className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-white/5 border border-white/10 text-slate-500 text-sm font-bold uppercase tracking-widest">
+                    <span>🔒</span>
+                    <span>Locked</span>
+                  </div>
+                ) : (
+                  <div className="flex flex-col gap-3">
+                    <Button href={ctaRoute} variant="primary" className="w-full">
+                      Enroll Now
+                    </Button>
+                    <Button href="/#contact-us" variant="secondary" className="w-full">
+                      Book A Counseling Call
+                    </Button>
+                  </div>
+                )}
 
                 {/* Course details list */}
                 <div>
@@ -671,7 +697,7 @@ export default function CourseDetailsPage({
                   <ul className="flex flex-col gap-2 text-xs text-slate-300">
                     <li className="flex items-center gap-2.5">
                       <Clock className="size-4 text-accent" />
-                      <span>12 weeks structured learning</span>
+                      <span>{course.duration ?? "12 weeks"} structured learning</span>
                     </li>
                     <li className="flex items-center gap-2.5">
                       <Award className="size-4 text-accent" />

@@ -847,6 +847,7 @@ const serviceDetails: Record<string, {
 
 export function Services() {
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
+  const [activeIndices, setActiveIndices] = useState<Record<string, number>>({});
 
   useEffect(() => {
     if (selectedService) {
@@ -862,28 +863,28 @@ export function Services() {
   return (
     <section id="services" className="relative bg-transparent py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6">
-          {/* Section Header */}
-          <div className="grid lg:grid-cols-12 gap-8 mb-24 items-end">
-            <div className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-950/10 backdrop-blur-md px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-sky-400 mb-6">
-                Services
-              </div>
-              <h2 className="text-display text-[clamp(2.5rem,5.2vw,4.5rem)] text-white font-black leading-[0.95]">
-                Fourteen services
-                <span className="block mt-2 py-2 px-1 text-[clamp(1.4rem,3vw,2.6rem)] tracking-tight bg-gradient-to-r from-sky-400 via-purple-500 to-sky-400 bg-clip-text text-transparent filter drop-shadow-[0_2px_10px_rgba(99,102,241,0.25)] animate-gradient-x">
-                  Grouped by what&apos;s keeping you up at night
-                </span>
-              </h2>
+        {/* Section Header */}
+        <div className="grid lg:grid-cols-12 gap-8 mb-24 items-end">
+          <div className="lg:col-span-7">
+            <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-950/10 backdrop-blur-md px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-sky-400 mb-6">
+              Services
             </div>
-            <p className="lg:col-span-4 lg:col-start-9 self-end text-lg text-white leading-relaxed font-light">
-              Most buyers don&apos;t shop service-by-service. They have a problem (close cycles too long, audit coming, growing too fast) and they want to know what fixes it. Here&apos;s the shortcut.
-            </p>
+            <h2 className="text-display text-[clamp(2.5rem,5.2vw,4.5rem)] text-white font-black leading-[0.95]">
+              Fourteen services
+              <span className="block mt-2 py-2 px-1 text-[clamp(1.4rem,3vw,2.6rem)] tracking-tight bg-gradient-to-r from-sky-400 via-purple-500 to-sky-400 bg-clip-text text-transparent filter drop-shadow-[0_2px_10px_rgba(99,102,241,0.25)] animate-gradient-x">
+                Grouped by what&apos;s keeping you up at night
+              </span>
+            </h2>
           </div>
+          <p className="lg:col-span-4 lg:col-start-9 self-end text-lg text-white leading-relaxed font-light">
+            Most buyers don&apos;t shop service-by-service. They have a problem (close cycles too long, audit coming, growing too fast) and they want to know what fixes it. Here&apos;s the shortcut.
+          </p>
+        </div>
 
         {/* Rows by Group */}
         <div className="space-y-24 lg:space-y-32">
           {serviceGroups.map((group, gIdx) => (
-            <div 
+            <div
               key={group.title}
               id={group.id}
               className="grid scroll-mt-28 grid-cols-1 lg:grid-cols-12 gap-12 pt-12 border-t border-white/10"
@@ -896,13 +897,13 @@ export function Services() {
                 <h3 className="text-2xl lg:text-3xl font-black tracking-tight text-white mb-4 leading-tight">
                   {group.title.replace(/^Group \d+: /, '')}
                 </h3>
-                
+
                 <div className="space-y-4 w-full">
                   <div className="text-sm text-white">
                     <span className="text-zinc-400 uppercase tracking-wider text-xs block mb-1">Target</span>
                     <p className="font-light">{group.forText}</p>
                   </div>
-                  
+
                   <div className="rounded-xl border border-white/15 bg-[#0b1020]/85 p-4 border-l-2 border-l-sky-500/50">
                     <span className="text-sky-400 uppercase tracking-wider text-[10px] font-bold block mb-1">Trigger Scenario</span>
                     <p className="text-zinc-300 italic text-sm font-light">
@@ -913,92 +914,121 @@ export function Services() {
               </div>
 
               {/* Right Column: Services Grid */}
-              <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-                {group.services.map((service, sIdx) => (
-                  <div key={service.title} className="h-full">
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-100px" }}
-                      transition={{ duration: 0.6, delay: sIdx * 0.1 }}
-                      className="group relative h-full rounded-[2rem] overflow-hidden border border-white/15 bg-[#0b1020]/85 p-8 flex flex-col justify-between"
-                      style={{ boxShadow: "inset 0 1px 0 rgba(34, 211, 238, 0.13)" }}
-                    >
-                      {/* Glow Accent Blob */}
-                      <div className="absolute -right-16 -top-16 w-48 h-48 rounded-full blur-3xl bg-sky-500/15 pointer-events-none" />
+              <div className="lg:col-span-8 flex flex-col">
+                <div
+                  onScroll={(e) => {
+                    const container = e.currentTarget;
+                    const scrollLeft = container.scrollLeft;
+                    const clientWidth = container.clientWidth;
+                    const scrollWidth = container.scrollWidth;
+                    const maxScroll = scrollWidth - clientWidth;
+                    if (maxScroll <= 0) return;
+                    const percentage = scrollLeft / maxScroll;
+                    const index = Math.round(percentage * (group.services.length - 1));
+                    setActiveIndices((prev) => ({ ...prev, [group.id]: index }));
+                  }}
+                  className="flex overflow-x-auto snap-x snap-mandatory md:grid md:grid-cols-2 gap-6 pb-4 md:pb-0 no-scrollbar"
+                >
+                  {group.services.map((service, sIdx) => (
+                    <div key={service.title} className="h-full min-w-[280px] w-[80vw] max-w-[340px] md:min-w-0 md:max-w-none md:w-auto snap-start shrink-0">
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.6, delay: sIdx * 0.1 }}
+                        className="group relative h-full rounded-[2rem] overflow-hidden border border-white/15 bg-[#0b1020]/85 p-8 flex flex-col justify-between"
+                        style={{ boxShadow: "inset 0 1px 0 rgba(34, 211, 238, 0.13)" }}
+                      >
+                        {/* Glow Accent Blob */}
+                        <div className="absolute -right-16 -top-16 w-48 h-48 rounded-full blur-3xl bg-sky-500/15 pointer-events-none" />
 
-                      {/* Top indicator bar */}
-                      <div className="absolute top-0 left-0 right-0 h-[2px] bg-sky-500/50 opacity-50 group-hover:opacity-100 transition-opacity" />
+                        {/* Top indicator bar */}
+                        <div className="absolute top-0 left-0 right-0 h-[2px] bg-sky-500/50 opacity-50 group-hover:opacity-100 transition-opacity" />
 
-                      <div>
-                        {/* Service Number, Doodle & Title */}
-                        <div 
-                          onClick={() => setSelectedService(service)}
-                          className="flex items-center gap-4 mb-6 cursor-pointer group/header select-none"
-                        >
-                          <div className="flex-shrink-0 transition-transform duration-300 group-hover/header:scale-105">
-                            <ServiceDoodle serviceId={service.n} sizeClass="w-14 h-14" />
+                        <div>
+                          {/* Service Number, Doodle & Title */}
+                          <div
+                            onClick={() => setSelectedService(service)}
+                            className="flex items-center gap-4 mb-6 cursor-pointer group/header select-none"
+                          >
+                            <div className="flex-shrink-0 transition-transform duration-300 group-hover/header:scale-105">
+                              <ServiceDoodle serviceId={service.n} sizeClass="w-14 h-14" />
+                            </div>
+                            <div className="flex-1 min-w-0 text-left">
+                              <span className="text-xs font-mono font-bold text-sky-400 select-none block mb-1">
+                                {service.n}
+                              </span>
+                              <h4 className="text-xl font-bold tracking-tight text-white group-hover/header:text-sky-400 transition-colors leading-tight">
+                                {service.title}
+                              </h4>
+                            </div>
                           </div>
-                          <div className="flex-1 min-w-0 text-left">
-                            <span className="text-xs font-mono font-bold text-sky-400 select-none block mb-1">
-                              {service.n}
-                            </span>
-                            <h4 className="text-xl font-bold tracking-tight text-white group-hover/header:text-sky-400 transition-colors leading-tight">
-                              {service.title}
-                            </h4>
+
+                          {/* Description */}
+                          <p className="text-white text-sm font-light leading-relaxed mb-6">
+                            {service.desc}
+                          </p>
+
+                          {/* Structured Details */}
+                          <div className="space-y-4 pt-4 border-t border-white/5">
+                            {/* What's Standard */}
+                            <div>
+                              <span className="text-[10px] uppercase tracking-wider text-zinc-500 flex items-center gap-1.5 mb-1.5">
+                                <Check className="h-3 w-3 text-sky-400" />
+                                What&apos;s Standard
+                              </span>
+                              <p className="text-xs text-zinc-300 font-light leading-relaxed">
+                                {service.standard}
+                              </p>
+                            </div>
+
+                            {/* Good Fit If */}
+                            <div>
+                              <span className="text-[10px] uppercase tracking-wider text-zinc-500 flex items-center gap-1.5 mb-1.5">
+                                <AlertCircle className="h-3 w-3 text-purple-400" />
+                                Good Fit If
+                              </span>
+                              <p className="text-xs text-zinc-300 font-light leading-relaxed">
+                                {service.trigger}
+                              </p>
+                            </div>
                           </div>
                         </div>
 
-                        {/* Description */}
-                        <p className="text-white text-sm font-light leading-relaxed mb-6">
-                          {service.desc}
-                        </p>
-
-                        {/* Structured Details */}
-                        <div className="space-y-4 pt-4 border-t border-white/5">
-                          {/* What's Standard */}
-                          <div>
-                            <span className="text-[10px] uppercase tracking-wider text-zinc-500 flex items-center gap-1.5 mb-1.5">
-                              <Check className="h-3 w-3 text-sky-400" />
-                              What&apos;s Standard
-                            </span>
-                            <p className="text-xs text-zinc-300 font-light leading-relaxed">
-                              {service.standard}
-                            </p>
-                          </div>
-
-                          {/* Good Fit If */}
-                          <div>
-                            <span className="text-[10px] uppercase tracking-wider text-zinc-500 flex items-center gap-1.5 mb-1.5">
-                              <AlertCircle className="h-3 w-3 text-purple-400" />
-                              Good Fit If
-                            </span>
-                            <p className="text-xs text-zinc-300 font-light leading-relaxed">
-                              {service.trigger}
-                            </p>
-                          </div>
+                        {/* CTA Buttons */}
+                        <div className="mt-8 pt-4 flex flex-col gap-2.5 pointer-events-auto w-full">
+                          <button
+                            onClick={() => setSelectedService(service)}
+                            className="w-full inline-flex items-center gap-1.5 rounded-full bg-sky-500/10 border border-sky-500/20 px-4 py-2.5 text-[11px] font-semibold text-sky-400 hover:bg-sky-400 hover:text-black hover:border-sky-400 transition-all duration-300 justify-center cursor-pointer select-none"
+                          >
+                            Learn More
+                          </button>
+                          <a
+                            href="/contact"
+                            className="w-full inline-flex items-center gap-1.5 rounded-full bg-white/5 border border-white/10 px-4 py-2.5 text-[11px] font-semibold text-white hover:bg-white hover:text-black hover:border-white transition-all duration-300 justify-center select-none"
+                          >
+                            {service.cta.replace(/[\[\]]/g, '').replace(/→/g, '').trim()}
+                            <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+                          </a>
                         </div>
-                      </div>
-
-                      {/* CTA Buttons */}
-                      <div className="mt-8 pt-4 flex flex-col gap-2.5 pointer-events-auto w-full">
-                        <button
-                          onClick={() => setSelectedService(service)}
-                          className="w-full inline-flex items-center gap-1.5 rounded-full bg-sky-500/10 border border-sky-500/20 px-4 py-2.5 text-[11px] font-semibold text-sky-400 hover:bg-sky-400 hover:text-black hover:border-sky-400 transition-all duration-300 justify-center cursor-pointer select-none"
-                        >
-                          Learn More
-                        </button>
-                        <a
-                          href="/contact"
-                          className="w-full inline-flex items-center gap-1.5 rounded-full bg-white/5 border border-white/10 px-4 py-2.5 text-[11px] font-semibold text-white hover:bg-white hover:text-black hover:border-white transition-all duration-300 justify-center select-none"
-                        >
-                          {service.cta.replace(/[\[\]]/g, '').replace(/→/g, '').trim()}
-                          <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
-                        </a>
-                      </div>
-                    </motion.div>
-                  </div>
-                ))}
+                      </motion.div>
+                    </div>
+                  ))}
+                </div>
+                {/* Dots indicator for mobile scroll */}
+                <div className="flex md:hidden justify-center gap-1.5 mt-2">
+                  {group.services.map((_, dotIdx) => {
+                    const isActive = (activeIndices[group.id] || 0) === dotIdx;
+                    return (
+                      <div
+                        key={dotIdx}
+                        className={`h-1.5 rounded-full transition-all duration-300 ${
+                          isActive ? "w-4 bg-sky-400" : "w-1.5 bg-white/40"
+                        }`}
+                      />
+                    );
+                  })}
+                </div>
               </div>
             </div>
           ))}
@@ -1018,7 +1048,7 @@ export function Services() {
             >
               {/* Dismiss area */}
               <div className="absolute inset-0 cursor-pointer" onClick={() => setSelectedService(null)} />
-              
+
               <motion.div
                 initial={{ scale: 0.95, y: 15, opacity: 0 }}
                 animate={{ scale: 1, y: 0, opacity: 1 }}
@@ -1056,7 +1086,7 @@ export function Services() {
                       {/* Intro & Sections */}
                       <div className="space-y-6">
                         <p className="text-white font-light leading-relaxed text-base md:text-lg">{detail.intro}</p>
-                        
+
                         <div className="grid md:grid-cols-2 gap-6">
                           {detail.sections.map((sec, idx) => (
                             <div key={idx} className="bg-white/[0.02] border border-white/5 rounded-xl p-5 hover:border-white/10 transition-colors">
@@ -1077,7 +1107,7 @@ export function Services() {
                             <div key={idx} className="border-b border-white/5 pb-6 last:border-b-0">
                               <h4 className="text-lg font-bold text-white mb-2">{cap.title}</h4>
                               <p className="text-sm md:text-[15px] text-white/90 font-light leading-relaxed mb-4">{cap.desc}</p>
-                              
+
                               <div className="mt-2">
                                 <span className="text-xs uppercase tracking-wider text-zinc-400 font-bold block mb-2">Key Activities:</span>
                                 <div className="flex flex-wrap gap-2">

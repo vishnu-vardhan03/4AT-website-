@@ -41,10 +41,10 @@ export function HeroIllustration() {
   useEffect(() => {
     if (prefersReducedMotion || hoveredIndex !== null || !isInView) return;
 
-    // Sequence Step Duration: reveal (350ms) + visible (1000ms) + fade (300ms) + delay (150ms) = 1800ms
+    // Sequence Step Duration: reveal (250ms) + visible (650ms) + fade (200ms) + delay (100ms) = 1200ms
     const timer = setTimeout(() => {
       setActiveIndex((prev) => (prev === null ? 0 : (prev + 1) % 5));
-    }, 1800);
+    }, 1200);
 
     return () => clearTimeout(timer);
   }, [activeIndex, hoveredIndex, isInView, prefersReducedMotion]);
@@ -279,7 +279,7 @@ export function HeroIllustration() {
         {/* ── LEFT SIDE CARD 1 (Top-Left): Industry Mentorship (Seq 0) ─────────── */}
         <motion.div
           style={{ x: card1X, y: card1Y }}
-          className="absolute top-[10%] left-[0%] sm:left-[0%] z-30 flex"
+          className="absolute top-[50%] left-[50%] ml-[-151px] mt-[-64px] min-[375px]:ml-[-177px] min-[375px]:mt-[-72px] sm:top-[10%] sm:left-[2%] sm:ml-0 sm:mt-0 lg:left-[0%] z-30 flex"
           initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.7, y: prefersReducedMotion ? 0 : 20 }}
           animate={isRevealed ? { opacity: 1, scale: 1, y: 0 } : undefined}
           transition={{
@@ -291,7 +291,7 @@ export function HeroIllustration() {
           <motion.div
             animate={isRevealed && !prefersReducedMotion ? { y: [0, -7, 0] } : {}}
             transition={{
-              duration: 3.4,
+              duration: 2.3,
               repeat: Infinity,
               ease: "easeInOut",
               delay: 0.5
@@ -317,7 +317,7 @@ export function HeroIllustration() {
             }}
           >
             <div
-              className={`card-inner flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.03] backdrop-blur-xl border transition-all duration-300 ease-out cursor-pointer relative overflow-hidden ${
+              className={`card-inner flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.03] backdrop-blur-xl border transition-all duration-200 ease-out cursor-pointer relative overflow-hidden ${
                 isCardActive(0)
                   ? "border-purple-400/80 shadow-[0_0_28px_rgba(168,109,255,0.55)] scale-[1.08]"
                   : "border-white/12 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_10px_30px_rgba(0,0,0,0.6)]"
@@ -325,20 +325,20 @@ export function HeroIllustration() {
               style={{ transformStyle: "preserve-3d" }}
             >
               <div
-                className={`absolute inset-0 transition-opacity duration-300 pointer-events-none rounded-2xl ${
+                className={`absolute inset-0 transition-opacity duration-200 pointer-events-none rounded-2xl ${
                   isCardActive(0) ? "opacity-100" : "opacity-0 group-hover:opacity-100"
                 }`}
                 style={{ background: "radial-gradient(circle at var(--sx, 50%) var(--sy, 50%), rgba(168,109,255,0.25) 0%, transparent 60%)" }}
               />
-              <User className={`w-5 h-5 sm:w-6 sm:h-6 text-[#A86DFF] filter drop-shadow-[0_0_8px_rgba(168,109,255,0.7)] transition-transform duration-300 relative z-10 ${isCardActive(0) ? "scale-110" : ""}`} />
+              <User className={`w-5 h-5 sm:w-6 sm:h-6 text-[#A86DFF] filter drop-shadow-[0_0_8px_rgba(168,109,255,0.7)] transition-transform duration-200 relative z-10 ${isCardActive(0) ? "scale-110" : ""}`} />
             </div>
 
             {/* Contextual Value Label Tooltip */}
             <div
               className={`absolute left-full ml-3 top-1/2 -translate-y-1/2 transition-all ease-out pointer-events-none z-50 whitespace-nowrap ${
                 isCardActive(0)
-                  ? "opacity-100 translate-x-0 duration-300"
-                  : "opacity-0 -translate-x-1 duration-300"
+                  ? "opacity-100 translate-x-0 duration-200"
+                  : "opacity-0 -translate-x-1 duration-200"
               }`}
             >
               <div className="px-3.5 py-1.5 rounded-xl bg-[#0c0f1d]/90 backdrop-blur-md border border-purple-400/40 text-white font-sans font-medium text-[13px] sm:text-[14px] shadow-[0_10px_25px_rgba(0,0,0,0.8),0_0_15px_rgba(168,109,255,0.3)] flex items-center gap-2">
@@ -352,7 +352,7 @@ export function HeroIllustration() {
         {/* ── LEFT SIDE CARD 2 (Mid-Left): Internship (Seq 4) ──────────────── */}
         <motion.div
           style={{ x: card3X, y: card3Y }}
-          className="absolute top-[46%] left-[-32%] sm:left-[-26%] lg:left-[-32%] z-30 flex"
+          className="absolute top-[50%] left-[50%] ml-[-22px] mt-[-150px] sm:top-[46%] sm:left-[-18%] sm:ml-0 sm:mt-0 lg:left-[-32%] z-30 flex"
           initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.7, y: prefersReducedMotion ? 0 : 20 }}
           animate={isRevealed ? { opacity: 1, scale: 1, y: 0 } : undefined}
           transition={{
@@ -364,7 +364,7 @@ export function HeroIllustration() {
           <motion.div
             animate={isRevealed && !prefersReducedMotion ? { y: [0, -5, 0] } : {}}
             transition={{
-              duration: 2.8,
+              duration: 1.9,
               repeat: Infinity,
               ease: "easeInOut",
               delay: 2.0
@@ -390,7 +390,7 @@ export function HeroIllustration() {
             }}
           >
             <div
-              className={`card-inner flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.03] backdrop-blur-xl border transition-all duration-300 ease-out cursor-pointer relative overflow-hidden ${
+              className={`card-inner flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.03] backdrop-blur-xl border transition-all duration-200 ease-out cursor-pointer relative overflow-hidden ${
                 isCardActive(4)
                   ? "border-purple-400/80 shadow-[0_0_28px_rgba(168,109,255,0.55)] scale-[1.08]"
                   : "border-white/12 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_10px_30px_rgba(0,0,0,0.6)]"
@@ -398,20 +398,20 @@ export function HeroIllustration() {
               style={{ transformStyle: "preserve-3d" }}
             >
               <div
-                className={`absolute inset-0 transition-opacity duration-300 pointer-events-none rounded-2xl ${
+                className={`absolute inset-0 transition-opacity duration-200 pointer-events-none rounded-2xl ${
                   isCardActive(4) ? "opacity-100" : "opacity-0 group-hover:opacity-100"
                 }`}
                 style={{ background: "radial-gradient(circle at var(--sx, 50%) var(--sy, 50%), rgba(168,109,255,0.25) 0%, transparent 60%)" }}
               />
-              <Briefcase className={`w-5 h-5 sm:w-6 sm:h-6 text-[#A86DFF] filter drop-shadow-[0_0_8px_rgba(168,109,255,0.7)] transition-transform duration-300 relative z-10 ${isCardActive(4) ? "scale-110" : ""}`} />
+              <Briefcase className={`w-5 h-5 sm:w-6 sm:h-6 text-[#A86DFF] filter drop-shadow-[0_0_8px_rgba(168,109,255,0.7)] transition-transform duration-200 relative z-10 ${isCardActive(4) ? "scale-110" : ""}`} />
             </div>
 
             {/* Contextual Value Label Tooltip */}
             <div
               className={`absolute left-full ml-3 top-1/2 -translate-y-1/2 transition-all ease-out pointer-events-none z-50 whitespace-nowrap ${
                 isCardActive(4)
-                  ? "opacity-100 translate-x-0 duration-300"
-                  : "opacity-0 -translate-x-1 duration-300"
+                  ? "opacity-100 translate-x-0 duration-200"
+                  : "opacity-0 -translate-x-1 duration-200"
               }`}
             >
               <div className="px-3.5 py-1.5 rounded-xl bg-[#0c0f1d]/90 backdrop-blur-md border border-purple-400/40 text-white font-sans font-medium text-[13px] sm:text-[14px] shadow-[0_10px_25px_rgba(0,0,0,0.8),0_0_15px_rgba(168,109,255,0.3)] flex items-center gap-2">
@@ -425,7 +425,7 @@ export function HeroIllustration() {
         {/* ── LEFT SIDE CARD 3 (Bottom-Left): Placement Support (Seq 3) ──────────── */}
         <motion.div
           style={{ x: card4X, y: card4Y }}
-          className="absolute bottom-[10%] left-[0%] sm:left-[0%] z-30 flex"
+          className="absolute top-[50%] left-[50%] ml-[-116px] mt-[107px] sm:top-auto sm:bottom-[10%] sm:left-[2%] sm:ml-0 sm:mt-0 lg:left-[0%] z-30 flex"
           initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.7, y: prefersReducedMotion ? 0 : 20 }}
           animate={isRevealed ? { opacity: 1, scale: 1, y: 0 } : undefined}
           transition={{
@@ -437,7 +437,7 @@ export function HeroIllustration() {
           <motion.div
             animate={isRevealed && !prefersReducedMotion ? { y: [0, -9, 0] } : {}}
             transition={{
-              duration: 3.6,
+              duration: 2.4,
               repeat: Infinity,
               ease: "easeInOut",
               delay: 1.6
@@ -463,7 +463,7 @@ export function HeroIllustration() {
             }}
           >
             <div
-              className={`card-inner flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.03] backdrop-blur-xl border transition-all duration-300 ease-out cursor-pointer relative overflow-hidden ${
+              className={`card-inner flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.03] backdrop-blur-xl border transition-all duration-200 ease-out cursor-pointer relative overflow-hidden ${
                 isCardActive(3)
                   ? "border-emerald-400/80 shadow-[0_0_28px_rgba(20,241,149,0.55)] scale-[1.08]"
                   : "border-white/12 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_10px_30px_rgba(0,0,0,0.6)]"
@@ -471,20 +471,20 @@ export function HeroIllustration() {
               style={{ transformStyle: "preserve-3d" }}
             >
               <div
-                className={`absolute inset-0 transition-opacity duration-300 pointer-events-none rounded-2xl ${
+                className={`absolute inset-0 transition-opacity duration-200 pointer-events-none rounded-2xl ${
                   isCardActive(3) ? "opacity-100" : "opacity-0 group-hover:opacity-100"
                 }`}
                 style={{ background: "radial-gradient(circle at var(--sx, 50%) var(--sy, 50%), rgba(20,241,149,0.25) 0%, transparent 60%)" }}
               />
-              <TrendingUp className={`w-5 h-5 sm:w-6 sm:h-6 text-[#14F195] filter drop-shadow-[0_0_8px_rgba(20,241,149,0.7)] transition-transform duration-300 relative z-10 ${isCardActive(3) ? "scale-110" : ""}`} />
+              <TrendingUp className={`w-5 h-5 sm:w-6 sm:h-6 text-[#14F195] filter drop-shadow-[0_0_8px_rgba(20,241,149,0.7)] transition-transform duration-200 relative z-10 ${isCardActive(3) ? "scale-110" : ""}`} />
             </div>
 
             {/* Contextual Value Label Tooltip */}
             <div
               className={`absolute left-full ml-3 top-1/2 -translate-y-1/2 transition-all ease-out pointer-events-none z-50 whitespace-nowrap ${
                 isCardActive(3)
-                  ? "opacity-100 translate-x-0 duration-300"
-                  : "opacity-0 -translate-x-1 duration-300"
+                  ? "opacity-100 translate-x-0 duration-200"
+                  : "opacity-0 -translate-x-1 duration-200"
               }`}
             >
               <div className="px-3.5 py-1.5 rounded-xl bg-[#0c0f1d]/90 backdrop-blur-md border border-emerald-400/40 text-white font-sans font-medium text-[13px] sm:text-[14px] shadow-[0_10px_25px_rgba(0,0,0,0.8),0_0_15px_rgba(20,241,149,0.3)] flex items-center gap-2">
@@ -498,7 +498,7 @@ export function HeroIllustration() {
         {/* ── RIGHT SIDE CARD 1 (Top-Right): AI + Industry Tools (Seq 1) ───────────── */}
         <motion.div
           style={{ x: card2X, y: card2Y }}
-          className="absolute top-[16%] right-[2%] sm:right-[4%] z-30 flex"
+          className="absolute top-[50%] left-[50%] ml-[107px] mt-[-64px] min-[375px]:ml-[133px] min-[375px]:mt-[-72px] sm:top-[16%] sm:left-auto sm:right-[4%] sm:ml-0 sm:mt-0 z-30 flex"
           initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.7, y: prefersReducedMotion ? 0 : 20 }}
           animate={isRevealed ? { opacity: 1, scale: 1, y: 0 } : undefined}
           transition={{
@@ -510,7 +510,7 @@ export function HeroIllustration() {
           <motion.div
             animate={isRevealed && !prefersReducedMotion ? { y: [0, -11, 0] } : {}}
             transition={{
-              duration: 4.2,
+              duration: 2.8,
               repeat: Infinity,
               ease: "easeInOut",
               delay: 1.2
@@ -536,7 +536,7 @@ export function HeroIllustration() {
             }}
           >
             <div
-              className={`card-inner flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.03] backdrop-blur-xl border transition-all duration-300 ease-out cursor-pointer relative overflow-hidden ${
+              className={`card-inner flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.03] backdrop-blur-xl border transition-all duration-200 ease-out cursor-pointer relative overflow-hidden ${
                 isCardActive(1)
                   ? "border-cyan-400/80 shadow-[0_0_28px_rgba(83,231,255,0.55)] scale-[1.08]"
                   : "border-white/12 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_10px_30px_rgba(0,0,0,0.6)]"
@@ -544,20 +544,20 @@ export function HeroIllustration() {
               style={{ transformStyle: "preserve-3d" }}
             >
               <div
-                className={`absolute inset-0 transition-opacity duration-300 pointer-events-none rounded-2xl ${
+                className={`absolute inset-0 transition-opacity duration-200 pointer-events-none rounded-2xl ${
                   isCardActive(1) ? "opacity-100" : "opacity-0 group-hover:opacity-100"
                 }`}
                 style={{ background: "radial-gradient(circle at var(--sx, 50%) var(--sy, 50%), rgba(83,231,255,0.25) 0%, transparent 60%)" }}
               />
-              <Cpu className={`w-5 h-5 sm:w-6 sm:h-6 text-[#53E7FF] filter drop-shadow-[0_0_8px_rgba(83,231,255,0.7)] transition-transform duration-300 relative z-10 ${isCardActive(1) ? "scale-110" : ""}`} />
+              <Cpu className={`w-5 h-5 sm:w-6 sm:h-6 text-[#53E7FF] filter drop-shadow-[0_0_8px_rgba(83,231,255,0.7)] transition-transform duration-200 relative z-10 ${isCardActive(1) ? "scale-110" : ""}`} />
             </div>
 
             {/* Contextual Value Label Tooltip */}
             <div
               className={`absolute right-full mr-3 top-1/2 -translate-y-1/2 transition-all ease-out pointer-events-none z-50 whitespace-nowrap ${
                 isCardActive(1)
-                  ? "opacity-100 translate-x-0 duration-300"
-                  : "opacity-0 translate-x-1 duration-300"
+                  ? "opacity-100 translate-x-0 duration-200"
+                  : "opacity-0 translate-x-1 duration-200"
               }`}
             >
               <div className="px-3.5 py-1.5 rounded-xl bg-[#0c0f1d]/90 backdrop-blur-md border border-cyan-400/40 text-white font-sans font-medium text-[13px] sm:text-[14px] shadow-[0_10px_25px_rgba(0,0,0,0.8),0_0_15px_rgba(83,231,255,0.3)] flex items-center gap-2">
@@ -571,7 +571,7 @@ export function HeroIllustration() {
         {/* ── RIGHT SIDE CARD 2 (Bottom-Right): Certification (Seq 2) ──────────────── */}
         <motion.div
           style={{ x: card5X, y: card5Y }}
-          className="absolute bottom-[14%] right-[3%] sm:right-[4%] z-30 flex"
+          className="absolute top-[50%] left-[50%] ml-[46px] mt-[71px] sm:top-auto sm:bottom-[14%] sm:left-auto sm:right-[4%] sm:ml-0 sm:mt-0 z-30 flex"
           initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.7, y: prefersReducedMotion ? 0 : 20 }}
           animate={isRevealed ? { opacity: 1, scale: 1, y: 0 } : undefined}
           transition={{
@@ -583,7 +583,7 @@ export function HeroIllustration() {
           <motion.div
             animate={isRevealed && !prefersReducedMotion ? { y: [0, -8, 0] } : {}}
             transition={{
-              duration: 3.8,
+              duration: 2.6,
               repeat: Infinity,
               ease: "easeInOut",
               delay: 1.8
@@ -609,7 +609,7 @@ export function HeroIllustration() {
             }}
           >
             <div
-              className={`card-inner flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.03] backdrop-blur-xl border transition-all duration-300 ease-out cursor-pointer relative overflow-hidden ${
+              className={`card-inner flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.03] backdrop-blur-xl border transition-all duration-200 ease-out cursor-pointer relative overflow-hidden ${
                 isCardActive(2)
                   ? "border-cyan-400/80 shadow-[0_0_28px_rgba(83,231,255,0.55)] scale-[1.08]"
                   : "border-white/12 shadow-[inset_0_1px_rgba(255,255,255,0.15),0_10px_30px_rgba(0,0,0,0.6)]"
@@ -617,20 +617,20 @@ export function HeroIllustration() {
               style={{ transformStyle: "preserve-3d" }}
             >
               <div
-                className={`absolute inset-0 transition-opacity duration-300 pointer-events-none rounded-2xl ${
+                className={`absolute inset-0 transition-opacity duration-200 pointer-events-none rounded-2xl ${
                   isCardActive(2) ? "opacity-100" : "opacity-0 group-hover:opacity-100"
                 }`}
                 style={{ background: "radial-gradient(circle at var(--sx, 50%) var(--sy, 50%), rgba(83,231,255,0.25) 0%, transparent 60%)" }}
               />
-              <Award className={`w-5 h-5 sm:w-6 sm:h-6 text-[#53E7FF] filter drop-shadow-[0_0_8px_rgba(83,231,255,0.7)] transition-transform duration-300 relative z-10 ${isCardActive(2) ? "scale-110" : ""}`} />
+              <Award className={`w-5 h-5 sm:w-6 sm:h-6 text-[#53E7FF] filter drop-shadow-[0_0_8px_rgba(83,231,255,0.7)] transition-transform duration-200 relative z-10 ${isCardActive(2) ? "scale-110" : ""}`} />
             </div>
 
             {/* Contextual Value Label Tooltip */}
             <div
               className={`absolute right-full mr-3 top-1/2 -translate-y-1/2 transition-all ease-out pointer-events-none z-50 whitespace-nowrap ${
                 isCardActive(2)
-                  ? "opacity-100 translate-x-0 duration-300"
-                  : "opacity-0 translate-x-1 duration-300"
+                  ? "opacity-100 translate-x-0 duration-200"
+                  : "opacity-0 translate-x-1 duration-200"
               }`}
             >
               <div className="px-3.5 py-1.5 rounded-xl bg-[#0c0f1d]/90 backdrop-blur-md border border-cyan-400/40 text-white font-sans font-medium text-[13px] sm:text-[14px] shadow-[0_10px_25px_rgba(0,0,0,0.8),0_0_15px_rgba(83,231,255,0.3)] flex items-center gap-2">

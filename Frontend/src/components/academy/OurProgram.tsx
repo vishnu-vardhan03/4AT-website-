@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import { SectionPill } from "./SectionPill";
 import { HowItWorks } from "./HowItWorks";
 import { BookOpen, Target } from "lucide-react";
@@ -18,17 +19,25 @@ export function OurProgram({ sectionId = "program" }: { sectionId?: string }) {
       <div className="site-shell relative z-10 w-full">
 
         {/* ── 1. PARENT SECTION HEADER ────────────────────────────────────── */}
-        <div className="flex flex-col items-start text-left max-w-4xl mb-14">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col items-start text-left max-w-4xl mb-14"
+        >
           <SectionPill className="mb-4">
             OUR PROGRAM
           </SectionPill>
 
           <h2 className="section-title text-left text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+            The{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 font-sans">
-              The FinTech Engineering Program
-            </span>
+              FinTech
+            </span>{" "}
+            Engineering Program
           </h2>
-        </div>
+        </motion.div>
 
         {/* ── 2. TOP EDITORIAL 2-COLUMN SPLIT (WHAT & WHY) ──────────────────── */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-[72px] relative items-stretch">
@@ -36,7 +45,17 @@ export function OurProgram({ sectionId = "program" }: { sectionId?: string }) {
           <div className="hidden md:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[1px] bg-gradient-to-b from-transparent via-white/15 to-transparent pointer-events-none" />
 
           {/* LEFT COLUMN: ABOUT THE PROGRAM */}
-          <div className="flex flex-col justify-between w-full space-y-6 md:pr-4">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{
+              duration: 0.5,
+              delay: 0.1,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="flex flex-col justify-between w-full space-y-6 md:pr-4"
+          >
             <div>
               {/* Header Badge & Icon */}
               <div className="flex items-center gap-3 mb-4">
@@ -49,17 +68,27 @@ export function OurProgram({ sectionId = "program" }: { sectionId?: string }) {
               </div>
 
               <h4 className="text-2xl sm:text-3xl font-bold text-white font-display leading-tight mb-4">
-                About the <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">program</span>
+                The <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">program</span>
               </h4>
 
               <p className="text-white/80 font-sans text-sm sm:text-base leading-relaxed">
-                The FinTech Engineering Program (FEP) is a practice-led program that takes commerce graduates to the capability of a 2-3-year professional — through certification, internship, and placement. Advanced tracks are available for experienced professionals.
+                The FinTech Engineering Program (FEP) takes commerce graduates and final-year students to the capability of a 2–3-year professional — through certification, internship and placement. Advanced tracks are available for experienced professionals looking to specialise and advance.
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* RIGHT COLUMN: THEORY VS JOB EXECUTION */}
-          <div className="flex flex-col justify-between w-full space-y-6 md:pl-4">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{
+              duration: 0.5,
+              delay: 0.2,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="flex flex-col justify-between w-full space-y-6 md:pl-4"
+          >
             <div>
               {/* Header Badge & Icon */}
               <div className="flex items-center gap-3 mb-4">
@@ -72,25 +101,31 @@ export function OurProgram({ sectionId = "program" }: { sectionId?: string }) {
               </div>
 
               <h4 className="text-2xl sm:text-3xl font-bold text-white font-display leading-tight mb-4">
-                A degree gives you theory. <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">Employers want the job done.</span>
+                Built for <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">careers</span>, not just <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">certificates</span>.
               </h4>
 
-              <p className="text-white/90 font-sans text-sm sm:text-base font-medium leading-relaxed mb-3">
-                Recording transactions, closing the books, auditing the numbers — that&apos;s the actual job.
-              </p>
-
               <p className="text-white/80 font-sans text-sm sm:text-base leading-relaxed">
-                Preparing financial statements, auditing the numbers, and engaging clients — that&apos;s what finance and audit teams hire for. 4AT Academy bridges that gap with practice-led training, built and run by a working finance, accounting, and audit firm.
+                A degree gives you theory. Employers want the job done. Recording transactions, reconciling accounts, closing the books, preparing financial statements, reporting the numbers, working with AI and automation tools, and communicating with clients — that&apos;s what finance teams actually hire for. 4AT Academy bridges that gap with practice-led training, built and run by a working finance, accounting and audit firm.
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* ── 3. SUBTLE HORIZONTAL DIVIDER ABOVE HOW IT WORKS ──────────────── */}
         <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent mt-14 mb-12" />
 
         {/* ── 4. BOTTOM SUBSECTION: HOW IT WORKS ───────────────────────────── */}
-        <div className="w-full">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{
+            duration: 0.6,
+            delay: 0.3,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          className="w-full"
+        >
           <div className="flex flex-col items-start mb-8">
             <div className="flex items-center gap-2.5 mb-3">
               <div className="w-2 h-2 rounded-full bg-purple-400 shadow-[0_0_8px_#a855f7]" />
@@ -99,7 +134,7 @@ export function OurProgram({ sectionId = "program" }: { sectionId?: string }) {
               </span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-bold text-white font-display mb-3">
-              Every learner is <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">evaluated</span> before becoming job-ready.
+              Every candidate is <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">evaluated</span> before becoming job-ready.
             </h3>
             <p className="text-white/60 font-sans text-sm sm:text-base">
               From pre-assessment to placement — a guided path.
@@ -116,7 +151,7 @@ export function OurProgram({ sectionId = "program" }: { sectionId?: string }) {
               Only learners who successfully complete every evaluation stage proceed to internship and placement support.
             </p>
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

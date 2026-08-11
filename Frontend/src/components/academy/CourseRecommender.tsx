@@ -105,10 +105,11 @@ export function CourseRecommender({ sectionId = "course-recommender" }: CourseRe
             <div className="flex flex-col items-start text-left">
               <SectionPill className="mb-7">READY TO START?</SectionPill>
 
-              <h2 className="section-title">
-                Find your program, then take the{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">
-                  free pre-assessment.
+              <h2 className="section-title text-3xl! sm:text-4xl! lg:text-[2rem]! xl:text-[2.75rem]!">
+                <span className="lg:hidden">Find your program, take the free pre-assessment.</span>
+                <span className="hidden lg:inline">
+                  Find your program, take<br />
+                  the free pre-assessment.
                 </span>
               </h2>
 
@@ -126,60 +127,63 @@ export function CourseRecommender({ sectionId = "course-recommender" }: CourseRe
               />
             </div>
 
-            <div className="flex flex-col items-start gap-4">
-              <p className="section-copy-label">Where are you currently?</p>
-              <div className="flex flex-wrap gap-3">
-                {backgrounds.map((option) => {
-                  const isSelected = background === option;
-                  return (
-                    <button
-                      key={option}
-                      onClick={() => setBackground(option)}
-                      className={`relative px-5 sm:px-6 py-3 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
-                        isSelected
-                          ? "fx-primary-btn text-white shadow-[0_0_18px_rgba(45,212,191,0.25)]"
-                          : "fx-ghost-btn text-slate-300 hover:text-white"
-                      }`}
-                    >
-                      <span className="relative z-10 inline-flex items-center gap-1.5">
-                        {option}
-                        {isSelected && <Check className="w-3.5 h-3.5 text-teal-400" strokeWidth={3} />}
-                      </span>
-                    </button>
-                  );
-                })}
+            <div className="flex flex-col gap-5">
+              <div className="flex flex-col items-start gap-4">
+                <p className="section-copy-label">Where are you currently?</p>
+                <div className="flex flex-wrap gap-3">
+                  {backgrounds.map((option) => {
+                    const isSelected = background === option;
+                    return (
+                      <button
+                        key={option}
+                        onClick={() => setBackground(option)}
+                        className={`relative px-5 sm:px-6 py-3 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                          isSelected
+                            ? "fx-primary-btn text-white shadow-[0_0_18px_rgba(45,212,191,0.25)]"
+                            : "fx-ghost-btn text-slate-300 hover:text-white"
+                        }`}
+                      >
+                        <span className="relative z-10 inline-flex items-center gap-1.5">
+                          {option}
+                          {isSelected && <Check className="w-3.5 h-3.5 text-teal-400" strokeWidth={3} />}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
 
-            <div className="w-full max-w-[420px] h-px bg-white/10" style={{ opacity: 0.15 }} />
+              <div className="w-full max-w-[420px] h-px bg-white/10" style={{ opacity: 0.15 }} />
 
-            <div className="flex flex-col items-start gap-5">
-              <p className="section-copy-label">What are you interested in?</p>
-              <div className="flex flex-wrap gap-2.5 max-w-[500px]">
-                {interests.map((chip) => {
-                  const isSelected = interest === chip;
-                  return (
-                    <motion.button
-                      key={chip}
-                      onClick={() => setInterest(chip)}
-                      whileTap={{ scale: 0.95 }}
-                      className={`inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider cursor-pointer transition-all duration-300 ${
-                        isSelected
-                          ? "fx-primary-btn text-white shadow-[0_0_18px_rgba(45,212,191,0.25)]"
-                          : "fx-ghost-btn text-slate-300 hover:text-white"
-                      }`}
-                    >
-                      {chip}
-                      {isSelected && <Check className="w-3.5 h-3.5 text-teal-400" strokeWidth={3} />}
-                    </motion.button>
-                  );
-                })}
+              <div className="flex flex-col items-start gap-5">
+                <p className="section-copy-label">What are you interested in?</p>
+                <div className="flex flex-wrap gap-2.5 max-w-[500px]">
+                  {interests.map((chip) => {
+                    const isSelected = interest === chip;
+                    return (
+                      <motion.button
+                        key={chip}
+                        onClick={() => setInterest(chip)}
+                        whileTap={{ scale: 0.95 }}
+                        className={`inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider cursor-pointer transition-all duration-300 ${
+                          isSelected
+                            ? "fx-primary-btn text-white shadow-[0_0_18px_rgba(45,212,191,0.25)]"
+                            : "fx-ghost-btn text-slate-300 hover:text-white"
+                        }`}
+                      >
+                        {chip}
+                        {isSelected && <Check className="w-3.5 h-3.5 text-teal-400" strokeWidth={3} />}
+                      </motion.button>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
 
           {/* Right: recommendation — appears only when options are selected */}
           <div className="relative lg:sticky lg:top-28 w-full flex flex-col items-start min-h-[460px]">
+            <div className="w-full lg:max-w-[520px] lg:ml-auto flex flex-col items-start">
             <div className="flex items-center gap-2 mb-4">
               <Sparkles className="w-3.5 h-3.5 text-[#5EEAD4]" />
               <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#5EEAD4]">
@@ -289,7 +293,7 @@ export function CourseRecommender({ sectionId = "course-recommender" }: CourseRe
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}
                   transition={{ duration: 0.3 }}
-                  className="relative rounded-[26px] border border-dashed border-white/15 bg-[#090B12]/40 p-8 sm:p-12 flex flex-col items-center justify-center text-center w-full max-w-[520px] min-h-[380px] backdrop-blur-sm"
+                  className="relative rounded-[26px] border border-blue-500/20 bg-gradient-to-b from-[#101726] via-[#0b0f19] to-[#080b12] shadow-[0_8px_24px_rgba(0,0,0,0.5)] transition-all duration-300 hover:border-blue-400/50 hover:shadow-[0_10px_30px_rgba(37,99,235,0.12)] p-8 sm:p-12 flex flex-col items-center justify-center text-center w-full max-w-[520px] min-h-[380px]"
                 >
                   <div className="w-14 h-14 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(45,212,191,0.15)] animate-pulse">
                     <Sparkles className="w-6 h-6" />
@@ -303,6 +307,7 @@ export function CourseRecommender({ sectionId = "course-recommender" }: CourseRe
                 </motion.div>
               )}
             </AnimatePresence>
+            </div>
           </div>
         </div>
       </div>
