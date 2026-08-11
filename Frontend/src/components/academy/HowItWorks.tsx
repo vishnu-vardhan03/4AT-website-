@@ -702,7 +702,7 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
             </SectionPill>
 
             <h2 className="section-title">
-              Every learner is{" "}
+              Every candidate is{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">
                 evaluated
               </span>{" "}

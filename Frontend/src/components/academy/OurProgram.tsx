@@ -31,9 +31,11 @@ export function OurProgram({ sectionId = "program" }: { sectionId?: string }) {
           </SectionPill>
 
           <h2 className="section-title text-left text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+            The{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 font-sans">
-              The FinTech Engineering Program
-            </span>
+              FinTech
+            </span>{" "}
+            Engineering Program
           </h2>
         </motion.div>
 
@@ -99,7 +101,7 @@ export function OurProgram({ sectionId = "program" }: { sectionId?: string }) {
               </div>
 
               <h4 className="text-2xl sm:text-3xl font-bold text-white font-display leading-tight mb-4">
-                Built for careers, <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">not just certificates.</span>
+                Built for <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">careers</span>, not just <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">certificates</span>.
               </h4>
 
               <p className="text-white/80 font-sans text-sm sm:text-base leading-relaxed">
@@ -132,7 +134,7 @@ export function OurProgram({ sectionId = "program" }: { sectionId?: string }) {
               </span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-bold text-white font-display mb-3">
-              Every learner is <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">evaluated</span> before becoming job-ready.
+              Every candidate is <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">evaluated</span> before becoming job-ready.
             </h3>
             <p className="text-white/60 font-sans text-sm sm:text-base">
               From pre-assessment to placement — a guided path.

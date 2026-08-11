@@ -116,15 +116,14 @@ export function Why4AT({ sectionId = "why-academy" }: { sectionId?: string }) {
             <SectionPill>WHY ACADEMY</SectionPill>
           </div>
           <h2 className="section-title w-full text-2xl sm:text-3xl lg:text-4xl xl:text-[2.6rem] font-bold leading-[1.2] font-display">
-            Not a coaching class — a{" "}
+            Why choose{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 font-sans">
-              working finance, accounting and audit firm
-            </span>{" "}
-            that trains professionals to its own{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">
-              client standards
+              4AT Academy
             </span>
           </h2>
+          <p className="section-desc">
+            Not a coaching class — a working finance, accounting and audit firm that trains professionals to its own client standards.
+          </p>
         </motion.div>
 
         {/* Structured Editorial Layout */}
