@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Star, Search, Filter, BookOpen, Clock, Award, Lock, ArrowLeft, ChevronRight, ChevronDown, X, ArrowRight, Monitor } from "lucide-react";
+import { Search, Filter, BookOpen, Clock, Award, Lock, ArrowLeft, ChevronRight, ChevronDown, X, ArrowRight, Monitor } from "lucide-react";
 import { lmsCourses } from "@/components/academy/data";
 import Image from "next/image";
 import { Nav } from "@/components/layout/MainNav";

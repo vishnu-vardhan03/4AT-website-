@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Query, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { ApiTags } from '@nestjs/swagger'; import { Throttle } from '@nestjs/throttler'; import { AiService } from './ai.service'; import { AiQueryDto } from './dto/ai-query.dto'; import { CreateAiLeadDto } from './dto/create-ai-lead.dto';
-@ApiTags('AI') @Controller('ai-leads') export class AiController {
+import { Throttle } from '@nestjs/throttler'; import { AiService } from './ai.service'; import { AiQueryDto } from './dto/ai-query.dto'; import { CreateAiLeadDto } from './dto/create-ai-lead.dto';
+@Controller('ai-leads') export class AiController {
   constructor(private readonly service: AiService) {}
   @Post() @Throttle({ default: { limit: 5, ttl: 60_000 } }) create(@Body() dto: CreateAiLeadDto) { return this.service.create(dto); }
   @Get() @UseGuards(JwtAuthGuard) findAll(@Query() query: AiQueryDto) { return this.service.findAll(query); }

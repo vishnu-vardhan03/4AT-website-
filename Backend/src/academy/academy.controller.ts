@@ -13,14 +13,12 @@ import {
   UseGuards,
 } from "@nestjs/common";
 import { JwtAuthGuard } from "../auth/jwt-auth.guard";
-import { ApiTags } from "@nestjs/swagger";
 import { Throttle } from "@nestjs/throttler";
 import { AcademyService } from "./academy.service";
 import { AcademyQueryDto } from "./dto/academy-query.dto";
 import { CreateAcademyLeadDto } from "./dto/create-academy-lead.dto";
 import { CreateAcademyRegistrationDto } from "./dto/create-academy-registration.dto";
 
-@ApiTags("Academy")
 @Controller("academy-leads")
 export class AcademyController {
   private readonly logger = new Logger(AcademyController.name);

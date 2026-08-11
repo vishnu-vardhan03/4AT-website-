@@ -66,15 +66,15 @@ export function HowItWorks() {
      * Outer div is (steps.length + 1) × 100vh tall so the user scrolls through
      * one full viewport per card before the section releases them.
      */
-    <div ref={containerRef} style={{ height: `${(steps.length + 1) * 100}vh` }}>
+    <div ref={containerRef} className="h-auto md:h-[500vh]">
       <section
         id="how-it-works"
-        className="sticky top-0 h-screen overflow-hidden bg-transparent text-white"
+        className="relative bg-transparent text-white md:sticky md:top-0 md:h-screen md:overflow-hidden"
       >
         {/* Grid background texture */}
         <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,rgba(255,255,255,.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.06)_1px,transparent_1px)] bg-[size:80px_80px]" />
 
-        <div className="relative mx-auto flex h-full max-w-[1400px] flex-col site-section">
+        <div className="relative mx-auto flex max-w-[1400px] flex-col site-section md:h-full">
 
           {/* ── Heading ── */}
           <div className="max-w-4xl shrink-0">
@@ -91,29 +91,23 @@ export function HowItWorks() {
           </div>
 
           {/* ── Cards grid — each card fades + slides in as user scrolls ── */}
-          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-8 grid gap-4 md:grid-cols-2 md:gap-5 xl:grid-cols-4">
             {steps.map((step, i) => {
               const isVisible = i < visibleCount;
               return (
                 <div
                   key={step.number}
-                  style={{
-                    opacity: isVisible ? 1 : 0,
-                    transform: isVisible
-                      ? "translateY(0) scale(1)"
-                      : "translateY(40px) scale(0.96)",
-                    transition: `opacity 0.55s ease, transform 0.55s ease`,
-                    transitionDelay: isVisible ? `${i * 60}ms` : "0ms",
-                  }}
+                  className="home-step-card"
+                  style={{ "--step-opacity": isVisible ? 1 : 0, "--step-transform": isVisible ? "translateY(0) scale(1)" : "translateY(40px) scale(0.96)", "--step-delay": isVisible ? `${i * 60}ms` : "0ms" } as React.CSSProperties}
                 >
-                  <article className="relative min-h-[390px] overflow-hidden rounded-2xl border border-white/20 bg-[#111114] p-6 shadow-[0_24px_70px_rgba(0,0,0,.35)]">
+                  <article className="relative overflow-hidden rounded-2xl border border-white/20 bg-[#111114] p-5 shadow-[0_18px_50px_rgba(0,0,0,.3)] md:min-h-[390px] md:p-6 md:shadow-[0_24px_70px_rgba(0,0,0,.35)]">
                     {/* Glow blob */}
                     <div
                       className="absolute -right-12 -top-12 size-36 rounded-full opacity-30 blur-2xl"
                       style={{ backgroundColor: step.color }}
                     />
 
-                    <div className="relative flex min-h-[350px] flex-col">
+                    <div className="relative flex flex-col md:min-h-[350px]">
                       {/* Number + timing */}
                       <div className="flex items-start justify-between">
                         <b className="text-lg" style={{ color: step.color }}>
@@ -139,7 +133,7 @@ export function HowItWorks() {
                       <p className="mt-4 text-sm leading-relaxed text-white/75">{step.body}</p>
 
                       {/* Detail */}
-                      <p className="mt-auto border-t border-white/10 pt-4 text-sm font-medium leading-relaxed text-white">
+                      <p className="mt-5 border-t border-white/10 pt-4 text-sm font-medium leading-relaxed text-white md:mt-auto">
                         {step.detail}
                       </p>
                     </div>
@@ -150,7 +144,7 @@ export function HowItWorks() {
           </div>
 
           {/* ── Progress dots ── */}
-          <div className="mt-4 flex shrink-0 items-center justify-center gap-2 pb-2">
+          <div className="mt-4 hidden shrink-0 items-center justify-center gap-2 pb-2 md:flex">
             {steps.map((step, i) => (
               <div
                 key={i}
@@ -166,14 +160,14 @@ export function HowItWorks() {
 
           {/* ── Scroll hint (shown before any card appears) ── */}
           <div
-            className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 transition-opacity duration-500"
+            className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-1 transition-opacity duration-500 md:flex"
             style={{ opacity: visibleCount === 0 ? 1 : 0 }}
           >
             <span className="text-xs font-bold uppercase tracking-widest text-white/40">
               Scroll to explore
             </span>
             <svg
-              className="animate-bounce text-white/30"
+              className="text-white/30"
               width={16}
               height={16}
               viewBox="0 0 24 24"

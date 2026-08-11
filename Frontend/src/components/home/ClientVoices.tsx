@@ -75,11 +75,11 @@ export function ClientVoices() {
             {rollingTestimonials.map((testimonial, index) => (
               <article
                 key={`${testimonial.id}-${index}`}
-                className="flex h-[270px] flex-col overflow-hidden rounded-2xl border border-white/15 bg-[#0b1020]/80 shadow-[0_24px_70px_rgba(0,0,0,.28)]"
+                className="flex h-[300px] flex-col overflow-hidden rounded-2xl border border-white/15 bg-[#0b1020]/80 shadow-[0_24px_70px_rgba(0,0,0,.28)] sm:h-[270px]"
                 style={{ flex: "0 0 min(500px, calc(100vw - 3rem))" }}
               >
-                <div className="flex h-[194px] items-center p-6 md:p-7">
-                  <p className="line-clamp-5 text-lg font-medium leading-relaxed text-white/90 md:text-xl">
+                <div className="flex min-h-0 flex-1 items-center p-5 sm:h-[194px] sm:flex-none sm:p-6 md:p-7">
+                  <p className="line-clamp-6 text-base font-medium leading-relaxed text-white/90 sm:line-clamp-5 sm:text-lg md:text-xl">
                     &quot;{testimonial.quote}&quot;
                   </p>
                 </div>
@@ -103,7 +103,7 @@ export function ClientVoices() {
                     </div>
                   </div>
 
-                  <div className="flex w-28 items-center justify-center border-l border-white/10 px-4">
+                  <div className="hidden w-28 items-center justify-center border-l border-white/10 px-4 sm:flex">
                     <span className="rounded border border-white/20 px-2 py-1 text-[10px] font-black uppercase tracking-widest text-white/45">
                       {testimonial.logo}
                     </span>

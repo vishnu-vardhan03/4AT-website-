@@ -71,10 +71,10 @@ export function LeadsChart({ stats }: LeadsChartProps) {
 
             <div className="h-[300px] min-w-0" aria-label="Bar chart of leads by category">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={data} layout="vertical" margin={{ top: 12, right: 20, bottom: 12, left: 8 }}>
+                <BarChart data={data} layout="vertical" margin={{ top: 12, right: 20, bottom: 12, left: 12 }}>
                   <CartesianGrid stroke="rgba(255,255,255,.06)" horizontal={false} />
                   <XAxis type="number" allowDecimals={false} stroke="rgba(255,255,255,.28)" tickLine={false} axisLine={false} />
-                  <YAxis type="category" dataKey="name" width={78} stroke="rgba(255,255,255,.55)" tickLine={false} axisLine={false} />
+                  <YAxis type="category" dataKey="name" width={96} tickMargin={8} stroke="rgba(255,255,255,.55)" tickLine={false} axisLine={false} />
                   <Tooltip cursor={{ fill: "rgba(255,255,255,.035)" }} contentStyle={tooltipStyle} itemStyle={{ color: "#f8fafc" }} />
                   <Bar dataKey="value" radius={[0, 8, 8, 0]} barSize={28}>
                     {data.map((item) => <Cell key={item.name} fill={item.color} />)}

@@ -333,6 +333,15 @@ export function Nav({ contactHref = "/contact" }: { contactHref?: string }) {
         </nav>
         <div className="flex items-center justify-self-end gap-2">
           <Link
+            href="/essl/login"
+            className={`hidden min-h-10 items-center px-2 py-2 text-[14px] font-bold leading-6 underline decoration-2 underline-offset-4 transition-colors duration-300 md:inline-flex ${isDarkBg
+                ? "text-white decoration-white/60 hover:text-zinc-200"
+                : "text-zinc-900 decoration-zinc-500 hover:text-black"
+              }`}
+          >
+            Employee Login
+          </Link>
+          <Link
             href={contactHref}
             className={`hidden min-h-10 items-center rounded-full px-5 py-2 text-[16px] font-medium leading-7 transition-all duration-300 md:inline-flex ${isDarkBg
                 ? "bg-white text-black hover:shadow-[0_0_24px_rgba(255,255,255,0.4)]"
@@ -406,6 +415,14 @@ export function Nav({ contactHref = "/contact" }: { contactHref?: string }) {
               </div>
             );
           })}
+
+          <Link
+            href="/essl/login"
+            onClick={closeMobileMenu}
+            className="mt-2 flex min-h-12 items-center justify-center px-4 text-sm font-bold text-white underline decoration-2 decoration-white/60 underline-offset-4"
+          >
+            Employee Login
+          </Link>
 
           <Link
             href={contactHref}
