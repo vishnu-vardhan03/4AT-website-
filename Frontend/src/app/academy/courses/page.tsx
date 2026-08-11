@@ -151,13 +151,17 @@ export default function CoursesPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredCourses.map((course) => {
                 const slug = getCourseSlug(course.title);
+                const isLocked = course.locked;
                 return (
                   <div
                     key={course.title}
                     onClick={() => {
+                      if (isLocked) return;
                       router.push(`/academy/courses/${slug}`);
                     }}
-                    className="group relative flex flex-col justify-between p-4.5 sm:p-5 rounded-[22px] border border-white/10 bg-[#090B12] cursor-pointer transition-all duration-300 hover:border-[#A78BFA]/35 hover:shadow-[0_12px_40px_rgba(139,92,246,0.15)] hover:-translate-y-1"
+                    className={`group relative flex flex-col justify-between p-4.5 sm:p-5 rounded-[22px] border border-white/10 bg-[#090B12] transition-all duration-300 ${
+                      isLocked ? "cursor-not-allowed opacity-80" : "cursor-pointer hover:border-[#A78BFA]/35 hover:shadow-[0_12px_40px_rgba(139,92,246,0.15)] hover:-translate-y-1"
+                    }`}
                   >
                     {/* Thumbnail Image Container */}
                     <div className="relative h-32 sm:h-36 w-full rounded-xl overflow-hidden bg-[#04060f] mb-3 shrink-0">
@@ -252,25 +256,37 @@ export default function CoursesPage() {
 
                     {/* CTA Buttons */}
                     <div className="mt-4 pt-2.5 border-t border-white/5 z-10 shrink-0 flex gap-2">
-                      <button
-                        className="flex-1 py-2.5 px-4 rounded-full text-[11px] tracking-[0.1em] uppercase font-bold text-white fx-primary-btn flex items-center justify-center gap-1.5 transition-all duration-300 cursor-pointer"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          router.push(`/academy/courses/${slug}`);
-                        }}
-                      >
-                        <span>{course.ctaText || "VIEW CURRICULUM"}</span>
-                        <ArrowRight className="w-3.5 h-3.5 text-white transition-transform duration-300 group-hover:translate-x-0.5" />
-                      </button>
-                      <button
-                        className="shrink-0 px-4 py-2.5 rounded-full text-[11px] tracking-[0.1em] uppercase font-bold text-white fx-ghost-btn transition-all duration-300 cursor-pointer whitespace-nowrap"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          router.push("/academy/register");
-                        }}
-                      >
-                        Check fit
-                      </button>
+                      {isLocked ? (
+                        <button
+                          disabled
+                          className="flex-1 py-2.5 px-4 rounded-full text-[11px] tracking-[0.1em] uppercase font-bold text-slate-500 bg-white/5 border border-white/10 flex items-center justify-center gap-1.5 cursor-not-allowed"
+                        >
+                          <Lock className="w-3.5 h-3.5" />
+                          <span>Locked</span>
+                        </button>
+                      ) : (
+                        <>
+                          <button
+                            className="flex-1 py-2.5 px-4 rounded-full text-[11px] tracking-[0.1em] uppercase font-bold text-white fx-primary-btn flex items-center justify-center gap-1.5 transition-all duration-300 cursor-pointer"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              router.push(`/academy/courses/${slug}`);
+                            }}
+                          >
+                            <span>{course.ctaText || "VIEW CURRICULUM"}</span>
+                            <ArrowRight className="w-3.5 h-3.5 text-white transition-transform duration-300 group-hover:translate-x-0.5" />
+                          </button>
+                          <button
+                            className="shrink-0 px-4 py-2.5 rounded-full text-[11px] tracking-[0.1em] uppercase font-bold text-white fx-ghost-btn transition-all duration-300 cursor-pointer whitespace-nowrap"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              router.push("/academy/register");
+                            }}
+                          >
+                            Check fit
+                          </button>
+                        </>
+                      )}
                     </div>
                   </div>
                 );

@@ -47,33 +47,45 @@ export function Engagement() {
         </div>
 
         <div className="relative mt-12">
-          <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="hidden lg:block pointer-events-none absolute left-[44px] right-[calc(25%-44px)] top-[44px] h-[2px] z-0">
-              <div className="absolute inset-0 bg-sky-400" />
-            </div>
+          {/* Horizontal connecting line on desktop (hidden on mobile/tablet) */}
+          <div className="hidden lg:block pointer-events-none absolute left-[44px] right-[calc(25%-44px)] top-[44px] h-[2px] z-0">
+            <div className="absolute inset-0 bg-sky-400" />
+          </div>
 
-            {steps.map((s) => {
+          <div className="relative flex flex-col lg:grid lg:grid-cols-4 gap-12 lg:gap-8">
+            {steps.map((s, idx) => {
               return (
                 <div
                   key={s.title}
-                  className="group relative transition-all duration-500 ease-out hover:-translate-y-2"
+                  className="group relative flex flex-row lg:flex-col items-start gap-6 lg:gap-0 transition-all duration-500 ease-out hover:-translate-y-1 lg:hover:-translate-y-2"
                 >
-                  <div
-                    className="relative z-10 flex items-center justify-center h-[88px] w-[88px] rounded-full bg-[#01030e] border border-sky-400 text-sky-400 shadow-[0_0_20px_rgba(56,189,248,0.15)] filter drop-shadow-[0_2px_8px_rgba(56,189,248,0.25)] group-hover:scale-110 group-hover:border-sky-300 group-hover:text-sky-300 group-hover:shadow-[0_0_25px_rgba(56,189,248,0.35)] transition-all duration-500 ease-out cursor-default select-none"
-                  >
-                    <span>{s.n}</span>
+                  {/* Vertical connecting line segment (only for steps before the last one) */}
+                  {idx < steps.length - 1 && (
+                    <div className="absolute left-[44px] top-[88px] bottom-[-48px] w-[2px] bg-sky-400 lg:hidden pointer-events-none z-0" />
+                  )}
+
+                  {/* Circle container */}
+                  <div className="flex-shrink-0 relative z-10">
+                    <div
+                      className="flex items-center justify-center h-[88px] w-[88px] rounded-full bg-[#01030e] border border-sky-400 text-sky-400 shadow-[0_0_20px_rgba(56,189,248,0.15)] filter drop-shadow-[0_2px_8px_rgba(56,189,248,0.25)] group-hover:scale-110 group-hover:border-sky-300 group-hover:text-sky-300 group-hover:shadow-[0_0_25px_rgba(56,189,248,0.35)] transition-all duration-500 ease-out cursor-default select-none text-xl font-bold"
+                    >
+                      <span>{s.n}</span>
+                    </div>
                   </div>
                   
-                  <h3 className="mt-8 text-2xl font-bold tracking-tight text-white group-hover:text-sky-300 transition-colors duration-500 ease-out">
-                    {s.title}
-                  </h3>
-                  <span className="block text-xs font-bold mt-1.5 uppercase tracking-widest select-none text-sky-400/80">
-                    {s.timeline}
-                  </span>
-                  
-                  <p className="mt-4 leading-relaxed text-sm lg:text-base font-normal text-zinc-400 group-hover:text-zinc-200 transition-colors duration-500 ease-out">
-                    {s.desc}
-                  </p>
+                  {/* Content Container */}
+                  <div className="flex-1 lg:mt-8">
+                    <h3 className="text-2xl font-bold tracking-tight text-white group-hover:text-sky-300 transition-colors duration-500 ease-out leading-tight">
+                      {s.title}
+                    </h3>
+                    <span className="block text-xs font-bold mt-1.5 uppercase tracking-widest select-none text-sky-400/80">
+                      {s.timeline}
+                    </span>
+                    
+                    <p className="mt-4 leading-relaxed text-sm lg:text-base font-normal text-zinc-400 group-hover:text-zinc-200 transition-colors duration-500 ease-out">
+                      {s.desc}
+                    </p>
+                  </div>
                 </div>
               );
             })}

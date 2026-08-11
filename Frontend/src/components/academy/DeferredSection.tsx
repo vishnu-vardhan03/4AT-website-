@@ -9,8 +9,7 @@ type DeferredSectionName =
   | "features"
   | "how-it-works"
   | "courses"
-  | "course-recommender"
-  | "audience-spectrum";
+  | "course-recommender";
 
 type DeferredSectionProps = {
   section: DeferredSectionName;
@@ -57,16 +56,6 @@ const CourseRecommender = dynamic(
     loading: () => <SectionSkeleton minHeight="640px" />,
   }
 );
-
-const AudienceSpectrum = dynamic(
-  () => import("@/components/academy/AudienceSpectrum").then((mod) => mod.AudienceSpectrum),
-  {
-    ssr: false,
-    loading: () => <SectionSkeleton minHeight="980px" />,
-  }
-);
-
-
 
 function SectionSkeleton({ minHeight }: { minHeight: string }) {
   return (
@@ -141,8 +130,6 @@ export function DeferredSection({ section, sectionId, href }: DeferredSectionPro
                 return <Courses sectionId={innerId} />;
               case "course-recommender":
                 return <CourseRecommender sectionId={innerId} href={href ?? "/academy/register"} />;
-              case "audience-spectrum":
-                return <AudienceSpectrum sectionId={innerId} />;
 
               default:
                 return null;
@@ -170,8 +157,6 @@ function getSkeletonHeight(section: DeferredSectionName) {
       return "980px";
     case "course-recommender":
       return "640px";
-    case "audience-spectrum":
-      return "980px";
 
     default:
       return "800px";

@@ -1,5 +1,7 @@
 import type { StepInfo, RegistrationFormData } from "./types";
 import type { CSSProperties } from "react";
+import { Country } from "country-state-city";
+import type { ICountry } from "country-state-city";
 
 // ── Option arrays ──────────────────────────────────────────────────────────────
 
@@ -44,6 +46,11 @@ export const DEPARTMENT_OPTIONS = [
   "Science & Arts",
   "Other",
 ] as const;
+
+/** Full country list (offline dataset via `country-state-city`), sorted alphabetically by name. */
+export const COUNTRIES: ICountry[] = Country.getAllCountries().sort((a, b) =>
+  a.name.localeCompare(b.name)
+);
 
 // ── Steps metadata ─────────────────────────────────────────────────────────────
 

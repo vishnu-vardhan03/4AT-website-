@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface RingLayer {
   id: string;
@@ -22,6 +22,20 @@ interface SphereGroup {
 
 export function InteractiveSphere({ categoryIndex = 0, onClick }: { categoryIndex?: number; onClick?: () => void }) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isAutoHovering, setIsAutoHovering] = useState(false);
+
+  useEffect(() => {
+    if (isHovered) {
+      setIsAutoHovering(false);
+      return;
+    }
+    const interval = setInterval(() => {
+      setIsAutoHovering((prev) => !prev);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, [isHovered]);
+
+  const activeHover = isHovered || isAutoHovering;
 
   // Group definitions corresponding to the 5 slides in Hero.tsx
   const groups: SphereGroup[] = [
@@ -216,7 +230,7 @@ export function InteractiveSphere({ categoryIndex = 0, onClick }: { categoryInde
   const activeGroup = groups[categoryIndex % groups.length];
 
   return (
-    <div className="relative w-full h-[450px] flex items-center justify-center pointer-events-auto select-none">
+    <div className="relative w-full h-[260px] sm:h-[320px] lg:h-[450px] flex items-center justify-center pointer-events-auto select-none">
       {/* Interactive Trigger Wrapper */}
       <motion.div
         className="relative w-72 h-72 flex items-center justify-center cursor-pointer"
@@ -229,8 +243,8 @@ export function InteractiveSphere({ categoryIndex = 0, onClick }: { categoryInde
         <motion.div
           className={`absolute rounded-full bg-gradient-to-tr ${activeGroup.coreColor} z-10 flex items-center justify-center`}
           animate={{
-            scale: isHovered ? [1.1, 1.25, 1.1] : [1, 1.1, 1],
-            boxShadow: isHovered
+            scale: activeHover ? [1.1, 1.25, 1.1] : [1, 1.1, 1],
+            boxShadow: activeHover
               ? `0 0 40px ${activeGroup.glowColor.replace("0.4", "0.8")}, 0 0 80px rgba(255, 255, 255, 0.2)`
               : `0 0 20px ${activeGroup.glowColor}, 0 0 40px rgba(255, 255, 255, 0.1)`,
           }}
@@ -269,11 +283,11 @@ export function InteractiveSphere({ categoryIndex = 0, onClick }: { categoryInde
               rotate: [0, 360 * layer.direction],
               x: 0,
               y: 0,
-              scale: isHovered ? 1.05 : 1,
+              scale: activeHover ? 1.05 : 1,
               width: `${layer.size}px`,
               height: `${layer.size}px`,
-              rotateX: isHovered ? 0 : 65,
-              rotateY: isHovered ? 0 : 15,
+              rotateX: activeHover ? 0 : 65,
+              rotateY: activeHover ? 0 : 15,
             }}
             transition={{
               rotate: {
@@ -321,10 +335,10 @@ export function InteractiveSphere({ categoryIndex = 0, onClick }: { categoryInde
             }}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{
-              opacity: isHovered ? 1 : 0,
-              scale: isHovered ? 1 : 0.8,
-              x: isHovered ? layer.hoverOffset.x * 1.5 : 0,
-              y: isHovered ? layer.hoverOffset.y * 1.5 : 0,
+              opacity: activeHover ? 1 : 0,
+              scale: activeHover ? 1 : 0.8,
+              x: activeHover ? layer.hoverOffset.x * 1.5 : 0,
+              y: activeHover ? layer.hoverOffset.y * 1.5 : 0,
             }}
             transition={{
               type: "spring",
@@ -338,7 +352,7 @@ export function InteractiveSphere({ categoryIndex = 0, onClick }: { categoryInde
         ))}
 
         {/* Dynamic Connection Beams (Holographic Laser Lines) */}
-        {isHovered &&
+        {activeHover &&
           activeGroup.layers.map((layer) => (
             <svg
               key={`line-${layer.id}`}
