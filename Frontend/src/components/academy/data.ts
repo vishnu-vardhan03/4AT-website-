@@ -268,7 +268,7 @@ export const lmsCourses: LmsCourse[] = [
     ],
     locked: false,
     category: "Accounting & ERP",
-    instructor: "4AT Academy Core",
+    instructor: "Jose Abraham",
     image: "/acc_l1_thumb.webp",
     badgeType: "bestseller",
     ctaText: "VIEW CURRICULUM"

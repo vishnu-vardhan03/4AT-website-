@@ -111,8 +111,8 @@ const courseCurriculums: Record<string, {
       }
     ],
     instructorBio: {
-      name: "4AT Academy Core Faculty",
-      title: "Finance & ERP Advisory Team",
+      name: "Jose Abraham",
+      title: "FP&A & Financial Analysis",
       rating: "4.8★",
       reviews: "1,240",
       students: "8,500+",
