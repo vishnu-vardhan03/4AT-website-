@@ -66,11 +66,11 @@ export function OurProgram({ sectionId = "program" }: { sectionId?: string }) {
               </div>
 
               <h4 className="text-2xl sm:text-3xl font-bold text-white font-display leading-tight mb-4">
-                About the <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">program</span>
+                The <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">program</span>
               </h4>
 
               <p className="text-white/80 font-sans text-sm sm:text-base leading-relaxed">
-                The FinTech Engineering Program (FEP) is a practice-led program that takes commerce graduates to the capability of a 2-3-year professional — through certification, internship, and placement. Advanced tracks are available for experienced professionals.
+                The FinTech Engineering Program (FEP) takes commerce graduates and final-year students to the capability of a 2–3-year professional — through certification, internship and placement. Advanced tracks are available for experienced professionals looking to specialise and advance.
               </p>
             </div>
           </motion.div>
@@ -99,15 +99,11 @@ export function OurProgram({ sectionId = "program" }: { sectionId?: string }) {
               </div>
 
               <h4 className="text-2xl sm:text-3xl font-bold text-white font-display leading-tight mb-4">
-                A degree gives you theory. <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">Employers want the job done.</span>
+                Built for careers, <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">not just certificates.</span>
               </h4>
 
-              <p className="text-white/90 font-sans text-sm sm:text-base font-medium leading-relaxed mb-3">
-                Recording transactions, closing the books, auditing the numbers — that&apos;s the actual job.
-              </p>
-
               <p className="text-white/80 font-sans text-sm sm:text-base leading-relaxed">
-                Preparing financial statements and engaging clients — that&apos;s what finance and audit teams hire for. 4AT Academy bridges that gap with practice-led training, built and run by a working finance, accounting, and audit firm.
+                A degree gives you theory. Employers want the job done. Recording transactions, reconciling accounts, closing the books, preparing financial statements, reporting the numbers, working with AI and automation tools, and communicating with clients — that&apos;s what finance teams actually hire for. 4AT Academy bridges that gap with practice-led training, built and run by a working finance, accounting and audit firm.
               </p>
             </div>
           </motion.div>

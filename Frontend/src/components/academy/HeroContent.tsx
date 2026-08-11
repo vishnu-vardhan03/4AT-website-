@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { ArrowRight, PhoneCall } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/academy/Button";
 
@@ -86,16 +86,20 @@ export function HeroContent() {
           </motion.span>
         </span>
 
-        {/* Line 2: Finance & Accounting career */}
+        {/* Line 2: Finance & Accounting */}
         <span className="block">
           <motion.span
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : "0.4em", filter: prefersReducedMotion ? "none" : "blur(6px)" }}
             animate={isRevealed ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
             transition={{ duration: prefersReducedMotion ? 0.3 : 0.6, delay: 0.62, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-block hero-gradient-word font-sans mr-[0.25em]"
+            className="inline-block hero-gradient-word font-sans"
           >
             Finance & Accounting
           </motion.span>
+        </span>
+
+        {/* Line 3: career */}
+        <span className="block">
           <motion.span
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : "0.4em", filter: prefersReducedMotion ? "none" : "blur(6px)" }}
             animate={isRevealed ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
@@ -106,12 +110,12 @@ export function HeroContent() {
           </motion.span>
         </span>
 
-        {/* Line 3: by 2–3 years. */}
+        {/* Line 4: by 2–3 years. */}
         <span className="block">
           <motion.span
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : "0.4em", filter: prefersReducedMotion ? "none" : "blur(6px)" }}
             animate={isRevealed ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
-            transition={{ duration: prefersReducedMotion ? 0.3 : 0.6, delay: 0.67, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: prefersReducedMotion ? 0.3 : 0.6, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="inline-block mr-[0.25em]"
           >
             by
@@ -119,7 +123,7 @@ export function HeroContent() {
           <motion.span
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : "0.4em", filter: prefersReducedMotion ? "none" : "blur(6px)" }}
             animate={isRevealed ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
-            transition={{ duration: prefersReducedMotion ? 0.3 : 0.6, delay: 0.79, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: prefersReducedMotion ? 0.3 : 0.6, delay: 0.82, ease: [0.16, 1, 0.3, 1] }}
             className="inline-block hero-gradient-word-2 font-sans"
           >
             2–3 years.
@@ -167,9 +171,9 @@ export function HeroContent() {
             ease: [0.34, 1.56, 0.64, 1]
           }}
         >
-          <Button href="/contact" variant="secondary">
-            Contact us
-            <PhoneCall className="w-4 h-4 transition-transform duration-300 group-hover:scale-110 shrink-0" />
+          <Button href="/academy/register" variant="secondary">
+            Check your eligibility
+            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Button>
         </motion.div>
       </div>
