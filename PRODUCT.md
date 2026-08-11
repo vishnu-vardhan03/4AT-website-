@@ -26,7 +26,7 @@ Employees create tickets, add a category, priority, description, and optional at
 ## Capabilities and Constraints
 
 - Tickets, attachment metadata, and in-app notifications are persisted in PostgreSQL through the NestJS API; uploaded files use backend-local storage. ESSL currently uses temporary signed email sessions restricted to `@consult-4at.com` and `@4at.ai`; Microsoft identity verification will replace this entry step.
-- The interface provides separate employee and technician dashboards. Employees cannot switch into technician access; the temporary IT support account is the only technician identity until Microsoft authentication is added.
+- The interface provides separate employee and technician dashboards. Employees cannot switch into technician access; the ESS Support account is the technician identity.
 - The existing 4AT website will expose ESSL from its top-right navigation.
 
 ## Brand Commitments

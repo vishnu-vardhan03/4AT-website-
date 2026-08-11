@@ -33,7 +33,8 @@ export const authOptions: NextAuthOptions = {
       tenantId: process.env.AZURE_AD_TENANT_ID,
       authorization: { params: { scope: "openid profile email User.Read" } },
       profile(profile) {
-        const email = profile.email?.trim().toLowerCase();
+        const emailClaim = typeof profile.email === "string" ? profile.email : typeof profile.preferred_username === "string" ? profile.preferred_username : undefined;
+        const email = emailClaim?.trim().toLowerCase();
         return {
           id: profile.sub,
           name: profile.name ?? profile.nickname ?? email,
@@ -83,9 +84,9 @@ export const authOptions: NextAuthOptions = {
     }),
     CredentialsProvider({
       id: "essl-admin",
-      name: "ESSL IT support",
+      name: "ESS Support",
       credentials: {
-        email: { label: "IT support email", type: "email" },
+        email: { label: "ESS Support email", type: "email" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
@@ -98,7 +99,7 @@ export const authOptions: NextAuthOptions = {
         const supplied = Buffer.from(password);
         const expected = Buffer.from(configuredPassword);
         if (supplied.length !== expected.length || !timingSafeEqual(supplied, expected)) return null;
-        return { id: configuredEmail, email: configuredEmail, name: "IT Support", role: "technician", accessToken: "" };
+        return { id: configuredEmail, email: configuredEmail, name: "ESS Support", role: "technician", accessToken: "" };
       },
     }),
   ],
@@ -114,6 +115,11 @@ export const authOptions: NextAuthOptions = {
         token.accessToken = user.accessToken;
         token.accessTokenExpires = user.accessToken ? getJwtExpiry(user.accessToken) : Date.now() + BACKEND_SESSION_MAX_AGE * 1000;
       }
+      const sessionEmail = typeof token.email === "string" ? token.email.trim().toLowerCase() : undefined;
+      const technicianEmail = process.env.ESSL_ADMIN_EMAIL?.trim().toLowerCase();
+      if (sessionEmail && isAllowedEsslEmail(sessionEmail)) {
+        token.role = technicianEmail && sessionEmail === technicianEmail ? "technician" : "employee";
+      }
       return token;
     },
     async session({ session, token }) {
@@ -123,5 +129,8 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
-  pages: { signIn: "/admin/login" },
+  pages: {
+    signIn: "/essl/login",
+    error: "/essl/login",
+  },
 };

@@ -333,13 +333,13 @@ export function Nav({ contactHref = "/contact" }: { contactHref?: string }) {
         </nav>
         <div className="flex items-center justify-self-end gap-2">
           <Link
-            href="/essl"
-            className={`hidden min-h-10 items-center rounded-full border px-4 py-2 text-[14px] font-bold leading-6 transition-all duration-300 md:inline-flex ${isDarkBg
-                ? "border-sky-300/30 bg-sky-300/10 text-sky-200 hover:border-sky-300/60 hover:bg-sky-300/15"
-                : "border-sky-700/20 bg-sky-50 text-sky-800 hover:border-sky-700/40 hover:bg-sky-100"
+            href="/essl/login"
+            className={`hidden min-h-10 items-center px-2 py-2 text-[14px] font-bold leading-6 underline decoration-2 underline-offset-4 transition-colors duration-300 md:inline-flex ${isDarkBg
+                ? "text-white decoration-white/60 hover:text-zinc-200"
+                : "text-zinc-900 decoration-zinc-500 hover:text-black"
               }`}
           >
-            ESSL
+            Employee Login
           </Link>
           <Link
             href={contactHref}
@@ -417,11 +417,11 @@ export function Nav({ contactHref = "/contact" }: { contactHref?: string }) {
           })}
 
           <Link
-            href="/essl"
+            href="/essl/login"
             onClick={closeMobileMenu}
-            className="mt-2 flex min-h-12 items-center justify-center rounded-xl border border-sky-300/25 bg-sky-300/10 px-4 text-sm font-bold text-sky-200"
+            className="mt-2 flex min-h-12 items-center justify-center px-4 text-sm font-bold text-white underline decoration-2 decoration-white/60 underline-offset-4"
           >
-            Open ESSL
+            Employee Login
           </Link>
 
           <Link

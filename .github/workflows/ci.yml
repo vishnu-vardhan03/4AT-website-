@@ -48,7 +48,7 @@ jobs:
           AZURE_AD_CLIENT_ID: ci-client-id
           AZURE_AD_CLIENT_SECRET: ci-client-secret
           AZURE_AD_TENANT_ID: ci-tenant-id
-          ESSL_ADMIN_EMAIL: itsupport@consult-4at.com
+          ESSL_ADMIN_EMAIL: esssupport@consult-4at.com
           ESSL_AUTH_MODE: legacy
           ESSL_ADMIN_PASSWORD: ci-only-temporary-password
           ESSL_INTERNAL_API_KEY: ci-only-internal-api-key-value-32
@@ -66,7 +66,7 @@ jobs:
           AZURE_AD_CLIENT_ID: ci-client-id
           AZURE_AD_CLIENT_SECRET: ci-client-secret
           AZURE_AD_TENANT_ID: ci-tenant-id
-          ESSL_ADMIN_EMAIL: itsupport@consult-4at.com
+          ESSL_ADMIN_EMAIL: esssupport@consult-4at.com
           ESSL_AUTH_MODE: legacy
           ESSL_ADMIN_PASSWORD: ci-only-temporary-password
           ESSL_INTERNAL_API_KEY: ci-only-internal-api-key-value-32

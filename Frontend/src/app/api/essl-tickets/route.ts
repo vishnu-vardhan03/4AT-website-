@@ -7,7 +7,7 @@ import { esslInternalApiKey } from "@/lib/server/essl-api-key";
 const schema = z.object({
   subject: z.string().trim().min(2).max(255),
   description: z.string().trim().min(2).max(5000),
-  category: z.enum(["IT & Access", "Facilities", "Food"]),
+  category: z.enum(["IT & Access", "Facilities", "Food", "Cab", "Finance & Admin", "Others"]),
   priority: z.enum(["Low", "Medium", "High"]),
 });
 

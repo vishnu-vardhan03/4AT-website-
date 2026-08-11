@@ -9,10 +9,13 @@ import { EsslNotificationController } from './essl-notification.controller';
 import { EsslInternalGuard } from './essl-internal.guard';
 import { EsslEmailLog } from './essl-email-log.entity';
 import { EsslEmailService } from './essl-email.service';
+import { EsslTicketActivity } from './essl-ticket-activity.entity';
+import { EsslEodSummaryController } from './essl-eod-summary.controller';
+import { EsslEodSummaryService } from './essl-eod-summary.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([EsslTicket, EsslTicketAttachment, EsslNotification, EsslEmailLog])],
-  controllers: [EsslTicketController, EsslNotificationController],
-  providers: [EsslTicketService, EsslInternalGuard, EsslEmailService],
+  imports: [TypeOrmModule.forFeature([EsslTicket, EsslTicketAttachment, EsslTicketActivity, EsslNotification, EsslEmailLog])],
+  controllers: [EsslTicketController, EsslNotificationController, EsslEodSummaryController],
+  providers: [EsslTicketService, EsslInternalGuard, EsslEmailService, EsslEodSummaryService],
 })
 export class EsslTicketModule {}

@@ -8,6 +8,9 @@ import { EsslTicketRequester1721640000004 } from './migrations/1721640000004-ess
 import { EsslNotifications1721640000005 } from './migrations/1721640000005-essl-notifications';
 import { EsslStatusEmail1721640000006 } from './migrations/1721640000006-essl-status-email';
 import { EsslCreatedEmailLog1721640000007 } from './migrations/1721640000007-essl-created-email-log';
+import { EsslCabCategory1721640000008 } from './migrations/1721640000008-essl-cab-category';
+import { EsslCategoriesAndActivity1721640000009 } from './migrations/1721640000009-essl-categories-and-activity';
+import { EsslTicketReopening1721640000010 } from './migrations/1721640000010-essl-ticket-reopening';
 
 export function getTypeOrmConfig(config: ConfigService): TypeOrmModuleOptions {
   const url = config.get<string>('DATABASE_URL');
@@ -16,7 +19,7 @@ export function getTypeOrmConfig(config: ConfigService): TypeOrmModuleOptions {
     autoLoadEntities: true,
     synchronize: false,
     migrationsRun: false,
-    migrations: [InitialLeadTables1721640000000, AcademyRegistrations1721640000001, EsslTickets1721640000002, EsslTicketAttachments1721640000003, EsslTicketRequester1721640000004, EsslNotifications1721640000005, EsslStatusEmail1721640000006, EsslCreatedEmailLog1721640000007],
+    migrations: [InitialLeadTables1721640000000, AcademyRegistrations1721640000001, EsslTickets1721640000002, EsslTicketAttachments1721640000003, EsslTicketRequester1721640000004, EsslNotifications1721640000005, EsslStatusEmail1721640000006, EsslCreatedEmailLog1721640000007, EsslCabCategory1721640000008, EsslCategoriesAndActivity1721640000009, EsslTicketReopening1721640000010],
     ssl: config.get<string>('DB_SSL') === 'true' ? { rejectUnauthorized: false } : false,
   };
 
