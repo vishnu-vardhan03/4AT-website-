@@ -67,7 +67,7 @@ export function CTA({ sectionId = "enroll" }: { sectionId?: string }) {
             Check your eligibility — it&apos;s free
             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Button>
-          <Button href="#contact-us" variant="secondary">
+          <Button href="/contact" variant="secondary">
             Talk to us →
           </Button>
         </div>

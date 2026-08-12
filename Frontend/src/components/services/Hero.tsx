@@ -210,8 +210,8 @@ export function Hero() {
               transition={{ duration: 0.85, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="mt-4 lg:mt-6 max-w-2xl"
             >
-              <p className="text-base md:text-lg text-white leading-relaxed font-light">
-                Whether you need your books closed, controls remediated, an audit prepared, or a CFO role filled, you get the same hybrid model: AI agents handle the science, and experienced finance professionals handle the art. You get one bill.
+              <p className="text-base md:text-lg text-white leading-relaxed font-light font-sans">
+                Whether you need your books closed, controls strengthened, an audit prepared, or a CFO role filled, our hybrid model brings together AI agents for the science and experienced finance professionals for the art. One team. One bill.
               </p>
             </motion.div>
 

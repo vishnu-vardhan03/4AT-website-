@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const stats = [
   { value: "150+", label: "Graduates trained", color: "emerald" },
-  { value: "X%",   label: "Placement rate",    color: "cyan"    },
+  { value: "100%",   label: "Placement rate",    color: "cyan"    },
   { value: "10+",  label: "Hiring partners",   color: "purple"  },
   { value: "100",  label: "In training now",   color: "emerald" },
 ] as const;
