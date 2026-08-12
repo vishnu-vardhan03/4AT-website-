@@ -111,13 +111,19 @@ export const authOptions: NextAuthOptions = {
     },
     async jwt({ token, user }) {
       if (user) {
+        // NextAuth reuses the existing JWT when a signed-in user authenticates
+        // with another credentials provider. Reset identity claims here so an
+        // employee email cannot overwrite a newly authenticated admin role.
+        token.sub = user.id;
         token.role = user.role;
         token.accessToken = user.accessToken;
         token.accessTokenExpires = user.accessToken ? getJwtExpiry(user.accessToken) : Date.now() + BACKEND_SESSION_MAX_AGE * 1000;
+        if (typeof user.email === "string") token.email = user.email.trim().toLowerCase();
+        else delete token.email;
       }
       const sessionEmail = typeof token.email === "string" ? token.email.trim().toLowerCase() : undefined;
       const technicianEmail = process.env.ESSL_ADMIN_EMAIL?.trim().toLowerCase();
-      if (sessionEmail && isAllowedEsslEmail(sessionEmail)) {
+      if (token.role !== "admin" && sessionEmail && isAllowedEsslEmail(sessionEmail)) {
         token.role = technicianEmail && sessionEmail === technicianEmail ? "technician" : "employee";
       }
       return token;

@@ -1,23 +1,39 @@
 import Image, { type StaticImageData } from "next/image";
 import teamPhoto from "@/assets/team-photo.png";
 import logo1 from "@/assets/1st image.png";
-import logo3 from "@/assets/3th image.png";
 import logo4 from "@/assets/4th image.png";
 import logo6 from "@/assets/6th image.png";
 import logo7 from "@/assets/7th image.png";
 import logo8 from "@/assets/8th image.png";
 import logo9 from "@/assets/9th image.png";
-import logo10 from "@/assets/10th image.png";
+import deloitteLogo from "@/assets/client-deloitte.png";
+import teamLeaseLogo from "@/assets/client-teamlease.png";
+import sensibaLogo from "@/assets/client-sensiba.png";
+import gbgLogo from "@/assets/client-gbg.png";
+import bdoLogo from "@/assets/client-bdo.png";
+import mutualMobileLogo from "@/assets/client-mutual-mobile.png";
+import sesLogo from "@/assets/client-ses.png";
+import russellSpeedersLogo from "@/assets/client-russell-speeders.png";
+import planviewLogo from "@/assets/client-planview.png";
+import sandlerLogo from "@/assets/client-sandler.png";
 
 const clientLogos: Array<{ image: StaticImageData; label: string }> = [
   { image: logo1, label: "Client logo 1" },
-  { image: logo3, label: "Client logo 3" },
   { image: logo4, label: "Client logo 4" },
   { image: logo6, label: "Client logo 6" },
   { image: logo7, label: "Client logo 7" },
   { image: logo8, label: "Client logo 8" },
   { image: logo9, label: "Client logo 9" },
-  { image: logo10, label: "Client logo 10" },
+  { image: deloitteLogo, label: "Deloitte" },
+  { image: teamLeaseLogo, label: "TeamLease" },
+  { image: sensibaLogo, label: "Sensiba" },
+  { image: gbgLogo, label: "GBG" },
+  { image: bdoLogo, label: "BDO" },
+  { image: mutualMobileLogo, label: "Mutual Mobile" },
+  { image: sesLogo, label: "SES" },
+  { image: russellSpeedersLogo, label: "Russell Speeder's Car Wash" },
+  { image: planviewLogo, label: "Planview" },
+  { image: sandlerLogo, label: "Sandler" },
 ];
 
 export function Clients() {
