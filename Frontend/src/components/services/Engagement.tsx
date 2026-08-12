@@ -3,7 +3,7 @@ const steps = [
     n: "1",
     title: "Subscribe",
     timeline: "Day 0",
-    desc: "Pick the service(s) you need. Pay your first month. That's the entire procurement cycle. No SOW. No legal review. No 6-week sales cycle."
+    desc: "Pick the service(s) you need. Pay your first month. That's the entire procurement cycle. Flexible SOW. No legal review. No 6-week sales cycle."
   },
   {
     n: "2",

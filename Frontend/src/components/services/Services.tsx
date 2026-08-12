@@ -26,7 +26,7 @@ interface Group {
 const serviceGroups: Group[] = [
   {
     id: "run-finance-operations",
-    title: "Group 1: Run my finance operations",
+    title: "Group 1: Optimize Finance Operations",
     forText: "CFOs and Controllers at fast-growing companies.",
     triggerText: "I need books closed, AP/AR running, payroll done without hiring.",
     services: [
@@ -58,7 +58,7 @@ const serviceGroups: Group[] = [
   },
   {
     id: "audit-ready",
-    title: "Group 2: Get audit-ready and stay that way",
+    title: "Group 2: Strengthen Audit Readiness",
     forText: "CFOs heading into audits, post-acquisition entities, PE-backed companies.",
     triggerText: "Auditor's coming and we're not ready.",
     services: [
@@ -73,7 +73,7 @@ const serviceGroups: Group[] = [
       {
         n: "05",
         title: "Technical Accounting",
-        desc: "Complex transactions, US GAAP and IFRS positions delivered with rigor. Human judgment first, AI handles documentation.",
+        desc: "Complex transactions and accounting positions under US GAAP and IFRS, backed by expert judgment and AI-powered documentation.",
         standard: "Revenue recognition (ASC 606) · lease accounting (ASC 842) · business combinations · stock comp · memos that hold up to auditors",
         trigger: "New contract structures · M&A transaction · IPO-related accounting · auditor questioning a position",
         cta: "Talk to a technical lead →"
@@ -89,77 +89,13 @@ const serviceGroups: Group[] = [
     ]
   },
   {
-    id: "prepare-transaction",
-    title: "Group 3: Prepare for a transaction",
-    forText: "Pre-IPO companies, M&A targets, PE portfolio companies.",
-    triggerText: "We have 12 months to be ready.",
-    services: [
-      {
-        n: "07",
-        title: "IPO Readiness",
-        desc: "End-to-end IPO prep, from books to SOX to S-1 narrative, backed by our Virtual CFO bench.",
-        standard: "Audit-ready financials · SOX-ready controls · S-1 drafting support · investor reporting infrastructure · first-earnings playbook",
-        trigger: "S-1 in 12-24 months · pre-IPO audit selection · investor diligence · post-IPO operating cadence",
-        cta: "Talk to an IPO lead →"
-      },
-      {
-        n: "08",
-        title: "Tax Advisory",
-        desc: "Cross-border structuring, provisioning, and ongoing tax compliance.",
-        standard: "Federal/state/local provisions · transfer pricing · entity structuring · ongoing compliance filings · tax memo trail",
-        trigger: "International expansion · entity restructuring · tax season · new state nexus",
-        cta: "Add to subscription →"
-      },
-      {
-        n: "09",
-        title: "MacTax",
-        desc: "Coming soon. Specialized tax advisory for cross-border and high-growth teams. Full details soon; talk to us in the meantime.",
-        standard: "Specialized tax advisory for cross-border & high-growth teams · coming soon",
-        trigger: "Cross-border expansion · scaling high-growth teams",
-        cta: "Talk to us →"
-      },
-      {
-        n: "10",
-        title: "Transaction & Migration Support",
-        desc: "Moving finance data and systems cleanly through an M&A, carve-out, or ERP change. Without losing a transaction in the process.",
-        standard: "Data Migration & Validation · Testing & UAT Support · Go-Live & Cutover Support · Post-Go-Live Hypercare · Reconciliation & Issue Resolution · Training & Adoption Support · Build-Operate-Transfer (BOT)",
-        trigger: "ERP-to-ERP migration (e.g. QuickBooks → SAP) · carve-out or divestiture · post-acquisition integration",
-        cta: "Talk to us →"
-      }
-    ]
-  },
-  {
-    id: "modernize-finance-stack",
-    title: "Group 4: Modernize your finance stack",
-    forText: "CFOs picking ERP, automating, or evaluating AI for finance.",
-    triggerText: "Our tech stack isn't keeping up.",
-    services: [
-      {
-        n: "11",
-        title: "Technology Services",
-        desc: "ERP, RPA, and private AI deployments for the office of the CFO. Want our AI agents on your own infrastructure? Start here.",
-        standard: "ERP selection and implementation · RPA for repetitive workflows · private AI deployment · integration with existing stack",
-        trigger: "ERP migration · build-vs-buy AI decisions · governance on existing AI tools · tech consolidation",
-        cta: "Talk to a tech lead →"
-      },
-      {
-        n: "12",
-        title: "Finance Function Reengineering",
-        desc: "We audit how your finance function runs today, redesign the operating model, then roll out the AI to match. Not a tech swap, a redesign.",
-        standard: "Diagnose (process assessment) → Design (standardization, governance, controls) → Deploy (automation, system enablement, change management) → Measure (KPI/SLA tracking, continuous improvement)",
-        trigger: "Manual processes breaking under growth · no clear ownership of controls · tech decisions made without a process redesign first",
-        cta: "Talk to a tech lead →"
-      }
-    ]
-  },
-  {
     id: "grow-my-practice",
-    title: "Group 5: Grow My Practice, Not My Headcount",
+    title: "Group 3: Scale Practice Growth",
     forText: "CPA firms, accounting firms, and assurance practices needing more delivery capacity.",
     triggerText: "We're at capacity and can't hire fast enough to keep up.",
     services: [
       {
-        n: "13",
+        n: "07",
         title: "Audit Outsourcing (for accounting firms)",
         desc: "Co-source and outsource models for assurance firms under capacity pressure. Workpapers in your format, your timeline, white-labeled if needed.",
         standard: "PCAOB-aligned workpapers · senior reviewer on every file · capacity surge during busy season",
@@ -167,12 +103,76 @@ const serviceGroups: Group[] = [
         cta: "Talk to us about firm partnerships →"
       },
       {
-        n: "14",
+        n: "08",
         title: "GRC Audit Delivery",
-        desc: "Your assurance practice, running two shifts instead of one. Submit evidence requests at the end of your day. Our dedicated offshore audit delivery team in India, working IST hours, picks them up overnight, so the bottleneck's already cleared by the time you're back at your desk.",
-        standard: "Control walkthroughs and risk assessment · Evidence collection and testing across SOC 1, SOC 2, ISO 27001, HIPAA, NIST, and HITRUST · Design and operating-effectiveness evaluations · Review-ready reports for partner sign-off",
-        trigger: "Assurance practice at capacity during audit season · Need SOC 2, ISO 27001, or HIPAA specialty coverage without hiring · Scaling engagement volume without adding headcount",
+        desc: "Continuous delivery framework for CPA firms utilizing overnight offshore assurance teams to clear bottlenecks.",
+        standard: "SOC 1/2 prep · evidence testing · GRC framework alignment · partner sign-off prep",
+        trigger: "Capacity limits during busy season · scaling engagement volume · GRC resource gaps",
         cta: "Talk to us about firm partnerships →"
+      }
+    ]
+  },
+  {
+    id: "prepare-transaction",
+    title: "Group 4: Accelerate IPO Readiness",
+    forText: "Pre-IPO companies, M&A targets, PE portfolio companies.",
+    triggerText: "We have 12 months to be ready.",
+    services: [
+      {
+        n: "09",
+        title: "IPO Readiness",
+        desc: "End-to-end IPO prep, from books to SOX to S-1 narrative, backed by our Virtual CFO bench.",
+        standard: "Audit-ready financials · SOX-ready controls · S-1 drafting support · investor reporting infrastructure · first-earnings playbook",
+        trigger: "S-1 in 12-24 months · pre-IPO audit selection · investor diligence · post-IPO operating cadence",
+        cta: "Talk to an IPO lead →"
+      },
+      {
+        n: "10",
+        title: "Tax Advisory",
+        desc: "Cross-border structuring, provisioning, and ongoing tax compliance. U.S. federal, state, and local tax advisory, planning, and compliance support.",
+        standard: "Federal/state/local provisions · transfer pricing · entity structuring · ongoing compliance filings · tax memo trail",
+        trigger: "International expansion · entity restructuring · tax season · new state nexus",
+        cta: "Add to subscription →"
+      },
+      {
+        n: "11",
+        title: "MacTax",
+        desc: "Coming soon. Specialized tax advisory for cross-border and high-growth teams. Full details soon; talk to us in the meantime.",
+        standard: "Specialized tax advisory for cross-border & high-growth teams · coming soon",
+        trigger: "Cross-border expansion · scaling high-growth teams",
+        cta: "Talk to us →"
+      },
+      {
+        n: "12",
+        title: "Transaction & Migration Support",
+        desc: "Moving finance data and systems cleanly through an M&A, carve-out, or ERP change. Without losing a transaction in the process.",
+        standard: "System cutovers · UAT & testing · data verification · hypercare support",
+        trigger: "ERP migration · M&A carve-out · post-acquisition integration",
+        cta: "Talk to us →"
+      }
+    ]
+  },
+  {
+    id: "modernize-finance-stack",
+    title: "Group 5: Reengineer Finance Processes & Controls",
+    forText: "CFOs picking ERP, automating, or evaluating AI for finance.",
+    triggerText: "Our tech stack isn't keeping up.",
+    services: [
+      {
+        n: "13",
+        title: "Technology Services",
+        desc: "ERP, RPA, and private AI deployments for the office of the CFO. Want our AI agents on your own infrastructure? Start here.",
+        standard: "ERP selection and implementation · RPA for repetitive workflows · private AI deployment · integration with existing stack",
+        trigger: "ERP migration · build-vs-buy AI decisions · governance on existing AI tools · tech consolidation",
+        cta: "Talk to a tech lead →"
+      },
+      {
+        n: "14",
+        title: "Finance Function Reengineering",
+        desc: "We assess your current finance operations, redesign the operating model, and deploy AI to support it. This isn't a technology replacement. It's a finance transformation.",
+        standard: "Process assessment · governance design · system deployment · KPI tracking",
+        trigger: "Scaling pain points · broken workflows · tech decisions before process design",
+        cta: "Talk to a tech lead →"
       }
     ]
   }
@@ -415,8 +415,8 @@ const serviceDetails: Record<string, {
       }
     ]
   },
-  "13": {
-    title: "Audit Outsourcing",
+  "07": {
+    title: "Audit Outsourcing (for accounting firms)",
     subtitle: "Deliver uncompromised accountability and controllership with minimized disruption.",
     intro: "Constant changes in non-negotiable regulations require enterprises to build enhanced transparency. Shareholders, boards, and bankers seek unshakeable trust in financial statements. 4AT's Audit Outsourcing services deliver audit and assurance excellence that goes beyond cost marginalization to provide long-term advisory value, leveraging our deep regulatory understanding and industry expertise.",
     sections: [
@@ -510,7 +510,7 @@ const serviceDetails: Record<string, {
       }
     ]
   },
-  "08": {
+  "10": {
     title: "Tax Advisory",
     subtitle: "Navigate the complex tax maze and prevent surprise exposures with expert oversight.",
     intro: "Tax compliance is a critical non-negotiable for businesses of any scale. Handling highly complex, regulated tax landscapes poses ongoing risks of penalties and sanctions due to inadvertent errors. With rapidly evolving regulatory codes, real-time expert intervention is essential. 4AT’s Tax Advisory services provide tailormade strategies and compliance structures to protect and position your business optimally.",
@@ -545,7 +545,7 @@ const serviceDetails: Record<string, {
       }
     ]
   },
-  "07": {
+  "09": {
     title: "IPO Readiness",
     subtitle: "Navigate the complex journey from a private to a public status successfully.",
     intro: "Transitioning from a privately owned enterprise to going public is one of the most monumental milestones for any organization. Paving the path toward a successful IPO is extremely challenging and time-consuming. The key to success is preparation. Once you decide to pursue an IPO, developing a comprehensive, forward-looking, and risk-averse strategy is critical.",
@@ -681,7 +681,7 @@ const serviceDetails: Record<string, {
       }
     ]
   },
-  "09": {
+  "11": {
     title: "MacTax",
     subtitle: "Specialized tax advisory for cross-border and high-growth teams.",
     intro: "MacTax: Coming soon. Specialized tax advisory for cross-border and high-growth teams. Full details soon; talk to us in the meantime.",
@@ -703,7 +703,7 @@ const serviceDetails: Record<string, {
       }
     ]
   },
-  "11": {
+  "13": {
     title: "Technology Services",
     subtitle: "Smart Technology Support & Consulting Services built to drive business growth.",
     intro: "Modern workplaces have gone through remarkable digital evolutions. Stepping into an era where boundaries are meaningless, having scalable, niche, and proficient technology systems is a core requirement to thrive. 4AT’s Technology Services align custom private AI, enterprise IT consulting, and immersive designs directly with the office of the CFO.",
@@ -748,7 +748,7 @@ const serviceDetails: Record<string, {
       }
     ]
   },
-  "10": {
+  "12": {
     title: "Transaction & Migration Support",
     subtitle: "Moving finance data and systems cleanly through transaction milestones.",
     intro: "Whether navigating an M&A, carve-out, divestiture, or major ERP change, moving finance data and systems cleanly is critical to business continuity. 4AT provides comprehensive Transaction & Migration Support to ensure a cutover with nothing lost in migration and nothing broken at go-live.",
@@ -756,6 +756,10 @@ const serviceDetails: Record<string, {
       {
         title: "M&A, Carve-Outs & ERP Changes",
         content: "We manage the entire lifecycle of finance data migrations. Our approach ensures that historical data integrity is maintained, systems are mapped accurately, and operations continue without losing a transaction in the process."
+      },
+      {
+        title: "Migration Scenarios Supported",
+        content: "We guide your team through:\n• ERP-to-ERP transitions (e.g., QuickBooks to NetSuite/SAP)\n• Corporate divestitures & entity carve-outs\n• Post-acquisition accounting & data integration"
       },
       {
         title: "Go-Live & Post-Cutover Hypercare",
@@ -784,7 +788,7 @@ const serviceDetails: Record<string, {
       }
     ]
   },
-  "12": {
+  "14": {
     title: "Finance Function Reengineering",
     subtitle: "Process-first redesign for scalable automated finance functions.",
     intro: "Technology alone cannot fix a broken process. We audit how your finance function runs today, redesign the operating model to support automation, and then roll out the AI systems to match. It is not a tech swap; it's a structural redesign.",
@@ -794,8 +798,16 @@ const serviceDetails: Record<string, {
         content: "Before selecting or automating tech, we diagnose your current workflows. We identify bottlenecks, establish clear ownership of controls, and standardize the process to build a robust foundation for scaling."
       },
       {
+        title: "Reengineering Lifecycle",
+        content: "Our structured reengineering methodology follows a clear 4-stage lifecycle:\n\n• Diagnose: In-depth process assessment to locate manual bottlenecks\n• Design: Standardization, governance models, and controls framework mapping\n• Deploy: Automation implementation, system enablement, and change management\n• Measure: Continuous optimization, SLA, and KPI tracking"
+      },
+      {
         title: "AI & Automation Enablement",
         content: "Once standardized, we deploy matching AI agents and system workflows. This ensures automation fits a process designed specifically to support it, rather than layering technology on top of broken steps."
+      },
+      {
+        title: "When to Reengineer",
+        content: "We typically partner with organizations experiencing:\n• Manual processes breaking under rapid growth\n• No clear ownership of internal controls\n• Decisions to migrate or buy tools without standardizing processes first"
       }
     ],
     capabilities: [
@@ -820,7 +832,7 @@ const serviceDetails: Record<string, {
       }
     ]
   },
-  "14": {
+  "08": {
     title: "GRC Audit Delivery",
     subtitle: "Your assurance practice, running two shifts instead of one.",
     intro: "Your assurance practice, running two shifts instead of one. Submit evidence requests at the end of your day. Our dedicated offshore audit delivery team in India, working IST hours, picks them up overnight, so the bottleneck's already cleared by the time you're back at your desk.",
@@ -828,6 +840,14 @@ const serviceDetails: Record<string, {
       {
         title: "Strategic Offshoring",
         content: "Expand your assurance practice footprint with an overnight workflow model, leveraging timezone differences to clear evidence collection roadblocks before you start your day."
+      },
+      {
+        title: "Supported GRC Frameworks",
+        content: "Our offshore teams provide evidence collection, walkthroughs, and testing across all major frameworks:\n• SOC 1 & SOC 2 audits\n• ISO 27001 compliance mapping\n• HIPAA compliance and NIST security frameworks\n• HITRUST controls evaluation"
+      },
+      {
+        title: "Core Triggers for Firms",
+        content: "Firms engage us when they face:\n• Capacity constraints during busy/audit seasons\n• The need for GRC specialty coverage without local hiring overhead\n• A desire to scale audit volume without increasing firm headcount"
       }
     ],
     capabilities: [
@@ -870,14 +890,14 @@ export function Services() {
               Services
             </div>
             <h2 className="text-display text-[clamp(2.5rem,5.2vw,4.5rem)] text-white font-black leading-[0.95]">
-              Fourteen services
+              Fourteen Services
               <span className="block mt-2 py-2 px-1 text-[clamp(1.4rem,3vw,2.6rem)] tracking-tight bg-gradient-to-r from-sky-400 via-purple-500 to-sky-400 bg-clip-text text-transparent filter drop-shadow-[0_2px_10px_rgba(99,102,241,0.25)] animate-gradient-x">
-                Grouped by what&apos;s keeping you up at night
+                Sorted by Business Need, Not Service Line
               </span>
             </h2>
           </div>
           <p className="lg:col-span-4 lg:col-start-9 self-end text-lg text-white leading-relaxed font-light">
-            Most buyers don&apos;t shop service-by-service. They have a problem (close cycles too long, audit coming, growing too fast) and they want to know what fixes it. Here&apos;s the shortcut.
+            Businesses don&apos;t buy service lines. They buy outcomes. Faster closes, smoother audits, stronger controls, and scalable finance operations. Here&apos;s a shortcut to the solution that fits your challenge.
           </p>
         </div>
 
@@ -892,7 +912,7 @@ export function Services() {
               {/* Left Column: Group Info (Sticky) */}
               <div className="lg:col-span-4 flex flex-col items-start lg:sticky lg:top-28 h-fit">
                 <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-950/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-purple-400 mb-4">
-                  Scenario {gIdx + 1}
+                  Group {gIdx + 1}
                 </div>
                 <h3 className="text-2xl lg:text-3xl font-black tracking-tight text-white mb-4 leading-tight">
                   {group.title.replace(/^Group \d+: /, '')}
