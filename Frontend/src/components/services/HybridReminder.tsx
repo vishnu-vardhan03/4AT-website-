@@ -64,11 +64,11 @@ export function HybridReminder() {
 
               <div className="divide-y divide-white/5 border-t border-b border-white/5">
                 {[
-                  "Document intake and extraction",
-                  "Workflow routing and task triggers",
-                  "High-accuracy transaction reconciliation",
-                  "First-pass reports and journal entries",
-                  "Anomaly and exception flagging"
+                  "Ingesting and extracting documents automatically",
+                  "Routing workflows and triggering standard tasks",
+                  "Reconciling transactions with high-accuracy automation",
+                  "Generating first-pass reports and journal entries",
+                  "Flagging anomalies and exceptions for expert review"
                 ].map((item, idx) => (
                   <div key={idx} className="flex gap-4 py-4 text-sm font-light text-zinc-300 items-start">
                     <span className="text-sky-400 font-mono font-bold text-xs select-none">
@@ -108,11 +108,11 @@ export function HybridReminder() {
 
               <div className="divide-y divide-white/5 border-t border-b border-white/5">
                 {[
-                  "Technical accounting judgment",
-                  "Review, sign-off, and final accountability",
-                  "Complex transactions and exceptions",
-                  "Controls remediation and audit defense",
-                  "Client communication and decisions"
+                  "Bringing judgment where automation ends",
+                  "Navigating complexity and accounting gray areas",
+                  "Taking ownership of final decisions and outcomes",
+                  "Defending positions with auditors and regulators",
+                  "Helping clients make confident business decisions"
                 ].map((item, idx) => (
                   <div key={idx} className="flex gap-4 py-4 text-sm font-light text-zinc-300 items-start">
                     <span className="text-purple-400 font-mono font-bold text-xs select-none">
@@ -136,7 +136,7 @@ export function HybridReminder() {
             transition={{ duration: 0.6 }}
             className="max-w-2xl text-white text-sm md:text-base leading-relaxed font-light"
           >
-            Every service below runs on this same model. The only thing that changes is what we&apos;re doing for you.
+            Every service below is built on the same hybrid foundation. What changes is the value we deliver for your business.
           </motion.p>
 
           <motion.div

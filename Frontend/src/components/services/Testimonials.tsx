@@ -10,11 +10,11 @@ export function Testimonials() {
         </div>
         
         <h2 className="text-display text-[clamp(2.2rem,4.5vw,3.5rem)] text-white font-black leading-tight mb-6">
-          Quiet confidence, real outcomes.
+          Quiet confidence, real outcomes
         </h2>
         
         <p className="text-lg md:text-xl text-zinc-300 font-light leading-relaxed max-w-2xl mx-auto mb-10">
-          We&apos;re building the case studies now, written by the CFOs and firm owners who switched. Want to be one of the first?
+          The case studies are still being written. The CFOs and firm owners behind them have already switched. Will you be next?
         </p>
 
         <div className="flex justify-center">
