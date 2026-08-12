@@ -7,14 +7,14 @@ const scenarios: ScrollCardItem[] = [
   {
     title: "Closing the books takes too long",
     pain: "Your team spends 10–12 days a month on close. Errors slip in. Your CFO is the last to know.",
-    action: "Iris reconciles transactions in seconds, our senior controllers review exceptions daily, Atlas builds the reports.",
+    action: "Transactions reconcile in seconds, our senior controllers review exceptions daily, and reports are ready before you ask.",
     outcome: "Close in 4–5 days. Audit-ready by default. Your CFO sees the dashboard before the team does.",
     color: "#38bdf8",
   },
   {
     title: "You're heading into an audit and not ready",
     pain: "Your auditor's PBC list is 200 items long. Your team is rebuilding workpapers from scratch. Walk-throughs are a mess.",
-    action: "Atlas auto-generates the PBC list. Guardian flags control breaks before the audit. Our senior leads run the pre-audit close.",
+    action: "The PBC list generates automatically. Control breaks surface before the audit even starts. Our senior leads run the pre-audit close.",
     outcome: "Clean walk-throughs from day one. No all-nighters. Your audit timeline holds.",
     color: "#a78bfa",
   },

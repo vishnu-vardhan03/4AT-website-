@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 
 export default async function AdminPage() {
   const session = await getServerSession(authOptions);
-  if (!session?.accessToken) redirect("/admin/login?reason=session-expired");
+  if (session?.user?.role !== "admin" || !session.accessToken) redirect("/admin/login?reason=session-expired");
 
   const [stats, leads, registrations] = await Promise.all([
     getLeadsSummary(session.accessToken),

@@ -18,10 +18,11 @@ const productMenuItems = [
 ];
 
 const serviceMenuItems = [
-  { label: "Run My Finance Operations", href: "/services#run-finance-operations" },
-  { label: "Get Audit-Ready", href: "/services#audit-ready" },
-  { label: "Prepare for a Transaction", href: "/services#prepare-transaction" },
-  { label: "Modernize Your Finance Stack", href: "/services#modernize-finance-stack" },
+  { label: "Optimize Finance Operations", href: "/services#run-finance-operations" },
+  { label: "Strengthen Audit Readiness", href: "/services#audit-ready" },
+  { label: "Scale Practice Growth", href: "/services#grow-my-practice" },
+  { label: "Accelerate IPO Readiness", href: "/services#prepare-transaction" },
+  { label: "Reengineer Finance Processes & Controls", href: "/services#modernize-finance-stack" },
 ];
 
 const academyMenuItems = [

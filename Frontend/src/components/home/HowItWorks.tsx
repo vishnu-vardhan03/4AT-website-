@@ -23,7 +23,7 @@ const steps = [
     number: "03",
     timing: "Day 8 onward",
     title: "We run it",
-    body: "Iris reconciles. Guardian monitors controls. Atlas builds your reports. Experienced finance professionals review everything before it reaches you.",
+    body: "Transactions reconcile. Controls stay monitored. Reports write themselves. Experienced finance professionals review everything before it reaches you.",
     detail: "You see it all in one dashboard. One bill. One team.",
     color: "#a78bfa",
   },
