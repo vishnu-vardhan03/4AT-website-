@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, X } from "lucide-react";
 import { SectionPill } from "./SectionPill";
+import Link from "next/link";
 
 const faqItems = [
   {
@@ -116,9 +117,12 @@ export function FAQ({ sectionId = "faq" }: { sectionId?: string }) {
 
         <p className="w-full lg:w-[65%] mt-6 text-sm sm:text-[14.5px] text-[#A7A9C4]">
           More questions?{" "}
-          <a href="#contact-us" className="text-emerald-400 font-semibold hover:text-emerald-300 transition-colors">
-            Talk to us →
-          </a>
+          <Link
+    href="/contact"
+    className="text-emerald-400 font-semibold hover:text-emerald-300 transition-colors"
+  >
+    Talk to us →
+  </Link>
         </p>
       </div>
     </section>
