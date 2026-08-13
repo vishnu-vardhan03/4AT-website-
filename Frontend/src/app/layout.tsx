@@ -24,20 +24,20 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://4at.ai"),
-  title: "4AT AI — Finance Automation Platform",
+  title: "4AT",
   description:
     "Finance-native AI for reconciliation, compliance, and reporting. Purpose-built for your numbers.",
   openGraph: {
-    title: "4AT AI — Finance Automation Platform",
+    title: "4AT",
     description: "Automate the Intelligence Layer with finance-native AI.",
-    siteName: "4AT AI",
+    siteName: "4AT",
     type: "website",
     url: "/",
   },
   alternates: { canonical: "/" },
   twitter: {
     card: "summary_large_image",
-    title: "4AT AI — Finance Automation Platform",
+    title: "4AT",
     description: "Automate the Intelligence Layer with finance-native AI.",
   },
   robots: { index: true, follow: true },
