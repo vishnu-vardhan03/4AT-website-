@@ -24,14 +24,18 @@ export default async function middleware(request: NextRequest) {
     if (!authorized) return clearSessionCookies(NextResponse.redirect(new URL("/admin/login", request.url)));
   }
   if (pathname.startsWith("/essl") && pathname !== "/essl/login") {
-    const authorized = typeof token?.email === "string" && isAllowedEsslEmail(token.email) && typeof token.accessTokenExpires === "number" && token.accessTokenExpires > Date.now();
+    const authorized = typeof token?.email === "string" && (isAllowedEsslEmail(token.email) || token.role === "driver") && typeof token.accessTokenExpires === "number" && token.accessTokenExpires > Date.now();
     if (!authorized) {
       const login = new URL("/essl/login", request.url);
       login.searchParams.set("callbackUrl", `${pathname}${search}`);
       return clearSessionCookies(NextResponse.redirect(login));
     }
   }
+  if (pathname === "/cab/driver") {
+    const authorized = token?.role === "driver" && typeof token.email === "string" && typeof token.accessTokenExpires === "number" && token.accessTokenExpires > Date.now();
+    if (!authorized) return clearSessionCookies(NextResponse.redirect(new URL("/cab/driver-login", request.url)));
+  }
   return NextResponse.next();
 }
 
-export const config = { matcher: ["/admin", "/admin/:path*", "/essl", "/essl/:path*"] };
+export const config = { matcher: ["/admin", "/admin/:path*", "/essl", "/essl/:path*", "/cab/driver"] };

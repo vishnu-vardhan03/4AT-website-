@@ -23,7 +23,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://4at.ai"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://consult-4at.com"),
   title: "4AT",
   description:
     "Finance-native AI for reconciliation, compliance, and reporting. Purpose-built for your numbers.",
@@ -51,6 +51,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full antialiased`}
       suppressHydrationWarning
     >

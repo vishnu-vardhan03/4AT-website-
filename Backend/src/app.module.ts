@@ -13,13 +13,14 @@ import { LeadsModule } from './leads/leads.module';
 import { AuthModule } from './auth/auth.module';
 import { validateEnvironment } from './config/validate-env';
 import { EsslTicketModule } from './essl/essl-ticket.module';
+import { EctmsModule } from './ectms/ectms.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, envFilePath: ['.env.local', '.env'], validate: validateEnvironment }),
     ScheduleModule.forRoot(),
     ThrottlerModule.forRoot([{ name: 'default', ttl: 60_000, limit: 100 }]),
-    DatabaseModule, CommonModule, AuthModule, AcademyModule, ConsultingModule, AiModule, LeadsModule, EsslTicketModule, HealthModule,
+    DatabaseModule, CommonModule, AuthModule, AcademyModule, ConsultingModule, AiModule, LeadsModule, EsslTicketModule, EctmsModule, HealthModule,
   ],
   providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }],
 })

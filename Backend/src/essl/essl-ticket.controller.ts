@@ -7,6 +7,7 @@ import { mkdirSync } from 'fs';
 import { randomUUID } from 'crypto';
 import { createReadStream, existsSync } from 'fs';
 import type { Response } from 'express';
+import { esslUploadDirectory } from './essl-upload-directory';
 import { CreateEsslTicketDto } from './dto/create-essl-ticket.dto';
 import { UpdateEsslTicketStatusDto } from './dto/update-essl-ticket-status.dto';
 import { EsslTicketService } from './essl-ticket.service';
@@ -30,7 +31,7 @@ export class EsslTicketController {
   @UseInterceptors(FileInterceptor('attachment', {
     storage: diskStorage({
       destination: (_request, _file, callback) => {
-        const directory = join(process.cwd(), 'uploads', 'essl');
+        const directory = esslUploadDirectory();
         mkdirSync(directory, { recursive: true });
         callback(null, directory);
       },
@@ -51,7 +52,7 @@ export class EsslTicketController {
   @UseInterceptors(FileInterceptor('attachment', {
     storage: diskStorage({
       destination: (_request, _file, callback) => {
-        const directory = join(process.cwd(), 'uploads', 'essl');
+        const directory = esslUploadDirectory();
         mkdirSync(directory, { recursive: true });
         callback(null, directory);
       },
@@ -70,7 +71,7 @@ export class EsslTicketController {
   @Get('attachments/:id')
   async openAttachment(@Param('id', ParseIntPipe) id: number, @Query() query: Partial<NotificationEmailDto>, @Res({ passthrough: true }) response: Response) {
     const attachment = await this.service.findAttachment(id, query.email);
-    const absolutePath = join(process.cwd(), 'uploads', 'essl', attachment.storedName);
+    const absolutePath = join(esslUploadDirectory(), attachment.storedName);
     if (!existsSync(absolutePath)) throw new BadRequestException('Attachment file is unavailable');
     response.set({
       'Content-Type': attachment.mimeType,

@@ -82,7 +82,7 @@ export default function EsslLoginPage() {
           <h1 className="mt-5 text-3xl font-black tracking-[-.035em] text-white">Sign in to service support</h1>
           <p className="mt-2 text-sm leading-6 text-sky-100/65">Employees raise and track requests. ESS Support manages the technician queue.</p>
           {!entraEnabled && <div className="mt-6 grid grid-cols-2 rounded-xl border border-white/10 bg-[#0a0d24] p-1" aria-label="Choose access type">
-            {(["employee", "technician"] as const).map((type) => <button key={type} type="button" onClick={() => { setAccessType(type); setError(""); setEmail(type === "technician" ? "esssupport@consult-4at.com" : ""); setPassword(""); }} aria-pressed={accessType === type} className={`min-h-11 rounded-lg px-3 py-2.5 text-sm font-bold capitalize transition ${accessType === type ? "bg-sky-500 text-[#01030e]" : "text-sky-100/60 hover:text-white"}`}>{type === "technician" ? "ESS Support" : "Employee"}</button>)}
+            {(["employee", "technician"] as const).map((type) => <button key={type} type="button" onClick={() => { setAccessType(type); setError(""); setEmail(type === "technician" ? "esssupport@consult-4at.com" : ""); setPassword(""); }} aria-pressed={accessType === type} className={`min-h-11 rounded-lg px-2 py-2.5 text-xs font-bold capitalize transition ${accessType === type ? "bg-sky-500 text-[#01030e]" : "text-sky-100/60 hover:text-white"}`}>{type === "technician" ? "ESS Support" : type}</button>)}
           </div>}
           {entraEnabled ? <div className="mt-7">
             {error && <p role="alert" className="mb-4 rounded-lg border border-red-400/25 bg-red-400/10 px-3 py-2.5 text-sm text-red-200">{error}</p>}

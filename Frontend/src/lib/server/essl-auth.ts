@@ -5,7 +5,7 @@ import type { Session } from "next-auth";
 
 export async function getEsslSession(): Promise<Session | null> {
   const session = await getServerSession(authOptions);
-  return typeof session?.user?.email === "string" && isAllowedEsslEmail(session.user.email) ? session : null;
+  return typeof session?.user?.email === "string" && (isAllowedEsslEmail(session.user.email) || session.user.role === "driver") ? session : null;
 }
 
 export async function hasEsslSession(): Promise<boolean> {

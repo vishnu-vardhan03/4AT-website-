@@ -2,7 +2,7 @@ import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import AzureADProvider from "next-auth/providers/azure-ad";
 import { env } from "@/lib/env";
-import { isAllowedEsslEmail } from "@/lib/essl-access";
+import { getCabRole, isAllowedEsslEmail } from "@/lib/essl-access";
 import { timingSafeEqual } from "crypto";
 import { authSecret } from "@/lib/auth-secret";
 
@@ -40,7 +40,7 @@ export const authOptions: NextAuthOptions = {
           name: profile.name ?? profile.nickname ?? email,
           email,
           image: profile.picture ?? null,
-          role: email === process.env.ESSL_ADMIN_EMAIL?.trim().toLowerCase() ? "technician" : "employee",
+          role: email ? getCabRole(email) : "employee",
         };
       },
     }),
@@ -102,6 +102,19 @@ export const authOptions: NextAuthOptions = {
         return { id: configuredEmail, email: configuredEmail, name: "ESS Support", role: "technician", accessToken: "" };
       },
     }),
+    CredentialsProvider({
+      id: "cab-driver",
+      name: "CAB driver",
+      credentials: { phone: { label: "Phone", type: "tel" }, pin: { label: "Driver PIN", type: "password" } },
+      async authorize(credentials) {
+        if (!credentials?.phone || !credentials.pin) return null;
+        try {
+          const response = await fetch(`${env.BACKEND_URL}/ectms/driver-login`, { method: "POST", headers: { "Content-Type": "application/json", "x-essl-internal-key": process.env.ESSL_INTERNAL_API_KEY ?? "4at-local-development-essl-api-key-not-for-production" }, body: JSON.stringify(credentials), cache: "no-store" });
+          if (!response.ok) return null;
+          return await response.json();
+        } catch { return null; }
+      },
+    }),
   ],
   session: { strategy: "jwt", maxAge: BACKEND_SESSION_MAX_AGE },
   callbacks: {
@@ -122,9 +135,8 @@ export const authOptions: NextAuthOptions = {
         else delete token.email;
       }
       const sessionEmail = typeof token.email === "string" ? token.email.trim().toLowerCase() : undefined;
-      const technicianEmail = process.env.ESSL_ADMIN_EMAIL?.trim().toLowerCase();
-      if (token.role !== "admin" && sessionEmail && isAllowedEsslEmail(sessionEmail)) {
-        token.role = technicianEmail && sessionEmail === technicianEmail ? "technician" : "employee";
+      if (token.role !== "admin" && token.role !== "driver" && sessionEmail && isAllowedEsslEmail(sessionEmail)) {
+        token.role = getCabRole(sessionEmail);
       }
       return token;
     },

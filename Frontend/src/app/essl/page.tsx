@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 
 export default async function EsslPage() {
   const session = await getServerSession(authOptions);
-  if (!session?.user?.email || !isAllowedEsslEmail(session.user.email)) redirect("/essl/login");
+  if (!session?.user?.email || (!isAllowedEsslEmail(session.user.email) && session.user.role !== "driver")) redirect("/essl/login");
+  if (session.user.role === "driver") redirect("/essl/cab");
   return <EsslPortal initialRole={session.user.role === "technician" ? "technician" : "employee"} />;
 }

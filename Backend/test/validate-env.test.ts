@@ -17,6 +17,7 @@ describe('validateEnvironment', () => {
       () => validateEnvironment({
         NODE_ENV: 'production', DATABASE_URL: 'postgres://database', JWT_SECRET: 'short',
         ADMIN_USERNAME: 'admin', ADMIN_PASSWORD_HASH: 'hash', FRONTEND_URL: 'https://example.com', ESSL_INTERNAL_API_KEY: 'y'.repeat(32),
+        ESSL_UPLOAD_DIR: '/var/lib/4at/essl-uploads',
       }),
       /at least 32 characters/,
     );
@@ -26,9 +27,20 @@ describe('validateEnvironment', () => {
     const config = {
       NODE_ENV: 'production', DATABASE_URL: 'postgres://database', JWT_SECRET: 'x'.repeat(32),
       ADMIN_USERNAME: 'admin', ADMIN_PASSWORD_HASH: '$2b$12$'.concat('x'.repeat(53)), FRONTEND_URL: 'https://example.com',
-      ESSL_INTERNAL_API_KEY: 'y'.repeat(32),
+      ESSL_INTERNAL_API_KEY: 'y'.repeat(32), ESSL_UPLOAD_DIR: '/var/lib/4at/essl-uploads',
     };
     assert.equal(validateEnvironment(config), config);
+  });
+
+  it('requires an absolute private upload directory in production', () => {
+    assert.throws(
+      () => validateEnvironment({
+        NODE_ENV: 'production', DATABASE_URL: 'postgres://database', JWT_SECRET: 'x'.repeat(32),
+        ADMIN_USERNAME: 'admin', ADMIN_PASSWORD_HASH: '$2b$12$'.concat('x'.repeat(53)), FRONTEND_URL: 'https://example.com',
+        ESSL_INTERNAL_API_KEY: 'y'.repeat(32), ESSL_UPLOAD_DIR: 'relative/uploads',
+      }),
+      /absolute path/,
+    );
   });
 
   it('rejects a non-bcrypt production password hash', () => {
@@ -36,6 +48,7 @@ describe('validateEnvironment', () => {
       () => validateEnvironment({
         NODE_ENV: 'production', DATABASE_URL: 'postgres://database', JWT_SECRET: 'x'.repeat(32),
         ADMIN_USERNAME: 'admin', ADMIN_PASSWORD_HASH: 'plaintext', FRONTEND_URL: 'https://example.com', ESSL_INTERNAL_API_KEY: 'y'.repeat(32),
+        ESSL_UPLOAD_DIR: '/var/lib/4at/essl-uploads',
       }),
       /valid bcrypt hash/,
     );

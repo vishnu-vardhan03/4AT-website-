@@ -79,6 +79,27 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
         clickable.getAttribute("href") || clickable.getAttribute("data-href");
       if (!href) return;
 
+      // A Next.js link to the route that is already open does not trigger the
+      // pathname effect below. Treat it as an explicit request to return to
+      // the page hero instead of leaving the user at their current section.
+      try {
+        const destination = new URL(href, window.location.href);
+        const isCurrentPage =
+          destination.origin === window.location.origin &&
+          destination.pathname.replace(/\/$/, "") === window.location.pathname.replace(/\/$/, "") &&
+          !destination.hash &&
+          !destination.search;
+
+        if (isCurrentPage) {
+          e.preventDefault();
+          smoothScrollToTarget(0);
+          window.history.pushState(null, "", destination.pathname);
+          return;
+        }
+      } catch {
+        // Ignore malformed non-navigation values and let the browser handle them.
+      }
+
       const hashIndex = href.indexOf("#");
       if (hashIndex !== -1) {
         const pathPart = href.substring(0, hashIndex);
@@ -177,8 +198,6 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     if (typeof window === "undefined") return;
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) return;
-
     const hash = window.location.hash;
     if (hash) {
       const timer = setTimeout(() => {
@@ -196,12 +215,23 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       }, 100);
       return () => clearTimeout(timer);
     } else {
-      const activeLenis = (window as unknown as CustomWindow).__lenis;
-      if (activeLenis) {
-        activeLenis.scrollTo(0, { immediate: false, duration: 0.5 });
-      } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
+      const resetToTop = () => {
+        const activeLenis = (window as unknown as CustomWindow).__lenis;
+        if (activeLenis && !prefersReducedMotion) {
+          activeLenis.scrollTo(0, { immediate: true });
+        }
+        window.scrollTo({ top: 0, behavior: "auto" });
+      };
+
+      // Next.js may apply its own saved scroll position just after the route
+      // commits. Reset now, on the next frame, and once after that restoration.
+      resetToTop();
+      const frame = window.requestAnimationFrame(resetToTop);
+      const timer = window.setTimeout(resetToTop, 120);
+      return () => {
+        window.cancelAnimationFrame(frame);
+        window.clearTimeout(timer);
+      };
     }
   }, [pathname]);
 
