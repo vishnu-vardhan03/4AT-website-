@@ -21,7 +21,9 @@ export function getTypeOrmConfig(config: ConfigService): TypeOrmModuleOptions {
     synchronize: false,
     migrationsRun: false,
     migrations: [InitialLeadTables1721640000000, AcademyRegistrations1721640000001, EsslTickets1721640000002, EsslTicketAttachments1721640000003, EsslTicketRequester1721640000004, EsslNotifications1721640000005, EsslStatusEmail1721640000006, EsslCreatedEmailLog1721640000007, EsslCabCategory1721640000008, EsslCategoriesAndActivity1721640000009, EsslTicketReopening1721640000010, EctmsRecords1721640000011],
-    ssl: config.get<string>('DB_SSL') === 'true' ? { rejectUnauthorized: false } : false,
+    ssl: config.get<string>('DB_SSL') === 'true'
+      ? { rejectUnauthorized: config.get<string>('DB_SSL_REJECT_UNAUTHORIZED', 'true') !== 'false' }
+      : false,
   };
 
   return url

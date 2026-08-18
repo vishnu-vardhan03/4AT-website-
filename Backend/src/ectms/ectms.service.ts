@@ -49,7 +49,7 @@ export class EctmsService {
   }
 
   async createBooking(email: string, body: Record<string, unknown>) {
-    for (const field of ['tripDate', 'shift', 'tripType', 'pickupPoint']) if (!textValue(body[field]).trim()) throw new BadRequestException(`${field} is required`);
+    for (const field of ['tripDate', 'shift', 'tripType', 'pickupPoint', 'dropLocation']) if (!textValue(body[field]).trim()) throw new BadRequestException(`${field} is required`);
     const tripDate = new Date(textValue(body.tripDate));
     if (Number.isNaN(tripDate.getTime())) throw new BadRequestException('Choose a valid trip date');
     const employee = await this.records.findOne({ where: { recordType: 'employee', ownerEmail: email } });
@@ -73,16 +73,17 @@ export class EctmsService {
   }
 
   async createDriver(body: Record<string, unknown>) {
-    const name = textValue(body.name).trim(), phone = textValue(body.phone).replace(/\D/g, ''), license = textValue(body.license).toUpperCase().replace(/[\s-]/g, '');
+    const name = textValue(body.name).trim(), phone = textValue(body.phone).replace(/\D/g, ''), license = textValue(body.license).toUpperCase().replace(/[\s-]/g, ''), vehicle = textValue(body.vehicle).trim().toUpperCase();
     if (name.length < 2) throw new BadRequestException('Driver name is required');
     if (!/^\d{10}$/.test(phone)) throw new BadRequestException('Driver mobile number must contain exactly 10 digits');
     if (!/^[A-Z]{2}\d{2}[A-Z0-9]{7,16}$/.test(license)) throw new BadRequestException('Enter a valid driving licence number, for example TS0920241234567');
+    if (!vehicle) throw new BadRequestException('Vehicle number is required');
     const existing = await this.records.find({ where: { recordType: 'driver' } });
     if (existing.some((record) => record.data.phone === phone)) throw new BadRequestException('A driver already exists with this mobile number');
     if (existing.some((record) => record.data.license === license)) throw new BadRequestException('A driver already exists with this driving licence');
     const pin = String(randomInt(100000, 1000000));
     const salt = randomUUID();
-    const record = await this.records.save(this.records.create({ recordType: 'driver', ownerEmail: null, data: { ...body, name, phone, license, verificationStatus: 'Verified', active: true, pinSalt: salt, pinHash: scryptSync(pin, salt, 32).toString('hex') } }));
+    const record = await this.records.save(this.records.create({ recordType: 'driver', ownerEmail: null, data: { ...body, name, phone, license, vehicle, verificationStatus: 'Verified', active: true, pinSalt: salt, pinHash: scryptSync(pin, salt, 32).toString('hex') } }));
     return { ...record, temporaryPin: pin, data: { ...record.data, pinHash: undefined, pinSalt: undefined } };
   }
 
@@ -101,11 +102,15 @@ export class EctmsService {
     const record = await this.records.findOneBy({ id });
     if (!record) throw new NotFoundException('Record not found');
     if (actorRole === 'employee' && (record.ownerEmail !== actor || !['cancel', 'confirm-recurring', 'share', 'employee-location'].includes(textValue(body.action)))) throw new ForbiddenException('Employees may only manage their own booking');
-    if (actorRole === 'driver' && (textValue(record.data.driverPhone) !== actor || !['verify-otp', 'location'].includes(textValue(body.action)) && body.status !== 'No-Show')) throw new ForbiddenException('This route is not assigned to the signed-in driver');
+    if (actorRole === 'driver' && (textValue(record.data.driverPhone) !== actor || !['verify-otp', 'location', 'drop-off'].includes(textValue(body.action)) && body.status !== 'No-Show')) throw new ForbiddenException('This route is not assigned to the signed-in driver');
     if (!['employee', 'driver', 'technician', 'nodal', 'finance'].includes(actorRole)) throw new ForbiddenException('CAB role is required');
     if (body.action === 'verify-otp' && String(body.otp) !== String(record.data.otp)) throw new BadRequestException('Incorrect boarding OTP');
     const next: Record<string, unknown> = { ...record.data, ...body, updatedBy: actor };
     if (body.action === 'verify-otp') Object.assign(next, { status: 'Boarded', otpVerified: true, otp: undefined });
+    if (body.action === 'drop-off') {
+      if (record.data.otpVerified !== true) throw new BadRequestException('Confirm boarding before marking this employee as dropped off');
+      Object.assign(next, { status: 'Completed', dropStatus: 'Dropped off', droppedAt: new Date().toISOString(), otp: undefined });
+    }
     if (body.action === 'cancel') {
       const settings = await this.records.findOne({ where: { recordType: 'settings' } });
       const cutoffHours = numberValue(settings?.data.cutoffHours, 2), shiftMatch = textValue(record.data.shift).match(/(\d{2}):(\d{2})/);
@@ -114,6 +119,12 @@ export class EctmsService {
     }
     if (body.action === 'confirm-recurring') Object.assign(next, { weeklyConfirmedAt: new Date().toISOString() });
     if (body.action === 'employee-location') Object.assign(next, { employeeLatitude: numberValue(body.latitude), employeeLongitude: numberValue(body.longitude), employeeGpsAccuracy: numberValue(body.accuracy), employeeLocationSharedAt: new Date().toISOString() });
+    if (actorRole === 'technician' && body.driverPhone) {
+      const drivers = await this.records.find({ where: { recordType: 'driver' } });
+      const driver = drivers.find((item) => textValue(item.data.phone) === textValue(body.driverPhone));
+      if (!driver) throw new BadRequestException('Choose a valid driver');
+      Object.assign(next, { driverName: driver.data.name, driverPhone: driver.data.phone, vehicle: driver.data.vehicle || 'Unassigned' });
+    }
     if (body.action === 'location') {
       const latitude = numberValue(body.latitude), longitude = numberValue(body.longitude), previousLat = numberValue(record.data.latitude), previousLon = numberValue(record.data.longitude);
       const moved = previousLat && previousLon ? distanceKm(previousLat, previousLon, latitude, longitude) : 0;
@@ -138,6 +149,7 @@ export class EctmsService {
       }
     }
     await this.audit(actor, textValue(body.action || body.status || 'record-updated'), id, next);
+    if (body.action === 'drop-off') await this.notify(record.ownerEmail || '', 'Drop-off confirmed', `${textValue(record.data.bookingCode)} was marked dropped off at ${textValue(record.data.dropLocation)}.`, ['in-app', 'email', 'sms', 'push'], record.id);
     if (body.driverPhone || body.status) await this.notify(record.ownerEmail || '', 'Trip updated', `${textValue(record.data.bookingCode)} is now ${textValue(next.status)}.`, ['in-app', 'email', 'sms', 'push'], record.id);
     return saved;
   }
@@ -176,7 +188,7 @@ export class EctmsService {
       const [date, shift, zone] = key.split('|'); let cursor = 0;
       while (cursor < members.length) {
         const vehicle = vehicles[routes.length % Math.max(vehicles.length, 1)], capacity = numberValue(vehicle?.data.capacity, 4), batch = members.slice(cursor, cursor + capacity);
-        const route = await this.records.save(this.records.create({ recordType: 'route', ownerEmail: null, data: { routeCode: `RTE-${Date.now().toString(36).toUpperCase()}-${routes.length + 1}`, date, shift, zone, status: 'Draft', vehicleId: vehicle?.id || null, vehicle: vehicle?.data.registration || 'Unassigned', capacity, bookingIds: batch.map((b) => b.id), orderedStops: batch.map((b) => b.data.pickupPoint), generatedAt: new Date().toISOString() } }));
+        const route = await this.records.save(this.records.create({ recordType: 'route', ownerEmail: null, data: { routeCode: `RTE-${Date.now().toString(36).toUpperCase()}-${routes.length + 1}`, date, shift, zone, status: 'Draft', vehicleId: vehicle?.id || null, vehicle: vehicle?.data.registration || 'Unassigned', capacity, bookingIds: batch.map((b) => b.id), orderedStops: batch.map((b) => b.data.dropLocation || b.data.pickupPoint), generatedAt: new Date().toISOString() } }));
         routes.push(route); for (const booking of batch) { booking.data = { ...booking.data, routeId: route.id, routeCode: route.data.routeCode, vehicle: route.data.vehicle, status: 'Route planned' }; await this.records.save(booking); } cursor += capacity;
       }
     }

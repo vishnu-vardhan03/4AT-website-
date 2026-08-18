@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Query, Res, UseGuards } from '@nestjs/common';
+import { SkipThrottle, Throttle } from '@nestjs/throttler';
 import type { Response } from 'express';
 import { EsslInternalGuard } from '../essl/essl-internal.guard';
 import { EctmsRecordType } from './ectms-record.entity';
@@ -10,10 +11,12 @@ const textValue = (value: unknown): string => typeof value === 'string' || typeo
 @UseGuards(EsslInternalGuard)
 export class EctmsController {
   constructor(private readonly service: EctmsService) {}
+  @SkipThrottle()
   @Get() snapshot(@Query('email') email = '', @Query('role') role = 'employee') { return this.service.snapshot(email, role); }
   @Post('bookings') booking(@Body() body: Record<string, unknown>) { return this.service.createBooking(textValue(body.email), body); }
   @Post('drivers') driver(@Body() body: Record<string, unknown>) { return this.service.createDriver(body); }
   @Post('bills') bill(@Body() body: Record<string, unknown>) { return this.service.createBill(textValue(body.email), body); }
+  @Throttle({ default: { limit: 10, ttl: 60_000 } })
   @Post('driver-login') login(@Body() body: Record<string, unknown>) { return this.service.driverLogin(textValue(body.phone), textValue(body.pin)); }
   @Post('sos') sos(@Body() body: Record<string, unknown>) { return this.service.createSafety(textValue(body.email), body); }
   @Post('operations/optimise') optimise(@Body() body: Record<string, unknown>) { return this.service.optimiseRoutes(textValue(body.actor)); }

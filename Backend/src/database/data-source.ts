@@ -36,7 +36,9 @@ export default new DataSource({
         password: process.env.DB_PASS ?? 'postgres',
         database: process.env.DB_NAME ?? '4at_consulting',
       }),
-  ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
+  ssl: process.env.DB_SSL === 'true'
+    ? { rejectUnauthorized: process.env.DB_SSL_REJECT_UNAUTHORIZED !== 'false' }
+    : false,
   synchronize: false,
   entities: [AcademyLead, AcademyRegistration, ConsultingLead, AiLead, EsslTicket, EsslTicketAttachment, EsslTicketActivity, EsslNotification, EsslEmailLog, EctmsRecord],
   migrations: [InitialLeadTables1721640000000, AcademyRegistrations1721640000001, EsslTickets1721640000002, EsslTicketAttachments1721640000003, EsslTicketRequester1721640000004, EsslNotifications1721640000005, EsslStatusEmail1721640000006, EsslCreatedEmailLog1721640000007, EsslCabCategory1721640000008, EsslCategoriesAndActivity1721640000009, EsslTicketReopening1721640000010, EctmsRecords1721640000011],

@@ -27,9 +27,7 @@ if (process.env.NODE_ENV === "production") {
 const nextConfig = {
   output: "standalone",
   env: {
-    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
-    BACKEND_URL: process.env.BACKEND_URL,
     NEXT_PUBLIC_ESSL_AUTH_MODE: process.env.ESSL_AUTH_MODE ?? "legacy",
   },
 
