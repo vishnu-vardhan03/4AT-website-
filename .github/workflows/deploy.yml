@@ -1,0 +1,107 @@
+name: Deploy 4AT Website
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  frontend-check:
+    name: Check Frontend
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: Frontend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: Frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check and build Frontend
+        run: npm run check
+
+
+  backend-check:
+    name: Check Backend
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: Backend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: Backend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check Backend
+        run: npm run check
+
+
+  deploy:
+    name: Deploy to EC2
+    needs:
+      - frontend-check
+      - backend-check
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy through SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            set -e
+
+            cd /home/ubuntu/4AT-website-
+
+            echo "Fetching latest code..."
+            git fetch origin main
+            git reset --hard origin/main
+
+            echo "Installing Frontend dependencies..."
+            cd Frontend
+            npm ci
+
+            echo "Building Frontend..."
+            npm run build
+
+            echo "Installing Backend dependencies..."
+            cd ../Backend
+            npm ci
+
+            echo "Building Backend..."
+            npm run build
+
+            echo "Restarting PM2 applications..."
+            pm2 restart frontend
+            pm2 restart backend
+
+            pm2 save
+
+            echo "Deployment completed successfully!"
