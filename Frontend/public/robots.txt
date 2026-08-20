@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /*.json$
 
-Sitemap: https://4at.ai/sitemap.xml
+Sitemap: https://consult-4at.com/sitemap.xml

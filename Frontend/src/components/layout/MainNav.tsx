@@ -322,7 +322,7 @@ export function Nav({ contactHref = "/contact" }: { contactHref?: string }) {
           <NavDropdown
             label="Academy"
             href="/academy"
-            imageHref="/academy#courses"
+            imageHref="/academy"
             imageSrc="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80"
             imageAlt="Placeholder for 4AT Academy"
             eyebrow="4AT Academy"

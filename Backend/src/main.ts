@@ -3,20 +3,20 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import helmet from 'helmet';
-import { join } from 'path';
 import { AppModule } from './app.module';
 import { GlobalExceptionFilter } from './common/filters/http-exception.filter';
 
 async function bootstrap() {
   const logger = new Logger('Bootstrap');
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  app.useBodyParser('json', { limit: '8mb' });
+  app.useBodyParser('urlencoded', { limit: '8mb', extended: true });
   const config = app.get(ConfigService);
   if (config.get<string>('TRUST_PROXY') === 'true') {
     const express = app.getHttpAdapter().getInstance();
     express.set('trust proxy', 1);
   }
   app.use(helmet());
-  app.useStaticAssets(join(process.cwd(), 'uploads'), { prefix: '/uploads/' });
   // Union of both variables, not one-as-the-default-of-the-other: FRONTEND_URL is
   // mandatory in production, which previously made ALLOWED_ORIGINS dead configuration.
   const configured = [config.get<string>('FRONTEND_URL'), config.get<string>('ALLOWED_ORIGINS')]

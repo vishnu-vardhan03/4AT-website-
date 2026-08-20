@@ -27,9 +27,7 @@ if (process.env.NODE_ENV === "production") {
 const nextConfig = {
   output: "standalone",
   env: {
-    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
-    BACKEND_URL: process.env.BACKEND_URL,
     NEXT_PUBLIC_ESSL_AUTH_MODE: process.env.ESSL_AUTH_MODE ?? "legacy",
   },
 
@@ -59,6 +57,7 @@ const nextConfig = {
       "frame-ancestors 'none'", "object-src 'none'",
       `script-src 'self' 'unsafe-inline'${developmentScriptPolicy} https://www.googletagmanager.com`,
       "style-src 'self' 'unsafe-inline'", "font-src 'self' data:",
+      "frame-src 'self' https://www.openstreetmap.org",
       // react-international-phone serves its Twemoji country flags from cdnjs.
       "img-src 'self' blob: data: https://cdn.sanity.io https://images.unsplash.com https://api.dicebear.com https://cdnjs.cloudflare.com",
       "media-src 'self'",
@@ -70,7 +69,7 @@ const nextConfig = {
       headers: [
         { key: "Content-Security-Policy", value: csp },
         { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-        { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+        { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(self)" },
         { key: "X-Content-Type-Options", value: "nosniff" },
         { key: "X-Frame-Options", value: "DENY" },
         { key: "Cross-Origin-Opener-Policy", value: "same-origin" },

@@ -16,9 +16,12 @@ DB_PASS=postgres
 DB_NAME=your_database
 DB_SSL=false
 ALLOWED_ORIGINS=http://localhost:3000,http://localhost:5173
+ESSL_UPLOAD_DIR=/absolute/path/to/persistent/essl-uploads
 ```
 
 Schema synchronization and automatic migration execution are intentionally disabled. Apply reviewed migrations during deployment with `npm run migration:run`.
+
+ESSL ticket attachments are private and are served only through the guarded API. In production, `ESSL_UPLOAD_DIR` is required, must be absolute, and must point to durable storage that survives restarts. The Docker image declares `/app/data/uploads` as a volume; mount persistent storage there. Do not expose that directory from a web server or commit its contents to Git.
 
 ## Run
 
@@ -36,6 +39,14 @@ npm run start:prod
 ```
 
 Run `npm run check` before deployment. In production, `DATABASE_URL`, `JWT_SECRET`, `ADMIN_USERNAME`, `ADMIN_PASSWORD_HASH`, and `FRONTEND_URL` are required; `JWT_SECRET` must contain at least 32 characters.
+
+For the `consult-4at.com` production deployment, configure these URL values:
+
+```env
+FRONTEND_URL=https://consult-4at.com
+ALLOWED_ORIGINS=https://consult-4at.com
+ESS_FRONTEND_URL=https://consult-4at.com/essl
+```
 
 The database health check is available at `/health`. API documentation is intentionally not bundled into the production service. Set `TRUST_PROXY=true` only when the API runs behind one trusted reverse proxy so rate limiting sees the originating client address.
 

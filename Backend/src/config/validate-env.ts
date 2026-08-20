@@ -1,4 +1,6 @@
-const REQUIRED_IN_PRODUCTION = ['DATABASE_URL', 'JWT_SECRET', 'ADMIN_USERNAME', 'ADMIN_PASSWORD_HASH', 'FRONTEND_URL', 'ESSL_INTERNAL_API_KEY'] as const;
+import { isAbsolute } from 'path';
+
+const REQUIRED_IN_PRODUCTION = ['DATABASE_URL', 'JWT_SECRET', 'ADMIN_USERNAME', 'ADMIN_PASSWORD_HASH', 'FRONTEND_URL', 'ESSL_INTERNAL_API_KEY', 'ESSL_UPLOAD_DIR'] as const;
 
 export function validateEnvironment(config: Record<string, unknown>): Record<string, unknown> {
   if (config.EOD_SUMMARY_ENABLED === 'true') {
@@ -26,6 +28,7 @@ export function validateEnvironment(config: Record<string, unknown>): Record<str
   if (missing.length) throw new Error(`Missing required production environment variables: ${missing.join(', ')}`);
   if (String(config.JWT_SECRET).length < 32) throw new Error('JWT_SECRET must contain at least 32 characters in production');
   if (String(config.ESSL_INTERNAL_API_KEY).length < 32) throw new Error('ESSL_INTERNAL_API_KEY must contain at least 32 characters in production');
+  if (!isAbsolute(String(config.ESSL_UPLOAD_DIR))) throw new Error('ESSL_UPLOAD_DIR must be an absolute path in production');
   if (!/^\$2[aby]\$\d{2}\$.{53}$/.test(String(config.ADMIN_PASSWORD_HASH))) {
     throw new Error('ADMIN_PASSWORD_HASH must be a valid bcrypt hash in production');
   }
