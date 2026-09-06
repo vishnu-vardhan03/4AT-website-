@@ -15,7 +15,7 @@ const pillars = [
   {
     eyebrow: "4AT AI",
     title: "The engine inside.",
-    body: "Finance-native AI that reconciles transactions, monitors controls, builds reports, and connects to your ERP — standard in every subscription.",
+    body: "Finance-native AI that reconciles transactions, monitors controls, builds reports, and connects to your ERP, standard in every subscription.",
     link: "See 4AT AI",
     href: "/product",
     color: "#a78bfa",
@@ -47,13 +47,14 @@ export function Process() {
           </span>
           <h2 className="mt-5 site-heading">
             Three pillars.{" "}
-            <span className="text-brand-gradient-flow">One ecosystem.</span> Built so finance
-            teams never outgrow us.
+            <span className="text-brand-gradient-flow">One ecosystem.</span> Built to lead with
+            par‑excellence, always.
           </h2>
           <p className="site-subheading mt-6 text-white/75 mx-auto">
-            Most providers sell you one thing - services, or software, or talent. 4AT runs all
-            three as a single ecosystem, so the AI that automates your books is built by the same
-            team that trains the people who run them.
+            Most providers deliver only one dimension: services, software, or talent. At 4AT, all
+            three converge into a unified ecosystem: the AI that automates your Finance &amp;
+            Accounting is engineered by the same experts who train the professionals managing it,
+            seamlessly integrating people, process, and technology.
           </p>
         </div>
 
@@ -63,11 +64,10 @@ export function Process() {
               key={pillar.eyebrow}
               onMouseEnter={() => setActive(index)}
               onFocus={() => setActive(index)}
-              className={`group relative overflow-hidden rounded-2xl border p-6 transition duration-500 md:min-h-[430px] md:p-8 ${
-                active === index
+              className={`group relative overflow-hidden rounded-2xl border p-6 transition duration-500 md:min-h-[430px] md:p-8 ${active === index
                   ? "border-white/35 bg-white/[0.07]"
                   : "border-white/15 bg-[#0b1020]/75"
-              }`}
+                }`}
             >
               <div
                 className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"

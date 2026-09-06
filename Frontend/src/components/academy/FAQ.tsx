@@ -18,14 +18,14 @@ const faqItems = [
       "The pre-assessment is free. You confirm your seat with ₹999 + GST.",
   },
   {
-    question: "What is the pre-assessment — what does it test?",
+    question: "What is the pre-assessment, what does it test?",
     answer:
-      "A short screening test that checks your fundamentals and readiness for the track you're applying to — not prior job experience.",
+      "A short screening test that checks your fundamentals and readiness for the track you're applying to, not prior job experience.",
   },
   {
     question: "Is placement guaranteed?",
     answer:
-      "Candidates who clear the assessments and interview earn an internship and a placement pathway — at 4AT or a partner.",
+      "Candidates who clear the assessments and interview earn an internship and a placement pathway, at 4AT or a partner.",
   },
   {
     question: "What happens if I don't clear the assessment?",
@@ -35,12 +35,12 @@ const faqItems = [
   {
     question: "How is this different from a normal course?",
     answer:
-      "Practice-led and run by a working finance, accounting, and audit firm — real systems, AI tools, client-style work, and a Train–Hire–Deploy model that ends in a job.",
+      "Practice-led and run by a working finance, accounting, and audit firm, real systems, AI tools, client-style work, and a Train-Hire-Deploy model that ends in a job.",
   },
   {
     question: "Do I need prior experience?",
     answer:
-      "No — the fresher tracks (Acc L1, IA L1, SOC 2) are built from the ground up. Acc L2 and FP&A are for experienced professionals.",
+      "No, the fresher tracks (Acc L1, IA L1, SOC 2) are built from the ground up. Acc L2 and FP&A are for experienced professionals.",
   },
 ];
 
@@ -118,11 +118,11 @@ export function FAQ({ sectionId = "faq" }: { sectionId?: string }) {
         <p className="w-full lg:w-[65%] mt-6 text-sm sm:text-[14.5px] text-[#A7A9C4]">
           More questions?{" "}
           <Link
-    href="/contact"
-    className="text-emerald-400 font-semibold hover:text-emerald-300 transition-colors"
-  >
-    Talk to us →
-  </Link>
+            href="/contact"
+            className="text-emerald-400 font-semibold hover:text-emerald-300 transition-colors"
+          >
+            Talk to us →
+          </Link>
         </p>
       </div>
     </section>

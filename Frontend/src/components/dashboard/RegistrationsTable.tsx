@@ -181,9 +181,8 @@ export function RegistrationsTable({ registrations }: { registrations: Registrat
                     </td>
                     <td className="px-4 py-4">
                       <span
-                        className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold ${
-                          isStudent ? "bg-sky-400/10 text-sky-300 border border-sky-400/20" : "bg-purple-400/10 text-purple-300 border border-purple-400/20"
-                        }`}
+                        className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold ${isStudent ? "bg-sky-400/10 text-sky-300 border border-sky-400/20" : "bg-purple-400/10 text-purple-300 border border-purple-400/20"
+                          }`}
                       >
                         {isStudent ? <User className="h-3 w-3" /> : <Building2 className="h-3 w-3" />}
                         {isStudent ? "Student" : "Professional"}
@@ -194,11 +193,11 @@ export function RegistrationsTable({ registrations }: { registrations: Registrat
                       <div className="mt-0.5 text-xs text-white/40">{reg.mobileNumber}</div>
                     </td>
                     <td className="px-4 py-4">
-                      <div className="font-medium text-white/80">{isStudent ? reg.college || "—" : reg.companyName || "—"}</div>
+                      <div className="font-medium text-white/80">{isStudent ? reg.college || "N/A" : reg.companyName || "N/A"}</div>
                       <div className="mt-0.5 text-xs text-white/40">{isStudent ? reg.department || "" : reg.industry || ""}</div>
                     </td>
                     <td className="px-4 py-4">
-                      <div className="text-xs text-white/80">{isStudent ? reg.programName || "—" : reg.jobTitle || "—"}</div>
+                      <div className="text-xs text-white/80">{isStudent ? reg.programName || "N/A" : reg.jobTitle || "N/A"}</div>
                       <div className="mt-0.5 text-xs text-white/40">
                         {isStudent ? (reg.academicYear ? `Year: ${reg.academicYear}` : "") : reg.yearsOfExperience ? `Exp: ${reg.yearsOfExperience} yrs` : ""}
                       </div>
@@ -206,13 +205,13 @@ export function RegistrationsTable({ registrations }: { registrations: Registrat
                     <td className="px-4 py-4">
                       <div className="flex items-center gap-1 text-xs text-white/60">
                         <MapPin className="h-3 w-3 text-white/30 shrink-0" />
-                        {[reg.city, reg.state, reg.country].filter(Boolean).join(", ") || "—"}
+                        {[reg.city, reg.state, reg.country].filter(Boolean).join(", ") || "N/A"}
                       </div>
                     </td>
                     <td className="px-6 py-4 text-xs text-white/45 whitespace-nowrap">
                       {reg.createdAt
                         ? new Intl.DateTimeFormat("en", { dateStyle: "medium", timeStyle: "short" }).format(new Date(reg.createdAt))
-                        : "—"}
+                        : "N/A"}
                     </td>
                   </tr>
                 );

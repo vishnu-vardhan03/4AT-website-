@@ -8,7 +8,7 @@ const reveal = {
   visible: { opacity: 1, y: 0 },
 };
 
-const HYBRID_SERVICES = ["Accounting", "Audit", "Advisory", "Assurance", "TAX", "FP&A", "Transformation"];
+const HYBRID_SERVICES = ["CPAs", "CAs", "Accounting Firms"];
 
 export function Hero() {
   const [activeService, setActiveService] = useState(0);
@@ -46,7 +46,9 @@ export function Hero() {
             className="brand-logo-gradient shrink-0"
             style={{ WebkitMaskImage: `url(${logo.src})`, maskImage: `url(${logo.src})` }}
           />
-          <span className="min-w-0">Introducing Hybrid Services Eco-System</span>
+          <span className="min-w-0 whitespace-nowrap">
+            Introducing hybrid services eco-system to Finance &amp; Accounting and Process Transformation
+          </span>
         </motion.span>
 
         <motion.h1
@@ -57,7 +59,7 @@ export function Hero() {
           className="max-w-6xl font-bold tracking-tight"
         >
           <span className="block max-w-4xl text-2xl sm:text-3xl md:text-4xl leading-[1.12]">
-            The new way to run
+            The new opportunity to run the business of
           </span>
           <span className="relative mt-3 block min-h-[1.35em] max-w-5xl overflow-visible pb-3 text-[clamp(2.55rem,13vw,4.5rem)] font-extrabold leading-[1.05] tracking-tight md:mt-5 md:text-7xl">
             <AnimatePresence mode="wait">
@@ -83,7 +85,7 @@ export function Hero() {
           className="mt-7 flex flex-col items-start gap-6 sm:mt-10 sm:gap-8"
         >
           <p className="site-hero-subheading max-w-2xl text-white/75">
-            4AT pairs AI-powered workflows with experienced finance professionals in one ecosystem, so finance teams stop choosing between firms that bill by the hour and AI tools they can&apos;t sign off on.
+            4AT combines AI powered workflows with highly skilled finance experts, delivering Finance, Accounting, and Audit solutions in one trusted ecosystem, removing the need to choose between expensive hourly firms and unapproved AI tools
           </p>
 
           <div className="grid w-full gap-3 sm:flex sm:w-auto sm:flex-wrap">
@@ -105,8 +107,9 @@ export function Hero() {
           </div>
 
           <div className="flex w-full max-w-full flex-col divide-y divide-white/15 overflow-hidden rounded-xl border border-white/15 bg-white/[0.035] text-sm font-medium text-white/75 backdrop-blur-sm sm:w-fit sm:flex-row sm:divide-x sm:divide-y-0">
-            <span className="px-5 py-3.5">AI-assisted reconciliation</span>
-            <span className="px-5 py-3.5">Senior CPAs on every engagement</span>
+            <span className="px-5 py-3.5">AI-Assisted Record</span>
+            <span className="px-5 py-3.5">Summarize and Analyse</span>
+            <span className="px-5 py-3.5">Senior CPA&rsquo;s and CA&rsquo;s on every engagement</span>
           </div>
         </motion.div>
       </div>

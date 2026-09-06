@@ -116,19 +116,19 @@ export function LeadsTable({ leads }: { leads: LeadsPage | null }) {
             <tbody className="divide-y divide-white/[0.06]">
               {filteredLeads.map((lead) => (
                 <tr key={`${lead.category}-${lead.id}`} className="text-white/65">
-                  <td className="px-6 py-4 font-medium text-white/85">{lead.fullName || "—"}</td>
+                  <td className="px-6 py-4 font-medium text-white/85">{lead.fullName || "N/A"}</td>
                   <td className="px-4 py-4">
-                    <div>{lead.email || "—"}</div>
+                    <div>{lead.email || "N/A"}</div>
                     {lead.phone ? <div className="mt-1 text-xs text-white/35">{lead.phone}</div> : null}
                   </td>
-                  <td className="px-4 py-4">{lead.company || "—"}</td>
+                  <td className="px-4 py-4">{lead.company || "N/A"}</td>
                   <td className="px-4 py-4">
                     <span className={`rounded-full px-2.5 py-1 text-[11px] font-semibold capitalize ${categoryStyles[lead.category]}`}>
                       {lead.category}
                     </span>
                   </td>
                   <td className="px-6 py-4 text-white/45">
-                    {lead.createdAt ? new Intl.DateTimeFormat("en", { dateStyle: "medium", timeStyle: "short" }).format(new Date(lead.createdAt)) : "—"}
+                    {lead.createdAt ? new Intl.DateTimeFormat("en", { dateStyle: "medium", timeStyle: "short" }).format(new Date(lead.createdAt)) : "N/A"}
                   </td>
                 </tr>
               ))}

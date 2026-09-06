@@ -6,10 +6,10 @@ import { DecryptedText } from "@/components/academy/DecryptedText";
 import { NeonGlowOrb } from "@/components/academy/NeonGlowOrb";
 import { SectionPill } from "@/components/academy/SectionPill";
 
-// Per-card ambient accent config (index 0–4)
+// Per-card ambient accent config (index 0-4)
 const CARD_ACCENTS = [
   {
-    // 01 — emerald
+    // 01, emerald
     gradient:   "linear-gradient(135deg, rgba(0,255,180,0.08) 0%, transparent 60%)",
     glow:       "rgba(0,255,180,0.18)",
     borderGlow: "rgba(0,255,180,0.10)",
@@ -20,7 +20,7 @@ const CARD_ACCENTS = [
     mouseGlow:  "rgba(0,229,195,0.12)",
   },
   {
-    // 02 — cyan
+    // 02, cyan
     gradient:   "linear-gradient(135deg, rgba(0,210,255,0.08) 0%, transparent 60%)",
     glow:       "rgba(0,210,255,0.18)",
     borderGlow: "rgba(0,210,255,0.10)",
@@ -31,7 +31,7 @@ const CARD_ACCENTS = [
     mouseGlow:  "rgba(0,210,255,0.12)",
   },
   {
-    // 03 — violet
+    // 03, violet
     gradient:   "linear-gradient(135deg, rgba(170,100,255,0.09) 0%, transparent 60%)",
     glow:       "rgba(170,100,255,0.20)",
     borderGlow: "rgba(170,100,255,0.10)",
@@ -42,7 +42,7 @@ const CARD_ACCENTS = [
     mouseGlow:  "rgba(170,100,255,0.12)",
   },
   {
-    // 04 — teal
+    // 04, teal
     gradient:   "linear-gradient(135deg, rgba(50,220,220,0.08) 0%, transparent 60%)",
     glow:       "rgba(50,220,220,0.18)",
     borderGlow: "rgba(50,220,220,0.10)",
@@ -53,7 +53,7 @@ const CARD_ACCENTS = [
     mouseGlow:  "rgba(50,220,220,0.12)",
   },
   {
-    // 05 — purple
+    // 05, purple
     gradient:   "linear-gradient(135deg, rgba(185,110,255,0.08) 0%, transparent 60%)",
     glow:       "rgba(185,110,255,0.18)",
     borderGlow: "rgba(185,110,255,0.10)",
@@ -78,7 +78,7 @@ function FeatureTile({ card, index }: { card: FeatureCard; index: number }) {
     e.currentTarget.style.setProperty("--mouse-y", `${y}px`);
   }
 
-  // Border mapping — internal dividers only, no outer edges
+  // Border mapping, internal dividers only, no outer edges
   const borderClasses = [
     "border-b lg:border-r border-[#151e2e]",
     "border-b lg:border-r border-[#151e2e]",
@@ -87,7 +87,7 @@ function FeatureTile({ card, index }: { card: FeatureCard; index: number }) {
     "border-b-0 lg:border-none border-[#151e2e]",
   ][index];
 
-  // Corner tile rounding — handled by parent card overflow-hidden, tiles stay flat
+  // Corner tile rounding, handled by parent card overflow-hidden, tiles stay flat
   return (
     <div className={`feature-tile-wrapper h-full ${card.span === "double" ? "lg:col-span-2" : ""}`}>
       <article
@@ -107,13 +107,13 @@ function FeatureTile({ card, index }: { card: FeatureCard; index: number }) {
           (e.currentTarget as HTMLElement).style.boxShadow = "none";
         }}
       >
-        {/* Ambient directional gradient overlay — the core color layer */}
+        {/* Ambient directional gradient overlay, the core color layer */}
         <div
           className="pointer-events-none absolute inset-0 z-0"
           style={{ background: accent.gradient }}
         />
 
-        {/* Large radial bloom glow — sits behind content */}
+        {/* Large radial bloom glow, sits behind content */}
         <div
           className="pointer-events-none absolute -top-16 -left-16 z-0 rounded-full"
           style={{
@@ -242,14 +242,14 @@ export function Features({ sectionId = "programs" }: { sectionId?: string }) {
               boxShadow: "0 0 0 1px rgba(0,255,180,0.08), 0 0 20px rgba(0,255,180,0.14), 0 0 60px rgba(0,255,180,0.07), 0 32px 80px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.05)",
             }}
           >
-            {/* Bento Grid — internal dividers kept, outer border removed */}
+            {/* Bento Grid, internal dividers kept, outer border removed */}
             <div className="features-grid grid grid-cols-1 gap-0 lg:grid-cols-3">
               {featureCards.map((card, index) => (
                 <FeatureTile key={card.id} card={card} index={index} />
               ))}
             </div>
 
-            {/* Ratings Footer — internal dividers kept, outer x/b border removed */}
+            {/* Ratings Footer, internal dividers kept, outer x/b border removed */}
             <div className="features-stats-grid grid grid-cols-2 border-t border-[#151e2e] sm:grid-cols-4">
               {ratings.map((stat, index) => {
                 const statBorderClasses = [

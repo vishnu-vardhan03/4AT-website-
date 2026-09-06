@@ -55,7 +55,7 @@ export function useLeadForm() {
     try {
       window.localStorage.setItem(LEAD_FORM_STORAGE_KEY, JSON.stringify(formData));
     } catch {
-      // Storage unavailable (e.g. private browsing) — safe to ignore.
+      // Storage unavailable (e.g. private browsing), safe to ignore.
     }
   }, [formData]);
 
@@ -80,7 +80,7 @@ export function useLeadForm() {
     try {
       window.localStorage.removeItem(LEAD_FORM_STORAGE_KEY);
     } catch {
-      // Storage unavailable — safe to ignore.
+      // Storage unavailable, safe to ignore.
     }
   }, []);
 
@@ -90,7 +90,7 @@ export function useLeadForm() {
     if (Object.keys(validationErrors).length > 0) return;
 
     if (honeypot) {
-      // Hidden field only a bot would fill — pretend success, skip the API.
+      // Hidden field only a bot would fill, pretend success, skip the API.
       setStatus("success");
       return;
     }
@@ -116,7 +116,7 @@ export function useLeadForm() {
       try {
         window.localStorage.removeItem(LEAD_FORM_STORAGE_KEY);
       } catch {
-        // Storage unavailable — safe to ignore.
+        // Storage unavailable, safe to ignore.
       }
     } catch (error) {
       setStatus("error");

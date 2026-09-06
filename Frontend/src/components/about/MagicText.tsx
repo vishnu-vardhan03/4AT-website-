@@ -16,13 +16,12 @@ interface WordProps {
 }
 
 const Word: React.FC<WordProps> = ({ children, progress, range }) => {
-  const opacity = useTransform(progress, range, [0, 1]);
+  const opacity = useTransform(progress, range, [0.2, 1]);
 
   return (
-    <span className="relative mr-[0.3em]">
-      <span className="absolute opacity-20">{children}</span>
-      <motion.span style={{ opacity }}>{children}</motion.span>
-    </span>
+    <motion.span className="mr-[0.3em]" style={{ opacity }}>
+      {children}
+    </motion.span>
   );
 };
 

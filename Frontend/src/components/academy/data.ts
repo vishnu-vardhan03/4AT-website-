@@ -246,14 +246,14 @@ export type LmsCourse = {
 export const lmsCourses: LmsCourse[] = [
   // ── Freshers ──────────────────────────────────────────────────────────────
   {
-    title: "FinTech Engineering — Acc L1",
+    title: "FinTech Engineering - Acc L1",
     subtitle: "Freshers · Accounting · Flagship",
     badge: "FLAGSHIP · FRESHERS",
     duration: "8 weeks",
     mode: "Hybrid",
     rating: 4.8,
     reviewsCount: 141,
-    description: "Practical finance, accounting and audit — ending in certification, internship and placement.",
+    description: "Practical finance, accounting and audit, ending in certification, internship and placement.",
     bullets: [
       "Finance, Accounting & Audit",
       "Accounting platforms & tools",
@@ -274,7 +274,7 @@ export const lmsCourses: LmsCourse[] = [
     ctaText: "VIEW CURRICULUM"
   },
   {
-    title: "FinTech Engineering — IA L1",
+    title: "FinTech Engineering - IA L1",
     subtitle: "Freshers · Audit",
     badge: "AUDIT · FRESHERS",
     duration: "2 months",
@@ -302,7 +302,7 @@ export const lmsCourses: LmsCourse[] = [
     ctaText: "VIEW CURRICULUM"
   },
   {
-    title: "FinTech Engineering — SOC 2",
+    title: "FinTech Engineering - SOC 2",
     subtitle: "Freshers · Risk & Compliance",
     badge: "RISK & COMPLIANCE · FRESHERS",
     duration: "1.5 months",
@@ -331,7 +331,7 @@ export const lmsCourses: LmsCourse[] = [
   },
   // ── Experienced ───────────────────────────────────────────────────────────
   {
-    title: "FinTech Engineering — Acc L2",
+    title: "FinTech Engineering - Acc L2",
     subtitle: "Experienced · 3+ years",
     badge: "EXPERIENCED · 3+ YRS",
     duration: "1.5 months",
@@ -359,7 +359,7 @@ export const lmsCourses: LmsCourse[] = [
     ctaText: "VIEW CURRICULUM"
   },
   {
-    title: "FinTech Engineering — FP&A",
+    title: "FinTech Engineering - FP&A",
     subtitle: "Experienced",
     badge: "FP&A · EXPERIENCED",
     duration: "1.5 months",

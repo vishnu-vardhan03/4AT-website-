@@ -7,12 +7,12 @@ import AmbientBackground from "@/components/product/AmbientBackground";
 /* ── SECURITY ────────────────────────────────────────── */
 export function SecuritySection() {
   const badges = [
-    { icon: "🔐", title: "SOC 2 Type II",    desc: "Independently audited security controls reviewed annually by third parties." },
-    { icon: "🌍", title: "GDPR Compliant",   desc: "Full EU data protection compliance. Data residency and deletion policies enforced." },
-    { icon: "🏥", title: "HIPAA Ready",      desc: "Healthcare-grade encryption and data handling. Available on Enterprise tier." },
+    { icon: "🔐", title: "SOC 2 Type II", desc: "Independently audited security controls reviewed annually by third parties." },
+    { icon: "🌍", title: "GDPR Compliant", desc: "Full EU data protection compliance. Data residency and deletion policies enforced." },
+    { icon: "🏥", title: "HIPAA Ready", desc: "Healthcare-grade encryption and data handling. Available on Enterprise tier." },
     { icon: "🔑", title: "AES-256 Encrypt.", desc: "All financial data encrypted in transit and at rest. End-to-end." },
-    { icon: "📋", title: "Immutable Logs",   desc: "Every AI action timestamped and signed. Tamper-proof audit trails for regulators." },
-    { icon: "🛡️", title: "SSO & MFA",       desc: "SAML-based SSO, hardware security key support, and adaptive MFA across all tiers." },
+    { icon: "📋", title: "Immutable Logs", desc: "Every AI action timestamped and signed. Tamper-proof audit trails for regulators." },
+    { icon: "🛡️", title: "SSO & MFA", desc: "SAML-based SSO, hardware security key support, and adaptive MFA across all tiers." },
   ];
   return (
     <section id="security" className="section" style={{ background: "#04060f" }}>
@@ -128,18 +128,30 @@ export function PricingSection() {
 
 /* ── FAQ ─────────────────────────────────────────────── */
 const faqs = [
-  { q: "How accurate is 4AT's reconciliation AI?",
-    a: "4AT is built to flag exceptions rather than claim perfection — every unmatched item surfaces with a full explanation and a confidence score, one click from posted entry to raw transaction. " },
-  { q: "Is my financial data secure and compliant?",
-    a: "4AT is SOC 2 Type II certified, GDPR-compliant, and HIPAA-ready. All data uses AES-256 encryption. Every action produces an immutable timestamped audit log. We run on AWS (EC2 + RDS PostgreSQL + ElastiCache Redis + CloudFront CDN) with strict data residency policies." },
-  { q: "Does AI post journal entries automatically?",
-    a: "Only when you configure it to. The default is a human-approval workflow — AI prepares entries, your team reviews and approves before anything posts. You can configure confidence-based auto-posting for routine transactions while keeping a review step for edge cases and large values." },
-  { q: "What backend stack powers 4AT?",
-    a: "NestJS (Node.js) serves as the API layer handling Auth, Finance, AI Request, Academy, and Notification services. Python FastAPI powers the AI Service Layer (Fraud Detection, Audit Insights, Financial Analysis, Report Generation). PostgreSQL stores all data. Redis for caching. All on AWS." },
-  { q: "Can 4AT handle multi-entity and multi-currency?",
-    a: "Yes. 4AT supports unlimited entities, consolidation ledgers, inter-company eliminations, and statutory reporting. Currency translation, forex gain/loss calculations, and hedging entries are handled automatically." },
-  { q: "How long does implementation take?",
-    a: "Most customers go live in 4–6 weeks. Pre-built NestJS connectors, workflow templates, and a dedicated implementation specialist accelerate onboarding. Enterprise deployments with custom integrations typically take 8–12 weeks." },
+  {
+    q: "How accurate is 4AT's reconciliation AI?",
+    a: "4AT is built to flag exceptions rather than claim perfection: every unmatched item surfaces with a full explanation and a confidence score, one click from posted entry to raw transaction. "
+  },
+  {
+    q: "Is my financial data secure and compliant?",
+    a: "4AT is SOC 2 Type II certified, GDPR-compliant, and HIPAA-ready. All data uses AES-256 encryption. Every action produces an immutable timestamped audit log. We run on AWS (EC2 + RDS PostgreSQL + ElastiCache Redis + CloudFront CDN) with strict data residency policies."
+  },
+  {
+    q: "Does AI post journal entries automatically?",
+    a: "Only when you configure it to. The default is a human-approval workflow: AI prepares entries, your team reviews and approves before anything posts. You can configure confidence-based auto-posting for routine transactions while keeping a review step for edge cases and large values."
+  },
+  {
+    q: "What backend stack powers 4AT?",
+    a: "NestJS (Node.js) serves as the API layer handling Auth, Finance, AI Request, Academy, and Notification services. Python FastAPI powers the AI Service Layer (Fraud Detection, Audit Insights, Financial Analysis, Report Generation). PostgreSQL stores all data. Redis for caching. All on AWS."
+  },
+  {
+    q: "Can 4AT handle multi-entity and multi-currency?",
+    a: "Yes. 4AT supports unlimited entities, consolidation ledgers, inter-company eliminations, and statutory reporting. Currency translation, forex gain/loss calculations, and hedging entries are handled automatically."
+  },
+  {
+    q: "How long does implementation take?",
+    a: "Most customers go live in 4-6 weeks. Pre-built NestJS connectors, workflow templates, and a dedicated implementation specialist accelerate onboarding. Enterprise deployments with custom integrations typically take 8-12 weeks."
+  },
 ];
 
 export function FaqSection() {
@@ -168,7 +180,7 @@ export function FaqSection() {
               <button
                 className="w-full flex items-center justify-between px-6 py-5 text-left
                   font-bold text-[25px] transition-colors duration-200"
-                style={{ color: open === i ? "#c4b5fd" : "rgba(255,255,255,.85)" , }}
+                style={{ color: open === i ? "#c4b5fd" : "rgba(255,255,255,.85)", }}
                 onClick={() => setOpen(open === i ? null : i)}
               >
                 {f.q}
@@ -179,7 +191,7 @@ export function FaqSection() {
                     border: "1px solid rgba(255,255,255,.15)",
                     transform: open === i ? "rotate(180deg)" : "rotate(0)",
                     background: open === i ? "rgba(167,139,250,.15)" : "transparent",
-                    
+
                   }}
                 >▲</span>
               </button>

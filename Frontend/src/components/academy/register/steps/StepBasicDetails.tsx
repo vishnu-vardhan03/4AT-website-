@@ -137,7 +137,7 @@ export function StepBasicDetails({ formData, onChange, errors }: StepProps) {
               ))}
             </select>
           ) : (
-            // No state-level data for this country in the dataset — let the applicant type it.
+            // No state-level data for this country in the dataset, let the applicant type it.
             <input
               type="text"
               id="state"
@@ -174,7 +174,7 @@ export function StepBasicDetails({ formData, onChange, errors }: StepProps) {
               ))}
             </select>
           ) : (
-            // No city-level data for this state in the dataset — let the applicant type it.
+            // No city-level data for this state in the dataset, let the applicant type it.
             <input
               type="text"
               id="city"

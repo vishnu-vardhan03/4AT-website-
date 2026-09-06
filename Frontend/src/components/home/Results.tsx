@@ -75,9 +75,8 @@ export function Results() {
             How Hybrid works
           </span>
           <h2 className="mt-5 max-w-4xl site-heading">
-            The science goes to{" "}
-            <span className="text-brand-gradient-flow">AI.</span> The art stays with our
-            experts.
+            Accounting is Science and Art. Science goes to{" "}
+            <span className="text-brand-gradient-flow">AI.</span> Art stays with our experts.
           </h2>
           <p className="site-subheading mt-6 max-w-4xl text-white/75">
             Hybrid isn&apos;t &quot;people plus software.&quot; It&apos;s a structured
@@ -98,7 +97,7 @@ export function Results() {
           </div>
           <div className="flex h-full w-full">
             <TaskColumn
-              title="Experienced finance professionals handle the art"
+              title="Experts handles the art"
               label="Expert layer"
               tasks={expertTasks}
               accent="#a78bfa"
@@ -111,7 +110,7 @@ export function Results() {
             What changes for you
           </span>
           <p className="mt-3 text-xl font-bold text-white md:text-2xl">
-            The result for your finance team:
+            The result for your finance team
           </p>
         </div>
 

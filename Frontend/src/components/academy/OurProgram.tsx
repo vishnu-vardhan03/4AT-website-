@@ -72,7 +72,7 @@ export function OurProgram({ sectionId = "program" }: { sectionId?: string }) {
               </h4>
 
               <p className="text-white/80 font-sans text-sm sm:text-base leading-relaxed">
-                The FinTech Engineering Program (FEP) takes commerce graduates and final-year students to the capability of a 2–3-year professional — through certification, internship and placement. Advanced tracks are available for experienced professionals looking to specialise and advance.
+                The FinTech Engineering Program (FEP) takes commerce graduates and final-year students to the capability of a 2-3-year professional, through certification, internship and placement. Advanced tracks are available for experienced professionals looking to specialise and advance.
               </p>
             </div>
           </motion.div>
@@ -105,7 +105,7 @@ export function OurProgram({ sectionId = "program" }: { sectionId?: string }) {
               </h4>
 
               <p className="text-white/80 font-sans text-sm sm:text-base leading-relaxed">
-                A degree gives you theory. Employers want the job done. Recording transactions, reconciling accounts, closing the books, preparing financial statements, reporting the numbers, working with AI and automation tools, and communicating with clients — that&apos;s what finance teams actually hire for. 4AT Academy bridges that gap with practice-led training, built and run by a working finance, accounting and audit firm.
+                A degree gives you theory. Employers want the job done. Recording transactions, reconciling accounts, closing the books, preparing financial statements, reporting the numbers, working with AI and automation tools, and communicating with clients, that&apos;s what finance teams actually hire for. 4AT Academy bridges that gap with practice-led training, built and run by a working finance, accounting and audit firm.
               </p>
             </div>
           </motion.div>
@@ -137,7 +137,7 @@ export function OurProgram({ sectionId = "program" }: { sectionId?: string }) {
               Every candidate is <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">evaluated</span> before becoming job-ready.
             </h3>
             <p className="text-white/60 font-sans text-sm sm:text-base">
-              From pre-assessment to placement — a guided path.
+              From pre-assessment to placement, a guided path.
             </p>
           </div>
 

@@ -207,7 +207,7 @@ const serviceDetails: Record<string, {
       },
       {
         title: "Cost Alignment",
-        content: "‘COST’ – one word that always gets undivided attention of any business head or stakeholders. The constant pressures to bring down the cost coupled with increasing need for regulatory compliance and demands for a closer alignment to the business are driving organizations towards new Finance and Accounting Operating models. Chief Financial Officers (CFO) of leading organizations are incorporating Finance and Accounting services outsourcing as a strategy to change their operating models. 4AT offers industry recognized Financial Services Offshoring Solutions that support end-to-end functions."
+        content: "‘COST’: one word that always gets undivided attention of any business head or stakeholders. The constant pressures to bring down the cost coupled with increasing need for regulatory compliance and demands for a closer alignment to the business are driving organizations towards new Finance and Accounting Operating models. Chief Financial Officers (CFO) of leading organizations are incorporating Finance and Accounting services outsourcing as a strategy to change their operating models. 4AT offers industry recognized Financial Services Offshoring Solutions that support end-to-end functions."
       },
       {
         title: "Key Highlights of APO Services",
@@ -286,7 +286,7 @@ const serviceDetails: Record<string, {
       },
       {
         title: "Payroll Accounting",
-        desc: "Trained and well versed with employee benefits and compensation working process. Our domain experience in payroll cycle management provides value-based services to our clients to improve cycle time and process accuracy. We have end-to-end expertise in managing comprehensive Payroll processes, from issuing tax forms – preparing work schedules – proper allotment of funds, employee Insurance and other benefits. Our understanding of newer engagement models like time sheet, work order and other industry specific workings helps us build our capability.",
+        desc: "Trained and well versed with employee benefits and compensation working process. Our domain experience in payroll cycle management provides value-based services to our clients to improve cycle time and process accuracy. We have end-to-end expertise in managing comprehensive Payroll processes, from issuing tax forms, preparing work schedules, proper allotment of funds, employee Insurance and other benefits. Our understanding of newer engagement models like time sheet, work order and other industry specific workings helps us build our capability.",
         activities: [
           "Payroll data validation",
           "Bank register vs Employee register reconciliation",
@@ -1042,9 +1042,8 @@ export function Services() {
                     return (
                       <div
                         key={dotIdx}
-                        className={`h-1.5 rounded-full transition-all duration-300 ${
-                          isActive ? "w-4 bg-sky-400" : "w-1.5 bg-white/40"
-                        }`}
+                        className={`h-1.5 rounded-full transition-all duration-300 ${isActive ? "w-4 bg-sky-400" : "w-1.5 bg-white/40"
+                          }`}
                       />
                     );
                   })}

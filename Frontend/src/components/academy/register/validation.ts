@@ -1,6 +1,6 @@
 /**
  * Pure validation functions for the Academy Registration Form.
- * No React dependencies — easily unit-testable.
+ * No React dependencies, easily unit-testable.
  */
 import type { RegistrationFormData } from "./types";
 import { isValidPhoneNumber } from "libphonenumber-js";

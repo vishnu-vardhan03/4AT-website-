@@ -7,32 +7,32 @@ const steps = [
     number: "01",
     timing: "Day 0",
     title: "Subscribe",
-    body: "Pick your plan on the website. Pay your first month. Your team starts immediately.",
-    detail: "No legal review. No 6-week sales cycle.",
+    body: "Select a plan and subscribe. Your dedicated team is live from that moment, no waiting period, no separate kickoff to schedule.",
+    detail: "",
     color: "#38bdf8",
   },
   {
     number: "02",
-    timing: "Days 1–7",
-    title: "Onboard",
-    body: "Connector ingests your ERP, ledgers, and policies. Your dedicated pod, combining AI agents with experienced finance professionals, is live within 7 days.",
-    detail: "You don't change tools. We meet you inside the systems you already use.",
+    timing: "Days 1-7",
+    title: "Onboarding is instant",
+    body: "Our API connector reads your ERP, ledgers, and policies directly. Your pod, AI agents and experienced finance professionals, starts working inside the systems you already use. Nothing to migrate, nothing new to learn.",
+    detail: "",
     color: "#2dd4bf",
   },
   {
     number: "03",
     timing: "Day 8 onward",
     title: "We run it",
-    body: "Transactions reconcile. Controls stay monitored. Reports write themselves. Experienced finance professionals review everything before it reaches you.",
-    detail: "You see it all in one dashboard. One bill. One team.",
+    body: "AI migrates records, reconciles accounts, monitors controls, and drafts reports. Finance professionals review every detail before it reaches you. It comes together in one dashboard, one bill, one team, “Hybrid Team”",
+    detail: "",
     color: "#a78bfa",
   },
   {
     number: "04",
     timing: "Month 3 and beyond",
     title: "You scale",
-    body: "Add controls. Add tax. Add audit readiness. Add a vCFO. Every new service line plugs into the same subscription: no new vendor, no new contract, no new onboarding.",
-    detail: "This is where most clients start with one service and end the year running their entire finance function on 4AT.",
+    body: "Add controls, audit readiness, a vCFO, or a vCAO whenever you need them. Every addition plugs into the same subscription, no new contracts, no new onboarding. What starts as one service grows into a complete finance operation.",
+    detail: "",
     color: "#38bdf8",
   },
 ];
@@ -82,15 +82,14 @@ export function HowItWorks() {
               How an engagement works
             </span>
             <h2 className="mt-3 site-heading">
-              <span className="text-brand-gradient-flow">Four steps</span>
+              <span className="text-brand-gradient-flow">Four simple steps</span>
             </h2>
             <p className="site-subheading mt-3 max-w-3xl text-white/70">
-            The teams who switch to 4AT Hybrid all share one thing: they&apos;re done
-              choosing between expensive firms and risky AI.
+              Freedom from hourly billing. Freedom from uncertainty. Freedom grows with confidence. Four phases take you from signing up to a finance function that scales with you, no patchwork of vendors, no new onboarding each time you grow.
             </p>
           </div>
 
-          {/* ── Cards grid — each card fades + slides in as user scrolls ── */}
+          {/* ── Cards grid, each card fades + slides in as user scrolls ── */}
           <div className="mt-8 grid gap-4 md:grid-cols-2 md:gap-5 xl:grid-cols-4">
             {steps.map((step, i) => {
               const isVisible = i < visibleCount;
@@ -133,9 +132,11 @@ export function HowItWorks() {
                       <p className="mt-4 text-sm leading-relaxed text-white/75">{step.body}</p>
 
                       {/* Detail */}
-                      <p className="mt-5 border-t border-white/10 pt-4 text-sm font-medium leading-relaxed text-white md:mt-auto">
-                        {step.detail}
-                      </p>
+                      {step.detail && (
+                        <p className="mt-5 border-t border-white/10 pt-4 text-sm font-medium leading-relaxed text-white md:mt-auto">
+                          {step.detail}
+                        </p>
+                      )}
                     </div>
                   </article>
                 </div>

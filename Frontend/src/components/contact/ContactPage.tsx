@@ -87,7 +87,7 @@ export default function ContactPage() {
               <span className="text-brand-gradient-flow">extraordinary.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">
-                Whether you&apos;re ready to start or just exploring, an experienced finance professional will get back to you within one business day. No decks, no sales scripts.
+              Whether you&apos;re ready to start or just exploring, an experienced finance professional will get back to you within one business day. No decks, no sales scripts.
             </p>
           </div>
         </section>
@@ -111,7 +111,7 @@ export default function ContactPage() {
                     color: "#38bdf8",
                     lines: [
                       "116 Village Blvd, Suite 200",
-                      "Princeton, New Jersey – 08540",
+                      "Princeton, New Jersey - 08540",
                       "+1 609 255 3118",
                       "info@consult-4at.com",
                     ],
@@ -121,7 +121,7 @@ export default function ContactPage() {
                     color: "#a78bfa",
                     lines: [
                       "3rd Floor, D-Block, I Labs Center",
-                      "Madhapur, Hyderabad, TS – 500081",
+                      "Madhapur, Hyderabad, TS - 500081",
                       "+91 90110433456",
                       "+91 9133203456",
                       "info@consult-4at.com",
@@ -132,7 +132,7 @@ export default function ContactPage() {
                     color: "#2dd4bf",
                     lines: [
                       "KG01-86 Courallie Avenue",
-                      "Homebush West, NSW – 2140",
+                      "Homebush West, NSW - 2140",
                       "info@consult-4at.com",
                     ],
                   },
@@ -172,7 +172,7 @@ export default function ContactPage() {
                   <div>
                     <p className="text-sm font-bold text-white">1 business day response</p>
                     <p className="mt-1 text-xs leading-relaxed text-white/50">
-                    Every submission is reviewed by an experienced finance professional, not a bot or SDR.
+                      Every submission is reviewed by an experienced finance professional, not a bot or SDR.
                     </p>
                   </div>
                 </div>
@@ -248,11 +248,10 @@ export default function ContactPage() {
                           key={s}
                           type="button"
                           onClick={() => setSelectedService(s === selectedService ? "" : s)}
-                          className={`rounded-full border px-4 py-1.5 text-xs font-semibold transition-all duration-200 ${
-                            selectedService === s
+                          className={`rounded-full border px-4 py-1.5 text-xs font-semibold transition-all duration-200 ${selectedService === s
                               ? "border-[#7dd3fc]/60 bg-[#7dd3fc]/15 text-[#7dd3fc]"
                               : "border-white/10 bg-white/[0.03] text-white/45 hover-fine:-translate-y-0.5 hover-fine:border-white/25 hover-fine:text-white/75"
-                          }`}
+                            }`}
                         >
                           {s}
                         </button>

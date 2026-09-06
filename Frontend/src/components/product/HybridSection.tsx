@@ -57,7 +57,7 @@ export default function HybridSection() {
             AI Speed. <span className="grad-v">Human Judgment.</span>
           </h2>
           <p className="text-white mx-auto" style={{ maxWidth: 640, fontSize: "1.2rem" }}>
-           4AT combines automation with finance-specialized human support, so teams move faster without losing control, context, or judgment.  
+            4AT combines automation with finance-specialized human support, so teams move faster without losing control, context, or judgment.
           </p>
         </div>
 
@@ -66,8 +66,10 @@ export default function HybridSection() {
           {/* AI Column */}
           <TiltCard
             glowColor="rgba(167,139,250,0.16)"
-            className="rounded-[20px] overflow-hidden"style={{ border: "1px solid rgba(167,139,250,.2)",
-              background: "linear-gradient(160deg,rgba(16,12,34,.9),rgba(8,11,26,.9))" }}
+            className="rounded-[20px] overflow-hidden" style={{
+              border: "1px solid rgba(167,139,250,.2)",
+              background: "linear-gradient(160deg,rgba(16,12,34,.9),rgba(8,11,26,.9))"
+            }}
           >
             {/* Header */}
             <div className="flex items-center gap-4 px-7 py-6"
@@ -99,7 +101,7 @@ export default function HybridSection() {
 
             <div className="px-7 py-6">
               <div className="text-[15px] uppercase tracking-widest text-white mb-3">
-                What AI handles instantly 
+                What AI handles instantly
               </div>
               {aiItems.map((item) => (
                 <div key={item} className="flex items-start gap-3 py-2.5"
@@ -116,8 +118,10 @@ export default function HybridSection() {
           <TiltCard
             glowColor="rgba(45,212,191,0.14)"
             className="rounded-[20px] overflow-hidden relative"
-            style={{ border: "1px solid rgba(45,212,191,.2)",
-              background: "linear-gradient(160deg,rgba(16,12,34,.9),rgba(8,11,26,.9))" }}
+            style={{
+              border: "1px solid rgba(45,212,191,.2)",
+              background: "linear-gradient(160deg,rgba(16,12,34,.9),rgba(8,11,26,.9))"
+            }}
           >
             {/* Human-in-the-loop label */}
             <div className="absolute top-5 right-10 px-3 py-1.5 rounded-lg text-[11px] font-bold
@@ -180,25 +184,25 @@ export default function HybridSection() {
         >
           <div className="absolute top-0 left-0 right-0 h-[2px]"
             style={{ background: "linear-gradient(90deg,#a78bfa,#c084fc,#7dd3fc,#2dd4bf)" }} />
-          <h3 className="text-4xl font-bold mb-3">One Unified Experience — Zero Friction</h3>
+          <h3 className="text-4xl font-bold mb-3">One Unified Experience: Zero Friction</h3>
           <p className="text-white text-[17px] mx-auto mb-7" style={{ maxWidth: 680 }}>
             You never decide who to ask. 4AT routes every issue intelligently: AI resolves it instantly when it can, hands off to a specialist when it should. A single thread, full history, one resolution.
           </p>
           <div className="flex items-center justify-center gap-3 flex-wrap">
-            {["Your Question","→","AI Triages","→","Resolved in Seconds","or","Specialist Engaged","→","Expert Resolution"]
+            {["Your Question", "→", "AI Triages", "→", "Resolved in Seconds", "or", "Specialist Engaged", "→", "Expert Resolution"]
               .map((node, i) => (
                 <div key={i}>
-                  {["→","or"].includes(node) ? (
+                  {["→", "or"].includes(node) ? (
                     <span className="text-white/28 text-lg">{node}</span>
                   ) : (
                     <span
                       className="px-4 py-2 rounded-full text-sm font-bold"
                       style={{
-                        background: ["Resolved in Seconds","Expert Resolution"].includes(node)
+                        background: ["Resolved in Seconds", "Expert Resolution"].includes(node)
                           ? "rgba(45,212,191,.12)" : "rgba(167,139,250,.12)",
-                        border: `1px solid ${["Resolved in Seconds","Expert Resolution"].includes(node)
+                        border: `1px solid ${["Resolved in Seconds", "Expert Resolution"].includes(node)
                           ? "rgba(45,212,191,.22)" : "rgba(167,139,250,.22)"}`,
-                        color: ["Resolved in Seconds","Expert Resolution"].includes(node)
+                        color: ["Resolved in Seconds", "Expert Resolution"].includes(node)
                           ? "#5eead4" : "#c4b5fd",
                       }}
                     >{node}</span>

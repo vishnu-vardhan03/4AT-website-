@@ -14,7 +14,7 @@ import { validateStep } from "./validation";
 import type { RegistrationFormData } from "./types";
 
 /**
- * Academy Registration Form — multi-step wizard orchestrator (2 Steps).
+ * Academy Registration Form, multi-step wizard orchestrator (2 Steps).
  *
  * Manages:
  * - Dynamic student / professional workflow

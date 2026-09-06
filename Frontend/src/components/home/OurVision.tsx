@@ -1,9 +1,11 @@
 const comparisonRows = [
-  ["Cost", "$$$$ hourly", "$ but risky", "Flat subscription"],
+  ["Cost", "Hourly billing", "Low, but risky", "Flat subscription"],
   ["Speed", "Weeks", "Seconds", "Seconds + same-day human review"],
-  ["Trust", "High but slow", "Low, no judgment", "High, humans verify edge cases"],
-  ["Coverage", "What you can afford", "Only what AI handles", "End-to-end APO, controls, tax, FP&A"],
-  ["Model", "Hourly billing", "Self-serve software", "Subscription. We handle it."],
+  ["Trust", "High, but slow", "Low, no judgment", "High, humans verify edge cases"],
+  ["Coverage", "Limited to budget", "Narrow: only AI-handled tasks", "End-to-end APO, controls, tax, FP&A"],
+  ["Model", "Hourly billing", "Self-serve software", "Subscription: “We handle it.”"],
+  ["Scalability", "Limited by manpower", "Scales instantly, but brittle", "Scales with AI + human oversight"],
+  ["Know-how", "Retained by firms", "Locked in software", "White-labeled Build-Operate-Transfer model"],
 ];
 
 export function OurVision() {
@@ -17,10 +19,10 @@ export function OurVision() {
             Beyond the <span className="text-brand-gradient-flow">Trade-off</span>
           </h2>
           <p className="site-subheading mt-6 max-w-4xl text-white/75">
-            Traditional firms are too slow. Pure AI is too risky. We engineered a third way.
+            Conventional firms are slow and costly. Pure AI is unstable. We have engineered the smarter way
           </p>
           <p className="mt-5 text-lg font-semibold text-white md:text-xl">
-            <span className="text-brand-gradient">4AT Hybrid Services</span> is the third option.
+            <span className="text-brand-gradient-flow">4AT Hybrid Services</span> the next-gen model built for speed, stability, and scale
           </p>
         </div>
 
@@ -28,7 +30,7 @@ export function OurVision() {
           <table className="w-full min-w-[760px] border-collapse text-left">
             <thead>
               <tr className="border-b border-white/15 text-xs uppercase tracking-[.16em] text-white/55">
-                <th className="px-6 py-6 font-semibold">Compare the models</th>
+                <th className="px-6 py-6 font-semibold">Dimension</th>
                 <th className="px-6 py-6 font-semibold">Traditional Firms</th>
                 <th className="px-6 py-6 font-semibold">Pure AI Tools</th>
                 <th className="bg-[#2dd4bf]/15 px-6 py-6 font-bold text-[#8ff5e4]">4AT Hybrid Services</th>
@@ -47,7 +49,7 @@ export function OurVision() {
           </table>
         </div>
         <div className="mx-auto mt-10 max-w-3xl text-center">
-          <p className="text-xl font-semibold leading-relaxed text-white md:text-2xl">You pick the outcome. We pick the right tool, AI or human, for each task.</p>
+          <p className="text-xl font-semibold leading-relaxed text-white md:text-2xl">You pick the outcome. We pick the right hybrid tools: human and AI, for every task</p>
           <a href="#process" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#7dd3fc] transition hover:text-white">
             See exactly how the work gets split <span aria-hidden="true">→</span>
           </a>

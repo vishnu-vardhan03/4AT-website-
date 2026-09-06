@@ -198,7 +198,7 @@ export interface RegistrationsQuery {
 /**
  * Fetches one page of academy registrations. Pagination MUST be sent explicitly: the
  * backend defaults to `limit=20`, which previously truncated the dashboard silently.
- * Use `meta.total` — never `data.length` — for any count shown to an operator.
+ * Use `meta.total`, never `data.length`, for any count shown to an operator.
  */
 export async function getAcademyRegistrations(
   query: RegistrationsQuery = {},

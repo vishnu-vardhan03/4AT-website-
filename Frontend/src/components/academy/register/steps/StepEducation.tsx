@@ -12,7 +12,7 @@ import {
 } from "../constants";
 
 /**
- * Step 2 – Professional Information
+ * Step 2, Professional Information
  * Displays fields dynamically based on selected Applicant Type (Student / Working Professional).
  * Includes terms and conditions checkbox.
  */

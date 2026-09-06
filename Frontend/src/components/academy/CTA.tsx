@@ -47,7 +47,7 @@ export function CTA({ sectionId = "enroll" }: { sectionId?: string }) {
             lineHeight: 1.6,
           }}
         >
-          The pre-assessment is free and takes a few minutes. Everything after — training, certification, a real role in finance — is built to end in a career, not just a certificate.
+          The pre-assessment is free and takes a few minutes. Everything after, training, certification, a real role in finance, is built to end in a career, not just a certificate.
         </p>
 
         <p
@@ -64,7 +64,7 @@ export function CTA({ sectionId = "enroll" }: { sectionId?: string }) {
 
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-10">
           <Button href="/academy/register" variant="primary">
-            Check your eligibility — it&apos;s free
+            Check your eligibility, it&apos;s free
             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Button>
           <Button href="/contact" variant="secondary">

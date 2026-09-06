@@ -19,7 +19,8 @@ export function HeroContent() {
 
   return (
     <div className="flex flex-col items-start text-left max-w-full">
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         @keyframes gradient-shimmer {
           0% { background-position: 0% center; }
           100% { background-position: 200% center; }
@@ -110,7 +111,7 @@ export function HeroContent() {
           </motion.span>
         </span>
 
-        {/* Line 4: by 2–3 years. */}
+        {/* Line 4: by 2-3 years. */}
         <span className="block">
           <motion.span
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : "0.4em", filter: prefersReducedMotion ? "none" : "blur(6px)" }}
@@ -126,7 +127,7 @@ export function HeroContent() {
             transition={{ duration: prefersReducedMotion ? 0.3 : 0.6, delay: 0.82, ease: [0.16, 1, 0.3, 1] }}
             className="inline-block hero-gradient-word-2 font-sans"
           >
-            2–3 years.
+            2-3 years.
           </motion.span>
         </span>
       </h1>
@@ -142,7 +143,7 @@ export function HeroContent() {
         }}
         className="font-sans font-light text-[#A7A9C4] text-base md:text-[1.125rem] leading-[1.6] max-w-[720px] mt-8"
       >
-        A <span className="text-white font-semibold">4AT Initiative</span> — built by a firm that delivers finance, accounting and audit services to global clients. Commerce graduates and final-year students go from training to placement through our <span className="text-[#47D8FF] font-semibold">Train–Hire–Deploy (THD)</span> model.
+        A <span className="text-white font-semibold">4AT Initiative</span>, built by a firm that delivers finance, accounting and audit services to global clients. Commerce graduates and final-year students go from training to placement through our <span className="text-[#47D8FF] font-semibold">Train-Hire-Deploy (THD)</span> model.
       </motion.p>
 
       {/* Action Buttons */}

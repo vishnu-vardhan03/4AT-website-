@@ -123,15 +123,15 @@ export function Courses({ sectionId = "courses" }: { sectionId?: string }) {
       className="w-full section-padding font-sans select-none overflow-x-hidden relative"
       style={{ backgroundColor: "#07090D", color: "#ffffff" }}
     >
-      
+
       {/* Subtle Gradient Blobs replacing original big orb */}
-      <div 
-        className="absolute top-[20%] left-[-10%] w-[400px] h-[400px] rounded-full bg-[#8B5CF6]/5 blur-[100px] pointer-events-none z-0 animate-pulse" 
-        style={{ animationDuration: "12s" }} 
+      <div
+        className="absolute top-[20%] left-[-10%] w-[400px] h-[400px] rounded-full bg-[#8B5CF6]/5 blur-[100px] pointer-events-none z-0 animate-pulse"
+        style={{ animationDuration: "12s" }}
       />
-      <div 
-        className="absolute bottom-[10%] right-[-10%] w-[450px] h-[450px] rounded-full bg-[#5EEAD4]/5 blur-[120px] pointer-events-none z-0 animate-pulse" 
-        style={{ animationDuration: "16s" }} 
+      <div
+        className="absolute bottom-[10%] right-[-10%] w-[450px] h-[450px] rounded-full bg-[#5EEAD4]/5 blur-[120px] pointer-events-none z-0 animate-pulse"
+        style={{ animationDuration: "16s" }}
       />
 
       {/* Diagonal Light Lines Overlay */}
@@ -141,7 +141,7 @@ export function Courses({ sectionId = "courses" }: { sectionId?: string }) {
       </div>
 
       <div className="site-shell relative z-10">
-        
+
         {/* Section Header */}
         <div id="explore-pathways-header" className="flex flex-col items-start text-left max-w-[850px] mb-10">
           <SectionPill className="mb-7">
@@ -181,7 +181,7 @@ export function Courses({ sectionId = "courses" }: { sectionId?: string }) {
             <div className="hidden md:block w-[1px] bg-white/[0.06] self-stretch" />
             {/* Facts */}
             <div className="flex flex-col gap-3 shrink-0 justify-center">
-              {["Classroom + Live Online", "6-month LMS access", "Practice-led — simulations & live projects"].map((fact) => (
+              {["Classroom + Live Online", "6-month LMS access", "Practice-led, simulations & live projects"].map((fact) => (
                 <div key={fact} className="flex items-center gap-2.5">
                   <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_6px_#22d3ee] shrink-0" />
                   <span className="text-[13px] text-white/65 font-sans">{fact}</span>
@@ -194,16 +194,15 @@ export function Courses({ sectionId = "courses" }: { sectionId?: string }) {
 
         {/* Filters & Navigation Controls */}
         <div className="flex flex-wrap items-center justify-end gap-3 mb-8 border-b border-white/5 pb-6">
-          {/* Filters control — reveals the category pills in a popover instead of a permanent row */}
+          {/* Filters control, reveals the category pills in a popover instead of a permanent row */}
           <div className="relative" ref={filterMenuRef}>
             <button
               onClick={() => setIsFilterOpen((open) => !open)}
               aria-haspopup="listbox"
               aria-expanded={isFilterOpen}
               aria-label="Filters"
-              className={`relative w-11 h-11 rounded-full fx-ghost-btn text-white flex items-center justify-center transition-all cursor-pointer ${
-                selectedCategory !== "All" ? "!border-[rgba(94,234,212,0.6)] !text-[#5EEAD4]" : ""
-              }`}
+              className={`relative w-11 h-11 rounded-full fx-ghost-btn text-white flex items-center justify-center transition-all cursor-pointer ${selectedCategory !== "All" ? "!border-[rgba(94,234,212,0.6)] !text-[#5EEAD4]" : ""
+                }`}
             >
               <SlidersHorizontal className="w-4 h-4" />
               {selectedCategory !== "All" && (
@@ -211,14 +210,13 @@ export function Courses({ sectionId = "courses" }: { sectionId?: string }) {
               )}
             </button>
 
-            {/* Category popover — same pill markup/state as before, just no longer permanently visible */}
+            {/* Category popover, same pill markup/state as before, just no longer permanently visible */}
             <div
               role="listbox"
-              className={`absolute left-0 top-[calc(100%+10px)] z-50 w-[220px] max-w-[calc(100vw-3rem)] rounded-2xl border border-white/10 bg-[#0b0e1a]/95 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.5)] p-2.5 flex flex-col gap-1.5 origin-top transition-all duration-200 ease-out ${
-                isFilterOpen
+              className={`absolute left-0 top-[calc(100%+10px)] z-50 w-[220px] max-w-[calc(100vw-3rem)] rounded-2xl border border-white/10 bg-[#0b0e1a]/95 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.5)] p-2.5 flex flex-col gap-1.5 origin-top transition-all duration-200 ease-out ${isFilterOpen
                   ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
                   : "opacity-0 scale-95 -translate-y-1 pointer-events-none"
-              }`}
+                }`}
             >
               {categories.map((cat) => {
                 const isSelected = selectedCategory === cat;
@@ -231,11 +229,10 @@ export function Courses({ sectionId = "courses" }: { sectionId?: string }) {
                       setSelectedCategory(cat);
                       setIsFilterOpen(false);
                     }}
-                    className={`px-4 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all border cursor-pointer text-left ${
-                      isSelected
+                    className={`px-4 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all border cursor-pointer text-left ${isSelected
                         ? "bg-[#5EEAD4] text-black border-[#5EEAD4] shadow-[0_0_15px_rgba(94,234,212,0.25)]"
                         : "bg-white/[0.02] text-slate-400 border-[rgba(94,234,212,0.18)] hover:border-[#5EEAD4] hover:shadow-[0_0_12px_rgba(94,234,212,0.12)] hover:text-white"
-                    }`}
+                      }`}
                   >
                     {cat === "All" ? "ALL" : cat}
                   </button>
@@ -273,7 +270,7 @@ export function Courses({ sectionId = "courses" }: { sectionId?: string }) {
 
         {/* Horizontal Carousel Track */}
         <div className="relative w-full">
-          <div 
+          <div
             ref={scrollContainerRef}
             className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-none pt-4 pb-8 -mt-4 w-full"
             style={{
@@ -297,11 +294,9 @@ export function Courses({ sectionId = "courses" }: { sectionId?: string }) {
                     const slug = course.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
                     router.push(`/academy/courses/${slug}`);
                   }}
-                  className={`snap-start shrink-0 w-[280px] sm:w-[310px] md:w-[335px] group relative flex flex-col justify-between p-4.5 sm:p-5 rounded-[22px] border border-blue-500/20 bg-gradient-to-b from-[#101726] via-[#0b0f19] to-[#080b12] shadow-[0_8px_24px_rgba(0,0,0,0.5)] transition-all duration-300 min-h-[340px] ${
-                    isLocked ? "cursor-not-allowed opacity-80" : "hover:border-blue-400/50 hover:shadow-[0_10px_30px_rgba(37,99,235,0.12)] cursor-pointer"
-                  } ${
-                    isMobile && !isLocked ? "active:scale-[0.98] transition-transform duration-200" : ""
-                  }`}
+                  className={`snap-start shrink-0 w-[280px] sm:w-[310px] md:w-[335px] group relative flex flex-col justify-between p-4.5 sm:p-5 rounded-[22px] border border-blue-500/20 bg-gradient-to-b from-[#101726] via-[#0b0f19] to-[#080b12] shadow-[0_8px_24px_rgba(0,0,0,0.5)] transition-all duration-300 min-h-[340px] ${isLocked ? "cursor-not-allowed opacity-80" : "hover:border-blue-400/50 hover:shadow-[0_10px_30px_rgba(37,99,235,0.12)] cursor-pointer"
+                    } ${isMobile && !isLocked ? "active:scale-[0.98] transition-transform duration-200" : ""
+                    }`}
                   style={{
                     willChange: "transform",
                   }}

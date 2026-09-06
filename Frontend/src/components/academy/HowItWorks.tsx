@@ -88,20 +88,20 @@ const stepsData: StepData[] = [
 
 // ── Animation constants ──────────────────────────────────────────────────────
 const NODE_POSITIONS = ["8.333%", "25%", "41.667%", "58.333%", "75%", "91.667%"];
-const NODE_COLORS    = ["#14F195", "#2ACDFF", "#9C5BFF", "#F472B6", "#FBBF24", "#14F195"];
+const NODE_COLORS = ["#14F195", "#2ACDFF", "#9C5BFF", "#F472B6", "#FBBF24", "#14F195"];
 
-const TRAVEL      = 1.1;   // travel time between nodes
-const NODE_DWELL  = 0.45;  // pause/dwell time at each node (450ms)
-const STEP_DUR    = TRAVEL + NODE_DWELL; // 1.55s total per step
+const TRAVEL = 1.1;   // travel time between nodes
+const NODE_DWELL = 0.45;  // pause/dwell time at each node (450ms)
+const STEP_DUR = TRAVEL + NODE_DWELL; // 1.55s total per step
 
-const HOLD_START  = 0.5;   // hold at Stage 01 before particle moves
-const HOLD_FWD    = 0.8;   // hold at Stage 06 before reset
-const RESET_DUR   = 0.2;   // simultaneous reset fade duration
-const N           = 5;     // number of connecting segments
+const HOLD_START = 0.5;   // hold at Stage 01 before particle moves
+const HOLD_FWD = 0.8;   // hold at Stage 06 before reset
+const RESET_DUR = 0.2;   // simultaneous reset fade duration
+const N = 5;     // number of connecting segments
 
-const FWD_END    = HOLD_START + N * STEP_DUR - NODE_DWELL; // 7.8 s — forward pass done
-const HOLD_END   = FWD_END + HOLD_FWD;                     // 8.6 s — hold ends, reset begins
-const RESET_END  = HOLD_END + RESET_DUR;                   // 8.8 s — reset done, cycle repeats
+const FWD_END = HOLD_START + N * STEP_DUR - NODE_DWELL; // 7.8 s: forward pass done
+const HOLD_END = FWD_END + HOLD_FWD;                     // 8.6 s: hold ends, reset begins
+const RESET_END = HOLD_END + RESET_DUR;                   // 8.8 s: reset done, cycle repeats
 
 export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false }: { sectionId?: string; hideHeader?: boolean }) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -113,11 +113,12 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
   const seg4Ref = useRef<HTMLDivElement>(null);
   const seg5Ref = useRef<HTMLDivElement>(null);
 
-  const particleRef      = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const particleRef = useRef<HTMLDivElement>(null);
   const nodeContainerRefs = useRef<(HTMLDivElement | null)[]>([]);
   const diagramContainerRef = useRef<HTMLDivElement>(null);
 
-  const tlRef      = useRef<gsap.core.Timeline | null>(null);
+  const tlRef = useRef<gsap.core.Timeline | null>(null);
   const hasStarted = useRef(false);
 
   // Spawns energy wave + scatter particles at the arrived node (450 ms, restrained)
@@ -144,7 +145,7 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
       p.style.cssText = `background-color:${col};box-shadow:0 0 8px ${col};left:50%;top:50%;transform:translate(-50%,-50%)`;
       wrapper.appendChild(p);
       const angle = Math.random() * Math.PI * 2;
-      const dist  = Math.random() * 28 + 16;
+      const dist = Math.random() * 28 + 16;
       gsap.to(p, {
         x: Math.cos(angle) * dist, y: Math.sin(angle) * dist,
         opacity: 0, scale: 0.1,
@@ -162,16 +163,20 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     // ── Header fade-in on first sight (breakpoint-independent) ──────────────
-    gsap.set(".hiw-header-fade", { opacity: 0, y: 30 });
-    const headerObs = new IntersectionObserver((entries) => {
-      if (entries[0]?.isIntersecting) {
-        gsap.to(".hiw-header-fade", { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" });
-        headerObs.disconnect();
-      }
-    }, { threshold: 0.1 });
-    headerObs.observe(section);
+    const headerEl = headerRef.current || section.querySelector<HTMLElement>(".hiw-header-fade");
+    let headerObs: IntersectionObserver | null = null;
+    if (headerEl) {
+      gsap.set(headerEl, { opacity: 0, y: 30 });
+      headerObs = new IntersectionObserver((entries) => {
+        if (entries[0]?.isIntersecting) {
+          gsap.to(headerEl, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" });
+          headerObs?.disconnect();
+        }
+      }, { threshold: 0.1 });
+      headerObs.observe(section);
+    }
 
-    // ── Shared highlight tweens — identical visual language for every
+    // ── Shared highlight tweens, identical visual language for every
     //    geometry (desktop % positions or mobile measured px positions).
     //    Keeping these in one place guarantees mobile and desktop can never
     //    visually drift apart, and there is only ever one animation system.
@@ -181,20 +186,20 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
 
     const applyOutgoingTweens = (tl: gsap.core.Timeline, idx: number, t: number) => {
       const cc = NODE_COLORS[idx];
-      tl.to(`.node-wrapper-${idx}`,        { opacity: 0.9, duration: 0.35 }, t);
-      tl.to(`.node-circle-${idx}`,         { scale: 1.0, background: "rgba(7,9,13,0.45)", borderColor: cc, boxShadow: `0 0 12px ${cc}38`, duration: 0.35 }, t);
-      tl.to(`.node-icon-${idx}`,           { filter: "brightness(0.9)", duration: 0.35 }, t);
+      tl.to(`.node-wrapper-${idx}`, { opacity: 0.9, duration: 0.35 }, t);
+      tl.to(`.node-circle-${idx}`, { scale: 1.0, background: "rgba(7,9,13,0.45)", borderColor: cc, boxShadow: `0 0 12px ${cc}38`, duration: 0.35 }, t);
+      tl.to(`.node-icon-${idx}`, { filter: "brightness(0.9)", duration: 0.35 }, t);
       tl.to(`.active-ring-overlay-${idx}`, { opacity: 0, scale: 0.8, duration: 0.35 }, t);
       tl.to(`.active-halo-overlay-${idx}`, { opacity: 0, duration: 0.35 }, t);
-      tl.to(`.stage-text-block-${idx}`,    { opacity: 0.7, y: 0, duration: 0.35 }, t);
-      tl.to(`.stage-label-${idx}`,         { color: "rgba(255,255,255,0.5)", duration: 0.35 }, t);
-      tl.to(`.stage-title-${idx}`,         { color: "rgba(255,255,255,0.7)", duration: 0.35 }, t);
-      tl.to(`.stage-desc-${idx}`,          { color: "rgba(255,255,255,0.6)", duration: 0.35 }, t);
+      tl.to(`.stage-text-block-${idx}`, { opacity: 0.7, y: 0, duration: 0.35 }, t);
+      tl.to(`.stage-label-${idx}`, { color: "rgba(255,255,255,0.5)", duration: 0.35 }, t);
+      tl.to(`.stage-title-${idx}`, { color: "rgba(255,255,255,0.7)", duration: 0.35 }, t);
+      tl.to(`.stage-desc-${idx}`, { color: "rgba(255,255,255,0.6)", duration: 0.35 }, t);
     };
 
     const applyArrivalTweens = (tl: gsap.core.Timeline, idx: number, t: number) => {
       const nc = NODE_COLORS[idx];
-      tl.to(`.node-wrapper-${idx}`,        { opacity: 1.0, duration: 0.35 }, t);
+      tl.to(`.node-wrapper-${idx}`, { opacity: 1.0, duration: 0.35 }, t);
       tl.to(`.node-circle-${idx}`, {
         scale: 1.08,
         background: `radial-gradient(circle at center, ${nc}1a 0%, rgba(7,9,13,0.95) 100%) padding-box, linear-gradient(135deg, ${nc}, rgba(255,255,255,0.05)) border-box`,
@@ -202,13 +207,13 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
         boxShadow: `0 0 24px ${nc}73`,
         duration: 0.35
       }, t);
-      tl.to(`.node-icon-${idx}`,           { color: nc, scale: 1.08, filter: "brightness(1.25)", duration: 0.35 }, t);
+      tl.to(`.node-icon-${idx}`, { color: nc, scale: 1.08, filter: "brightness(1.25)", duration: 0.35 }, t);
       tl.to(`.active-ring-overlay-${idx}`, { opacity: 0.18, scale: 1, duration: 0.35 }, t);
       tl.to(`.active-halo-overlay-${idx}`, { opacity: 0.15, duration: 0.35 }, t);
-      tl.to(`.stage-text-block-${idx}`,    { opacity: 1.0, y: 0, duration: 0.35 }, t);
-      tl.to(`.stage-label-${idx}`,         { color: nc, duration: 0.35 }, t);
-      tl.to(`.stage-title-${idx}`,         { color: "#ffffff", duration: 0.35 }, t);
-      tl.to(`.stage-desc-${idx}`,          { color: "rgba(255,255,255,0.85)", duration: 0.35 }, t);
+      tl.to(`.stage-text-block-${idx}`, { opacity: 1.0, y: 0, duration: 0.35 }, t);
+      tl.to(`.stage-label-${idx}`, { color: nc, duration: 0.35 }, t);
+      tl.to(`.stage-title-${idx}`, { color: "#ffffff", duration: 0.35 }, t);
+      tl.to(`.stage-desc-${idx}`, { color: "rgba(255,255,255,0.85)", duration: 0.35 }, t);
 
       tl.call(() => triggerNodeBurst(idx), [], t);
       tl.to(`.node-circle-${idx}`, { scale: 1.08 * 1.15, filter: "brightness(1.3)", duration: 0.14 }, t);
@@ -226,73 +231,73 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
         duration: RESET_DUR,
         ease: "power2.in"
       }, t);
-      tl.to(`.node-icon-${idx}`,           { scale: 1.0, filter: "brightness(0.85) saturate(0.85)", duration: RESET_DUR, ease: "power2.in" }, t);
+      tl.to(`.node-icon-${idx}`, { scale: 1.0, filter: "brightness(0.85) saturate(0.85)", duration: RESET_DUR, ease: "power2.in" }, t);
       tl.to(`.active-ring-overlay-${idx}`, { opacity: 0, scale: 0.8, duration: RESET_DUR }, t);
       tl.to(`.active-halo-overlay-${idx}`, { opacity: 0, duration: RESET_DUR }, t);
-      tl.to(`.stage-text-block-${idx}`,    { opacity: 0.92, y: 0, duration: RESET_DUR, ease: "power2.in" }, t);
-      tl.to(`.stage-label-${idx}`,         { color: "rgba(255,255,255,0.5)", duration: RESET_DUR }, t);
-      tl.to(`.stage-title-${idx}`,         { color: "rgba(255,255,255,0.8)", duration: RESET_DUR }, t);
-      tl.to(`.stage-desc-${idx}`,          { color: "rgba(255,255,255,0.65)", duration: RESET_DUR }, t);
+      tl.to(`.stage-text-block-${idx}`, { opacity: 0.92, y: 0, duration: RESET_DUR, ease: "power2.in" }, t);
+      tl.to(`.stage-label-${idx}`, { color: "rgba(255,255,255,0.5)", duration: RESET_DUR }, t);
+      tl.to(`.stage-title-${idx}`, { color: "rgba(255,255,255,0.8)", duration: RESET_DUR }, t);
+      tl.to(`.stage-desc-${idx}`, { color: "rgba(255,255,255,0.65)", duration: RESET_DUR }, t);
     };
 
-    // tl.set() version of the arrival state — used to re-activate Stage 01
+    // tl.set() version of the arrival state, used to re-activate Stage 01
     // instantly inside the repeating timeline at RESET_END.
     const applyActiveSetOnTimeline = (tl: gsap.core.Timeline, idx: number, t: number) => {
       const nc = NODE_COLORS[idx];
-      tl.set(`.node-wrapper-${idx}`,        { opacity: 1.0 }, t);
-      tl.set(`.node-circle-${idx}`,         { scale: 1.08, borderColor: nc, boxShadow: `0 0 24px ${nc}73` }, t);
-      tl.set(`.node-icon-${idx}`,           { color: nc, scale: 1.08, filter: "brightness(1.25)" }, t);
-      tl.set(`.stage-text-block-${idx}`,    { opacity: 1.0, y: 0 }, t);
+      tl.set(`.node-wrapper-${idx}`, { opacity: 1.0 }, t);
+      tl.set(`.node-circle-${idx}`, { scale: 1.08, borderColor: nc, boxShadow: `0 0 24px ${nc}73` }, t);
+      tl.set(`.node-icon-${idx}`, { color: nc, scale: 1.08, filter: "brightness(1.25)" }, t);
+      tl.set(`.stage-text-block-${idx}`, { opacity: 1.0, y: 0 }, t);
       tl.set(`.active-ring-overlay-${idx}`, { opacity: 0.18, scale: 1 }, t);
       tl.set(`.active-halo-overlay-${idx}`, { opacity: 0.15 }, t);
-      tl.set(`.stage-label-${idx}`,         { color: nc }, t);
-      tl.set(`.stage-title-${idx}`,         { color: "#ffffff" }, t);
-      tl.set(`.stage-desc-${idx}`,          { color: "rgba(255,255,255,0.85)" }, t);
+      tl.set(`.stage-label-${idx}`, { color: nc }, t);
+      tl.set(`.stage-title-${idx}`, { color: "#ffffff" }, t);
+      tl.set(`.stage-desc-${idx}`, { color: "rgba(255,255,255,0.85)" }, t);
     };
 
     const applyEntrancePulse = (tl: gsap.core.Timeline, idx: number) => {
       tl.call(() => triggerNodeBurst(idx), [], 0.04);
-      tl.to(`.node-circle-${idx}`,         { scale: 1.08 * 1.18, filter: "brightness(1.5)", duration: 0.16 }, 0);
-      tl.to(`.node-circle-${idx}`,         { scale: 1.08, filter: "brightness(1.0)", duration: 0.26, ease: "power3.out" }, 0.16);
+      tl.to(`.node-circle-${idx}`, { scale: 1.08 * 1.18, filter: "brightness(1.5)", duration: 0.16 }, 0);
+      tl.to(`.node-circle-${idx}`, { scale: 1.08, filter: "brightness(1.0)", duration: 0.26, ease: "power3.out" }, 0.16);
       tl.to(`.active-ring-overlay-${idx}`, { opacity: 0.38, scale: 1.10, duration: 0.16 }, 0);
-      tl.to(`.active-ring-overlay-${idx}`, { opacity: 0.18, scale: 1.0,  duration: 0.26, ease: "power3.out" }, 0.16);
+      tl.to(`.active-ring-overlay-${idx}`, { opacity: 0.18, scale: 1.0, duration: 0.26, ease: "power3.out" }, 0.16);
       tl.to(`.active-halo-overlay-${idx}`, { opacity: 0.32, duration: 0.16 }, 0);
       tl.to(`.active-halo-overlay-${idx}`, { opacity: 0.15, duration: 0.26, ease: "power3.out" }, 0.16);
     };
 
     const applyFinalHoldGlow = (tl: gsap.core.Timeline, t: number) => {
-      tl.to(".node-circle-5",         { boxShadow: `0 0 40px ${NODE_COLORS[5]}aa, 0 0 70px ${NODE_COLORS[5]}44`, duration: 0.35 }, t);
+      tl.to(".node-circle-5", { boxShadow: `0 0 40px ${NODE_COLORS[5]}aa, 0 0 70px ${NODE_COLORS[5]}44`, duration: 0.35 }, t);
       tl.to(".active-halo-overlay-5", { opacity: 0.35, duration: 0.35 }, t);
     };
 
     const setDimmedBaseState = () => {
       gsap.set(".pipeline-node-wrapper", { opacity: 0.92 });
-      gsap.set(".stage-text-block",      { opacity: 0.92, y: 0 });
-      gsap.set(".active-ring-overlay",   { opacity: 0, scale: 0.8 });
-      gsap.set(".active-halo-overlay",   { opacity: 0 });
-      gsap.set(".stage-label",           { color: "rgba(255,255,255,0.5)" });
-      gsap.set(".stage-title",           { color: "rgba(255,255,255,0.8)" });
-      gsap.set(".stage-desc",            { color: "rgba(255,255,255,0.65)" });
+      gsap.set(".stage-text-block", { opacity: 0.92, y: 0 });
+      gsap.set(".active-ring-overlay", { opacity: 0, scale: 0.8 });
+      gsap.set(".active-halo-overlay", { opacity: 0 });
+      gsap.set(".stage-label", { color: "rgba(255,255,255,0.5)" });
+      gsap.set(".stage-title", { color: "rgba(255,255,255,0.8)" });
+      gsap.set(".stage-desc", { color: "rgba(255,255,255,0.65)" });
     };
 
     const setNodeActiveInstant = (idx: number) => {
       const nc = NODE_COLORS[idx];
-      gsap.set(`.node-wrapper-${idx}`,        { opacity: 1.0 });
-      gsap.set(`.node-circle-${idx}`,         { scale: 1.08, borderColor: nc, boxShadow: `0 0 24px ${nc}73` });
-      gsap.set(`.node-icon-${idx}`,           { color: nc, scale: 1.08, filter: "brightness(1.25)" });
-      gsap.set(`.stage-text-block-${idx}`,    { opacity: 1.0, y: 0 });
+      gsap.set(`.node-wrapper-${idx}`, { opacity: 1.0 });
+      gsap.set(`.node-circle-${idx}`, { scale: 1.08, borderColor: nc, boxShadow: `0 0 24px ${nc}73` });
+      gsap.set(`.node-icon-${idx}`, { color: nc, scale: 1.08, filter: "brightness(1.25)" });
+      gsap.set(`.stage-text-block-${idx}`, { opacity: 1.0, y: 0 });
       gsap.set(`.active-ring-overlay-${idx}`, { opacity: 0.18, scale: 1 });
       gsap.set(`.active-halo-overlay-${idx}`, { opacity: 0.15 });
-      gsap.set(`.stage-label-${idx}`,         { color: nc });
-      gsap.set(`.stage-title-${idx}`,         { color: "#ffffff" });
-      gsap.set(`.stage-desc-${idx}`,          { color: "rgba(255,255,255,0.85)" });
+      gsap.set(`.stage-label-${idx}`, { color: nc });
+      gsap.set(`.stage-title-${idx}`, { color: "#ffffff" });
+      gsap.set(`.stage-desc-${idx}`, { color: "rgba(255,255,255,0.85)" });
     };
 
     // ════════════════════════════════════════════════════════════════════════
-    // DESKTOP — autoplay particle timeline (horizontal, % positions)
+    // DESKTOP, autoplay particle timeline (horizontal, % positions)
     // ════════════════════════════════════════════════════════════════════════
     const setupDesktop = (): (() => void) => {
-      if (!particleRef.current) return () => {};
+      if (!particleRef.current) return () => { };
 
       const segs = [seg1Ref, seg2Ref, seg3Ref, seg4Ref, seg5Ref];
 
@@ -314,7 +319,7 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
 
       // ── FORWARD PASS  t = HOLD_START → FWD_END ─────────────────────────
       for (let i = 0; i < N; i++) {
-        const t  = HOLD_START + i * STEP_DUR;
+        const t = HOLD_START + i * STEP_DUR;
         const ni = i + 1;
         const nc = NODE_COLORS[ni];
         const seg = segs[i];
@@ -362,15 +367,15 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
     };
 
     // ════════════════════════════════════════════════════════════════════════
-    // MOBILE — autoplay particle timeline (vertical, real DOM-measured positions)
+    // MOBILE, autoplay particle timeline (vertical, real DOM-measured positions)
     // ════════════════════════════════════════════════════════════════════════
     const setupMobile = (): (() => void) => {
-      if (!particleRef.current || !diagramContainerRef.current) return () => {};
+      if (!particleRef.current || !diagramContainerRef.current) return () => { };
       const container = diagramContainerRef.current;
 
       // Derive each node's actual center point from the rendered DOM, relative
       // to the same positioned ancestor the particle is absolutely positioned
-      // within — never assume fixed coordinates for the vertical layout.
+      // within, never assume fixed coordinates for the vertical layout.
       const containerRect = container.getBoundingClientRect();
       const positions = stepsData.map((_, idx) => {
         const nodeEl = section.querySelector(`.node-circle-${idx}`) as HTMLElement | null;
@@ -378,7 +383,7 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
         const r = nodeEl.getBoundingClientRect();
         return {
           left: r.left + r.width / 2 - containerRect.left,
-          top:  r.top  + r.height / 2 - containerRect.top,
+          top: r.top + r.height / 2 - containerRect.top,
         };
       });
 
@@ -398,11 +403,11 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
       applyEntrancePulse(tl, 0);
 
       for (let i = 0; i < N; i++) {
-        const t  = HOLD_START + i * STEP_DUR;
+        const t = HOLD_START + i * STEP_DUR;
         const ni = i + 1;
         const nc = NODE_COLORS[ni];
 
-        // Particle travels DOWN through the measured node centers — smooth
+        // Particle travels DOWN through the measured node centers, smooth
         // 2D interpolation naturally follows the vertical timeline geometry.
         tl.to(particleRef.current!, { left: positions[ni].left, top: positions[ni].top, duration: TRAVEL, ease: "power1.inOut" }, t);
         applyParticleColorTween(tl, nc, t);
@@ -443,7 +448,7 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
     };
 
     // ════════════════════════════════════════════════════════════════════════
-    // REDUCED MOTION — static active state, no continuous animation
+    // REDUCED MOTION, static active state, no continuous animation
     // ════════════════════════════════════════════════════════════════════════
     const setupReducedMotion = (): (() => void) => {
       setDimmedBaseState();
@@ -454,7 +459,7 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
           boxShadow: `0 0 8px #fff, 0 0 14px ${NODE_COLORS[0]}`
         });
       }
-      return () => {};
+      return () => { };
     };
 
     let currentIsDesktop = window.matchMedia("(min-width: 768px)").matches;
@@ -476,7 +481,7 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
       resizeTimer = setTimeout(() => {
         const nowDesktop = window.matchMedia("(min-width: 768px)").matches;
         const crossedBreakpoint = nowDesktop !== currentIsDesktop;
-        if (!crossedBreakpoint && nowDesktop) return; // pure desktop resize — % positions already correct
+        if (!crossedBreakpoint && nowDesktop) return; // pure desktop resize: % positions already correct
 
         const wasPlaying = hasStarted.current;
         teardown();
@@ -490,14 +495,14 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
     return () => {
       window.removeEventListener("resize", handleResize);
       if (resizeTimer) clearTimeout(resizeTimer);
-      headerObs.disconnect();
+      if (headerObs) headerObs.disconnect();
       teardown();
       if (tlRef.current) { tlRef.current.kill(); tlRef.current = null; }
     };
   }, []);
 
-  // Hover — pause / resume the autoplay animation
-  const pauseAnim  = () => { tlRef.current?.pause(); };
+  // Hover, pause / resume the autoplay animation
+  const pauseAnim = () => { tlRef.current?.pause(); };
   const resumeAnim = () => { tlRef.current?.resume(); };
 
   const diagram = (
@@ -508,17 +513,17 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
             horizontal overflow is contained by the section's overflow-x-clip */}
         <div ref={diagramContainerRef} className="relative w-full" style={{ minHeight: "200px" }}>
 
-          {/* ── Desktop watermark — horizontal word, hidden on mobile to prevent overflow ── */}
+          {/* ── Desktop watermark, horizontal word, hidden on mobile to prevent overflow ── */}
           <div className="hidden md:block absolute left-1/2 top-[35px] -translate-x-1/2 -translate-y-1/2 text-[160px] lg:text-[220px] xl:text-[240px] font-black tracking-[0.14em] pl-[0.14em] text-white/[0.045] pointer-events-none select-none z-0 font-display text-center whitespace-nowrap">
             PROCESS
           </div>
 
-          {/* ── Mobile watermark — letters stacked vertically, upright, no rotation ── */}
+          {/* ── Mobile watermark, letters stacked vertically, upright, no rotation ── */}
           <div
             className="md:hidden absolute right-3 top-0 bottom-0 flex flex-col justify-around pointer-events-none select-none z-0"
             aria-hidden="true"
           >
-            {["P","R","O","C","E","S","S"].map((letter, i) => (
+            {["P", "R", "O", "C", "E", "S", "S"].map((letter, i) => (
               <span
                 key={i}
                 className="text-[3rem] sm:text-[3.5rem] font-black text-white/[0.07] font-display leading-none block"
@@ -563,7 +568,7 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
             <div ref={seg5Ref} className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#FBBF24] to-[#14F195] w-0 shadow-[0_0_8px_rgba(20,241,149,0.3)] brightness-[120%]" />
           </div>
 
-          {/* Glowing energy particle — travels along the connectors */}
+          {/* Glowing energy particle, travels along the connectors */}
           <div
             ref={particleRef}
             className="absolute top-[35px] -translate-y-1/2 -translate-x-1/2 w-3 h-3 rounded-full z-[5] pointer-events-none"
@@ -573,7 +578,7 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
               boxShadow: "0 0 8px #fff, 0 0 14px #14F195"
             }}
           >
-            {/* Inner glow rings — slightly tighter for a crisper, faster-feeling trail */}
+            {/* Inner glow rings, slightly tighter for a crisper, faster-feeling trail */}
             <div className="absolute inset-[-2px] rounded-full blur-[2px] opacity-45 bg-inherit" />
             <div className="absolute inset-[-5px] rounded-full blur-[4px] opacity-15 bg-inherit" />
           </div>
@@ -639,11 +644,10 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
                         }}
                       />
                       <IconComponent
-                        className={`w-6 h-6 stroke-[1.5] transition-all duration-300 node-icon-${idx} relative z-10 ${
-                          idx === 0
+                        className={`w-6 h-6 stroke-[1.5] transition-all duration-300 node-icon-${idx} relative z-10 ${idx === 0
                             ? `${step.iconColor} brightness-110 node-icon-breathe`
                             : `${step.iconColor} opacity-70`
-                        }`}
+                          }`}
                       />
                     </div>
                   </div>
@@ -682,7 +686,7 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
   }
 
   return (
-    // Natural-height section — no sticky, no scroll-lock wrapper
+    // Natural-height section, no sticky, no scroll-lock wrapper
     <div
       ref={sectionRef}
       id={sectionId}
@@ -696,7 +700,7 @@ export function HowItWorks({ sectionId = "selection-metrics", hideHeader = false
         <div className="hiw-content-wrapper w-full flex flex-col py-14 md:py-20 gap-10 md:gap-14 relative z-10">
 
           {/* ── Header ───────────────────────────────────────────────────── */}
-          <div className="hiw-header-fade flex flex-col items-start max-w-4xl w-full">
+          <div ref={headerRef} className="hiw-header-fade flex flex-col items-start max-w-4xl w-full">
             <SectionPill className="mb-3 md:mb-4">
               HOW IT WORKS
             </SectionPill>

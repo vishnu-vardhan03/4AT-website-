@@ -52,7 +52,7 @@ export default function GlimpseSection() {
             <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
             <span className="w-3 h-3 rounded-full bg-[#febc2e]" />
             <span className="w-3 h-3 rounded-full bg-[#28c840]" />
-            <span className="ml-3 text-xs text-white">4AT Finance Copilot — Live Demo</span>
+            <span className="ml-3 text-xs text-white">4AT Finance Copilot: Live Demo</span>
           </div>
 
           {/* Dashboard screenshot placeholder */}
@@ -61,6 +61,7 @@ export default function GlimpseSection() {
               src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80"
               alt="Financial analytics dashboard with real-time reconciliation data, charts, and ledger audit trails"
               fill
+              priority
               className="object-cover opacity-70"
               sizes="(max-width: 768px) 100vw, 920px"
             />
@@ -99,9 +100,9 @@ export default function GlimpseSection() {
         {/* Stats below video */}
         <div className="flex justify-center gap-16 mt-14 flex-wrap">
           {[
-            { val: "85%",   label: "Reduction in Manual Tasks" },
+            { val: "85%", label: "Reduction in Manual Tasks" },
             { val: "99.9%", label: "Transaction Accuracy" },
-            { val: "50+",   label: "Enterprise Clients" },
+            { val: "50+", label: "Enterprise Clients" },
           ].map((s) => (
             <div key={s.val} className="text-center">
               <div className="text-4xl font-bold grad-v">{s.val}</div>

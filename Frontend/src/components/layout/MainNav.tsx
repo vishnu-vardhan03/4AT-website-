@@ -101,6 +101,7 @@ function NavDropdown({
               src={imageSrc}
               alt={imageAlt}
               fill
+              priority
               sizes="320px"
               className="object-cover transition-transform duration-500 group-hover/image:scale-105"
             />
@@ -133,6 +134,7 @@ function NavDropdown({
 
 export function Nav({ contactHref = "/contact" }: { contactHref?: string }) {
   const pathname = usePathname();
+  const isAcademy = isPathActive(pathname, "/academy");
   const [isDarkBg, setIsDarkBg] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isNavHidden, setIsNavHidden] = useState(false);
@@ -334,13 +336,13 @@ export function Nav({ contactHref = "/contact" }: { contactHref?: string }) {
         </nav>
         <div className="flex items-center justify-self-end gap-2">
           <Link
-            href="/essl/login"
+            href={isAcademy ? "#" : "/essl/login"}
             className={`hidden min-h-10 items-center px-2 py-2 text-[14px] font-bold leading-6 underline decoration-2 underline-offset-4 transition-colors duration-300 md:inline-flex ${isDarkBg
                 ? "text-white decoration-white/60 hover:text-zinc-200"
                 : "text-zinc-900 decoration-zinc-500 hover:text-black"
               }`}
           >
-            Employee Login
+            {isAcademy ? "Student Login" : "Employee Login"}
           </Link>
           <Link
             href={contactHref}
@@ -418,11 +420,11 @@ export function Nav({ contactHref = "/contact" }: { contactHref?: string }) {
           })}
 
           <Link
-            href="/essl/login"
+            href={isAcademy ? "#" : "/essl/login"}
             onClick={closeMobileMenu}
             className="mt-2 flex min-h-12 items-center justify-center px-4 text-sm font-bold text-white underline decoration-2 decoration-white/60 underline-offset-4"
           >
-            Employee Login
+            {isAcademy ? "Student Login" : "Employee Login"}
           </Link>
 
           <Link

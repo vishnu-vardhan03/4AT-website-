@@ -73,7 +73,7 @@ export function FloatingWidget() {
     try {
       window.sessionStorage.setItem(SESSION_DISMISS_KEY, "1");
     } catch {
-      // Storage unavailable — safe to ignore.
+      // Storage unavailable, safe to ignore.
     }
   };
 

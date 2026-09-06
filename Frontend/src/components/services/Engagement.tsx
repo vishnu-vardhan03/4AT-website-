@@ -8,7 +8,7 @@ const steps = [
   {
     n: "2",
     title: "Onboard",
-    timeline: "Days 1–7",
+    timeline: "Days 1-7",
     desc: "Connector ingests your ERP, ledgers, and policies. Your dedicated pod of AI agents plus experienced finance professionals is live within 7 days. You don't change tools. We meet you inside the systems you already use."
   },
   {
@@ -72,7 +72,7 @@ export function Engagement() {
                       <span>{s.n}</span>
                     </div>
                   </div>
-                  
+
                   {/* Content Container */}
                   <div className="flex-1 lg:mt-8">
                     <h3 className="text-2xl font-bold tracking-tight text-white group-hover:text-sky-300 transition-colors duration-500 ease-out leading-tight">
@@ -81,7 +81,7 @@ export function Engagement() {
                     <span className="block text-xs font-bold mt-1.5 uppercase tracking-widest select-none text-sky-400/80">
                       {s.timeline}
                     </span>
-                    
+
                     <p className="mt-4 leading-relaxed text-sm lg:text-base font-normal text-zinc-400 group-hover:text-zinc-200 transition-colors duration-500 ease-out">
                       {s.desc}
                     </p>

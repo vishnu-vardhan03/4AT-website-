@@ -64,7 +64,7 @@ export const authOptions: NextAuthOptions = {
           if (!accessToken) return null;
           return { id: "admin", role: "admin", accessToken };
         } catch (error) {
-          // Includes an unconfigured BACKEND_URL — without this log an admin login failure
+          // Includes an unconfigured BACKEND_URL, without this log an admin login failure
           // is indistinguishable from wrong credentials.
           console.error("[auth] Admin login request failed", error instanceof Error ? error.message : error);
           return null;

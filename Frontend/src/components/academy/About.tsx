@@ -39,7 +39,7 @@ const aboutCards = [
     id: "03",
     eyebrow: "CAREER",
     title: "Deploy",
-    body: "Seamless integration into active finance & accounting teams with 2–3 years of capability & leader mentorship.",
+    body: "Seamless integration into active finance & accounting teams with 2-3 years of capability & leader mentorship.",
     icon: Briefcase,
     features: ["CAREER READY", "GLOBAL STANDARDS", "LEADER MENTORED"],
     borderColor: "rgba(168, 85, 247, 0.2)",

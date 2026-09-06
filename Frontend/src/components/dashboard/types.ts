@@ -5,7 +5,7 @@ export type LeadsStats = {
   professionalRegistrations: number;
   consultingLeads: number;
   aiLeads: number;
-  /** Sum of academyLeads + consultingLeads + aiLeads — the records `GET /leads` returns.
+  /** Sum of academyLeads + consultingLeads + aiLeads, the records `GET /leads` returns.
    *  Registrations are counted separately in academyRegistrations. */
   totalLeads: number;
 };

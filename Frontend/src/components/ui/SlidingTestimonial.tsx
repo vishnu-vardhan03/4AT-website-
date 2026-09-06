@@ -94,7 +94,7 @@ const FUITestimonialWithSlide: React.FC<SlidingTestimonialProps> = ({
     <div className="site-shell overflow-hidden">
       <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-[72px]">
 
-        {/* Left Column — Pill + Heading + Subheading */}
+        {/* Left Column, Pill + Heading + Subheading */}
         <div className="w-full lg:w-[48%] flex flex-col items-center lg:items-start text-center lg:text-left relative">
           <SectionPill className="relative z-10">ALUMNI TESTIMONIALS</SectionPill>
           <h2 className="section-title max-w-[620px] relative z-10 mt-4">
@@ -102,12 +102,12 @@ const FUITestimonialWithSlide: React.FC<SlidingTestimonialProps> = ({
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 font-sans">Real Career Transformations.</span>
           </h2>
           <p className="section-desc relative z-10 mt-7 max-w-[540px] leading-relaxed text-sm sm:text-base">
-            Practice-led training, structured mentorship — and the roles that
+            Practice-led training, structured mentorship, and the roles that
             followed. From our FEP Certified Professionals, in their own words.
           </p>
         </div>
 
-        {/* Right Column — Placeholder Card */}
+        {/* Right Column, Placeholder Card */}
         <div className="w-full lg:w-[42%] flex justify-center lg:justify-end relative z-10">
           {hasTestimonials ? (
             <div className="relative w-full max-w-[500px] overflow-hidden shrink-0 min-w-0">

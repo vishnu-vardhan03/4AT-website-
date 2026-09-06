@@ -1,5 +1,5 @@
 export interface RegistrationFormData {
-  // Step 1 – Personal Information
+  // Step 1, Personal Information
   firstName: string;
   lastName: string;
   gender: string;
@@ -12,7 +12,7 @@ export interface RegistrationFormData {
   email: string;
   mobileNumber: string;
 
-  // Step 2 – Professional Information (dynamic by applicant type)
+  // Step 2, Professional Information (dynamic by applicant type)
   applicantType: "student" | "professional";
   
   // Student specific

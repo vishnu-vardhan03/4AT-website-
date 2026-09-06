@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { INPUT_ERROR_CLASS } from "./constants";
 
 interface FormFieldProps {
-  /** Field ID — ties label to input. */
+  /** Field ID, ties label to input. */
   id: string;
   /** Visible label text. */
   label: string;

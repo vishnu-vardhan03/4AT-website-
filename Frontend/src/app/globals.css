@@ -182,7 +182,7 @@
     color: var(--color-foreground);
     font-family: var(--font-display);
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 }
 
@@ -456,9 +456,9 @@ html.lenis, html.lenis body { height: auto; }
 
 .hero-ecosystem-orbit {
   position: absolute;
-  right: 3rem;
-  top: 50%;
-  width: min(45vw, 42rem);
+  right: 1.5rem;
+  top: 58%;
+  width: min(38vw, 42rem);
   aspect-ratio: 1;
   transform: translateY(-50%);
   opacity: .65;
@@ -496,7 +496,7 @@ html.lenis, html.lenis body { height: auto; }
 @keyframes hero-orbit { to { transform: rotate(360deg); } }
 
 @media (max-width: 768px) {
-  .hero-ecosystem-orbit { right: 1.5rem; top: 43%; width: min(85vw, 22rem); opacity: .35; }
+  .hero-ecosystem-orbit { right: 1rem; top: 43%; width: min(48vw, 12rem); opacity: .28; }
   .hero-ecosystem-glow { width: 20rem; height: 20rem; }
 }
 

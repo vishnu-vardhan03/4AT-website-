@@ -36,7 +36,7 @@ const courseCurriculums: Record<string, {
     whatYouWillLearn: [
       "Read a company's annual report (10-K / 10-Q) and structure a chart of accounts from the ground up.",
       "Run the core transaction cycles: bank & credit card processing, AP, AR, expenses/prepaids/accruals, and payroll.",
-      "Execute a full month-end close — reconciliations, financial statement prep, and flux analysis.",
+      "Execute a full month-end close, reconciliations, financial statement prep, and flux analysis.",
       "Use ERP and AI tools to execute and automate real finance tasks.",
       "Build audit literacy and hands-on SOX skills through the Audit & SOX Essentials track.",
       "Apply everything in a capstone: an end-to-end, real-world simulation on live systems."
@@ -50,63 +50,63 @@ const courseCurriculums: Record<string, {
         title: "1 · Foundations",
         duration: "Common Core · 3 Modules",
         lectures: [
-          "M1 — The Business Behind the Numbers, incl. reading a company's annual report (10-K / 10-Q)",
-          "M2 — Building the Chart of Accounts",
-          "M3 — Reading the Financial Statements"
+          "M1, The Business Behind the Numbers, incl. reading a company's annual report (10-K / 10-Q)",
+          "M2, Building the Chart of Accounts",
+          "M3, Reading the Financial Statements"
         ]
       },
       {
         title: "2 · Core Transaction Cycles",
         duration: "Common Core · 5 Modules",
         lectures: [
-          "M4 — Bank & Credit Card Processing",
-          "M5 — Accounts Payable (AP)",
-          "M6 — Accounts Receivable (AR)",
-          "M7 — Expense, Prepaid & Accruals",
-          "M8 — Payroll Accounting"
+          "M4, Bank & Credit Card Processing",
+          "M5, Accounts Payable (AP)",
+          "M6, Accounts Receivable (AR)",
+          "M7, Expense, Prepaid & Accruals",
+          "M8, Payroll Accounting"
         ]
       },
       {
         title: "3 · Close & Reporting",
         duration: "Common Core · 4 Modules",
         lectures: [
-          "M9 — Bank & Sub-Ledger Reconciliations",
-          "M10 — Month-End Close Simulation",
-          "M11 — Financial Statement Preparation",
-          "M12 — Flux Analysis & Management Insights"
+          "M9, Bank & Sub-Ledger Reconciliations",
+          "M10, Month-End Close Simulation",
+          "M11, Financial Statement Preparation",
+          "M12, Flux Analysis & Management Insights"
         ]
       },
       {
         title: "4 · AI, Tools & Scenarios",
         duration: "Common Core · 2 Modules",
         lectures: [
-          "M13 — Foundations of IT & AI for Accountants",
-          "M14 — Tools for Scenario-Based Accounting"
+          "M13, Foundations of IT & AI for Accountants",
+          "M14, Tools for Scenario-Based Accounting"
         ]
       },
       {
         title: "5 · Professional Readiness & Advanced",
         duration: "Common Core · 2 Modules",
         lectures: [
-          "M15 — Professional Effectiveness & Client Engagement",
-          "M16 — Advanced Finance Topics"
+          "M15, Professional Effectiveness & Client Engagement",
+          "M16, Advanced Finance Topics"
         ]
       },
       {
-        title: "Capstone Project — Full Simulation",
+        title: "Capstone Project, Full Simulation",
         duration: "End-to-end simulation",
         lectures: [
-          "An end-to-end, real-world simulation on live systems — your proof of deployment-readiness and the basis for certification."
+          "An end-to-end, real-world simulation on live systems, your proof of deployment-readiness and the basis for certification."
         ]
       },
       {
         title: "6 · Audit & SOX Essentials",
         duration: "Audit & SOX Essentials · 4 Modules",
         lectures: [
-          "M17 — How an Audit Works",
-          "M18 — The Audit Engagement, Big 4 Basics",
-          "M19 — SOX Fundamentals",
-          "M20 — Performing & Facilitating a SOX Audit"
+          "M17, How an Audit Works",
+          "M18, The Audit Engagement, Big 4 Basics",
+          "M19, SOX Fundamentals",
+          "M20, Performing & Facilitating a SOX Audit"
         ]
       }
     ],
@@ -433,7 +433,7 @@ export default function CourseDetailsPage({
         <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-accent/4 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="site-shell relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-10">
-          
+
           {/* Headline Texts */}
           <div className="lg:col-span-2 flex flex-col justify-center">
             <Link
@@ -463,7 +463,7 @@ export default function CourseDetailsPage({
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight font-sans">
               {course.title}
             </h1>
-            
+
             <p className="mt-4 text-base sm:text-lg text-slate-300 font-sans leading-relaxed max-w-3xl">
               {course.subtitle}
             </p>
@@ -475,11 +475,10 @@ export default function CourseDetailsPage({
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star
                       key={i}
-                      className={`size-3.5 ${
-                        i < Math.floor(course.rating)
+                      className={`size-3.5 ${i < Math.floor(course.rating)
                           ? "fill-[#fbbf24] text-[#fbbf24]"
                           : "text-white/10"
-                      }`}
+                        }`}
                     />
                   ))}
                 </div>
@@ -500,10 +499,10 @@ export default function CourseDetailsPage({
       {/* Main Section layout with Sidebar widget */}
       <section className="py-12 sm:py-16 flex-grow relative">
         <div className="site-shell relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-12">
-          
+
           {/* Main Body Contents (Left Column) */}
           <div className="lg:col-span-2 flex flex-col gap-12">
-            
+
             {/* 1. What you'll learn card */}
             <div className="bg-[#0b0e1a]/40 border border-white/8 rounded-2xl p-6 sm:p-8">
               <h2 className="text-xl sm:text-2xl font-bold font-sans tracking-tight mb-6">
@@ -551,9 +550,8 @@ export default function CourseDetailsPage({
                             {mod.duration}
                           </span>
                           <ChevronDown
-                            className={`size-4.5 text-slate-400 transition-transform duration-300 ${
-                              isExpanded ? "rotate-180 text-accent" : ""
-                            }`}
+                            className={`size-4.5 text-slate-400 transition-transform duration-300 ${isExpanded ? "rotate-180 text-accent" : ""
+                              }`}
                           />
                         </div>
                       </button>
@@ -640,7 +638,7 @@ export default function CourseDetailsPage({
           {/* Sticky Sidebar widget (Right Column) */}
           <div className="w-full lg:col-span-1">
             <div className="lg:sticky lg:top-28 bg-[#0b0e1a] border border-white/10 rounded-2xl overflow-hidden shadow-2xl backdrop-blur-md">
-              
+
               {/* Course Preview Banner */}
               <div className="relative aspect-video w-full bg-[#0b0e1a]">
                 <Image
@@ -661,7 +659,7 @@ export default function CourseDetailsPage({
 
               {/* Price and Details Card */}
               <div className="p-6 md:p-8 flex flex-col gap-6">
-                
+
                 {/* Price tags */}
                 <div className="flex items-baseline justify-between border-b border-white/5 pb-4">
                   <span className="text-3xl font-extrabold text-white font-sans">{course.price}</span>

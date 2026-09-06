@@ -161,11 +161,20 @@ export default function AboutPage() {
                 className="relative mt-8 w-full"
               >
                 <div className="mb-8 h-px w-full bg-gradient-to-r from-[#7dd3fc]/60 via-white/15 to-transparent" />
-                <p className={statementTextClass}>
-                  <BlurredStagger text="To create a future where every finance team runs on " />
-                  <BlurredStagger text="hybrid services." className="text-brand-gradient-flow" />
-                  <BlurredStagger text=" People, Process, and AI working together, so accounting is faster, more insightful, and always reliable." />
-                </p>
+                <div className="space-y-6">
+                  <p className={statementTextClass}>
+                    <BlurredStagger text="Our vision is to build a sustainable, future-ready ecosystem where Finance and Accounting operations thrive on a hybrid model, one that seamlessly integrates People, Process, and AI. By working in true synergy, these three pillars eliminate gaps across the value chain, creating a resilient foundation that scales with the business." />
+                  </p>
+                  <p className={statementTextClass}>
+                    <BlurredStagger
+                      text="4AT Hybrid Services: breaking boundaries. Driving automation, affordability, adoption, reliability"
+                      className="text-brand-gradient-flow"
+                    />
+                  </p>
+                  <p className={statementTextClass}>
+                    <BlurredStagger text="A world where accounting and audit professionals are never limited by geography, and businesses are never limited by talent, where every business, no matter its size, has access to the right expertise, and every professional has the freedom to build a career on their own terms. We see a future where our ecosystem is the standard for how professionals and businesses connect, grow, and succeed together, outlasting every wave of technological change instead of being disrupted by it." />
+                  </p>
+                </div>
               </motion.div>
             </div>
           </div>
@@ -195,10 +204,19 @@ export default function AboutPage() {
                 className="relative mt-8 w-full"
               >
                 <div className="mb-8 h-px w-full bg-gradient-to-r from-[#a78bfa]/60 via-white/15 to-transparent" />
-                <MagicText
-                  text="Our mission is to unite the world of business with hybrid services. Regardless of size or stage, we are built to be the accounting, audit, assurance, advisory and transformation (4AT) partner that lasts, the one designed to outgrow the technological chaos created by outsourcing and AI, through an innovative hybrid ecosystem that integrates with ever-evolving technology and scales with every business we serve."
-                  className={statementTextClass}
-                />
+                <div className="space-y-6">
+                  <MagicText
+                    text="Our mission is to be the accounting, audit, assurance, and advisory (4AT) partner that businesses never outgrow, built on hybrid services that turn the chaos created by AI and outsourcing into an advantage for professionals and businesses alike."
+                    className={statementTextClass}
+                  />
+                  <p className="text-lg font-bold text-brand-gradient-flow md:text-2xl">
+                    Approach:
+                  </p>
+                  <MagicText
+                    text="We do this by integrating accounting and audit professionals with business houses on one ecosystem, one that develops professionals and gives them the technology to work from anywhere, breaking the territorial and location limits that have long defined this industry. Just as ride-hailing platforms freed drivers from fixed routes and dispatch systems, our model frees professionals to work on their own terms while giving businesses direct access to the right expertise, wherever it lives. The result is a partnership that scales, for professionals building careers, and for businesses building their future"
+                    className={statementTextClass}
+                  />
+                </div>
               </motion.div>
             </div>
           </div>
@@ -234,9 +252,9 @@ export default function AboutPage() {
                   animate={visibleValueCount > index
                     ? { opacity: 1, x: 0 }
                     : {
-                        opacity: 0,
-                        x: prefersReducedMotion ? 0 : index % 2 === 0 ? -64 : 64,
-                      }}
+                      opacity: 0,
+                      x: prefersReducedMotion ? 0 : index % 2 === 0 ? -64 : 64,
+                    }}
                   transition={{
                     duration: prefersReducedMotion ? 0.2 : 0.55,
                     ease: [0.22, 1, 0.36, 1],
@@ -310,9 +328,9 @@ export default function AboutPage() {
                   animate={visiblePrincipleCount > index
                     ? { opacity: 1, x: 0 }
                     : {
-                        opacity: 0,
-                        x: prefersReducedMotion ? 0 : index % 2 === 0 ? -72 : 72,
-                      }}
+                      opacity: 0,
+                      x: prefersReducedMotion ? 0 : index % 2 === 0 ? -72 : 72,
+                    }}
                   transition={{
                     duration: prefersReducedMotion ? 0.2 : 0.6,
                     ease: [0.22, 1, 0.36, 1],

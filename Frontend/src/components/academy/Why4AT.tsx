@@ -24,7 +24,7 @@ const whyItems: ReasonItem[] = [
     tag: "FIRM FOUNDATION",
     title: "Built by a working F&A & audit firm",
     description:
-      "You learn on real client standards from a firm that delivers finance, accounting and audit for global clients — not from a textbook.",
+      "You learn on real client standards from a firm that delivers finance, accounting and audit for global clients, not from a textbook.",
     icon: Building2,
     glowColor: "rgba(16, 201, 129, 0.08)",
     badgeColors: "text-emerald-400 border-emerald-500/20 bg-emerald-500/5",
@@ -50,7 +50,7 @@ const whyItems: ReasonItem[] = [
     tag: "PROPRIETARY TECH",
     title: "Our own AI platform",
     description:
-      "You train on 4AT's AI-powered finance tools alongside industry platforms — learning to work with AI, not around it.",
+      "You train on 4AT's AI-powered finance tools alongside industry platforms, learning to work with AI, not around it.",
     icon: Cpu,
     glowColor: "rgba(168, 85, 247, 0.08)",
     badgeColors: "text-purple-400 border-purple-500/20 bg-purple-500/5",
@@ -63,7 +63,7 @@ const whyItems: ReasonItem[] = [
     tag: "DIRECT PLACEMENT",
     title: "A real and growing talent pipeline",
     description:
-      "4AT has a regular, growing pipeline of client engagements that need finance and audit talent. Our best performers go directly into that pipeline — on real client work from day one.",
+      "4AT has a regular, growing pipeline of client engagements that need finance and audit talent. Our best performers go directly into that pipeline, on real client work from day one.",
     icon: TrendingUp,
     glowColor: "rgba(16, 201, 129, 0.08)",
     badgeColors: "text-emerald-400 border-emerald-500/20 bg-emerald-500/5",
@@ -76,7 +76,7 @@ const whyItems: ReasonItem[] = [
     tag: "QUALITY GATE",
     title: "Every credential is earned",
     description:
-      "Not everyone who starts completes as an FEP Certified Professional. Every candidate clears a structured assessment before certification and placement — that quality gate is what makes the credential mean something.",
+      "Not everyone who starts completes as an FEP Certified Professional. Every candidate clears a structured assessment before certification and placement, that quality gate is what makes the credential mean something.",
     icon: ShieldCheck,
     glowColor: "rgba(6, 182, 212, 0.08)",
     badgeColors: "text-cyan-400 border-cyan-500/20 bg-cyan-500/5",
@@ -122,7 +122,7 @@ export function Why4AT({ sectionId = "why-academy" }: { sectionId?: string }) {
             </span>
           </h2>
           <p className="section-desc">
-            Not a coaching class — a working finance, accounting and audit firm that trains professionals to its own client standards.
+            Not a coaching class, a working finance, accounting and audit firm that trains professionals to its own client standards.
           </p>
         </motion.div>
 

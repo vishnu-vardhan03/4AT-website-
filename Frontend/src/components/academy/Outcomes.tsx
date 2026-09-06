@@ -7,9 +7,9 @@ import Link from "next/link";
 
 const stats = [
   { value: "150+", label: "Graduates trained", color: "emerald" },
-  { value: "100%",   label: "Placement rate",    color: "cyan"    },
-  { value: "10+",  label: "Hiring partners",   color: "purple"  },
-  { value: "100",  label: "In training now",   color: "emerald" },
+  { value: "100%", label: "Placement rate", color: "cyan" },
+  { value: "10+", label: "Hiring partners", color: "purple" },
+  { value: "100", label: "In training now", color: "emerald" },
 ] as const;
 
 const outcomes = [
@@ -32,7 +32,7 @@ const outcomes = [
     icon: Briefcase,
     eyebrow: "PERMANENT ROLE",
     title: "Placed at 4AT",
-    body: "Top performers are absorbed into permanent finance, accounting and audit roles — our own talent pipeline.",
+    body: "Top performers are absorbed into permanent finance, accounting and audit roles, our own talent pipeline.",
     borderColor: "rgba(6, 182, 212, 0.25)",
     glowColor: "rgba(6, 182, 212, 0.06)",
     innerShadow: "inset 0 0 10px rgba(6, 182, 212, 0.05), 0 4px 16px rgba(0,0,0,0.5)",
@@ -106,7 +106,7 @@ export function Outcomes() {
             end up.
           </h2>
           <p className="section-desc max-w-[700px] mt-1">
-            Trained, certified, and placed —{" "}
+            Trained, certified, and placed : {" "}
             <span className="text-white font-semibold">at 4AT</span> or with our{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 font-semibold">
               hiring partners
@@ -208,7 +208,7 @@ export function Outcomes() {
           </div>
           <p className="text-sm sm:text-base text-white/70 font-sans leading-relaxed">
             Every graduate earns the{" "}
-            <span className="text-white font-semibold">4AT Academy — FinTech Engineering</span>{" "}
+            <span className="text-white font-semibold">4AT Academy, FinTech Engineering</span>{" "}
             certification.
           </p>
         </div>

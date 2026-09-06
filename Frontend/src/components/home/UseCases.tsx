@@ -1,131 +1,90 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
+import { useScroll } from "framer-motion";
 import { CardsParallax, type ScrollCardItem } from "@/components/home/ScrollCards";
 
 const scenarios: ScrollCardItem[] = [
   {
-    title: "Closing the books takes too long",
-    pain: "Your team spends 10–12 days a month on close. Errors slip in. Your CFO is the last to know.",
-    action: "Transactions reconcile in seconds, our senior controllers review exceptions daily, and reports are ready before you ask.",
-    outcome: "Close in 4–5 days. Audit-ready by default. Your CFO sees the dashboard before the team does.",
+    title: "Closing the books takes longer",
+    pain: "Manual processes, fragmented systems, and unclear ownership create inefficiencies that compound over time, leading to missed deadlines, delayed filings, and growing compliance risk.",
+    action: "Transactions reconcile in seconds, systems stay connected end-to-end, experts review exceptions, and reports are ready before you ask",
+    outcome: "Close in 4-5 days. Audit-ready by default. CFO gets the results and reports in real time, with no waiting on the team to compile it, with no end of the month surprises",
     color: "#38bdf8",
   },
   {
-    title: "You're heading into an audit and not ready",
-    pain: "Your auditor's PBC list is 200 items long. Your team is rebuilding workpapers from scratch. Walk-throughs are a mess.",
-    action: "The PBC list generates automatically. Control breaks surface before the audit even starts. Our senior leads run the pre-audit close.",
-    outcome: "Clean walk-throughs from day one. No all-nighters. Your audit timeline holds.",
-    color: "#a78bfa",
-  },
-  {
-    title: "You're growing, but can't hire fast enough",
-    pain: "Volume is up 40%. You can't find experienced controllers. Hiring a full team takes 6 months and a Big 4 firm quotes you a fortune.",
-    action: "You subscribe. We deploy a hybrid pod (AI agents + experienced finance professionals) in under 7 days.",
-    outcome: "Capacity without headcount. Senior judgment without senior salaries. Scale up or down by service line.",
+    title: "Growth is outpacing infrastructure, and leadership needs a way to expand without losing control or quality.",
+    pain: "Month-end close drags on. Quality depends on who's working. Key hires leave, taking process knowledge with them.",
+    action: "AI handles reconciliations and standard entries at speed, with built-in controls. Humans apply judgment where needed.",
+    outcome: "Faster, consistent close: not dependent on any one person.",
     color: "#2dd4bf",
   },
   {
-    title: "You're an accounting firm with overflow",
-    pain: "Tax season hits. Your associates are drowning. You're losing client work because you can't staff it.",
-    action: "Hand us your overflow. We deliver workpapers in your format, on your timeline, white-labeled if you want.",
-    outcome: "You keep the client relationship. We absorb the volume. No hiring, no training, no margin loss.",
+    title: "They know opportunities exist, whether in automation, analytics, or market positioning: but don’t have the bandwidth or expertise to act decisively.",
+    pain: "CFOs see cash position and performance days late, through static reports. Problems surface after they've already hurt the business.",
+    action: "AI delivers a live view of cash, receivables, and key metrics. Finance leaders interpret and act on trends.",
+    outcome: "Real-time visibility, not rear-view reporting",
     color: "#38bdf8",
   },
   {
-    title: "You're going public and your finance stack isn't ready",
-    pain: "S-1 in 12 months. Your books, controls, and reporting aren't where the SEC wants them. You don't have a CFO yet.",
-    action: "End-to-end IPO readiness, from books to SOX to S-1 narrative, backed by our Virtual CFO bench.",
-    outcome: "Audit-ready financials. SOX-ready controls. A finance function that holds up to public-market scrutiny.",
+    title: "Regulatory requirements are increasing, and they need confidence that processes are airtight and audit-ready.",
+    pain: "Manual entries and filings are error-prone. Late-caught mistakes mean audit risk and costly rework.",
+    action: "AI validates entries and filings in real time, flagging anomalies. Teams review only flagged items.",
+    outcome: "Fewer errors, lower audit risk, without checking everything by hand.",
     color: "#a78bfa",
   },
 ];
 
 export function UseCases() {
-  const cardsGroupRef = useRef<HTMLDivElement>(null);
-  const [cardsFinished, setCardsFinished] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    let observer: IntersectionObserver | null = null;
-
-    const observeCardEnd = () => {
-      observer?.disconnect();
-
-      const marker = cardsGroupRef.current?.querySelector<HTMLElement>(
-        "[data-scroll-cards-end]",
-      );
-      const lastCard = marker?.parentElement;
-      const cardPanel = lastCard?.firstElementChild as HTMLElement | null;
-
-      if (!marker || !cardPanel || window.innerWidth < 768) {
-        setCardsFinished(false);
-        return;
-      }
-
-      const triggerLine = 17 * 16 + cardPanel.offsetHeight;
-      const bottomMargin = Math.max(0, window.innerHeight - triggerLine);
-
-      observer = new IntersectionObserver(
-        ([entry]) => {
-          setCardsFinished(entry.boundingClientRect.top <= triggerLine);
-        },
-        { rootMargin: `0px 0px -${bottomMargin}px 0px` },
-      );
-      observer.observe(marker);
-    };
-
-    observeCardEnd();
-    window.addEventListener("resize", observeCardEnd);
-
-    return () => {
-      observer?.disconnect();
-      window.removeEventListener("resize", observeCardEnd);
-    };
-  }, []);
+  // Track scroll progress through the pinned storytelling container
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
 
   return (
-    <section id="use-cases" className="relative text-white [overflow:clip]">
-      {/* Ambient glow blobs — overflow:clip lets these be visually clipped without breaking sticky */}
+    <section id="use-cases" className="relative text-white">
+      {/* Ambient glow blobs */}
       <div className="pointer-events-none absolute left-0 top-1/3 size-96 rounded-full bg-[#2dd4bf]/10 blur-[120px]" />
       <div className="pointer-events-none absolute right-0 top-1/2 size-96 rounded-full bg-[#a78bfa]/10 blur-[120px]" />
 
-      <div className="relative">
-        {/* Opaque sticky layer prevents stacked cards showing through the heading. */}
-        <div
-          className={`relative z-30 transition-opacity duration-300 md:sticky md:top-0 md:bg-[#030712]/95 md:backdrop-blur-md ${
-            cardsFinished ? "md:pointer-events-none md:opacity-0" : "md:opacity-100"
-          }`}
-        >
-          <div className="mx-auto max-w-[1200px] px-6 pt-14 pb-10 md:px-12 md:pt-6">
+      {/* Pinned scroll container wrapper (height defines total scroll track length) */}
+      <div ref={containerRef} className="relative h-[250vh] sm:h-[280vh] md:h-[300vh]">
+        {/* Sticky viewport frame that pins during section scroll */}
+        <div className="sticky top-0 flex h-screen flex-col justify-start overflow-hidden pt-6 pb-6 sm:pt-8 sm:pb-8 md:pt-10 md:pb-10">
+          {/* Header remains visible throughout the pinned storytelling experience */}
+          <div className="mx-auto w-full max-w-[1200px] shrink-0 px-6 md:px-12">
             <span className="section-badge">
               Where Hybrid creates the most value
             </span>
-            <h2 className="mt-5 site-heading">
-              Five moments where finance teams{" "}
-              <span className="text-brand-gradient-flow">switch to 4AT.</span>
+            <h2 className="mt-2.5 site-heading text-xl sm:text-2xl md:text-3xl lg:text-[2.25rem] leading-tight">
+              Four moments where finance &amp; accounting processes{" "}
+              <span className="text-brand-gradient-flow">switch to 4AT Hybrid Services.</span>
             </h2>
-            <p className="site-subheading mt-6 max-w-3xl text-white/75">
-              The buyers who pick us aren&apos;t shopping for &quot;an accounting firm&quot; or
-              &quot;an AI tool.&quot; They&apos;re stuck in a specific situation. Here are the
-              five we hear most.
+            <p className="site-subheading mt-2 max-w-3xl text-xs sm:text-sm md:text-base text-white/75">
+              Our clients aren’t simply shopping for “an accounting firm” or “an AI tool.” They
+              come to us because they’re navigating specific challenges where traditional
+              solutions fall short. The four most common situations we hear are
             </p>
           </div>
-        </div>
 
-        {/* Sticky scroll cards */}
-        <div ref={cardsGroupRef} className="relative z-20">
-          <CardsParallax items={scenarios} />
+          {/* Cards storytelling viewport driven directly by scrollYProgress with clean top gap below header */}
+          <div className="relative mx-auto w-full max-w-[1200px] flex-1 px-4 pt-10 sm:px-6 md:px-12 md:pt-14">
+            <CardsParallax items={scenarios} progress={scrollYProgress} />
+          </div>
         </div>
       </div>
 
-      {/* Footer CTA row */}
-      <div className="relative mx-auto max-w-[1200px] px-6 pb-14 md:px-12 md:pb-24">
-        <div className="mt-10 rounded-2xl border border-white/15 bg-white/[0.035] px-7 py-9 text-center">
+      {/* Section Footer: follows the pinned track in normal document flow */}
+      <div className="relative z-30 mx-auto max-w-[1200px] px-6 pt-10 pb-14 md:px-12 md:pb-24">
+        <div className="rounded-2xl border border-white/15 bg-white/[0.035] px-7 py-8 md:py-9 text-center">
           <span className="section-badge">
             What every engagement delivers
           </span>
-          <p className="mt-3 text-xl font-semibold text-white md:text-2xl">
-            No matter which scenario brought you here, every 4AT engagement gives you
+          <p className="mt-3 text-lg font-semibold text-white sm:text-xl md:text-2xl">
+            Regardless of the scenario that brings you to us, every 4AT engagement is designed to deliver the full Six Sigma experience, now enhanced through our new hybrid services engagement model
           </p>
         </div>
         <div className="mt-8 text-center">

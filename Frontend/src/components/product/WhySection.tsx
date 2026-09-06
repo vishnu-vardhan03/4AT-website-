@@ -17,7 +17,7 @@ const cards = [
   {
     id: "compliance",
     title: "Compliance by Design",
-    desc: "SOC 2 Type II, GDPR, and enterprise-grade security built in—so you can scale with confidence.",
+    desc: "SOC 2 Type II, GDPR, and enterprise-grade security built in, so you can scale with confidence.",
     windowTitle: "Security Status",
     badge: "Secure",
     badgeColor: "#10b981",
@@ -334,7 +334,7 @@ export default function WhySection() {
             for Impact.
           </h2>
           <p className="text-white mx-auto text-lg" style={{ maxWidth: 1000, lineHeight: 1.9, fontSize: "1.2rem" }}>
-           Most AI tools are built horizontally and then adapted for finance. 4AT starts with accounting logic, controls, review workflows, and implementation realities from the beginning. 
+            Most AI tools are built horizontally and then adapted for finance. 4AT starts with accounting logic, controls, review workflows, and implementation realities from the beginning.
           </p>
         </div>
 
